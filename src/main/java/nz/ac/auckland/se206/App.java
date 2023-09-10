@@ -2,10 +2,13 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
 
@@ -49,6 +52,15 @@ public class App extends Application {
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
     scene = new Scene(SceneManager.getPanel(AppPanel.LAUNCH), 1280, 720);
     stage.setScene(scene);
+    // Make sure all thread closes
+    stage.setOnCloseRequest(
+        new EventHandler<WindowEvent>() {
+          @Override
+          public void handle(WindowEvent e) {
+            Platform.exit();
+            System.exit(0);
+          }
+        });
     stage.show();
   }
 }
