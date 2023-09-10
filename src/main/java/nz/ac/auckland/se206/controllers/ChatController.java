@@ -1,11 +1,17 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
+import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -17,10 +23,15 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Controller class for the chat view. */
 public class ChatController {
+  public static ChatMessage gptMessage;
+
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
+  @FXML private Label counter;
 
+  private ChatMessage thinkingMessage =
+      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
 
   /**
@@ -30,9 +41,37 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
+    timeline.setCycleCount(123);
+    timeline.play();
+
+    Task<Void> riddleCall =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.7)
+                    .setTopP(0.7)
+                    .setMaxTokens(100);
+
+            gptMessage =
+                runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+
+            return null;
+          }
+        };
+
+    Thread mainRiddleThread = new Thread(riddleCall);
+    mainRiddleThread.start();
+  }
+
+  public void dispCount() {
+    counter.setText(String.valueOf(GameState.count));
   }
 
   /**
@@ -57,10 +96,19 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
+      result.getChatMessage().setRole("Wise Mystical Tree");
       appendChatMessage(result.getChatMessage());
+      result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
+      ChatMessage error = new ChatMessage(null, null);
+
+      error.setRole("Wise Mystical Tree");
+
+      error.setContent(
+          "Sorry, there was a problem generating a response. Please try restarting the"
+              + " application.");
+      appendChatMessage(error);
       e.printStackTrace();
       return null;
     }
@@ -80,12 +128,36 @@ public class ChatController {
       return;
     }
     inputText.clear();
-    ChatMessage msg = new ChatMessage("user", message);
-    appendChatMessage(msg);
-    ChatMessage lastMsg = runGpt(msg);
-    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
-      GameState.isRiddleResolved = true;
-    }
+
+    Task<Void> typeCall =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            ChatMessage msg = new ChatMessage("user", message);
+            msg.setRole("You");
+            appendChatMessage(msg);
+            msg.setRole("user");
+            appendChatMessage(thinkingMessage);
+            ChatMessage lastMsg = runGpt(msg);
+
+            // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
+            // from the launch panel and checks whether or not text to speech will be active
+
+            if (lastMsg.getRole().equals("assistant")
+                && lastMsg.getContent().startsWith("Correct")) {
+              GameState.inventory.add(-1);
+            }
+            if (GameState.inventory.contains(-2)) {
+              GameState.textToSpeech.speak(lastMsg.getContent());
+            }
+            return null;
+          }
+        };
+
+    Thread typeInThread = new Thread(typeCall);
+    typeInThread.start();
   }
 
   /**
@@ -97,6 +169,6 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("room");
+    App.setUi(AppPanel.OUTSIDE);
   }
 }
