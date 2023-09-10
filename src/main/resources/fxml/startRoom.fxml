@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaunchController">
+   <children>
+      <Button fx:id="launchButton" layoutX="400.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#launchGame" prefHeight="246.0" prefWidth="481.0" text="Launch" />
+      <Button fx:id="inactiveSpeech" layoutX="657.0" layoutY="641.0" mnemonicParsing="false" onMouseClicked="#removeSpeech" prefHeight="43.0" prefWidth="224.0" text="Deactivate Text to Speech" />
+      <Button fx:id="activeSpeech" layoutX="385.0" layoutY="641.0" mnemonicParsing="false" onMouseClicked="#activateSpeech" prefHeight="43.0" prefWidth="224.0" text="Activate Text to Speech" />
+   </children>
+</Pane>

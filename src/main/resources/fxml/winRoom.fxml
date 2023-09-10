@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinController">
+   <children>
+      <Ellipse fill="WHITE" layoutX="644.0" layoutY="317.0" radiusX="166.0" radiusY="303.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fill="#abd6ff" layoutX="644.0" layoutY="171.0" radiusX="100.0" radiusY="49.0" stroke="BLACK" strokeType="INSIDE" />
+      <QuadCurve controlX="423.0" controlY="264.0" endX="79.0" endY="-4.0" fill="DODGERBLUE" layoutX="672.0" layoutY="550.0" startX="138.0" startY="-280.0" stroke="BLACK" strokeType="INSIDE" />
+      <QuadCurve controlX="-162.0" controlY="293.0" endX="189.0" endY="-28.0" fill="DODGERBLUE" layoutX="340.0" layoutY="562.0" startX="138.0" startY="-280.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="538.0" layoutY="655.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="688.0" layoutY="683.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="662.0" layoutY="634.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="566.0" layoutY="620.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="607.0" layoutY="665.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="574.0" layoutY="647.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="724.0" layoutY="665.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="538.0" layoutY="629.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="688.0" layoutY="655.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="640.0" layoutY="691.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="544.0" layoutY="683.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="644.0" layoutY="655.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="584.0" layoutY="683.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="602.0" layoutY="637.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#909090" layoutX="706.0" layoutY="620.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label alignment="CENTER" layoutX="74.0" layoutY="41.0" prefHeight="146.0" prefWidth="254.0" text="You Won!">
+         <font>
+            <Font size="57.0" />
+         </font>
+      </Label>
+      <Button fx:id="returnMenuButton" layoutX="84.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#returnMenu" prefHeight="128.0" prefWidth="215.0" text="Return to Menu">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
