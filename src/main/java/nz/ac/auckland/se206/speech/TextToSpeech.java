@@ -8,6 +8,7 @@ import javax.speech.synthesis.SynthesizerModeDesc;
 
 /** Text-to-speech API using the JavaX speech library. */
 public class TextToSpeech {
+
   /** Custom unchecked exception for Text-to-speech issues. */
   static class TextToSpeechException extends RuntimeException {
     public TextToSpeechException(final String message) {

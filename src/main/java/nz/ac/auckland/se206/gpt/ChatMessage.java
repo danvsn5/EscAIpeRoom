@@ -26,6 +26,14 @@ public class ChatMessage {
     return role;
   }
 
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
   /**
    * Returns the content of the chat message.
    *
