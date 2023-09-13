@@ -9,4 +9,31 @@ public class TimeCounter {
     secondCounter = second;
     minuteCounter = minute;
   }
+
+  /**
+   * Return the status of the counter
+   *
+   * @return a boolean indicate if the countdown is finished
+   */
+  public boolean isEnd() {
+    return minuteCounter < 0;
+  }
+
+  /**
+   * Return the second counter
+   *
+   * @return int value indicates how many seconds left
+   */
+  public int getSecond() {
+    return secondCounter;
+  }
+
+  /**
+   * Return the minute counter
+   *
+   * @return int value indicates how many minutes left
+   */
+  public int getMinute() {
+    return minuteCounter;
+  }
 }
