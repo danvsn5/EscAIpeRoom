@@ -10,6 +10,17 @@ public class TimeCounter {
     minuteCounter = minute;
   }
 
+  /** Decrease the counter by 1 */
+  public void decrease() {
+    // Decrease the second counter
+    secondCounter--;
+    // If 1 minute passes, decrease the minute counter and restore the second counter
+    if (secondCounter == -1) {
+      minuteCounter--;
+      secondCounter = 59;
+    }
+  }
+
   /**
    * Return the status of the counter
    *
