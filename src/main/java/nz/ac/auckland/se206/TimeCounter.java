@@ -10,6 +10,23 @@ public class TimeCounter {
     minuteCounter = minute;
   }
 
+  /**
+   * Get current countdown time in format of minutes:seconds
+   *
+   * @return the formated time
+   */
+  public String getTime() {
+    // If the countdown ends, return "END"
+    if (minuteCounter < 0) {
+      return "END";
+    }
+    // If second counter is between 0 to 9, add another 0 in front of it
+    if (secondCounter >= 0 && secondCounter <= 9) {
+      return (minuteCounter + ":0" + secondCounter);
+    }
+    return (minuteCounter + ":" + secondCounter);
+  }
+
   /** Decrease the counter by 1 */
   public void decrease() {
     // Decrease the second counter
