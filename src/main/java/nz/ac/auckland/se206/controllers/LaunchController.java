@@ -18,8 +18,10 @@ public class LaunchController {
   }
 
   @FXML private Button launchButton;
-  @FXML private Button activeSpeech;
-  @FXML private Button inactiveSpeech;
+  @FXML private Button diffButton;
+  @FXML private Button timerButton;
+  @FXML private Button speechButton;
+  @FXML private Button quitButton;
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
@@ -42,6 +44,42 @@ public class LaunchController {
   public void activateSpeech() {
     GameState.inventory.add(-2);
   }
+
+  public void changeDiff() {
+    // switch case for difficulty in Gamestate class for numbers between 0-2
+    int difficulty = GameState.getDifficulty();
+
+    switch (difficulty) {
+      case 0:
+        GameState.setDifficulty(1);
+        break;
+      case 1:
+        GameState.setDifficulty(2);
+        break;
+      case 2:
+        GameState.setDifficulty(0);
+        break;
+    }
+  }
+
+  public void changeTimer() {
+
+    int timer = GameState.getTimer();
+
+    switch (timer) {
+      case 0:
+        GameState.setTimer(1);
+        break;
+      case 1:
+        GameState.setTimer(2);
+        break;
+      case 2:
+        GameState.setTimer(0);
+        break;
+    }
+  }
+
+  public void changeSpeech() {}
 
   public void removeSpeech() {
     GameState.inventory.clear();
