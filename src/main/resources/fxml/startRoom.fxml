@@ -32,7 +32,7 @@
             <Font name="Bank Gothic Light BT" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="quitButton" layoutX="39.0" layoutY="455.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="282.0" text="Quit">
+      <Button fx:id="quitButton" layoutX="39.0" layoutY="455.0" mnemonicParsing="false" onMouseClicked="#quitGame" prefHeight="100.0" prefWidth="282.0" text="Quit">
          <font>
             <Font name="Bank Gothic Light BT" size="50.0" />
          </font>

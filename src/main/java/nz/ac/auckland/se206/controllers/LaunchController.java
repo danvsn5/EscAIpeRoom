@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -67,15 +68,15 @@ public class LaunchController {
     switch (timer) {
       case 0:
         GameState.setTimer(1);
-        timerButton.setText("Timer: Two Minutes");
+        timerButton.setText("Timer: Four Minutes");
         break;
       case 1:
         GameState.setTimer(2);
-        timerButton.setText("Timer: Four Minutes");
+        timerButton.setText("Timer: Six Minutes");
         break;
       case 2:
         GameState.setTimer(0);
-        timerButton.setText("Timer: Six Minutes");
+        timerButton.setText("Timer: Two Minutes");
         break;
     }
   }
@@ -88,5 +89,10 @@ public class LaunchController {
       GameState.inventory.add(-2);
       speechButton.setText("Text to Speech: On");
     }
+  }
+
+  public void quitGame() {
+    Platform.exit();
+    System.exit(0);
   }
 }
