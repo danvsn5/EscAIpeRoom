@@ -13,10 +13,6 @@ public class GameState {
   public static int count = 120;
   public static int difficulty = 0;
   public static int timer = 0;
-
-  public static Timeline timeline =
-      new Timeline(new KeyFrame(Duration.millis(1000), e -> changeCount()));
-
   public static TextToSpeech textToSpeech = new TextToSpeech();
 
   // inventory holds integers that correspond to different actions having taken place:
@@ -33,6 +29,18 @@ public class GameState {
   // won; click on the control panel to finish the game
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
+
+  public static Timeline timeline =
+      new Timeline(new KeyFrame(Duration.millis(1000), e -> changeCount()));
+
+  public static Timeline treeTimelineTwo =
+      new Timeline(new KeyFrame(Duration.seconds(30), e -> rootGrow()));
+
+  public static Timeline treeTimelineFour =
+      new Timeline(new KeyFrame(Duration.seconds(60), e -> rootGrow()));
+
+  public static Timeline treeTimelineSix =
+      new Timeline(new KeyFrame(Duration.seconds(90), e -> rootGrow()));
 
   public static void setTimer(int timer) {
     GameState.timer = timer;
