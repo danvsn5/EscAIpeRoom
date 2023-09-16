@@ -1,10 +1,9 @@
-package nz.ac.auckland;
+package nz.ac.auckland.se206;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import nz.ac.SceneManager;
-import nz.ac.SceneManager.AppPanel;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class RootBorder {
 
