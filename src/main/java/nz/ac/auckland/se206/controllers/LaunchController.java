@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
@@ -40,6 +41,7 @@ public class LaunchController {
     GameState.timeline.setCycleCount(121);
     GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
     GameState.timeline.playFromStart();
+    createTimer();
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
@@ -112,17 +114,29 @@ public class LaunchController {
               timer = new TimeCounter(6, 0);
             }
             while (true) {
+              // Every 1s, update the clock
+              if (!timer.isEnd()) {
+                Platform.runLater(
+                    () -> {
+                      System.out.println(timer.getTime());
+                      updateClock(timer.getTime());
+                    });
+              }
               // Decrease the counter by 1 unit every 1 second
               try {
                 Thread.sleep(1000);
                 timer.decrease();
               } catch (InterruptedException e) {
-                System.out.println("Interrypted Exception in timer thread");
+                System.out.println("Interrupted Exception in timer thread");
               }
             }
           }
         };
     Thread timerThread = new Thread(timerTask);
     timerThread.start();
+  }
+
+  public void updateClock(String time) {
+    ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
   }
 }
