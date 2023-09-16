@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
+import nz.ac.auckland.RootBorder;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
@@ -43,16 +44,16 @@ public class LaunchController {
 
     switch (timerState) {
       case 0:
-        GameState.treeTimelineTwo.setCycleCount(3);
-        GameState.treeTimelineTwo.play();
+        RootBorder.treeTimelineTwo.setCycleCount(3);
+        RootBorder.treeTimelineTwo.play();
         break;
       case 1:
-        GameState.treeTimelineFour.setCycleCount(3);
-        GameState.treeTimelineFour.play();
+        RootBorder.treeTimelineFour.setCycleCount(3);
+        RootBorder.treeTimelineFour.play();
         break;
       case 2:
-        GameState.treeTimelineSix.setCycleCount(3);
-        GameState.treeTimelineSix.play();
+        RootBorder.treeTimelineSix.setCycleCount(3);
+        RootBorder.treeTimelineSix.play();
         break;
     }
     App.setUi(AppPanel.MAIN_ROOM);
