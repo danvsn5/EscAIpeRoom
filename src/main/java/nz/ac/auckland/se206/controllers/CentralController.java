@@ -40,18 +40,6 @@ public class CentralController {
 
   @FXML private Label panelLabel;
 
-  public void initialize() {
-    // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
-
-    // timeline.setCycleCount(123);
-    // timeline.play();
-  }
-
-  public void dispCount(String time) {
-    // counter.setText(String.valueOf(GameState.count));
-    counter.setText(time);
-  }
-
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);
   }
