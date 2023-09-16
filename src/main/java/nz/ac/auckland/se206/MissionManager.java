@@ -13,6 +13,11 @@ public class MissionManager {
   private HashMap<MISSION, Mission> missionList = new HashMap<>();
   private ArrayList<MISSION> keyList = new ArrayList<>();
 
+  /**
+   * Add mission to list according to input integer
+   *
+   * @param missionNumber an integer which decides which mission to be added to list
+   */
   public void addMission(int missionNumber) {
     if (missionNumber == 1) {
       missionList.put(MISSION.WINDOW, new WindowMission());
@@ -20,11 +25,26 @@ public class MissionManager {
     }
   }
 
+  /**
+   * Calculate the overall percentage of missions
+   *
+   * @return the calculated percentage
+   */
   public int getOverallPercentage() {
     int percentage = 0;
     for (MISSION m : keyList) {
+      // Go through every missions in the list and get their progress
       percentage += missionList.get(m).getPercentage();
     }
     return percentage / keyList.size();
+  }
+
+  /** Print the details of each mission in format: "Name: percentage%" */
+  public void printDetails() {
+    for (MISSION m : keyList) {
+      System.out.println(
+          missionList.get(m).getName() + ": " + missionList.get(m).getPercentage() + "%");
+    }
+    System.out.println("Overall progress: " + getOverallPercentage() + "%");
   }
 }
