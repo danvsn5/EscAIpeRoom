@@ -38,6 +38,23 @@ public class LaunchController {
     GameState.timeline.setCycleCount(121);
     GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
     GameState.timeline.playFromStart();
+
+    int timerState = GameState.getTimer();
+
+    switch (timerState) {
+      case 0:
+        GameState.treeTimelineTwo.setCycleCount(3);
+        GameState.treeTimelineTwo.play();
+        break;
+      case 1:
+        GameState.treeTimelineFour.setCycleCount(3);
+        GameState.treeTimelineFour.play();
+        break;
+      case 2:
+        GameState.treeTimelineSix.setCycleCount(3);
+        GameState.treeTimelineSix.play();
+        break;
+    }
     App.setUi(AppPanel.MAIN_ROOM);
   }
 

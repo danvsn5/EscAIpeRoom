@@ -49,7 +49,6 @@ public class CentralController {
 
   public void initialize() {
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
-
     timeline.setCycleCount(123);
     timeline.play();
   }
