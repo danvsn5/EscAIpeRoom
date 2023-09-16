@@ -11,6 +11,8 @@ public class GameState {
 
   // count variable that will be used as in-game counter
   public static int count = 120;
+  public static int difficulty = 0;
+  public static int timer = 0;
 
   public static Timeline timeline =
       new Timeline(new KeyFrame(Duration.millis(1000), e -> changeCount()));
@@ -31,6 +33,22 @@ public class GameState {
   // won; click on the control panel to finish the game
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
+
+  public static void setTimer(int timer) {
+    GameState.timer = timer;
+  }
+
+  public static int getTimer() {
+    return GameState.timer;
+  }
+
+  public static void setDifficulty(int difficulty) {
+    GameState.difficulty = difficulty;
+  }
+
+  public static int getDifficulty() {
+    return GameState.difficulty;
+  }
 
   public static void changeCount() {
     GameState.count--;

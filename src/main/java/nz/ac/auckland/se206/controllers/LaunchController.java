@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,8 +19,10 @@ public class LaunchController {
   }
 
   @FXML private Button launchButton;
-  @FXML private Button activeSpeech;
-  @FXML private Button inactiveSpeech;
+  @FXML private Button diffButton;
+  @FXML private Button timerButton;
+  @FXML private Button speechButton;
+  @FXML private Button quitButton;
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
@@ -38,12 +41,58 @@ public class LaunchController {
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
-  // determines whether or not text to speech will be used in the game
-  public void activateSpeech() {
-    GameState.inventory.add(-2);
+  public void changeDiff() {
+    // switch case for difficulty in Gamestate class for numbers between 0-2
+    int difficulty = GameState.getDifficulty();
+
+    switch (difficulty) {
+      case 0:
+        GameState.setDifficulty(1);
+        diffButton.setText("Difficulty: Medium");
+        break;
+      case 1:
+        GameState.setDifficulty(2);
+        diffButton.setText("Difficulty: Hard");
+        break;
+      case 2:
+        GameState.setDifficulty(0);
+        diffButton.setText("Difficulty: Easy");
+        break;
+    }
   }
 
-  public void removeSpeech() {
-    GameState.inventory.clear();
+  public void changeTimer() {
+
+    int timer = GameState.getTimer();
+
+    switch (timer) {
+      case 0:
+        GameState.setTimer(1);
+        timerButton.setText("Timer: Four Minutes");
+        break;
+      case 1:
+        GameState.setTimer(2);
+        timerButton.setText("Timer: Six Minutes");
+        break;
+      case 2:
+        GameState.setTimer(0);
+        timerButton.setText("Timer: Two Minutes");
+        break;
+    }
+  }
+
+  public void changeSpeech() {
+    if (GameState.inventory.contains(-2)) {
+      GameState.inventory.clear();
+      speechButton.setText("Text to Speech: Off");
+    } else {
+      GameState.inventory.add(-2);
+      speechButton.setText("Text to Speech: On");
+    }
+  }
+
+  public void quitGame() {
+    Platform.exit();
+    System.exit(0);
   }
 }
