@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Ellipse?>
@@ -9,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
    <children>
       <Ellipse fx:id="window" fill="#bee0ff" layoutX="640.0" layoutY="147.0" onMouseClicked="#repairWindow" onMouseEntered="#windowLight" onMouseExited="#windowDark" radiusX="158.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE">
          <cursor>
@@ -86,5 +88,25 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/threeRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
+         <image>
+            <Image url="@../images/initalRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootOne" fitHeight="726.0" fitWidth="1280.0" layoutY="-1.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/oneRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootTwo" fitHeight="726.0" fitWidth="1286.0" layoutX="-4.0" layoutY="-2.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/twoRoot.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
