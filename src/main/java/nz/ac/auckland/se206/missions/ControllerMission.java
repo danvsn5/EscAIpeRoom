@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.missions;
 
+import nz.ac.auckland.se206.gpt.ChatMessage;
+
 public class ControllerMission implements Mission {
   private int currentStage;
   private int totalStage;
@@ -39,8 +41,8 @@ public class ControllerMission implements Mission {
   }
 
   @Override
-  public void askGpt() {
-    // TODO Auto-generated method stub
+  public ChatMessage askGpt() {
+    // TODO ask gpt to generate riddle
     throw new UnsupportedOperationException("Unimplemented method 'askGpt'");
   }
 }
