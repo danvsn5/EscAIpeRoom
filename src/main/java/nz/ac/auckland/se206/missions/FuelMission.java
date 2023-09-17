@@ -11,8 +11,7 @@ public class FuelMission implements Mission {
 
   @Override
   public void initialize() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    // TODO Set the correct image to visible
   }
 
   @Override
@@ -41,7 +40,7 @@ public class FuelMission implements Mission {
 
   @Override
   public void askGpt() {
-    // TODO Auto-generated method stub
+    // TODO ask gpt to generate riddle
     throw new UnsupportedOperationException("Unimplemented method 'askGpt'");
   }
 }

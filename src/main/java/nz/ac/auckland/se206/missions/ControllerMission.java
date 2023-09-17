@@ -11,8 +11,7 @@ public class ControllerMission implements Mission {
 
   @Override
   public void initialize() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    // TODO Set the correct image to visible
   }
 
   @Override
