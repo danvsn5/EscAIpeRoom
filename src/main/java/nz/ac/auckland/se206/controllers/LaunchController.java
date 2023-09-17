@@ -114,6 +114,10 @@ public class LaunchController {
               timer = new TimeCounter(6, 0);
             }
             while (true) {
+              if (timer.isEnd()) {
+                return null;
+              }
+
               // Every 1s, update the clock
               if (!timer.isEnd()) {
                 Platform.runLater(
