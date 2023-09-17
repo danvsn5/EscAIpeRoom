@@ -22,11 +22,11 @@ public class MissionManager {
     if (missionNumber == 1) {
       missionList.put(MISSION.WINDOW, new WindowMission());
       keyList.add(MISSION.WINDOW);
-      // If the size of key list is greater than the size of mission list (indicating a mission is
-      // added twice), remove one
-      if (keyList.size() != 0 && keyList.size() > missionList.size()) {
-        keyList.remove(keyList.size() - 1);
-      }
+    }
+    // If the size of key list is greater than the size of mission list (indicating a mission is
+    // added twice), remove one
+    if (keyList.size() != 0 && keyList.size() > missionList.size()) {
+      keyList.remove(keyList.size() - 1);
     }
   }
 
@@ -57,7 +57,7 @@ public class MissionManager {
    * Get the Mission instance according to input key
    *
    * @param key a MISSION enum
-   * @return the class that implements Mission interface
+   * @return the class that extends Mission abstract class
    */
   public Mission getMission(MISSION key) {
     return missionList.get(key);
