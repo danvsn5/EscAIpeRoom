@@ -2,9 +2,7 @@ package nz.ac.auckland.se206.missions;
 
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
-public class ControllerMission implements Mission {
-  private int currentStage;
-  private int totalStage;
+public class ControllerMission extends Mission {
 
   public ControllerMission() {
     currentStage = 0;
@@ -19,25 +17,6 @@ public class ControllerMission implements Mission {
   @Override
   public String getName() {
     return "Fix the controller of the ship";
-  }
-
-  @Override
-  public void increaseStage() {
-    currentStage++;
-    if (currentStage > totalStage) {
-      System.out.println("Mission already finished, can't increase stage");
-      currentStage--;
-    }
-  }
-
-  @Override
-  public int getStage() {
-    return currentStage;
-  }
-
-  @Override
-  public int getPercentage() {
-    return currentStage * 100 / totalStage;
   }
 
   @Override
