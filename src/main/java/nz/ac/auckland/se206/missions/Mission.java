@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.missions;
 
+import nz.ac.auckland.se206.gpt.ChatMessage;
+
 public interface Mission {
   public abstract void initialize();
 
@@ -11,5 +13,5 @@ public interface Mission {
 
   public abstract int getPercentage();
 
-  public abstract void askGpt();
+  public abstract ChatMessage askGpt();
 }
