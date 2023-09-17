@@ -52,4 +52,14 @@ public class MissionManager {
     }
     System.out.println("Overall progress: " + getOverallPercentage() + "%");
   }
+
+  /**
+   * Get the Mission instance according to input key
+   *
+   * @param key a MISSION enum
+   * @return the class that implements Mission interface
+   */
+  public Mission getMission(MISSION key) {
+    return missionList.get(key);
+  }
 }
