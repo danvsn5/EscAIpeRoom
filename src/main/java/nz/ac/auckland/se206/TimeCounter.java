@@ -3,11 +3,13 @@ package nz.ac.auckland.se206;
 public class TimeCounter {
   private int secondCounter;
   private int minuteCounter;
+  private double totalSeconds;
 
   /** The constructor of the class, initialize a time counter */
   public TimeCounter(int minute, int second) {
     secondCounter = second;
     minuteCounter = minute;
+    totalSeconds = second + minute * 60;
   }
 
   /**
@@ -63,5 +65,10 @@ public class TimeCounter {
    */
   public int getMinute() {
     return minuteCounter;
+  }
+
+  public double getRemainingPercentage() {
+    double currentSeconds = secondCounter + minuteCounter * 60 + 1;
+    return currentSeconds * 100 / totalSeconds;
   }
 }

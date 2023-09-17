@@ -122,6 +122,16 @@ public class LaunchController {
                       updateClock(timer.getTime());
                     });
               }
+
+              // Implement methods for 25%, 50%, 75% progress of game
+              if (timer.getRemainingPercentage() == 75) {
+                System.out.println("25% passed");
+              } else if (timer.getRemainingPercentage() == 50) {
+                System.out.println("50% passed");
+              } else if (timer.getRemainingPercentage() == 25) {
+                System.out.println("75% passed");
+              }
+
               // Decrease the counter by 1 unit every 1 second
               try {
                 Thread.sleep(1000);
