@@ -10,7 +10,7 @@ public class RootBorder {
   public static int rootState = 0;
 
   public static Timeline treeTimelineTwo =
-      new Timeline(new KeyFrame(Duration.seconds(30), e -> rootGrow()));
+      new Timeline(new KeyFrame(Duration.seconds(5), e -> rootGrow()));
 
   public static Timeline treeTimelineFour =
       new Timeline(new KeyFrame(Duration.seconds(60), e -> rootGrow()));
@@ -52,14 +52,14 @@ public class RootBorder {
   public static void rootGrowHelper(String rootId) {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.WORK).lookup(rootId).setVisible(true);
-    // SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(true);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(true);
     // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(true);
   }
 
   public static void rootRemoveHelper(String rootId) {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.WORK).lookup(rootId).setVisible(false);
-    // SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(false);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(false);
     // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(false);
   }
 }

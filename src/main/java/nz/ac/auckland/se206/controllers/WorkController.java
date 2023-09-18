@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -38,6 +39,10 @@ public class WorkController {
   @FXML private Label centralLabel;
   @FXML private Label sandLabel;
   @FXML private Label voiceLabel;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   private ChatMessage message;
   private ChatCompletionRequest chatCompletionRequest;
