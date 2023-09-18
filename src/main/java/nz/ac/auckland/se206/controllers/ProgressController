@@ -15,9 +15,15 @@ public class ProgressController {
   @FXML private Rectangle bottomBarBottom;
   @FXML private Label bottomLabel;
 
+  @FXML private Button returnButton;
+
   public void initialize() {
     // checks which tasks are active due to the randomiser in launch controller. Depending on which
     // tasks are active, the text will be updated
+  }
+
+  public void returnPreviousPanel() {
+    App.setUi(AppPanel.LAUNCH);
   }
 
   // once merged, Mission manager will be used to access the percentage of each task, and will

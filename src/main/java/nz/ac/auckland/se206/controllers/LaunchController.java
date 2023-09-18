@@ -51,8 +51,6 @@ public class LaunchController {
     while (task2 == task1) {
       task2 = rand.nextInt(4);
     }
-    System.out.println(task1 + " " + task2);
-
     GameState.missionManager.addMission(task1);
     GameState.missionManager.addMission(task2);
     GameState.progressBarGroup.setMissionOne(task1);
