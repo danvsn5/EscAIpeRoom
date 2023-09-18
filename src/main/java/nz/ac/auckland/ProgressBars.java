@@ -74,6 +74,18 @@ public class ProgressBars {
         .setWidth(outerBarLength);
   }
 
+  public void updateProgressTwo(nz.ac.auckland.se206.MissionManager.MISSION mission) {
+    int percentage = GameState.missionManager.getMission(mission).getPercentage();
+    int midBarLength = (int) (percentage * 830);
+    int outerBarLength = (int) (percentage * 836);
+    ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#bottomBarCenter"))
+        .setWidth(midBarLength);
+    ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#bottomBarTop"))
+        .setWidth(outerBarLength);
+    ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#bottomBarBottom"))
+        .setWidth(outerBarLength);
+  }
+
   public void labelHelper(String Label, String text) {
     ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup(Label)).setText(text);
   }
