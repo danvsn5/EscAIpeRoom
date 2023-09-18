@@ -51,6 +51,9 @@ public class LaunchController {
       task2 = rand.nextInt(4);
     }
 
+    GameState.missionManager.addMission(task1);
+    GameState.missionManager.addMission(task2);
+
     App.setUi(AppPanel.MAIN_ROOM);
   }
 

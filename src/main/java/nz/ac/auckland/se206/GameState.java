@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -33,6 +34,9 @@ public class GameState {
   // won; click on the control panel to finish the game
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
+
+  public static MissionManager missionManager = new MissionManager();
+  public static ProgressBar progressBarGroup = new ProgressBar();
 
   public static void setTimer(int timer) {
     GameState.timer = timer;
