@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
@@ -30,6 +31,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label counter;
+  @FXML private ImageView progressButton;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -73,6 +75,10 @@ public class ChatController {
 
   public void dispCount() {
     counter.setText(String.valueOf(GameState.count));
+  }
+
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
   }
 
   /**

@@ -2,12 +2,14 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WorkController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WorkController">
    <children>
       <Rectangle fx:id="furnace" arcHeight="5.0" arcWidth="5.0" fill="#5a636b" height="537.0" layoutX="340.0" layoutY="180.0" onMouseClicked="#meltSand" onMouseEntered="#furnaceLight" onMouseExited="#furnaceDark" stroke="BLACK" strokeType="INSIDE" width="273.0">
          <cursor>
@@ -89,5 +91,15 @@
       </Rectangle>
       <Line fx:id="crossOne" endX="-76.0" endY="-18.0" layoutX="1284.0" layoutY="195.0" startX="-102.0" startY="-45.0" />
       <Line fx:id="crossTwo" endX="-65.0" endY="-37.0" layoutX="1274.0" layoutY="185.0" startX="-92.0" startY="-7.0" />
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
