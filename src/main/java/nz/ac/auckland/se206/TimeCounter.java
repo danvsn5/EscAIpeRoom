@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.SceneManager.AppPanel;
+
 public class TimeCounter {
   private int secondCounter;
   private int minuteCounter;
@@ -19,7 +21,8 @@ public class TimeCounter {
    */
   public String getTime() {
     // If the countdown ends, return "END"
-    if (minuteCounter < 0) {
+    if (minuteCounter == 0 && secondCounter == 0) {
+      App.setUi(AppPanel.LOSE);
       return "END";
     }
     // If second counter is between 0 to 9, add another 0 in front of it

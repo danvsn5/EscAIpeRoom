@@ -56,7 +56,6 @@ public class LoseController {
 
   // upon losing, gamestate is reset and returns to launch menu when return button is pressed
   public void returnMenu() throws IOException {
-    GameState.count = 120;
     GameState.inventory.clear();
     App.setUi(AppPanel.LAUNCH);
   }

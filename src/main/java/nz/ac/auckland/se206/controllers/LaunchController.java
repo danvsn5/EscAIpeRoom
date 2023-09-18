@@ -37,10 +37,6 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
-    GameState.count = 120;
-    GameState.timeline.setCycleCount(121);
-    GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
-    GameState.timeline.playFromStart();
     createTimer();
     App.setUi(AppPanel.MAIN_ROOM);
   }
@@ -107,7 +103,7 @@ public class LaunchController {
           protected Void call() {
             TimeCounter timer;
             if (GameState.timer == 0) {
-              timer = new TimeCounter(2, 0);
+              timer = new TimeCounter(0, 15);
             } else if (GameState.timer == 1) {
               timer = new TimeCounter(4, 0);
             } else {
