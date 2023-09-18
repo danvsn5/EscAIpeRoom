@@ -118,12 +118,12 @@ public class CentralController {
   }
 
   public void workDoorLight() {
-    workDoor.setFill(Color.valueOf("835339"));
+    workDoor.setEffect(GameState.glowBright);
     workLabel.setVisible(true);
   }
 
   public void workDoorNormal() {
-    workDoor.setFill(Color.valueOf("653920"));
+    workDoor.setEffect(GameState.glowDim);
     workLabel.setVisible(false);
   }
 

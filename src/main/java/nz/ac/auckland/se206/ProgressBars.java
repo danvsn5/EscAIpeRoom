@@ -1,10 +1,9 @@
-package nz.ac.auckland;
+package nz.ac.auckland.se206;
 
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
-import nz.ac.auckland.se206.GameState;
 
 public class ProgressBars {
 
