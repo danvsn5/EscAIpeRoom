@@ -5,7 +5,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="76.0" layoutX="211.0" layoutY="251.0" stroke="#393939" strokeType="INSIDE" strokeWidth="5.0" width="859.0" />
@@ -19,12 +18,12 @@
       <Rectangle fx:id="topBarTop" fill="#a7ed5f" height="14.0" layoutX="223.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="836.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#393939" height="41.0" layoutX="203.0" layoutY="269.0" stroke="#000000c5" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#393939" height="41.0" layoutX="1062.0" layoutY="269.0" stroke="#656565" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
-      <Label fx:id="topLabel" layoutX="486.0" layoutY="177.0" text="Task One">
+      <Label fx:id="topLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="177.0" prefHeight="67.0" prefWidth="1239.0" text="Task One">
          <font>
             <Font name="Bank Gothic Light BT" size="60.0" />
          </font>
       </Label>
-      <Label fx:id="bottomLabel" layoutX="486.0" layoutY="410.0" text="Task two">
+      <Label fx:id="bottomLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="409.0" prefHeight="67.0" prefWidth="1239.0" text="Task two">
          <font>
             <Font name="Bank Gothic Light BT" size="60.0" />
          </font>

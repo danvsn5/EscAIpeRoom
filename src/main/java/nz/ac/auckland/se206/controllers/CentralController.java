@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
@@ -37,11 +38,15 @@ public class CentralController {
   @FXML private Label windowLabel;
   @FXML private Label hammerLabel;
   @FXML private Label workLabel;
-
   @FXML private Label panelLabel;
+  @FXML private Polygon progressButton;
 
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);
+  }
+
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void goWorkshop() {
