@@ -1,12 +1,14 @@
 package nz.ac.auckland;
 
 import javafx.scene.control.Label;
+import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
+import nz.ac.auckland.se206.GameState;
 
 public class ProgressBars {
 
-  public enum MISSION {
+  private enum MISSION {
     WINDOW,
     CONTROLLER,
     FUEL,
@@ -52,12 +54,24 @@ public class ProgressBars {
     }
   }
 
-  public MISSION getTaskOne() {
+  public MISSION getMissionOne() {
     return taskOne;
   }
 
-  public MISSION getTaskTwo() {
+  public MISSION getMissionTwo() {
     return taskTwo;
+  }
+
+  public void updateProgressOne(nz.ac.auckland.se206.MissionManager.MISSION mission) {
+    int percentage = GameState.missionManager.getMission(mission).getPercentage();
+    int midBarLength = (int) (percentage * 830);
+    int outerBarLength = (int) (percentage * 836);
+    ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#topBarCenter"))
+        .setWidth(midBarLength);
+    ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#topBarTop"))
+        .setWidth(outerBarLength);
+    ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#topBarBottom"))
+        .setWidth(outerBarLength);
   }
 
   public void labelHelper(String Label, String text) {
