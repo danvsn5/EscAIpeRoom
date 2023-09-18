@@ -10,7 +10,7 @@ public class RootBorder {
   public static int rootState = 0;
 
   public static Timeline treeTimelineTwo =
-      new Timeline(new KeyFrame(Duration.seconds(5), e -> rootGrow()));
+      new Timeline(new KeyFrame(Duration.seconds(30), e -> rootGrow()));
 
   public static Timeline treeTimelineFour =
       new Timeline(new KeyFrame(Duration.seconds(60), e -> rootGrow()));
