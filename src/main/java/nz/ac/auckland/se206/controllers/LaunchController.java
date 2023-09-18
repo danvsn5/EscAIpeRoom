@@ -37,10 +37,6 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
-    GameState.count = 120;
-    GameState.timeline.setCycleCount(121);
-    GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
-    GameState.timeline.playFromStart();
     createTimer();
     App.setUi(AppPanel.MAIN_ROOM);
   }
@@ -122,7 +118,6 @@ public class LaunchController {
               if (!timer.isEnd()) {
                 Platform.runLater(
                     () -> {
-                      System.out.println(timer.getTime());
                       updateClock(timer.getTime());
                     });
               }
@@ -152,5 +147,8 @@ public class LaunchController {
 
   public void updateClock(String time) {
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.WORK).lookup("#counter")).setText(time);
   }
 }

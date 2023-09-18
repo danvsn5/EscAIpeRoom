@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
    <children>
       <Ellipse fx:id="window" fill="#bee0ff" layoutX="640.0" layoutY="147.0" onMouseClicked="#repairWindow" onMouseEntered="#windowLight" onMouseExited="#windowDark" radiusX="158.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE">
          <cursor>
@@ -43,9 +43,9 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Circle>
-      <Label fx:id="counter" alignment="CENTER" layoutX="78.0" layoutY="25.0" prefHeight="72.0" prefWidth="200.0" text="120">
+      <Label fx:id="counter" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="72.0" prefWidth="250.0">
          <font>
-            <Font size="79.0" />
+            <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
       <Rectangle fx:id="introBackground" arcHeight="5.0" arcWidth="5.0" fill="#1b1b1b" height="550.0" layoutX="202.0" layoutY="127.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="925.0" />
