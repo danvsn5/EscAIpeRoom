@@ -6,7 +6,7 @@ public class ThrusterMission extends Mission {
 
   public ThrusterMission() {
     currentStage = 0;
-    totalStage = 3;
+    totalStage = 2;
   }
 
   @Override
