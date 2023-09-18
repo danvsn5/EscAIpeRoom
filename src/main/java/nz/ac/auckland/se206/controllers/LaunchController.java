@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Random;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -42,6 +43,14 @@ public class LaunchController {
     GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
     GameState.timeline.playFromStart();
     createTimer();
+
+    Random rand = new Random();
+    int task1 = rand.nextInt(4) + 1;
+    int task2 = rand.nextInt(4) + 1;
+    while (task2 == task1) {
+      task2 = rand.nextInt(4);
+    }
+
     App.setUi(AppPanel.MAIN_ROOM);
   }
 

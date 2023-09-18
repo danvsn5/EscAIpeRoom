@@ -1,0 +1,23 @@
+package nz.ac.auckland.se206.controllers;
+
+import javafx.fxml.FXML;
+import javafx.scene.shape.Rectangle;
+
+public class ProgressController {
+
+  @FXML private Rectangle topBarTop;
+  @FXML private Rectangle topBarCenter;
+  @FXML private Rectangle topBarBottom;
+
+  @FXML private Rectangle bottomBarTop;
+  @FXML private Rectangle bottomBarCenter;
+  @FXML private Rectangle bottomBarBottom;
+
+  public void initialize() {
+    // checks which tasks are active due to the randomiser in launch controller. Depending on which
+    // tasks are active, the text will be updated
+  }
+
+  // once merged, Mission manager will be used to access the percentage of each task, and will
+  // thereby be used to update the visuals of the progress bar.
+}
