@@ -8,10 +8,12 @@ public class ProgressController {
   @FXML private Rectangle topBarTop;
   @FXML private Rectangle topBarCenter;
   @FXML private Rectangle topBarBottom;
+  @FXML private Label topLabel;
 
   @FXML private Rectangle bottomBarTop;
   @FXML private Rectangle bottomBarCenter;
   @FXML private Rectangle bottomBarBottom;
+  @FXML private Label bottomLabel;
 
   public void initialize() {
     // checks which tasks are active due to the randomiser in launch controller. Depending on which
