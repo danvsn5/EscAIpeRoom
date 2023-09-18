@@ -118,12 +118,12 @@ public class CentralController {
   }
 
   public void workDoorLight() {
-    workDoor.setEffect(GameState.glowBright);
+    workDoor.setFill(Color.valueOf("835339"));
     workLabel.setVisible(true);
   }
 
   public void workDoorNormal() {
-    workDoor.setEffect(GameState.glowDim);
+    workDoor.setFill(Color.valueOf("653920"));
     workLabel.setVisible(false);
   }
 
@@ -184,5 +184,13 @@ public class CentralController {
 
   public void redButtonNormal() {
     redButton.setFill(Color.valueOf("ff1f1f"));
+  }
+
+  public void activateGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }
