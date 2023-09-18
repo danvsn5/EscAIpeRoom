@@ -152,5 +152,8 @@ public class LaunchController {
 
   public void updateClock(String time) {
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.WORK).lookup("#counter")).setText(time);
   }
 }
