@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="76.0" layoutX="211.0" layoutY="251.0" stroke="#393939" strokeType="INSIDE" strokeWidth="5.0" width="859.0" />
+      <Rectangle fx:id="topBarCenter" fill="#71d718" height="41.0" layoutX="226.0" layoutY="269.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="830.0" />
+      <Label layoutX="485.0" layoutY="49.0" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="60.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="topBarBottom" fill="#97d74f" height="14.0" layoutX="223.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="836.0" />
+      <Rectangle fx:id="topBarTop" fill="#a7ed5f" height="14.0" layoutX="223.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="836.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#393939" height="41.0" layoutX="203.0" layoutY="269.0" stroke="#000000c5" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#393939" height="41.0" layoutX="1062.0" layoutY="269.0" stroke="#656565" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Label fx:id="topLabel" layoutX="486.0" layoutY="177.0" text="Task One">
+         <font>
+            <Font name="Bank Gothic Light BT" size="60.0" />
+         </font>
+      </Label>
+      <Label fx:id="bottomLabel" layoutX="486.0" layoutY="410.0" text="Task two">
+         <font>
+            <Font name="Bank Gothic Light BT" size="60.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="76.0" layoutX="211.0" layoutY="488.0" stroke="#393939" strokeType="INSIDE" strokeWidth="5.0" width="859.0" />
+      <Rectangle fx:id="bottomBarCenter" fill="#71d718" height="41.0" layoutX="226.0" layoutY="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="830.0" />
+      <Rectangle fx:id="bottomBarBottom" fill="#97d74f" height="14.0" layoutX="223.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="836.0" />
+      <Rectangle fx:id="bottomBarTop" fill="#a7ed5f" height="14.0" layoutX="223.0" layoutY="499.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="836.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#393939" height="41.0" layoutX="203.0" layoutY="506.0" stroke="#000000c5" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#393939" height="41.0" layoutX="1062.0" layoutY="506.0" stroke="#656565" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+   </children>
+</Pane>
