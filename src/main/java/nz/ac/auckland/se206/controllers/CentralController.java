@@ -9,6 +9,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -42,6 +43,7 @@ public class CentralController {
   @FXML private ImageView progressButton;
 
   public void goOutside() {
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
   }
 
@@ -50,6 +52,7 @@ public class CentralController {
   }
 
   public void goWorkshop() {
+    SceneManager.setPrevious(AppPanel.WORK);
     App.setUi(AppPanel.WORK);
   }
 

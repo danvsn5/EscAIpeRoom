@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.util.Duration;
+import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -42,6 +43,7 @@ public class OutsideController {
   }
 
   public void outsideReturn() {
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
@@ -105,6 +107,7 @@ public class OutsideController {
   }
 
   public void openRiddle() {
+    SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.CHAT);
   }
 }
