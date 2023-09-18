@@ -49,7 +49,7 @@ public class LaunchController {
     int task1 = rand.nextInt(4) + 1;
     int task2 = rand.nextInt(4) + 1;
     while (task2 == task1) {
-      task2 = rand.nextInt(4);
+      task2 = rand.nextInt(4) + 1;
     }
     GameState.missionManager.addMission(task1);
     GameState.missionManager.addMission(task2);
