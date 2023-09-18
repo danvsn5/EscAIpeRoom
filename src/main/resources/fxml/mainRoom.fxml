@@ -88,10 +88,13 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateGlow" onMouseExited="#deactivateGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </ImageView>
       <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
          <font>

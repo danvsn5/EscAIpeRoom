@@ -179,4 +179,12 @@ public class ChatController {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
   }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
+  }
 }

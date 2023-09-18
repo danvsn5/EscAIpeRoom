@@ -199,4 +199,12 @@ public class WorkController {
     }
     furnace.setFill(Color.valueOf("5a636b"));
   }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
+  }
 }

@@ -186,11 +186,11 @@ public class CentralController {
     redButton.setFill(Color.valueOf("ff1f1f"));
   }
 
-  public void activateGlow() {
+  public void activateProgressGlow() {
     progressButton.setEffect(GameState.glowBright);
   }
 
-  public void deactivateGlow() {
+  public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
   }
 }

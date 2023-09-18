@@ -116,4 +116,12 @@ public class OutsideController {
     SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.CHAT);
   }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
+  }
 }
