@@ -1,7 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -10,7 +8,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -42,17 +39,6 @@ public class CentralController {
   @FXML private Label workLabel;
 
   @FXML private Label panelLabel;
-
-  public void initialize() {
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
-
-    timeline.setCycleCount(123);
-    timeline.play();
-  }
-
-  public void dispCount() {
-    counter.setText(String.valueOf(GameState.count));
-  }
 
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);

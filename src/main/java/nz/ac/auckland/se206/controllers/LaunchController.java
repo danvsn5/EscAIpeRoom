@@ -2,15 +2,18 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.TimeCounter;
 
 public class LaunchController {
 
@@ -38,6 +41,7 @@ public class LaunchController {
     GameState.timeline.setCycleCount(121);
     GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
     GameState.timeline.playFromStart();
+    createTimer();
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
@@ -94,5 +98,59 @@ public class LaunchController {
   public void quitGame() {
     Platform.exit();
     System.exit(0);
+  }
+
+  public void createTimer() {
+    Task<Void> timerTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() {
+            TimeCounter timer;
+            if (GameState.timer == 0) {
+              timer = new TimeCounter(2, 0);
+            } else if (GameState.timer == 1) {
+              timer = new TimeCounter(4, 0);
+            } else {
+              timer = new TimeCounter(6, 0);
+            }
+            while (true) {
+              if (timer.isEnd()) {
+                return null;
+              }
+
+              // Every 1s, update the clock
+              if (!timer.isEnd()) {
+                Platform.runLater(
+                    () -> {
+                      System.out.println(timer.getTime());
+                      updateClock(timer.getTime());
+                    });
+              }
+
+              // Implement methods for 25%, 50%, 75% progress of game
+              if (timer.getRemainingPercentage() == 75) {
+                System.out.println("25% passed");
+              } else if (timer.getRemainingPercentage() == 50) {
+                System.out.println("50% passed");
+              } else if (timer.getRemainingPercentage() == 25) {
+                System.out.println("75% passed");
+              }
+
+              // Decrease the counter by 1 unit every 1 second
+              try {
+                Thread.sleep(1000);
+                timer.decrease();
+              } catch (InterruptedException e) {
+                System.out.println("Interrupted Exception in timer thread");
+              }
+            }
+          }
+        };
+    Thread timerThread = new Thread(timerTask);
+    timerThread.start();
+  }
+
+  public void updateClock(String time) {
+    ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
   }
 }
