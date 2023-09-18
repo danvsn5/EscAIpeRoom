@@ -38,6 +38,8 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
+    SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
+
     GameState.count = 120;
     GameState.timeline.setCycleCount(121);
     GameState.timeline.setOnFinished(event -> App.setUi(AppPanel.LOSE));
