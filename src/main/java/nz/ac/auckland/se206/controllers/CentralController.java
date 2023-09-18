@@ -3,11 +3,11 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
@@ -39,7 +39,7 @@ public class CentralController {
   @FXML private Label hammerLabel;
   @FXML private Label workLabel;
   @FXML private Label panelLabel;
-  @FXML private Polygon progressButton;
+  @FXML private ImageView progressButton;
 
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);

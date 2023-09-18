@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Double?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -88,15 +88,15 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Polygon fx:id="progressButton" fill="#29c643" layoutX="640.0" layoutY="641.0" onMouseClicked="#goProgress" stroke="BLACK" strokeType="INSIDE">
-        <points>
-          <Double fx:value="-50.0" />
-          <Double fx:value="40.0" />
-          <Double fx:value="50.0" />
-          <Double fx:value="40.0" />
-          <Double fx:value="0.0" />
-          <Double fx:value="-60.0" />
-        </points>
-      </Polygon>
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
