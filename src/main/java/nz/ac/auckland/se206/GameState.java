@@ -3,8 +3,8 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
+import nz.ac.auckland.ProgressBars;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -36,7 +36,8 @@ public class GameState {
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
 
   public static MissionManager missionManager = new MissionManager();
-  public static ProgressBar progressBarGroup = new ProgressBar();
+
+  public static ProgressBars progressBarGroup = new ProgressBars();
 
   public static void setTimer(int timer) {
     GameState.timer = timer;
