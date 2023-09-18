@@ -2,11 +2,11 @@ package nz.ac.auckland.se206.missions;
 
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
-public class WindowMission extends Mission {
+public class ThrusterMission extends Mission {
 
-  public WindowMission() {
+  public ThrusterMission() {
     currentStage = 0;
-    totalStage = 3;
+    totalStage = 2;
   }
 
   @Override
@@ -16,7 +16,7 @@ public class WindowMission extends Mission {
 
   @Override
   public String getName() {
-    return "Fix the window";
+    return "Fix the thrusters of the ship";
   }
 
   @Override
