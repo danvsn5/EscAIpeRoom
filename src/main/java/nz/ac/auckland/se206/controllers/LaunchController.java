@@ -118,7 +118,6 @@ public class LaunchController {
               if (!timer.isEnd()) {
                 Platform.runLater(
                     () -> {
-                      System.out.println(timer.getTime());
                       updateClock(timer.getTime());
                     });
               }
