@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -22,6 +23,10 @@ public class OutsideController {
   @FXML private Label treeLabel;
   @FXML private Label shipLabel;
   @FXML private Label techLabel;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   public void initialize() {
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));

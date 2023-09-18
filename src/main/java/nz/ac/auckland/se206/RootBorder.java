@@ -51,14 +51,14 @@ public class RootBorder {
 
   public static void rootGrowHelper(String rootId) {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(true);
-    // SceneManager.getPanel(AppPanel.WORK).lookup(rootId).setVisible(true);
+    SceneManager.getPanel(AppPanel.WORK).lookup(rootId).setVisible(true);
     // SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(true);
     // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(true);
   }
 
   public static void rootRemoveHelper(String rootId) {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(false);
-    // SceneManager.getPanel(AppPanel.WORK).lookup(rootId).setVisible(false);
+    SceneManager.getPanel(AppPanel.WORK).lookup(rootId).setVisible(false);
     // SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(false);
     // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(false);
   }
