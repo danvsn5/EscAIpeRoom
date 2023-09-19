@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -26,6 +28,10 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label counter;
+  @FXML private Rectangle neutral;
+  @FXML private Rectangle thinking1;
+  @FXML private Rectangle thinking2;
+  @FXML private Circle speaking;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
