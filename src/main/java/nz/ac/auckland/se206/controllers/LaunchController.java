@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
-import nz.ac.auckland.se206.ThrusterButtons;
+import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
 import nz.ac.auckland.se206.TimeCounter;
 
 public class LaunchController {
@@ -60,8 +60,9 @@ public class LaunchController {
     createTimer();
 
     GameState.createRandomColorNumber();
-    ThrusterButtons.timeline.setCycleCount(200);
-    ThrusterButtons.timeline.play();
+
+    BottomRightButton.timeline.setCycleCount(200);
+    BottomRightButton.timeline.play();
 
     App.setUi(AppPanel.THRUSTER);
   }
