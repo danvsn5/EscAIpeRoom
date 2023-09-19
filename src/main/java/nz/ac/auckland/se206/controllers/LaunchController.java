@@ -9,10 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import nz.ac.SceneManager;
-import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RootBorder;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TimeCounter;
 
 public class LaunchController {
@@ -37,6 +38,23 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
+
+    int timerState = GameState.getTimer();
+
+    switch (timerState) {
+      case 0:
+        RootBorder.treeTimelineTwo.setCycleCount(3);
+        RootBorder.treeTimelineTwo.play();
+        break;
+      case 1:
+        RootBorder.treeTimelineFour.setCycleCount(3);
+        RootBorder.treeTimelineFour.play();
+        break;
+      case 2:
+        RootBorder.treeTimelineSix.setCycleCount(3);
+        RootBorder.treeTimelineSix.play();
+        break;
+    }
     createTimer();
     App.setUi(AppPanel.MAIN_ROOM);
   }
