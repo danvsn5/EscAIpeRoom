@@ -38,6 +38,7 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
+    SceneManager.addPanel(AppPanel.THRUSTER, loadFxml("thrusterRoom"));
 
     int timerState = GameState.getTimer();
 

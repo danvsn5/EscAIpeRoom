@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ThrusterController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="174.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/BlueClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/BlueUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/OrangeClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="566.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/OrangeUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="bottomLeftClickedPurple" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="bottomLeftUnclickedPurple" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="437.0" onMousePressed="#setBottomLeftPurpleInvisible" onMouseReleased="#setBottomLeftPurpleVisible" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="566.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/RedClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="567.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/RedUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</Pane>
