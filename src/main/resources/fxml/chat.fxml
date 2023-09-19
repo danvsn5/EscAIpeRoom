@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,5 +37,6 @@
       <Circle fx:id="speaking" layoutX="148.0" layoutY="374.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
       <Rectangle fx:id="thinking1" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="73.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
       <Rectangle fx:id="thinking2" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="152.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
+      <ProgressIndicator fx:id="loading" layoutX="84.0" layoutY="175.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
   </children>
 </AnchorPane>

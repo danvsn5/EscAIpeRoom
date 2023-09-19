@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -36,6 +37,8 @@ public class ChatController {
   @FXML private Circle eye1;
   @FXML private Circle eye2;
 
+  @FXML private ProgressIndicator loading;
+
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
@@ -55,6 +58,8 @@ public class ChatController {
     thinking1.setVisible(true);
     thinking2.setVisible(true);
 
+    loading.setVisible(true);
+
     Task<Void> riddleCall =
         new Task<Void>() {
 
@@ -72,18 +77,23 @@ public class ChatController {
                 runGpt(
                     new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
 
+            updateProgress(1, 1);
             return null;
           }
         };
 
+    loading.progressProperty().bind(riddleCall.progressProperty());
+
     riddleCall.setOnSucceeded(
         e -> {
+          loading.progressProperty().unbind();
           eye1.setVisible(true);
           eye2.setVisible(true);
           thinking1.setVisible(false);
           thinking2.setVisible(false);
           neutral.setVisible(false);
           speaking.setVisible(true);
+          loading.setVisible(false);
         });
 
     Thread mainRiddleThread = new Thread(riddleCall);
@@ -139,6 +149,10 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+
+    loading.setProgress(0);
+    loading.setVisible(true);
+
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
       return;
@@ -175,18 +189,23 @@ public class ChatController {
             if (GameState.inventory.contains(-2)) {
               GameState.textToSpeech.speak(lastMsg.getContent());
             }
+            updateProgress(1, 1);
             return null;
           }
         };
 
+    loading.progressProperty().bind(typeCall.progressProperty());
+
     typeCall.setOnSucceeded(
         e -> {
+          loading.progressProperty().unbind();
           eye1.setVisible(true);
           eye2.setVisible(true);
           thinking1.setVisible(false);
           thinking2.setVisible(false);
           neutral.setVisible(false);
           speaking.setVisible(true);
+          loading.setVisible(false);
         });
 
     Thread typeInThread = new Thread(typeCall);
