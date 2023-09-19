@@ -12,7 +12,8 @@ public class SceneManager {
     WORK,
     CHAT,
     LOSE,
-    WIN
+    WIN,
+    CHEST
   }
 
   private static HashMap<AppPanel, Parent> sceneMap = new HashMap<AppPanel, Parent>();
