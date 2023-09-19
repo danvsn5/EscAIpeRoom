@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.ThrusterButtons;
 
 public class ThrusterController {
 
@@ -9,7 +11,11 @@ public class ThrusterController {
   @FXML private ImageView bottomLeftClicked;
 
   public void setBottomLeftVisible() {
-    bottomLeftUnclicked.setVisible(true);
+    if (ThrusterButtons.getCycleNumber() != GameState.getRandomColorNumber()) {
+      bottomLeftUnclicked.setVisible(true);
+    } else {
+      ThrusterButtons.timeline.pause();
+    }
   }
 
   public void setBottomLeftInvisible() {

@@ -57,6 +57,11 @@ public class LaunchController {
         break;
     }
     createTimer();
+
+    GameState.createRandomColorNumber();
+    // ThrusterButtons.timeline.setCycleCount(200);
+    // ThrusterButtons.timeline.play();
+
     App.setUi(AppPanel.MAIN_ROOM);
   }
 

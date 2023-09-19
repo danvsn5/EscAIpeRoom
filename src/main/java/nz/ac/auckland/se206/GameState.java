@@ -26,6 +26,14 @@ public class GameState {
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
 
+  private static int randomColorNumber;
+
+  // create random number between 1 and 4
+
+  public static void createRandomColorNumber() {
+    randomColorNumber = (int) (Math.random() * 4 + 1);
+  }
+
   public static void setTimer(int timer) {
     GameState.timer = timer;
   }
@@ -40,5 +48,9 @@ public class GameState {
 
   public static int getDifficulty() {
     return GameState.difficulty;
+  }
+
+  public static int getRandomColorNumber() {
+    return randomColorNumber;
   }
 }

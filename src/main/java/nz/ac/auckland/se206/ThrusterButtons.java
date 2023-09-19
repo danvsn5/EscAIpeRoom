@@ -19,7 +19,7 @@ public class ThrusterButtons {
   private static ColorAdjust redColor = new ColorAdjust(-0.39, 0, 0, 0);
 
   public static void cycleBottomLeft() {
-
+    // 1: purple    2: red    3: blue    4: orange
     switch (cycleNumber) {
       case 1:
         // if current color is purple, move to red
@@ -55,6 +55,9 @@ public class ThrusterButtons {
 
   public static void visibleHelper(String id, Effect color) {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup(id).setEffect(color);
-    ;
+  }
+
+  public static int getCycleNumber() {
+    return cycleNumber;
   }
 }
