@@ -43,7 +43,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
          <effect>
-            <ColorAdjust />
+            <ColorAdjust hue="1.0" />
          </effect>
       </ImageView>
       <ImageView fx:id="topRightClicked" fitHeight="150.0" fitWidth="200.0" layoutX="641.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
@@ -62,7 +62,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
          <effect>
-            <ColorAdjust />
+            <ColorAdjust hue="0.5" />
          </effect>
       </ImageView>
       <ImageView fx:id="topLeftClicked" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
@@ -81,7 +81,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
          <effect>
-            <ColorAdjust />
+            <ColorAdjust hue="-0.39" />
          </effect>
       </ImageView>
    </children>

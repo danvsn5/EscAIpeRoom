@@ -10,16 +10,16 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class TopLeftButton {
 
-  public static Timeline timeline = new Timeline(new KeyFrame(Duration.millis(750), e -> cycle()));
-  private static int cycleNumber = 1;
+  public static Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> cycle()));
+  private static int cycleNumber = 3;
   private static ColorAdjust purpleColor = new ColorAdjust(0, 0, 0, 0);
   private static ColorAdjust greenColor = new ColorAdjust(1, 0, 0, 0);
-  private static ColorAdjust blueColor = new ColorAdjust(0.5, 0, 0, 0);
+  private static ColorAdjust redColor = new ColorAdjust(0.5, 0, 0, 0);
 
-  private static ColorAdjust redColor = new ColorAdjust(-0.39, 0, 0, 0);
+  private static ColorAdjust blueColor = new ColorAdjust(-0.39, 0, 0, 0);
 
   public static void cycle() {
-    // 1: purple    2: red    3: blue    4: orange
+    // 1: purple    2: blue     3: red    4: green
     switch (cycleNumber) {
       case 1:
         // if current color is purple, move to red
@@ -37,14 +37,14 @@ public class TopLeftButton {
 
         break;
       case 3:
-        // if current color is blue, move to orange
+        // if current color is blue, move to green
         visibleHelper("#topLeftUnclicked", greenColor);
         visibleHelper("#topLeftClicked", greenColor);
 
         cycleNumber = 4;
         break;
       case 4:
-        // if current color is orange, move to purple
+        // if current color is green, move to purple
         visibleHelper("#topLeftUnclicked", purpleColor);
         visibleHelper("#topLeftClicked", purpleColor);
 
