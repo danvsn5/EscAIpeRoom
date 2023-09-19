@@ -2,12 +2,14 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import nz.ac.auckland.se206.missions.Mission;
-import nz.ac.auckland.se206.missions.WindowMission;
+import nz.ac.auckland.se206.missions.*;
 
 public class MissionManager {
   public enum MISSION {
     WINDOW,
+    CONTROLLER,
+    FUEL,
+    THRUSTER
   }
 
   private HashMap<MISSION, Mission> missionList = new HashMap<>();
@@ -22,11 +24,17 @@ public class MissionManager {
     if (missionNumber == 1) {
       missionList.put(MISSION.WINDOW, new WindowMission());
       keyList.add(MISSION.WINDOW);
-      // If the size of key list is greater than the size of mission list (indicating a mission is
-      // added twice), remove one
-      if (keyList.size() != 0 && keyList.size() > missionList.size()) {
-        keyList.remove(keyList.size() - 1);
-      }
+    } else if (missionNumber == 2) {
+      missionList.put(MISSION.CONTROLLER, new ControllerMission());
+    } else if (missionNumber == 3) {
+      missionList.put(MISSION.FUEL, new FuelMission());
+    } else {
+      missionList.put(MISSION.THRUSTER, new ThrusterMission());
+    }
+    // If the size of key list is greater than the size of mission list (indicating a mission is
+    // added twice), remove one
+    if (keyList.size() != 0 && keyList.size() > missionList.size()) {
+      keyList.remove(keyList.size() - 1);
     }
   }
 
@@ -51,5 +59,15 @@ public class MissionManager {
           missionList.get(m).getName() + ": " + missionList.get(m).getPercentage() + "%");
     }
     System.out.println("Overall progress: " + getOverallPercentage() + "%");
+  }
+
+  /**
+   * Get the Mission instance according to input key
+   *
+   * @param key a MISSION enum
+   * @return the class that extends Mission abstract class
+   */
+  public Mission getMission(MISSION key) {
+    return missionList.get(key);
   }
 }

@@ -1,14 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -28,24 +25,11 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
 
-  public void initialize() {
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
-
-    timeline.setCycleCount(123);
-    timeline.play();
-  }
+  public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
   // solved correctly, and sand is currently NOT in the inventory, then the sand appears inside the
   // panel.
-  public void dispCount() {
-    counter.setText(String.valueOf(GameState.count));
-
-    if (GameState.inventory.contains(-1) && !GameState.inventory.contains(2)) {
-      sand.setVisible(true);
-    }
-  }
-
   public void outsideReturn() {
     App.setUi(AppPanel.MAIN_ROOM);
   }

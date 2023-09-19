@@ -1,16 +1,12 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
 public class GameState {
 
   // count variable that will be used as in-game counter
-  public static int count = 120;
   public static int difficulty = 0;
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
@@ -47,9 +43,5 @@ public class GameState {
 
   public static int getDifficulty() {
     return GameState.difficulty;
-  }
-
-  public static void changeCount() {
-    GameState.count--;
   }
 }

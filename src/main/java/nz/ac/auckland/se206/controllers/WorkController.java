@@ -1,7 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -10,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -48,10 +45,6 @@ public class WorkController {
   private ChatCompletionRequest chatCompletionRequest;
 
   public void initialize() {
-
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
-    timeline.setCycleCount(124);
-    timeline.play();
     // calls GPT to make a taunt and sets the label once the taunt has been generated
     Task<Void> workTauntGPT =
         new Task<Void>() {
@@ -78,10 +71,6 @@ public class WorkController {
 
     Thread workThread = new Thread(workTauntGPT);
     workThread.start();
-  }
-
-  public void dispCount() {
-    counter.setText(String.valueOf(GameState.count));
   }
 
   public void workReturn() {

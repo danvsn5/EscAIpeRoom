@@ -1,13 +1,17 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.SceneManager.AppPanel;
+
 public class TimeCounter {
   private int secondCounter;
   private int minuteCounter;
+  private double totalSeconds;
 
   /** The constructor of the class, initialize a time counter */
   public TimeCounter(int minute, int second) {
     secondCounter = second;
     minuteCounter = minute;
+    totalSeconds = second + minute * 60;
   }
 
   /**
@@ -17,7 +21,8 @@ public class TimeCounter {
    */
   public String getTime() {
     // If the countdown ends, return "END"
-    if (minuteCounter < 0) {
+    if (minuteCounter == 0 && secondCounter == 0) {
+      App.setUi(AppPanel.LOSE);
       return "END";
     }
     // If second counter is between 0 to 9, add another 0 in front of it
@@ -63,5 +68,10 @@ public class TimeCounter {
    */
   public int getMinute() {
     return minuteCounter;
+  }
+
+  public double getRemainingPercentage() {
+    double currentSeconds = secondCounter + minuteCounter * 60 + 1;
+    return currentSeconds * 100 / totalSeconds;
   }
 }

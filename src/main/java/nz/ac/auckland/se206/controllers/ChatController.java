@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -41,9 +38,6 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> dispCount()));
-    timeline.setCycleCount(123);
-    timeline.play();
 
     Task<Void> riddleCall =
         new Task<Void>() {
@@ -68,10 +62,6 @@ public class ChatController {
 
     Thread mainRiddleThread = new Thread(riddleCall);
     mainRiddleThread.start();
-  }
-
-  public void dispCount() {
-    counter.setText(String.valueOf(GameState.count));
   }
 
   /**
