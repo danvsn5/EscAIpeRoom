@@ -43,6 +43,7 @@ public class CentralController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private ImageView chest;
 
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);
@@ -179,5 +180,9 @@ public class CentralController {
 
   public void redButtonNormal() {
     redButton.setFill(Color.valueOf("ff1f1f"));
+  }
+
+  public void goToChest() {
+    App.setUi(AppPanel.CHEST);
   }
 }

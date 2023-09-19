@@ -108,5 +108,10 @@
             <Image url="@../images/twoRoot.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="chest" fitHeight="150.0" fitWidth="200.0" layoutX="830.0" layoutY="543.0" onMouseClicked="#goToChest" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/chest.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
