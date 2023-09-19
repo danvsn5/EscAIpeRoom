@@ -32,6 +32,8 @@ public class ChatController {
   @FXML private Rectangle thinking1;
   @FXML private Rectangle thinking2;
   @FXML private Circle speaking;
+  @FXML private Circle eye1;
+  @FXML private Circle eye2;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -44,6 +46,11 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
 
     Task<Void> riddleCall =
         new Task<Void>() {
@@ -65,6 +72,14 @@ public class ChatController {
             return null;
           }
         };
+
+    riddleCall.setOnSucceeded(
+        e -> {
+          eye1.setVisible(true);
+          eye2.setVisible(true);
+          thinking1.setVisible(false);
+          thinking2.setVisible(false);
+        });
 
     Thread mainRiddleThread = new Thread(riddleCall);
     mainRiddleThread.start();
@@ -125,7 +140,8 @@ public class ChatController {
     }
     inputText.clear();
 
-    neutral.setVisible(false);
+    eye1.setVisible(false);
+    eye2.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
 
@@ -158,7 +174,8 @@ public class ChatController {
 
     typeCall.setOnSucceeded(
         e -> {
-          neutral.setVisible(true);
+          eye1.setVisible(true);
+          eye2.setVisible(true);
           thinking1.setVisible(false);
           thinking2.setVisible(false);
         });
