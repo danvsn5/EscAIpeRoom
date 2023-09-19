@@ -8,9 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
 import javafx.scene.image.ImageView;
-
+import nz.ac.SceneManager;
 import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -67,8 +66,6 @@ public class ChatController {
     Thread mainRiddleThread = new Thread(riddleCall);
     mainRiddleThread.start();
   }
-
-
 
   public void goProgress() {
     App.setUi(AppPanel.PROGRESS);
