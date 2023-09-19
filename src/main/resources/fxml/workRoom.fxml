@@ -13,7 +13,7 @@
    <children>
       <ImageView fx:id="blueprint" fitHeight="150.0" fitWidth="200.0" layoutX="765.0" layoutY="348.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../blueprint.png" />
+            <Image url="@../images/blueprint.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />

@@ -59,7 +59,7 @@ public class LaunchController {
     createTimer();
 
     GameState.createRandomColorNumber();
-    App.setUi(AppPanel.THRUSTER);
+    App.setUi(AppPanel.MAIN_ROOM);
   }
 
   public void changeDiff() {
