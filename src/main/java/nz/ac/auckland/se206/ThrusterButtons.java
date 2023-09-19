@@ -24,22 +24,30 @@ public class ThrusterButtons {
       case 1:
         // if current color is purple, move to red
         visibleHelper("#bottomLeftUnclicked", redColor);
+        visibleHelper("#bottomLeftClicked", redColor);
+
         cycleNumber = 2;
         break;
       case 2:
         // if current color is red, move to blue
         visibleHelper("#bottomLeftUnclicked", blueColor);
+        visibleHelper("#bottomLeftClicked", blueColor);
+
         cycleNumber = 3;
 
         break;
       case 3:
         // if current color is blue, move to orange
         visibleHelper("#bottomLeftUnclicked", greenColor);
+        visibleHelper("#bottomLeftClicked", greenColor);
+
         cycleNumber = 4;
         break;
       case 4:
         // if current color is orange, move to purple
         visibleHelper("#bottomLeftUnclicked", purpleColor);
+        visibleHelper("#bottomLeftClicked", purpleColor);
+
         cycleNumber = 1;
         break;
     }
