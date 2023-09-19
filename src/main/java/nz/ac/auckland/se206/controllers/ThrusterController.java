@@ -5,6 +5,8 @@ import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
+import nz.ac.auckland.se206.ThrusterButtons.TopLeftButton;
+import nz.ac.auckland.se206.ThrusterButtons.TopRightButton;
 
 public class ThrusterController {
 
@@ -42,25 +44,26 @@ public class ThrusterController {
   }
 
   public void setTopLeftInvisible() {
-    //   topLeftUnclicked.setVisible(false);
+    topLeftUnclicked.setVisible(false);
   }
 
   public void setTopLeftVisible() {
-    //   if (ThrusterButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-    //     topLeftUnclicked.setVisible(true);
-    //   } else {
-    //     ThrusterButton.timeline.pause();
+    if (TopLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+      topLeftUnclicked.setVisible(true);
+    } else {
+      TopLeftButton.timeline.pause();
+    }
   }
 
   public void setTopRightInvisible() {
-    //   topRightUnclicked.setVisible(false);
+    topRightUnclicked.setVisible(false);
   }
 
   public void setTopRightVisible() {
-    //   if (ThrusterButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-    //     topRightUnclicked.setVisible(true);
-    //   } else {
-    //     ThrusterButton.timeline.pause();
-    //   }
+    if (TopRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+      topRightUnclicked.setVisible(true);
+    } else {
+      TopRightButton.timeline.pause();
+    }
   }
 }
