@@ -21,6 +21,7 @@ public class ThrusterController {
 
   public void setBottomLeftVisible() {
     if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+      BottomLeftButton.timeline.play();
       bottomLeftUnclicked.setVisible(true);
     } else {
       BottomLeftButton.timeline.pause();
@@ -28,15 +29,18 @@ public class ThrusterController {
   }
 
   public void setBottomLeftInvisible() {
+    BottomLeftButton.timeline.pause();
     bottomLeftUnclicked.setVisible(false);
   }
 
   public void setBottomRightInvisible() {
+    BottomRightButton.timeline.pause();
     bottomRightUnclicked.setVisible(false);
   }
 
   public void setBottomRightVisible() {
     if (BottomRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+      BottomRightButton.timeline.play();
       bottomRightUnclicked.setVisible(true);
     } else {
       BottomRightButton.timeline.pause();
@@ -44,23 +48,27 @@ public class ThrusterController {
   }
 
   public void setTopLeftInvisible() {
+    TopLeftButton.timeline.pause();
     topLeftUnclicked.setVisible(false);
   }
 
   public void setTopLeftVisible() {
     if (TopLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
       topLeftUnclicked.setVisible(true);
+      TopLeftButton.timeline.play();
     } else {
       TopLeftButton.timeline.pause();
     }
   }
 
   public void setTopRightInvisible() {
+    TopRightButton.timeline.pause();
     topRightUnclicked.setVisible(false);
   }
 
   public void setTopRightVisible() {
     if (TopRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+      TopRightButton.timeline.play();
       topRightUnclicked.setVisible(true);
     } else {
       TopRightButton.timeline.pause();
