@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -8,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ThrusterController">
    <children>
-      <ImageView fx:id="bottomLeftClickedPurple" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="bottomLeftClicked" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
          </image>
@@ -16,61 +17,16 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="bottomLeftUnclickedPurple" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="437.0" onMousePressed="#setBottomLeftPurpleInvisible" onMouseReleased="#setBottomLeftPurpleVisible" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bottomLeftUnclicked" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="437.0" onMousePressed="#setBottomLeftInvisible" onMouseReleased="#setBottomLeftVisible" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ThrusterButtons/PurpleUnclicked.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
-      </ImageView>
-      <ImageView fx:id="bottomLeftClickedRed" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/ThrusterButtons/RedClicked.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="bottomLeftUnclickedRed" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="437.0" onMousePressed="#setBottomLeftRedInvisible" onMouseReleased="#setBottomLeftRedVisible" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/ThrusterButtons/RedUnclicked.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="bottomLeftClickedOrange" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/ThrusterButtons/OrangeClicked.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="bottomLeftUnclickedOrange" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="437.0" onMousePressed="#setBottomLeftOrangeInvisible" onMouseReleased="#setBottomLeftOrangeVisible" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/ThrusterButtons/OrangeUnclicked.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="bottomLeftClickedBlue" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/ThrusterButtons/BlueClicked.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="bottomLeftUnclickedBlue" fitHeight="150.0" fitWidth="200.0" layoutX="176.0" layoutY="437.0" onMousePressed="#setBottomLeftBlueInvisible" onMouseReleased="#setBottomLeftBlueVisible" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/ThrusterButtons/BlueUnclicked.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
+         <effect>
+            <ColorAdjust />
+         </effect>
       </ImageView>
    </children>
 </Pane>
