@@ -26,9 +26,6 @@ public class GameState {
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
 
-  public static Timeline timeline =
-      new Timeline(new KeyFrame(Duration.millis(1000), e -> changeCount()));
-
   public static void setTimer(int timer) {
     GameState.timer = timer;
   }
