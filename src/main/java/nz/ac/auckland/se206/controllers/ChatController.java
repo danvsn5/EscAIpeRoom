@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager.AppPanel;
@@ -204,5 +205,33 @@ public class ChatController {
     speaking.setVisible(false);
     neutral.setVisible(true);
     App.setUi(AppPanel.OUTSIDE);
+  }
+
+  /**
+   * Handles the key pressed event.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onKeyPressed(KeyEvent event) {
+    System.out.println("key " + event.getCode() + " pressed");
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
+  }
+
+  /**
+   * Handles the key released event.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onKeyReleased(KeyEvent event) {
+    System.out.println("key " + event.getCode() + " released");
+    eye1.setVisible(true);
+    eye2.setVisible(true);
+    thinking1.setVisible(false);
+    thinking2.setVisible(false);
   }
 }
