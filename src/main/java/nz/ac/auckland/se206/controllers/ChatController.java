@@ -49,6 +49,8 @@ public class ChatController {
 
     eye1.setVisible(false);
     eye2.setVisible(false);
+    neutral.setVisible(true);
+    speaking.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
 
@@ -79,6 +81,8 @@ public class ChatController {
           eye2.setVisible(true);
           thinking1.setVisible(false);
           thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
         });
 
     Thread mainRiddleThread = new Thread(riddleCall);
@@ -142,6 +146,8 @@ public class ChatController {
 
     eye1.setVisible(false);
     eye2.setVisible(false);
+    neutral.setVisible(true);
+    speaking.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
 
@@ -178,6 +184,8 @@ public class ChatController {
           eye2.setVisible(true);
           thinking1.setVisible(false);
           thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
         });
 
     Thread typeInThread = new Thread(typeCall);
@@ -193,6 +201,8 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    speaking.setVisible(false);
+    neutral.setVisible(true);
     App.setUi(AppPanel.OUTSIDE);
   }
 }
