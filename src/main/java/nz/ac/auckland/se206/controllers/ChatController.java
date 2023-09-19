@@ -8,8 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -26,6 +28,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label counter;
+  @FXML private ImageView progressButton;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -62,6 +65,10 @@ public class ChatController {
 
     Thread mainRiddleThread = new Thread(riddleCall);
     mainRiddleThread.start();
+  }
+
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
   }
 
   /**
@@ -159,6 +166,15 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }
