@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
    <children>
       <Button fx:id="backButton" layoutX="101.0" layoutY="292.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Label fx:id="firstDigit" layoutX="189.0" layoutY="141.0" text="0">
+         <font>
+            <Font size="93.0" />
+         </font>
+      </Label>
+      <Label fx:id="secondDigit" layoutX="273.0" layoutY="141.0" text="0">
+         <font>
+            <Font size="93.0" />
+         </font>
+      </Label>
+      <Label fx:id="thirdDigit" layoutX="354.0" layoutY="140.0" text="0">
+         <font>
+            <Font size="93.0" />
+         </font>
+      </Label>
+      <Button fx:id="firstDigitUpButton" layoutX="189.0" layoutY="129.0" mnemonicParsing="false" text="Increase" />
+      <Button fx:id="firstDigitDownButton" layoutX="189.0" layoutY="247.0" mnemonicParsing="false" text="Decrease" />
+      <Button fx:id="secondDigitUpButton" layoutX="273.0" layoutY="129.0" mnemonicParsing="false" text="Increase" />
+      <Button fx:id="secondDigitDownButton" layoutX="272.0" layoutY="247.0" mnemonicParsing="false" text="Decrease" />
+      <Button fx:id="thirdDigitUpButton" layoutX="354.0" layoutY="129.0" mnemonicParsing="false" text="Increase" />
+      <Button fx:id="thirdDigitDownButton" layoutX="354.0" layoutY="249.0" mnemonicParsing="false" text="Decrease" />
    </children>
 </Pane>
