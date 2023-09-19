@@ -10,6 +10,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager.AppPanel;
@@ -36,6 +37,7 @@ public class ChatController {
   @FXML private Circle speaking;
   @FXML private Circle eye1;
   @FXML private Circle eye2;
+  @FXML private Circle loadingCircle;
 
   @FXML private ProgressIndicator loading;
 
@@ -59,6 +61,7 @@ public class ChatController {
     thinking2.setVisible(true);
 
     loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
 
     Task<Void> riddleCall =
         new Task<Void>() {
@@ -94,6 +97,7 @@ public class ChatController {
           neutral.setVisible(false);
           speaking.setVisible(true);
           loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
         });
 
     Thread mainRiddleThread = new Thread(riddleCall);
@@ -153,6 +157,8 @@ public class ChatController {
     loading.setProgress(0);
     loading.setVisible(true);
 
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
       return;
@@ -206,6 +212,7 @@ public class ChatController {
           neutral.setVisible(false);
           speaking.setVisible(true);
           loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
         });
 
     Thread typeInThread = new Thread(typeCall);

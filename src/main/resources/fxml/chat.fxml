@@ -25,7 +25,7 @@
       <Line endX="17.0" endY="-217.0" layoutX="235.0" layoutY="445.0" startX="-56.0" startY="-145.0" strokeWidth="5.0" />
       <Line endX="24.0" endY="40.0" layoutX="92.0" layoutY="229.0" startX="7.0" startY="-54.0" strokeWidth="5.0" />
       <Line endX="23.0" endY="-39.0" layoutX="70.0" layoutY="339.0" startX="-40.0" startY="-111.0" strokeWidth="5.0" />
-      <Circle fill="#264f31" layoutX="32.0" layoutY="236.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="loadingCircle" fill="#264f31" layoutX="32.0" layoutY="236.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fill="#1b7952" layoutX="97.0" layoutY="195.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fill="#49993a" layoutX="240.0" layoutY="236.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
       <Line endX="-33.0" endY="-252.0" layoutX="212.0" layoutY="421.0" startX="-56.0" startY="-145.0" strokeWidth="5.0" />
@@ -37,6 +37,6 @@
       <Circle fx:id="speaking" layoutX="148.0" layoutY="374.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
       <Rectangle fx:id="thinking1" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="73.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
       <Rectangle fx:id="thinking2" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="152.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
-      <ProgressIndicator fx:id="loading" layoutX="84.0" layoutY="175.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
+      <ProgressIndicator fx:id="loading" layoutX="13.0" layoutY="216.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
   </children>
 </AnchorPane>
