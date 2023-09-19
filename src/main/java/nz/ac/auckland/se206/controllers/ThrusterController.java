@@ -74,4 +74,18 @@ public class ThrusterController {
       TopRightButton.timeline.pause();
     }
   }
+
+  public void beginRepairs() {
+
+    // add logic so that once the game is over, the button can no longer be pressed.
+
+    BottomRightButton.timeline.setCycleCount(360);
+    BottomRightButton.timeline.play();
+    BottomLeftButton.timeline.setCycleCount(360);
+    BottomLeftButton.timeline.play();
+    TopLeftButton.timeline.setCycleCount(360);
+    TopLeftButton.timeline.play();
+    TopRightButton.timeline.setCycleCount(360);
+    TopRightButton.timeline.play();
+  }
 }
