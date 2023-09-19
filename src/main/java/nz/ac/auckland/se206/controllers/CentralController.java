@@ -9,10 +9,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import nz.ac.SceneManager;
-import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CentralController {
   @FXML private Rectangle outsideDoor;
@@ -41,6 +41,10 @@ public class CentralController {
   @FXML private Label workLabel;
   @FXML private Label panelLabel;
   @FXML private ImageView progressButton;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.OUTSIDE);

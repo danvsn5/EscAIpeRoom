@@ -9,8 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import nz.ac.SceneManager;
-import nz.ac.SceneManager.AppPanel;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should

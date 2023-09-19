@@ -6,10 +6,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
-import nz.ac.SceneManager;
-import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class OutsideController {
   @FXML private Ellipse outsideReturnDoor;
@@ -22,6 +22,10 @@ public class OutsideController {
   @FXML private Label shipLabel;
   @FXML private Label techLabel;
   @FXML private ImageView progressButton;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   public void initialize() {}
 

@@ -1,4 +1,4 @@
-package nz.ac;
+package nz.ac.auckland.se206;
 
 import java.util.HashMap;
 import javafx.scene.Parent;

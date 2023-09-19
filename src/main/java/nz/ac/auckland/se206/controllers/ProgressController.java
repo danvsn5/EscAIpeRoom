@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
-import nz.ac.SceneManager;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.SceneManager;
 
 public class ProgressController {
 

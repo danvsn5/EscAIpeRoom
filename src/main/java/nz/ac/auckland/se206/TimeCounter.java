@@ -1,6 +1,6 @@
 package nz.ac.auckland.se206;
 
-import nz.ac.SceneManager.AppPanel;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class TimeCounter {
   private int secondCounter;
