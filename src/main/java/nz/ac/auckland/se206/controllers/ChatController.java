@@ -125,6 +125,9 @@ public class ChatController {
     }
     inputText.clear();
 
+    neutral.setVisible(false);
+    speaking.setVisible(true);
+
     Task<Void> typeCall =
         new Task<Void>() {
 
@@ -151,6 +154,12 @@ public class ChatController {
             return null;
           }
         };
+
+    typeCall.setOnSucceeded(
+        e -> {
+          neutral.setVisible(true);
+          speaking.setVisible(false);
+        });
 
     Thread typeInThread = new Thread(typeCall);
     typeInThread.start();
