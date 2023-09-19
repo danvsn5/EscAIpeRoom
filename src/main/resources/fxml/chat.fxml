@@ -37,6 +37,9 @@
       </Circle>
       <Circle fill="#1e1e1e" layoutX="108.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle layoutX="183.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="neutralMouth" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="85.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
+      <Rectangle fx:id="neutral" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="85.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
+      <Circle fx:id="speaking" layoutX="148.0" layoutY="374.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Rectangle fx:id="thinking1" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="73.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
+      <Rectangle fx:id="thinking2" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="152.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
   </children>
 </AnchorPane>
