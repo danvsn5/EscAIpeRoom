@@ -96,7 +96,6 @@ public class CentralController {
   // if window and control panel are fixed, then game can be completed by pressing red button
   public void goHome() {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
-      GameState.timeline.playFromStart();
       App.setUi(AppPanel.WIN);
     }
   }

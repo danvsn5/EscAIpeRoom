@@ -23,9 +23,9 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Rectangle>
-      <Label fx:id="counter" alignment="CENTER" layoutX="78.0" layoutY="25.0" prefHeight="72.0" prefWidth="200.0" text="120">
+      <Label fx:id="counter" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="72.0" prefWidth="250.0">
          <font>
-            <Font size="79.0" />
+            <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
       <Rectangle fx:id="workBackground" arcHeight="5.0" arcWidth="5.0" height="544.0" layoutX="47.0" layoutY="125.0" opacity="0.78" stroke="WHITE" strokeType="INSIDE" width="1185.0" />

@@ -64,9 +64,9 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Circle>
-      <Label fx:id="counter" alignment="CENTER" layoutX="78.0" layoutY="25.0" prefHeight="72.0" prefWidth="200.0" text="120">
+      <Label fx:id="counter" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="72.0" prefWidth="250.0">
          <font>
-            <Font size="79.0" />
+            <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
       <Label fx:id="sandLabel" alignment="CENTER" layoutX="869.0" layoutY="529.0" prefHeight="35.0" prefWidth="200.0" text="Collect Sand" visible="false">
