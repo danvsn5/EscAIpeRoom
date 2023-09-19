@@ -8,7 +8,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
-public class BottomRightButton {
+public class BottomLeftButton {
 
   public static Timeline timeline = new Timeline(new KeyFrame(Duration.millis(750), e -> cycle()));
   private static int cycleNumber = 1;
@@ -23,30 +23,30 @@ public class BottomRightButton {
     switch (cycleNumber) {
       case 1:
         // if current color is purple, move to red
-        visibleHelper("#bottomRightUnclicked", redColor);
-        visibleHelper("#bottomRightClicked", redColor);
+        visibleHelper("#bottomLeftUnclicked", redColor);
+        visibleHelper("#bottomLeftClicked", redColor);
 
         cycleNumber = 2;
         break;
       case 2:
         // if current color is red, move to blue
-        visibleHelper("#bottomRightUnclicked", blueColor);
-        visibleHelper("#bottomRightClicked", blueColor);
+        visibleHelper("#bottomLeftUnclicked", blueColor);
+        visibleHelper("#bottomLeftClicked", blueColor);
 
         cycleNumber = 3;
 
         break;
       case 3:
         // if current color is blue, move to orange
-        visibleHelper("#bottomRightUnclicked", greenColor);
-        visibleHelper("#bottomRightClicked", greenColor);
+        visibleHelper("#bottomLeftUnclicked", greenColor);
+        visibleHelper("#bottomLeftClicked", greenColor);
 
         cycleNumber = 4;
         break;
       case 4:
         // if current color is orange, move to purple
-        visibleHelper("#bottomRightUnclicked", purpleColor);
-        visibleHelper("#bottomRightClicked", purpleColor);
+        visibleHelper("#bottomLeftUnclicked", purpleColor);
+        visibleHelper("#bottomLeftClicked", purpleColor);
 
         cycleNumber = 1;
         break;

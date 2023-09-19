@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
 
 public class ThrusterController {
@@ -17,15 +18,15 @@ public class ThrusterController {
   @FXML private ImageView topRightClicked;
 
   public void setBottomLeftVisible() {
-    //   if (ThrusterButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-    //     bottomLeftUnclicked.setVisible(true);
-    //   } else {
-    //     ThrusterButton.timeline.pause();
-    //   }
+    if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+      bottomLeftUnclicked.setVisible(true);
+    } else {
+      BottomLeftButton.timeline.pause();
+    }
   }
 
   public void setBottomLeftInvisible() {
-    //   bottomLeftUnclicked.setVisible(false);
+    bottomLeftUnclicked.setVisible(false);
   }
 
   public void setBottomRightInvisible() {

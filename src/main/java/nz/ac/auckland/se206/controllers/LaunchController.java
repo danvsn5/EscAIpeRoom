@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
 import nz.ac.auckland.se206.TimeCounter;
 
@@ -63,6 +64,8 @@ public class LaunchController {
 
     BottomRightButton.timeline.setCycleCount(200);
     BottomRightButton.timeline.play();
+    BottomLeftButton.timeline.setCycleCount(200);
+    BottomLeftButton.timeline.play();
 
     App.setUi(AppPanel.THRUSTER);
   }
