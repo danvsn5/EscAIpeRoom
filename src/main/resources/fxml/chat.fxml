@@ -29,7 +29,7 @@
       <Circle fill="#49993a" layoutX="240.0" layoutY="236.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
       <Line endX="-33.0" endY="-252.0" layoutX="212.0" layoutY="421.0" startX="-56.0" startY="-145.0" strokeWidth="5.0" />
       <Circle fill="#368d30" layoutX="176.0" layoutY="190.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#654817" layoutX="139.0" layoutY="331.0" radius="95.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#614009" layoutX="139.0" layoutY="331.0" radius="95.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="eye1" fill="#1e1e1e" layoutX="97.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="eye2" layoutX="183.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle fx:id="neutral" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="76.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
