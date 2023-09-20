@@ -44,6 +44,7 @@ public class WorkController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView blueprint;
+  @FXML private ImageView miniTree;
 
   private ChatMessage message;
   private ChatCompletionRequest chatCompletionRequest;
@@ -208,5 +209,17 @@ public class WorkController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public void goChat() {
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }
