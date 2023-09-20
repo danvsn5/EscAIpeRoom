@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
   @FXML private Rectangle outsideDoor;
@@ -65,6 +66,7 @@ public class CentralController {
   public void collectHammer() {
     GameState.inventory.add(0);
     hammer.setVisible(false);
+    TreeAvatar.startFlashTree();
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes
