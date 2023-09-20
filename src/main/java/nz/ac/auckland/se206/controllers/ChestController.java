@@ -14,6 +14,7 @@ public class ChestController {
   @FXML private Label firstDigit;
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
+  @FXML private Label counter;
   @FXML private Rectangle firstDigitHighlight;
   @FXML private Rectangle secondDigitHighlight;
   @FXML private Rectangle thirdDigitHighlight;

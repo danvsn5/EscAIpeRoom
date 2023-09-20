@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CrashLandController">
@@ -36,5 +39,11 @@
          </image>
       </ImageView>
       <Polygon fx:id="thruster" fill="DODGERBLUE" layoutX="755.0" layoutY="540.0" onMouseClicked="#goThruster" onMouseEntered="#activateThrusterGlow" onMouseExited="#deactivateThrusterGlow" opacity="0.0" points="59.99993896484375, -25.71429443359375, 142.99993896484375, -24.0, 104.33331298828125, -102.66665649414062" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
+      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
+         <font>
+            <Font name="Bank Gothic Light BT" size="79.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

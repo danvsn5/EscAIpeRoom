@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
@@ -14,6 +15,7 @@ public class CrashLandController {
   @FXML private ImageView forestImage;
   @FXML private ImageView shuttleImage;
   @FXML private ImageView thrusterImage;
+  @FXML private Label counter;
 
   public void goForest() {
     App.setUi(AppPanel.OUTSIDE);

@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -14,6 +15,7 @@ public class StorageController {
   @FXML private ImageView storageDoorImage;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
+  @FXML private Label counter;
 
   public void goInside() {
     App.setUi(AppPanel.MAIN_ROOM);
