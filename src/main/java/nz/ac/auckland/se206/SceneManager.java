@@ -13,6 +13,8 @@ public class SceneManager {
     CHAT,
     LOSE,
     WIN,
+    THRUSTER,
+    CHEST,
     PROGRESS,
     PREVIOUS
   }

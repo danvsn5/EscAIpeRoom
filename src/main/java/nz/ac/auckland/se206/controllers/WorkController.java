@@ -10,6 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -42,6 +43,7 @@ public class WorkController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private ImageView blueprint;
 
   private ChatMessage message;
   private ChatCompletionRequest chatCompletionRequest;
@@ -191,6 +193,13 @@ public class WorkController {
       questionLabel.setVisible(false);
     }
     furnace.setFill(Color.valueOf("5a636b"));
+  }
+
+  public void collectBlueprint() {
+    blueprint.setVisible(false);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
+    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 
   public void activateProgressGlow() {

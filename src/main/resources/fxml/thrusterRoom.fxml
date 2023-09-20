@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ThrusterController">
+   <children>
+      <ImageView fx:id="bottomLeftClicked" fitHeight="150.0" fitWidth="200.0" layoutX="480.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="bottomLeftUnclicked" fitHeight="150.0" fitWidth="200.0" layoutX="481.0" layoutY="403.0" onMousePressed="#setBottomLeftInvisible" onMouseReleased="#setBottomLeftVisible" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="bottomRightClicked" fitHeight="150.0" fitWidth="200.0" layoutX="945.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="bottomRightUnclicked" fitHeight="150.0" fitWidth="200.0" layoutX="946.0" layoutY="403.0" onMousePressed="#setBottomRightInvisible" onMouseReleased="#setBottomRightVisible" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <ColorAdjust hue="1.0" />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="topRightClicked" fitHeight="150.0" fitWidth="200.0" layoutX="946.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="topRightUnclicked" fitHeight="150.0" fitWidth="200.0" layoutX="947.0" layoutY="74.0" onMousePressed="#setTopRightInvisible" onMouseReleased="#setTopRightVisible" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <ColorAdjust hue="0.5" />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="topLeftClicked" fitHeight="150.0" fitWidth="200.0" layoutX="481.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="topLeftUnclicked" fitHeight="150.0" fitWidth="200.0" layoutX="482.0" layoutY="74.0" onMousePressed="#setTopLeftInvisible" onMouseReleased="#setTopLeftVisible" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ThrusterButtons/PurpleUnclicked.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <ColorAdjust hue="-0.39" />
+         </effect>
+      </ImageView>
+      <Button fx:id="repairButton" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="48.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#beginRepairs" prefHeight="100.0" prefWidth="381.0" text="Begin Repairs">
+         <font>
+            <Font name="Bank Gothic Light BT" size="35.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="returnOutside" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="403.0" mnemonicParsing="false" onMouseClicked="#goOutside" prefHeight="53.0" prefWidth="218.0" text="Return Outside">
+         <font>
+            <Font name="Bank Gothic Light BT" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blueprintSlot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="blueprint" fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/blueprint.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
