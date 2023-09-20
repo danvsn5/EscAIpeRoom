@@ -169,12 +169,6 @@ public class ChatController {
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
 
-    if (!GameState.isGreetingShown) {
-      generateRiddle();
-      GameState.isGreetingShown = true;
-      return;
-    }
-
     inputText.setDisable(true);
 
     loading.setProgress(0);
@@ -195,6 +189,13 @@ public class ChatController {
     thinking1.setVisible(true);
     thinking2.setVisible(true);
     listeningLabel.setVisible(false);
+
+    if (!GameState.isGreetingShown) {
+      generateRiddle();
+      GameState.isGreetingShown = true;
+      listeningLabel.setVisible(false);
+      return;
+    }
 
     Task<Void> typeCall =
         new Task<Void>() {
@@ -342,8 +343,8 @@ public class ChatController {
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.7)
+                    .setTemperature(0.5)
+                    .setTopP(0.2)
                     .setMaxTokens(100);
 
             System.out.println("first mission riddle");
