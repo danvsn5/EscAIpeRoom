@@ -192,6 +192,7 @@ public class CentralController {
   }
 
   public void goToChest() {
+    SceneManager.setPrevious(AppPanel.CHEST);
     App.setUi(AppPanel.CHEST);
   }
 

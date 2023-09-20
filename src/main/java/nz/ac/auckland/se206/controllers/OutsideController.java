@@ -43,6 +43,7 @@ public class OutsideController {
   }
 
   public void goThruster() {
+    SceneManager.setPrevious(AppPanel.THRUSTER);
     App.setUi(AppPanel.THRUSTER);
   }
 
