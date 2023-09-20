@@ -203,6 +203,8 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
 
+            System.out.println("type call");
+
             ChatMessage msg = new ChatMessage("user", message);
             msg.setRole("You");
             appendChatMessage(msg);
@@ -210,16 +212,33 @@ public class ChatController {
             appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
 
+            System.out.println("lastMsg");
+
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
             // from the launch panel and checks whether or not text to speech will be active
 
-            if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().startsWith("Correct")) {
-              GameState.inventory.add(-1);
+            if (!GameState.firstRiddleSolved) {
+              System.out.println("first riddle not solved");
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Correct")) {
+                GameState.firstRiddleSolved = true;
+                System.out.println(GameState.firstRiddleSolved);
+                System.out.println("first riddle solved");
+              }
+            } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Correct")) {
+                GameState.secondRiddleSolved = true;
+              }
             }
-            if (GameState.inventory.contains(-2)) {
-              GameState.textToSpeech.speak(lastMsg.getContent());
-            }
+
+            // if (lastMsg.getRole().equals("assistant")
+            //     && lastMsg.getContent().startsWith("Correct")) {
+            //   GameState.inventory.add(-1);
+            // }
+            // if (GameState.inventory.contains(-2)) {
+            //   GameState.textToSpeech.speak(lastMsg.getContent());
+            // }
             updateProgress(1, 1);
             return null;
           }
