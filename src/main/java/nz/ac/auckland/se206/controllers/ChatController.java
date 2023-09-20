@@ -16,7 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -50,8 +49,8 @@ public class ChatController {
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
 
-  private MISSION firstMission;
-  private MISSION secondMission;
+  private int firstMission;
+  private int secondMission;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -79,6 +78,8 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
+
+            System.out.println("greet task");
 
             chatCompletionRequest =
                 new ChatCompletionRequest()
@@ -320,13 +321,15 @@ public class ChatController {
     System.out.println("generate riddle");
 
     for (int i = 0; i < 2; i++) {
-      if (GameState.missionManager.getMissionKey(i) == MISSION.WINDOW
-          || GameState.missionManager.getMissionKey(i) == MISSION.FUEL) {
-        firstMission = GameState.missionManager.getMissionKey(i);
-        System.out.println(firstMission.toString());
+      System.out.println("----");
+      if (GameState.missionList.get(i) == 1 || GameState.missionList.get(i) == 2) {
+        System.out.println("first mission");
+        firstMission = GameState.missionList.get(i);
+        System.out.println(firstMission);
       } else {
-        secondMission = GameState.missionManager.getMissionKey(i);
-        System.out.println(secondMission.toString());
+        System.out.println("second mission");
+        secondMission = GameState.missionList.get(i);
+        System.out.println(secondMission);
       }
     }
 
@@ -343,11 +346,12 @@ public class ChatController {
                     .setTopP(0.7)
                     .setMaxTokens(100);
 
-            if (firstMission == MISSION.WINDOW) { // if the first mission is the window
+            System.out.println("first mission riddle");
+            if (firstMission == 1) { // if the first mission is the window
               gptMessage =
                   runGpt(
                       new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
-            } else { // if it is the fuel
+            } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
                   runGpt(
                       new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("blue")));
