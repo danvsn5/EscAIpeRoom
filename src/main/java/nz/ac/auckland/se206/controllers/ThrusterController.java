@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
@@ -33,6 +34,7 @@ public class ThrusterController {
     } else {
       BottomLeftButton.timeline.pause();
       buttonActivationCounter++;
+      isMissionComplete();
     }
   }
 
@@ -53,6 +55,7 @@ public class ThrusterController {
     } else {
       BottomRightButton.timeline.pause();
       buttonActivationCounter++;
+      isMissionComplete();
     }
   }
 
@@ -68,6 +71,7 @@ public class ThrusterController {
     } else {
       TopLeftButton.timeline.pause();
       buttonActivationCounter++;
+      isMissionComplete();
     }
   }
 
@@ -83,6 +87,7 @@ public class ThrusterController {
     } else {
       TopRightButton.timeline.pause();
       buttonActivationCounter++;
+      isMissionComplete();
     }
   }
 
@@ -90,7 +95,9 @@ public class ThrusterController {
 
     // add logic so that once the game is over, the button can no longer be pressed.
 
-    if (buttonActivationCounter == 0) {
+    if (buttonActivationCounter == 0
+        && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+
       BottomRightButton.timeline.setCycleCount(360);
       BottomRightButton.timeline.play();
       BottomLeftButton.timeline.setCycleCount(360);
@@ -104,5 +111,12 @@ public class ThrusterController {
 
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);
+  }
+
+  public void isMissionComplete() {
+    if (buttonActivationCounter == 4) {
+      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+      System.out.println("Mission Complete");
+    }
   }
 }
