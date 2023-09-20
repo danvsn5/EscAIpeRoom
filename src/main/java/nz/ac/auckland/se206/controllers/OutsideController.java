@@ -28,8 +28,6 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
 
-  private ChatController chatController;
-
   public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
