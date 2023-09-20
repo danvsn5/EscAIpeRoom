@@ -54,6 +54,8 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
 
+    inputText.setDisable(true);
+
     eye1.setVisible(false);
     eye2.setVisible(false);
     neutral.setVisible(true);
@@ -99,6 +101,7 @@ public class ChatController {
           speaking.setVisible(true);
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
         });
 
     Thread mainRiddleThread = new Thread(riddleCall);
@@ -154,6 +157,8 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+
+    inputText.setDisable(true);
 
     loading.setProgress(0);
     loading.setVisible(true);
@@ -215,6 +220,7 @@ public class ChatController {
           speaking.setVisible(true);
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
         });
 
     Thread typeInThread = new Thread(typeCall);
