@@ -29,7 +29,6 @@ public class ChestController {
   public ChestController() {
     rand = new Random();
     correctPassword = rand.nextInt(1000);
-    System.out.println(correctPassword);
   }
 
   public void goBack() {
@@ -87,5 +86,17 @@ public class ChestController {
   public void getPassword() {
     String s = firstDigit.getText() + secondDigit.getText() + thirdDigit.getText();
     System.out.println(s);
+  }
+
+  public String getCorrectPassword() {
+    String result;
+    if (correctPassword < 10) {
+      result = "00" + Integer.toString(correctPassword);
+    } else if (correctPassword >= 10 && correctPassword < 100) {
+      result = "0" + Integer.toString(correctPassword);
+    } else {
+      result = Integer.toString(correctPassword);
+    }
+    return result;
   }
 }
