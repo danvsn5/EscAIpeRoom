@@ -24,70 +24,87 @@ public class ThrusterController {
   @FXML private ImageView topRightClicked;
   @FXML private Button returnOutside;
   private int buttonActivationCounter = 0;
+  public static int isGameActive = 0;
 
   public void initialize() {}
 
   public void setBottomLeftVisible() {
-    if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-      BottomLeftButton.timeline.play();
-      bottomLeftUnclicked.setVisible(true);
-    } else {
-      BottomLeftButton.timeline.pause();
-      buttonActivationCounter++;
-      isMissionComplete();
+    if (isGameActive == 1) {
+      if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+        BottomLeftButton.timeline.play();
+        bottomLeftUnclicked.setVisible(true);
+      } else {
+        BottomLeftButton.timeline.pause();
+        buttonActivationCounter++;
+        isMissionComplete();
+      }
     }
   }
 
   public void setBottomLeftInvisible() {
-    BottomLeftButton.timeline.pause();
-    bottomLeftUnclicked.setVisible(false);
+    if (isGameActive == 1) {
+      BottomLeftButton.timeline.pause();
+      bottomLeftUnclicked.setVisible(false);
+    }
   }
 
   public void setBottomRightInvisible() {
-    BottomRightButton.timeline.pause();
-    bottomRightUnclicked.setVisible(false);
+    if (isGameActive == 1) {
+      BottomRightButton.timeline.pause();
+      bottomRightUnclicked.setVisible(false);
+    }
   }
 
   public void setBottomRightVisible() {
-    if (BottomRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-      BottomRightButton.timeline.play();
-      bottomRightUnclicked.setVisible(true);
-    } else {
-      BottomRightButton.timeline.pause();
-      buttonActivationCounter++;
-      isMissionComplete();
+    if (isGameActive == 1) {
+      if (BottomRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+        BottomRightButton.timeline.play();
+        bottomRightUnclicked.setVisible(true);
+      } else {
+        BottomRightButton.timeline.pause();
+        buttonActivationCounter++;
+        isMissionComplete();
+      }
     }
   }
 
   public void setTopLeftInvisible() {
-    TopLeftButton.timeline.pause();
-    topLeftUnclicked.setVisible(false);
+    if (isGameActive == 1) {
+      TopLeftButton.timeline.pause();
+      topLeftUnclicked.setVisible(false);
+    }
   }
 
   public void setTopLeftVisible() {
-    if (TopLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-      topLeftUnclicked.setVisible(true);
-      TopLeftButton.timeline.play();
-    } else {
-      TopLeftButton.timeline.pause();
-      buttonActivationCounter++;
-      isMissionComplete();
+    if (isGameActive == 1) {
+      if (TopLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+        topLeftUnclicked.setVisible(true);
+        TopLeftButton.timeline.play();
+      } else {
+        TopLeftButton.timeline.pause();
+        buttonActivationCounter++;
+        isMissionComplete();
+      }
     }
   }
 
   public void setTopRightInvisible() {
-    TopRightButton.timeline.pause();
-    topRightUnclicked.setVisible(false);
+    if (isGameActive == 1) {
+      TopRightButton.timeline.pause();
+      topRightUnclicked.setVisible(false);
+    }
   }
 
   public void setTopRightVisible() {
-    if (TopRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-      TopRightButton.timeline.play();
-      topRightUnclicked.setVisible(true);
-    } else {
-      TopRightButton.timeline.pause();
-      buttonActivationCounter++;
-      isMissionComplete();
+    if (isGameActive == 1) {
+      if (TopRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
+        TopRightButton.timeline.play();
+        topRightUnclicked.setVisible(true);
+      } else {
+        TopRightButton.timeline.pause();
+        buttonActivationCounter++;
+        isMissionComplete();
+      }
     }
   }
 
@@ -98,6 +115,7 @@ public class ThrusterController {
     if (buttonActivationCounter == 0
         && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
 
+      isGameActive = 1;
       BottomRightButton.timeline.setCycleCount(360);
       BottomRightButton.timeline.play();
       BottomLeftButton.timeline.setCycleCount(360);
@@ -116,7 +134,7 @@ public class ThrusterController {
   public void isMissionComplete() {
     if (buttonActivationCounter == 4) {
       GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      System.out.println("Mission Complete");
+      System.out.println("Thruster Mission Complete");
     }
   }
 }
