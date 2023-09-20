@@ -31,7 +31,7 @@ public class ChestController {
   }
 
   public void goBack() {
-    App.setUi(AppPanel.MAIN_ROOM);
+    App.setUi(AppPanel.STORAGE);
   }
 
   public void firstDigitUp() {

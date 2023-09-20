@@ -13,6 +13,7 @@ public class StorageController {
   @FXML private Rectangle hiddenChest;
   @FXML private ImageView storageDoorImage;
   @FXML private ImageView hiddenChestImage;
+  @FXML private ImageView chest;
 
   public void goInside() {
     App.setUi(AppPanel.MAIN_ROOM);
@@ -20,6 +21,12 @@ public class StorageController {
 
   public void findChest() {
     System.out.println("Find chest");
+    chest.setDisable(false);
+    chest.setOpacity(1);
+  }
+
+  public void goToChest() {
+    App.setUi(AppPanel.CHEST);
   }
 
   public void activateDoorGlow() {
@@ -36,5 +43,13 @@ public class StorageController {
 
   public void deactivateHiddenChestGlow() {
     hiddenChestImage.setEffect(GameState.glowDim);
+  }
+
+  public void activateChestGlow() {
+    chest.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateChestGlow() {
+    chest.setEffect(GameState.glowDim);
   }
 }

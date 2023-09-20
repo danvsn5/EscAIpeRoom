@@ -24,7 +24,7 @@
          </image>
       </ImageView>
       <Rectangle fx:id="storageDoor" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="422.0" layoutX="526.0" layoutY="170.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="570.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="chest" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="737.0" layoutY="522.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/chest.png" />
          </image>
