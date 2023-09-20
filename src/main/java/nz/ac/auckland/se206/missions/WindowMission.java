@@ -26,16 +26,6 @@ public class WindowMission extends Mission {
 
   @Override
   public ChatMessage askGpt() {
-    // TODO ask gpt to generate riddle
-
-    try {
-      chatController.invokeRunGpt(
-          new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("white")));
-    } catch (ApiProxyException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-      System.out.println("Error in askGpt");
-    }
 
     return null;
   }

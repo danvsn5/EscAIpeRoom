@@ -141,9 +141,7 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Mystical Tree");
       appendChatMessage(result.getChatMessage());
-      result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       ChatMessage error = new ChatMessage(null, null);
@@ -206,10 +204,7 @@ public class ChatController {
             System.out.println("type call");
 
             ChatMessage msg = new ChatMessage("user", message);
-            msg.setRole("You");
             appendChatMessage(msg);
-            msg.setRole("user");
-            appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
 
             System.out.println("lastMsg");
@@ -221,6 +216,7 @@ public class ChatController {
               System.out.println("first riddle not solved");
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
+                System.out.println("first riddle solvingg");
                 GameState.firstRiddleSolved = true;
                 System.out.println(GameState.firstRiddleSolved);
                 System.out.println("first riddle solved");
@@ -370,11 +366,13 @@ public class ChatController {
             if (firstMission == 1) { // if the first mission is the window
               gptMessage =
                   runGpt(
-                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
                   runGpt(
-                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("blue")));
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getRiddleWithGivenWordFuel("sky", "lake")));
             }
 
             updateProgress(1, 1);
