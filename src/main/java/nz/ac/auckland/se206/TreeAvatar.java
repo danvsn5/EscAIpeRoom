@@ -39,4 +39,13 @@ public class TreeAvatar {
       treeState = 0;
     }
   }
+
+  public static void deactivateTreeGlow() {
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.WORK).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setEffect(glowDim);
+  }
 }

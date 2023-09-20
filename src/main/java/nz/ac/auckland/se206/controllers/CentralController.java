@@ -207,6 +207,8 @@ public class CentralController {
   }
 
   public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
   }
 

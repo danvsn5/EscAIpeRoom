@@ -9,6 +9,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class OutsideController {
   @FXML private ImageView returnShip;
@@ -98,6 +99,8 @@ public class OutsideController {
   }
 
   public void openRiddle() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
   }
 
@@ -110,6 +113,8 @@ public class OutsideController {
   }
 
   public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
   }
 

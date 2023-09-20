@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class ChestController {
   @FXML private Button backButton;
@@ -121,6 +122,8 @@ public class ChestController {
   }
 
   public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
   }
 

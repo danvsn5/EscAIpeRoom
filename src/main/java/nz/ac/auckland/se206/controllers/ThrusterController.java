@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
 import nz.ac.auckland.se206.ThrusterButtons.TopLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.TopRightButton;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class ThrusterController {
 
@@ -143,6 +144,8 @@ public class ThrusterController {
   }
 
   public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
   }
 
