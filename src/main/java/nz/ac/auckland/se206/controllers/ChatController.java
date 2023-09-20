@@ -38,6 +38,7 @@ public class ChatController {
   @FXML private Circle eye1;
   @FXML private Circle eye2;
   @FXML private Circle loadingCircle;
+  @FXML private Label listeningLabel;
 
   @FXML private ProgressIndicator loading;
 
@@ -244,6 +245,7 @@ public class ChatController {
     eye2.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
+    listeningLabel.setVisible(true);
   }
 
   /**
@@ -259,6 +261,7 @@ public class ChatController {
       eye2.setVisible(true);
       thinking1.setVisible(false);
       thinking2.setVisible(false);
+      listeningLabel.setVisible(false);
     }
   }
 }

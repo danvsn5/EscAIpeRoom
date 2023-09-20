@@ -38,5 +38,10 @@
       <Rectangle fx:id="thinking1" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="73.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
       <Rectangle fx:id="thinking2" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="152.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="70.0" />
       <ProgressIndicator fx:id="loading" layoutX="13.0" layoutY="216.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
+      <Label fx:id="listeningLabel" alignment="CENTER" layoutX="48.0" layoutY="432.0" prefHeight="44.0" prefWidth="190.0" text="Listening..." textAlignment="CENTER" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
   </children>
 </AnchorPane>
