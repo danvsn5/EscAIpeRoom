@@ -28,5 +28,49 @@ public class ChestController {
 
   public void firstDigitUp() {
     firstDigitNum++;
+    if (firstDigitNum >= 10) {
+      firstDigitNum = 0;
+    }
+    firstDigit.setText(Integer.toString(firstDigitNum));
+  }
+
+  public void firstDigitDown() {
+    firstDigitNum--;
+    if (firstDigitNum <= -1) {
+      firstDigitNum = 9;
+    }
+    firstDigit.setText(Integer.toString(firstDigitNum));
+  }
+
+  public void secondDigitUp() {
+    secondDigitNum++;
+    if (secondDigitNum >= 10) {
+      secondDigitNum = 0;
+    }
+    secondDigit.setText(Integer.toString(secondDigitNum));
+  }
+
+  public void secondDigitDown() {
+    secondDigitNum--;
+    if (secondDigitNum <= -1) {
+      secondDigitNum = 9;
+    }
+    secondDigit.setText(Integer.toString(secondDigitNum));
+  }
+
+  public void thirdDigitUp() {
+    thirdDigitNum++;
+    if (thirdDigitNum >= 10) {
+      thirdDigitNum = 0;
+    }
+    thirdDigit.setText(Integer.toString(thirdDigitNum));
+  }
+
+  public void thirdDigitDown() {
+    thirdDigitNum--;
+    if (thirdDigitNum <= -1) {
+      thirdDigitNum = 9;
+    }
+    thirdDigit.setText(Integer.toString(thirdDigitNum));
   }
 }
