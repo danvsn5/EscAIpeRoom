@@ -62,8 +62,7 @@ public class OutsideController {
   }
 
   public void collectSand() {
-
-    if (GameState.inventory.contains(-1)) {
+    if (GameState.firstRiddleSolved) {
       GameState.inventory.add(2);
       sand.setVisible(false);
     }

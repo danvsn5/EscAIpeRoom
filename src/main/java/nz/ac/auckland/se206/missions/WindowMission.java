@@ -24,4 +24,9 @@ public class WindowMission extends Mission {
 
     return null;
   }
+
+  @Override
+  public void updateProgress() {
+    // TODO Auto-generated method stub
+  }
 }
