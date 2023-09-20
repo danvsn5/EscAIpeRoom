@@ -94,5 +94,13 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
+      <Button fx:id="returnOutside" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="403.0" mnemonicParsing="false" onMouseClicked="#goOutside" prefHeight="53.0" prefWidth="218.0" text="Return Outside">
+         <font>
+            <Font name="Bank Gothic Light BT" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>

@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
 import nz.ac.auckland.se206.ThrusterButtons.TopLeftButton;
@@ -18,6 +21,7 @@ public class ThrusterController {
   @FXML private ImageView topLeftClicked;
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
+  @FXML private Button returnOutside;
 
   public void setBottomLeftVisible() {
     if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
@@ -87,5 +91,9 @@ public class ThrusterController {
     TopLeftButton.timeline.play();
     TopRightButton.timeline.setCycleCount(360);
     TopRightButton.timeline.play();
+  }
+
+  public void goOutside() {
+    App.setUi(AppPanel.OUTSIDE);
   }
 }

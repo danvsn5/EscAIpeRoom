@@ -6,7 +6,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
@@ -25,10 +24,6 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Circle>
-      <Ellipse fx:id="outsideReturnDoor" fill="DODGERBLUE" layoutX="33.0" layoutY="338.0" onMouseClicked="#outsideReturn" onMouseEntered="#outsideReturnDoorLight" onMouseExited="#outsideReturnDoorNormal" radiusX="100.0" radiusY="283.0" stroke="BLACK" strokeType="INSIDE">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor></Ellipse>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="359.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
       <Polygon fill="#06610e" layoutX="379.0" layoutY="422.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fill="#06610e" layoutX="379.0" layoutY="366.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
@@ -107,6 +102,16 @@
       <ImageView fx:id="rootTwo" fitHeight="726.0" fitWidth="1286.0" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/twoRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="returnShip" fitHeight="304.0" fitWidth="250.0" layoutX="39.0" layoutY="126.0" onMouseClicked="#outsideReturn" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/topShip.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="thruster" fitHeight="93.0" fitWidth="90.0" layoutX="88.0" layoutY="397.0" onMouseClicked="#goThruster" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Bottom%20Ship.png" />
          </image>
       </ImageView>
    </children>
