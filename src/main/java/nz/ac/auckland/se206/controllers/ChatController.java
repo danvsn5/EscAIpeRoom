@@ -45,8 +45,8 @@ public class ChatController {
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
 
-  private ChatMessage thinkingMessage =
-      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+  // private ChatMessage thinkingMessage =
+  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
 
   private int firstMission;

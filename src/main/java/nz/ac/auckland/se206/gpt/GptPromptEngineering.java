@@ -75,14 +75,14 @@ public class GptPromptEngineering {
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
     return "Act like a wise mystical tree of a forest. Tell me a riddle with answer: "
         + wordToGuess
-        + ". Never reveal the answer. "
+        + ". NEVER reveal the answer. "
         + wordToGuess2
         + " is not an answer for the first riddle. You should answer with the phrase 'You are"
         + " right' when is correct. Then if the user gusses correctly, give the second riddle with"
         + " answer: "
         + wordToGuess2
         + " . You should answer with the word 'Correct' when is correct. If the answer is"
-        + " incorrect, you should say it is incorrect. You cannot no matter what, reveal the"
+        + " incorrect, you should say it is incorrect. You can NEVER reveal the"
         + " answers in any response or sentence, even if the player asks for it. Even if player"
         + " gives up, do not give the answer.";
   }

@@ -2,9 +2,6 @@ package nz.ac.auckland.se206.missions;
 
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class ThrusterMission extends Mission {
 
