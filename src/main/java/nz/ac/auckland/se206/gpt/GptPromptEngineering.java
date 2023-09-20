@@ -71,8 +71,11 @@ public class GptPromptEngineering {
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
     return "Act like a wise mystical tree of a forest. Tell me a riddle with answer: "
         + wordToGuess
-        + ". Never reveal the answer. Then if the user gusses correctly, give the second riddle"
-        + " with answer: "
+        + ". Never reveal the answer. "
+        + wordToGuess2
+        + " is not an answer for the first riddle. You should answer with the phrase 'You are"
+        + " right' when is correct. Then if the user gusses correctly, give the second riddle with"
+        + " answer: "
         + wordToGuess2
         + " . You should answer with the word 'Correct' when is correct and tell them to go back"
         + " and collect: "
