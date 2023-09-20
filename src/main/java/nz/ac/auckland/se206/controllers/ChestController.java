@@ -9,12 +9,9 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class ChestController {
   @FXML private Button backButton;
-  @FXML private Button firstDigitUpButton;
-  @FXML private Button firstDigitDownButton;
-  @FXML private Button secondDigitUpButton;
-  @FXML private Button secondDigitDownButton;
-  @FXML private Button thirdDigitUpButton;
-  @FXML private Button thirdDigitDownButton;
+  @FXML private Button firstDigitButton;
+  @FXML private Button secondDigitButton;
+  @FXML private Button thirdDigitButton;
   @FXML private Button enterButton;
   @FXML private Label firstDigit;
   @FXML private Label secondDigit;
@@ -44,14 +41,6 @@ public class ChestController {
     firstDigit.setText(Integer.toString(firstDigitNum));
   }
 
-  public void firstDigitDown() {
-    firstDigitNum--;
-    if (firstDigitNum <= -1) {
-      firstDigitNum = 9;
-    }
-    firstDigit.setText(Integer.toString(firstDigitNum));
-  }
-
   public void secondDigitUp() {
     secondDigitNum++;
     if (secondDigitNum >= 10) {
@@ -60,26 +49,10 @@ public class ChestController {
     secondDigit.setText(Integer.toString(secondDigitNum));
   }
 
-  public void secondDigitDown() {
-    secondDigitNum--;
-    if (secondDigitNum <= -1) {
-      secondDigitNum = 9;
-    }
-    secondDigit.setText(Integer.toString(secondDigitNum));
-  }
-
   public void thirdDigitUp() {
     thirdDigitNum++;
     if (thirdDigitNum >= 10) {
       thirdDigitNum = 0;
-    }
-    thirdDigit.setText(Integer.toString(thirdDigitNum));
-  }
-
-  public void thirdDigitDown() {
-    thirdDigitNum--;
-    if (thirdDigitNum <= -1) {
-      thirdDigitNum = 9;
     }
     thirdDigit.setText(Integer.toString(thirdDigitNum));
   }
