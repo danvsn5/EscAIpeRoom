@@ -9,12 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import nz.ac.SceneManager.AppPanel;
-import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
@@ -281,6 +280,7 @@ public class ChatController {
       thinking2.setVisible(false);
       listeningLabel.setVisible(false);
     }
+  }
 
   public void activateProgressGlow() {
     progressButton.setEffect(GameState.glowBright);
