@@ -22,6 +22,9 @@ public class ThrusterController {
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
   @FXML private Button returnOutside;
+  private int buttonActivationCounter = 0;
+
+  public void initialize() {}
 
   public void setBottomLeftVisible() {
     if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
@@ -29,6 +32,7 @@ public class ThrusterController {
       bottomLeftUnclicked.setVisible(true);
     } else {
       BottomLeftButton.timeline.pause();
+      buttonActivationCounter++;
     }
   }
 
@@ -48,6 +52,7 @@ public class ThrusterController {
       bottomRightUnclicked.setVisible(true);
     } else {
       BottomRightButton.timeline.pause();
+      buttonActivationCounter++;
     }
   }
 
@@ -62,6 +67,7 @@ public class ThrusterController {
       TopLeftButton.timeline.play();
     } else {
       TopLeftButton.timeline.pause();
+      buttonActivationCounter++;
     }
   }
 
@@ -76,6 +82,7 @@ public class ThrusterController {
       topRightUnclicked.setVisible(true);
     } else {
       TopRightButton.timeline.pause();
+      buttonActivationCounter++;
     }
   }
 
@@ -83,14 +90,16 @@ public class ThrusterController {
 
     // add logic so that once the game is over, the button can no longer be pressed.
 
-    BottomRightButton.timeline.setCycleCount(360);
-    BottomRightButton.timeline.play();
-    BottomLeftButton.timeline.setCycleCount(360);
-    BottomLeftButton.timeline.play();
-    TopLeftButton.timeline.setCycleCount(360);
-    TopLeftButton.timeline.play();
-    TopRightButton.timeline.setCycleCount(360);
-    TopRightButton.timeline.play();
+    if (buttonActivationCounter == 0) {
+      BottomRightButton.timeline.setCycleCount(360);
+      BottomRightButton.timeline.play();
+      BottomLeftButton.timeline.setCycleCount(360);
+      BottomLeftButton.timeline.play();
+      TopLeftButton.timeline.setCycleCount(360);
+      TopLeftButton.timeline.play();
+      TopRightButton.timeline.setCycleCount(360);
+      TopRightButton.timeline.play();
+    }
   }
 
   public void goOutside() {

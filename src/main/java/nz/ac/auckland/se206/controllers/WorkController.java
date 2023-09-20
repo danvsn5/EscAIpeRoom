@@ -10,6 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -196,6 +197,7 @@ public class WorkController {
 
   public void collectBlueprint() {
     blueprint.setVisible(false);
+    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
   }
 
   public void activateProgressGlow() {
