@@ -197,6 +197,7 @@ public class WorkController {
 
   public void collectBlueprint() {
     blueprint.setVisible(false);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }

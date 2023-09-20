@@ -102,5 +102,15 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blueprintSlot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="blueprint" fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/blueprint.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
