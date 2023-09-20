@@ -5,87 +5,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
    <children>
-      <Ellipse fx:id="window" fill="#bee0ff" layoutX="640.0" layoutY="147.0" onMouseClicked="#repairWindow" onMouseEntered="#windowLight" onMouseExited="#windowDark" radiusX="158.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE">
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor></Ellipse>
-      <Rectangle fx:id="ctrlPanel" arcHeight="5.0" arcWidth="5.0" fill="#5e5e5e" height="200.0" layoutX="540.0" layoutY="437.0" onMouseClicked="#repairPanel" onMouseEntered="#ctrlLight" onMouseExited="#ctrlNormal" stroke="BLACK" strokeType="INSIDE" width="200.0">
+      <Rectangle fx:id="outsideDoor" arcHeight="5.0" arcWidth="5.0" fill="#653920" height="484.0" layoutX="64.0" layoutY="189.0" onMouseClicked="#goOutside" stroke="BLACK" strokeType="INSIDE" width="227.0">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Rectangle>
-      <Rectangle fx:id="outsideDoor" arcHeight="5.0" arcWidth="5.0" fill="#653920" height="484.0" layoutX="64.0" layoutY="189.0" onMouseClicked="#goOutside" onMouseEntered="#outsideDoorLight" onMouseExited="#outsideDoorDark" stroke="BLACK" strokeType="INSIDE" width="227.0">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="workDoor" arcHeight="5.0" arcWidth="5.0" fill="#653920" height="484.0" layoutX="989.0" layoutY="189.0" onMouseClicked="#goWorkshop" onMouseEntered="#workDoorLight" onMouseExited="#workDoorNormal" stroke="BLACK" strokeType="INSIDE" width="227.0">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor></Rectangle>
-      <Circle fx:id="hammer" fill="#5a636b" layoutX="380.0" layoutY="618.0" onMouseClicked="#collectHammer" onMouseEntered="#hammerLight" onMouseExited="#hammerNormal" radius="13.0" stroke="BLACK" strokeType="INSIDE">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor></Circle>
-      <Line fx:id="crackOne" endX="1.0" endY="32.0" layoutX="682.0" layoutY="106.0" startX="-72.0" startY="-39.0" />
-      <Line fx:id="crackTwo" endX="215.7071533203125" endY="-125.29290771484375" layoutX="468.0" layoutY="264.0" startX="150.0" startY="-37.0" />
-      <Line fx:id="blueStick" endX="-100.0" endY="30.0" layoutX="666.0" layoutY="505.0" startX="-100.0" strokeWidth="5.0" visible="false" />
-      <Circle fx:id="knobB" fill="#0058ff" layoutX="566.0" layoutY="503.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Line fx:id="greenStick" endX="-100.0" endY="64.0" layoutX="732.0" layoutY="436.0" startX="-100.0" strokeWidth="5.0" visible="false" />
-      <Circle fx:id="knobG" fill="#1eff00" layoutX="632.0" layoutY="444.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Line fx:id="purpleStick" endX="-100.0" endY="35.0" layoutX="709.0" layoutY="569.0" startX="-100.0" strokeWidth="5.0" visible="false" />
-      <Circle fx:id="knobP" fill="#921fff" layoutX="609.0" layoutY="566.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Circle fx:id="redButton" fill="#ff1f1f" layoutX="684.0" layoutY="549.0" onMouseClicked="#goHome" onMouseEntered="#redButtonLight" onMouseExited="#redButtonNormal" radius="52.0" stroke="BLACK" strokeType="INSIDE" visible="false">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor></Circle>
       <Label fx:id="counter" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="72.0" prefWidth="250.0">
          <font>
             <Font name="Bank Gothic Light BT" size="79.0" />
-         </font>
-      </Label>
-      <Rectangle fx:id="introBackground" arcHeight="5.0" arcWidth="5.0" fill="#1b1b1b" height="550.0" layoutX="202.0" layoutY="127.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="925.0" />
-      <Label fx:id="introLabel" alignment="CENTER" layoutX="216.0" layoutY="138.0" prefHeight="524.0" prefWidth="897.0" text="Your spaceship has crash landed on a foreign planet! In order to leave, you must find the necessary items to fix the broken window and control panel. Beware... Who knows what strange entities lie beyond the comfort of your ship... " textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font size="41.0" />
-         </font>
-      </Label>
-      <Rectangle fx:id="cross" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="1065.0" layoutY="138.0" onMouseClicked="#closeMessage" stroke="BLACK" strokeType="INSIDE" width="48.0">
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </Rectangle>
-      <Line fx:id="crossTwo" endX="-65.0" endY="-37.0" layoutX="1168.0" layoutY="184.0" startX="-92.0" startY="-7.0" />
-      <Line fx:id="crossOne" endX="-76.0" endY="-18.0" layoutX="1178.0" layoutY="194.0" startX="-102.0" startY="-45.0" />
-      <Label fx:id="outLabel" alignment="CENTER" layoutX="100.0" layoutY="145.0" prefHeight="17.0" prefWidth="157.0" text="Go Outside" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="workLabel" alignment="CENTER" layoutX="1003.0" layoutY="145.0" prefHeight="35.0" prefWidth="200.0" text="Go to Workshop" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="windowLabel" alignment="CENTER" layoutX="540.0" layoutY="25.0" prefHeight="35.0" prefWidth="200.0" text="Fix Window" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="panelLabel" alignment="CENTER" layoutX="547.0" layoutY="385.0" prefHeight="35.0" prefWidth="200.0" text="Fix Control Panel" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="hammerLabel" alignment="CENTER" layoutX="293.0" layoutY="566.0" prefHeight="35.0" prefWidth="175.0" text="Collect Hammer" visible="false">
-         <font>
-            <Font size="24.0" />
          </font>
       </Label>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
