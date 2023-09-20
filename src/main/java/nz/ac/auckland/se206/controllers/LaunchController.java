@@ -72,8 +72,6 @@ public class LaunchController {
     GameState.progressBarGroup.setMissionOne(task1);
     GameState.progressBarGroup.setMissionTwo(task2);
 
-    GameState.isGameStarted = true;
-
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.MAIN_ROOM);
   }

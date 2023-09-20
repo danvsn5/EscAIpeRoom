@@ -73,7 +73,7 @@ public class ChatController {
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
-    if (GameState.isGameStarted) {
+    if (GameState.isGreetingShown) {
       // if game started and greet msg shown, get the first and second mission.
       for (int i = 0; i < 2; i++) {
         if (GameState.missionManager.getMissionKey(i) == MISSION.WINDOW
@@ -213,6 +213,11 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+
+    if (!GameState.isGreetingShown) {
+      this.initialize();
+      GameState.isGreetingShown = true;
+    }
 
     inputText.setDisable(true);
 

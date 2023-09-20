@@ -105,10 +105,6 @@ public class OutsideController {
 
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.CHAT);
-    if (GameState.isGameStarted) {
-      chatController.initialize();
-      GameState.isGameStarted = false;
-    }
     App.setUi(AppPanel.CHAT);
   }
 

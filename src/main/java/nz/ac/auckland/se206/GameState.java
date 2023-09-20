@@ -11,7 +11,7 @@ public class GameState {
   public static int difficulty = 0;
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
-  public static boolean isGameStarted;
+  public static boolean isGreetingShown;
 
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
