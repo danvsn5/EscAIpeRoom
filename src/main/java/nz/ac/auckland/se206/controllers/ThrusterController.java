@@ -23,6 +23,7 @@ public class ThrusterController {
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
   @FXML private Button returnOutside;
+  @FXML private ImageView miniTree;
   private int buttonActivationCounter = 0;
   public static int isGameActive = 0;
 
@@ -139,5 +140,17 @@ public class ThrusterController {
       GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
       System.out.println("Thruster Mission Complete");
     }
+  }
+
+  public void goChat() {
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }

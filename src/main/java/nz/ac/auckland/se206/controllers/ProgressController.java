@@ -3,9 +3,12 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class ProgressController {
 
@@ -13,7 +16,7 @@ public class ProgressController {
   @FXML private Rectangle topBarCenter;
   @FXML private Rectangle topBarBottom;
   @FXML private Label topLabel;
-
+  @FXML private ImageView miniTree;
   @FXML private Rectangle bottomBarTop;
   @FXML private Rectangle bottomBarCenter;
   @FXML private Rectangle bottomBarBottom;
@@ -30,6 +33,15 @@ public class ProgressController {
     App.setUi(SceneManager.getPrevious());
   }
 
-  // once merged, Mission manager will be used to access the percentage of each task, and will
-  // thereby be used to update the visuals of the progress bar.
+  public void goChat() {
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
+  }
 }
