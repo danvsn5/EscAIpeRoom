@@ -4,18 +4,19 @@ import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class ChestController {
   @FXML private Button backButton;
-  @FXML private Button firstDigitButton;
-  @FXML private Button secondDigitButton;
-  @FXML private Button thirdDigitButton;
   @FXML private Button enterButton;
   @FXML private Label firstDigit;
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
+  @FXML private Rectangle firstDigitHighlight;
+  @FXML private Rectangle secondDigitHighlight;
+  @FXML private Rectangle thirdDigitHighlight;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
@@ -80,5 +81,30 @@ public class ChestController {
 
   public void openChest() {
     System.out.println("Chest opened");
+    System.out.println("Controll panel collected");
+  }
+
+  public void firstDigitGlow() {
+    firstDigitHighlight.setOpacity(1);
+  }
+
+  public void firstDigitDark() {
+    firstDigitHighlight.setOpacity(0);
+  }
+
+  public void secondDigitGlow() {
+    secondDigitHighlight.setOpacity(1);
+  }
+
+  public void secondDigitDark() {
+    secondDigitHighlight.setOpacity(0);
+  }
+
+  public void thirdDigitGlow() {
+    thirdDigitHighlight.setOpacity(1);
+  }
+
+  public void thirdDigitDark() {
+    thirdDigitHighlight.setOpacity(0);
   }
 }
