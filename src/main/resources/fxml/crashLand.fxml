@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CrashLandController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/crashLandBack.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/crashLandFront.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="forestImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/crashLandForest.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="forest" fill="DODGERBLUE" layoutX="1230.0" layoutY="680.0" onMouseClicked="#goForest" onMouseEntered="#activateForestGlow" onMouseExited="#deactivateForestGlow" opacity="0.0" points="-232.0, 40.0, 50.0, 40.0, 50.0, -119.3333740234375, 20.0, -98.66668701171875, -12.6666259765625, -106.0, -97.3333740234375, -106.0, -154.6666259765625, -42.0, -202.0, -33.3333740234375, -220.6666259765625, -8.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </Pane>
