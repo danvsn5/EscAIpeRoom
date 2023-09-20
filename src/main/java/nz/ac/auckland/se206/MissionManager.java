@@ -25,12 +25,13 @@ public class MissionManager {
       missionList.put(MISSION.WINDOW, new WindowMission());
       keyList.add(MISSION.WINDOW);
     } else if (missionNumber == 2) {
-      missionList.put(MISSION.CONTROLLER, new ControllerMission());
-    } else if (missionNumber == 3) {
       missionList.put(MISSION.FUEL, new FuelMission());
+    } else if (missionNumber == 3) {
+      missionList.put(MISSION.CONTROLLER, new ControllerMission());
     } else {
       missionList.put(MISSION.THRUSTER, new ThrusterMission());
     }
+
     // If the size of key list is greater than the size of mission list (indicating a mission is
     // added twice), remove one
     if (keyList.size() != 0 && keyList.size() > missionList.size()) {

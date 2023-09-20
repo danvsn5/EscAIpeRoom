@@ -39,6 +39,7 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
+    SceneManager.addPanel(AppPanel.THRUSTER, loadFxml("thrusterRoom"));
     SceneManager.addPanel(AppPanel.CHEST, loadFxml("chest"));
     SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
 
@@ -59,18 +60,19 @@ public class LaunchController {
         break;
     }
     createTimer();
+
+    GameState.createRandomColorNumber();
+
     Random rand = new Random();
-    int task1 = rand.nextInt(4) + 1;
-    int task2 = rand.nextInt(4) + 1;
-    while (task2 == task1) {
-      task2 = rand.nextInt(4) + 1;
-    }
+    int task1 = rand.nextInt(2) + 1;
+    int task2 = rand.nextInt(2) + 3;
+
     GameState.missionManager.addMission(task1);
     GameState.missionManager.addMission(task2);
     GameState.progressBarGroup.setMissionOne(task1);
     GameState.progressBarGroup.setMissionTwo(task2);
-
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
+
     App.setUi(AppPanel.MAIN_ROOM);
   }
 

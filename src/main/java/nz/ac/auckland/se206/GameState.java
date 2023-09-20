@@ -1,9 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
-
 import javafx.scene.effect.Glow;
-
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -29,6 +27,14 @@ public class GameState {
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
 
+  private static int randomColorNumber;
+
+  // create random number between 1 and 4
+
+  public static void createRandomColorNumber() {
+    randomColorNumber = (int) (Math.random() * 4 + 1);
+  }
+
   public static MissionManager missionManager = new MissionManager();
 
   public static ProgressBars progressBarGroup = new ProgressBars();
@@ -50,5 +56,9 @@ public class GameState {
 
   public static int getDifficulty() {
     return GameState.difficulty;
+  }
+
+  public static int getRandomColorNumber() {
+    return randomColorNumber;
   }
 }
