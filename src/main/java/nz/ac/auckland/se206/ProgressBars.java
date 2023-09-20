@@ -52,7 +52,6 @@ public class ProgressBars {
     int percentage = GameState.missionManager.getMission(mission).getPercentage();
     int midBarLength = (int) (percentage * 830) / 100;
     int outerBarLength = midBarLength + 6;
-    System.out.println(percentage);
     ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#topBarCenter"))
         .setWidth(midBarLength);
     ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#topBarTop"))
@@ -63,8 +62,8 @@ public class ProgressBars {
 
   public void updateProgressTwo(nz.ac.auckland.se206.MissionManager.MISSION mission) {
     int percentage = GameState.missionManager.getMission(mission).getPercentage();
-    int midBarLength = (int) (percentage * 830);
-    int outerBarLength = (int) (percentage * 836);
+    int midBarLength = (int) (percentage * 830) / 100;
+    int outerBarLength = midBarLength + 6;
     ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#bottomBarCenter"))
         .setWidth(midBarLength);
     ((Rectangle) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#bottomBarTop"))

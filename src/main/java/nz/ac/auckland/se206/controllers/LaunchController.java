@@ -65,7 +65,7 @@ public class LaunchController {
     Random rand = new Random();
     int task1 = rand.nextInt(2) + 1;
     int task2 = rand.nextInt(2) + 3;
-    System.out.println(task1 + " " + task2);
+
     GameState.missionManager.addMission(task1);
     GameState.missionManager.addMission(task2);
     GameState.progressBarGroup.setMissionOne(task1);

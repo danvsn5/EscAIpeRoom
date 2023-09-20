@@ -110,10 +110,12 @@ public class ThrusterController {
 
   public void beginRepairs() {
 
-    // add logic so that once the game is over, the button can no longer be pressed.
+    // Mission stage is set to 2 when the player has collected the blueprint and has solved the
+    // color puzzle. Only once both steps have been completed can the player begin the thruster
+    // mini-game
 
     if (buttonActivationCounter == 0
-        && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+        && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 2) {
 
       isGameActive = 1;
       BottomRightButton.timeline.setCycleCount(360);
@@ -134,6 +136,7 @@ public class ThrusterController {
   public void isMissionComplete() {
     if (buttonActivationCounter == 4) {
       GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
       System.out.println("Thruster Mission Complete");
     }
   }
