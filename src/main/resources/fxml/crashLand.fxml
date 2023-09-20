@@ -13,6 +13,11 @@
             <Image url="@../images/crashLandBack.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="shuttleImage" fitHeight="299.0" fitWidth="296.0" layoutX="607.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" rotate="-24.8">
+         <image>
+            <Image url="@../images/spaceShuttle.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/crashLandFront.png" />
@@ -24,5 +29,12 @@
          </image>
       </ImageView>
       <Polygon fx:id="forest" fill="DODGERBLUE" layoutX="1230.0" layoutY="680.0" onMouseClicked="#goForest" onMouseEntered="#activateForestGlow" onMouseExited="#deactivateForestGlow" opacity="0.0" points="-232.0, 40.0, 50.0, 40.0, 50.0, -119.3333740234375, 20.0, -98.66668701171875, -12.6666259765625, -106.0, -97.3333740234375, -106.0, -154.6666259765625, -42.0, -202.0, -33.3333740234375, -220.6666259765625, -8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon fx:id="shuttle" fill="DODGERBLUE" layoutX="774.0" layoutY="521.0" onMouseClicked="#goInside" onMouseEntered="#activateShuttleGlow" onMouseExited="#deactivateShuttleGlow" opacity="0.0" points="-28.66668701171875, 22.33331298828125, 50.0, 40.0, 92.66668701171875, 22.33331298828125, 115.99993896484375, -54.999969482421875, 80.66668701171875, -62.999969482421875, 74.66668701171875, -98.33334350585938, 5.99993896484375, -91.66665649414062, -156.66668701171875, -122.33334350585938, -194.66668701171875, -98.33334350585938, -84.66668701171875, 7.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="thrusterImage" fitHeight="82.0" fitWidth="82.0" layoutX="815.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="thruster" fill="DODGERBLUE" layoutX="755.0" layoutY="540.0" onMouseClicked="#goThruster" onMouseEntered="#activateThrusterGlow" onMouseExited="#deactivateThrusterGlow" opacity="0.0" points="59.99993896484375, -25.71429443359375, 142.99993896484375, -24.0, 104.33331298828125, -102.66665649414062" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </Pane>
