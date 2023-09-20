@@ -240,7 +240,6 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
     eye1.setVisible(false);
     eye2.setVisible(false);
     thinking1.setVisible(true);
@@ -255,9 +254,11 @@ public class ChatController {
   @FXML
   public void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
-    eye1.setVisible(true);
-    eye2.setVisible(true);
-    thinking1.setVisible(false);
-    thinking2.setVisible(false);
+    if (inputText.getText().trim().isEmpty()) {
+      eye1.setVisible(true);
+      eye2.setVisible(true);
+      thinking1.setVisible(false);
+      thinking2.setVisible(false);
+    }
   }
 }
