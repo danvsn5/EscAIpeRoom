@@ -9,7 +9,7 @@ public class MissionManager {
     WINDOW,
     CONTROLLER,
     FUEL,
-    THRUSTER
+    THRUSTER;
   }
 
   private HashMap<MISSION, Mission> missionList = new HashMap<>();

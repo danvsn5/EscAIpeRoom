@@ -1,8 +1,14 @@
 package nz.ac.auckland.se206.missions;
 
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class WindowMission extends Mission {
+
+  ChatController chatController;
 
   public WindowMission() {
     currentStage = 0;
@@ -20,15 +26,17 @@ public class WindowMission extends Mission {
   }
 
   @Override
-  public ChatMessage askGpt() {
+  public void askGpt() {
     // TODO ask gpt to generate riddle
 
-    throw new UnsupportedOperationException("Unimplemented method 'askGpt'");
-  }
+    new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
 
-  @Override
-  public String getAnswer() {
-    // TODO Auto-generated method stub
-    return "sand";
+    try {
+      chatController.invokeRunGpt(
+          new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("white")));
+    } catch (ApiProxyException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 }

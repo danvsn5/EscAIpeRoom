@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TimeCounter;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class LaunchController {
 
@@ -28,6 +29,8 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
+
+  private ChatController chatController;
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {

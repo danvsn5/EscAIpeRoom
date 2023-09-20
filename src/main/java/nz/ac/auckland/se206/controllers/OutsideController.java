@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class OutsideController {
   @FXML private Ellipse outsideReturnDoor;
@@ -26,6 +27,8 @@ public class OutsideController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+
+  private ChatController chatController;
 
   public void initialize() {}
 
@@ -100,8 +103,12 @@ public class OutsideController {
     sandLabel.setVisible(false);
   }
 
-  public void openRiddle() {
+  public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.CHAT);
+    if (GameState.isGameStarted) {
+      chatController.initialize();
+      GameState.isGameStarted = false;
+    }
     App.setUi(AppPanel.CHAT);
   }
 
