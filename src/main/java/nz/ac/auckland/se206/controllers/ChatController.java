@@ -232,8 +232,8 @@ public class ChatController {
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
 
     if (!GameState.isGreetingShown) {
-      this.initialize();
       GameState.isGreetingShown = true;
+      this.initialize();
       return;
     }
 
