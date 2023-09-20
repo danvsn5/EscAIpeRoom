@@ -11,19 +11,9 @@
          <font>
             <Font name="Bank Gothic Light BT" size="50.0" />
          </font></Button>
-      <Label fx:id="firstDigit" layoutX="473.0" layoutY="250.0" text="0">
+      <Label fx:id="firstDigit" layoutX="461.0" layoutY="264.0" text="0">
          <font>
-            <Font size="93.0" />
-         </font>
-      </Label>
-      <Label fx:id="secondDigit" layoutX="641.0" layoutY="255.0" text="0">
-         <font>
-            <Font size="93.0" />
-         </font>
-      </Label>
-      <Label fx:id="thirdDigit" layoutX="815.0" layoutY="256.0" text="0">
-         <font>
-            <Font size="93.0" />
+            <Font name="Bank Gothic Light BT" size="93.0" />
          </font>
       </Label>
       <Button fx:id="firstDigitUpButton" layoutX="436.0" layoutY="183.0" mnemonicParsing="false" onAction="#firstDigitUp" text="Increase">
@@ -54,5 +44,15 @@
          <font>
             <Font name="Bank Gothic Light BT" size="50.0" />
          </font></Button>
+      <Label fx:id="secondDigit" layoutX="638.0" layoutY="264.0" text="0">
+         <font>
+            <Font name="Bank Gothic Light BT" size="93.0" />
+         </font>
+      </Label>
+      <Label fx:id="thirdDigit" layoutX="814.0" layoutY="264.0" text="0">
+         <font>
+            <Font name="Bank Gothic Light BT" size="93.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
