@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import javafx.scene.effect.Glow;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -33,6 +34,13 @@ public class GameState {
   public static void createRandomColorNumber() {
     randomColorNumber = (int) (Math.random() * 4 + 1);
   }
+
+  public static MissionManager missionManager = new MissionManager();
+
+  public static ProgressBars progressBarGroup = new ProgressBars();
+
+  public static Glow glowBright = new Glow(0.5);
+  public static Glow glowDim = new Glow(0.0);
 
   public static void setTimer(int timer) {
     GameState.timer = timer;
