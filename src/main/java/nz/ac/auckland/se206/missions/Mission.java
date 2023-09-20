@@ -29,4 +29,6 @@ public abstract class Mission {
   ;
 
   public abstract ChatMessage askGpt();
+
+  public abstract String getAnswer();
 }

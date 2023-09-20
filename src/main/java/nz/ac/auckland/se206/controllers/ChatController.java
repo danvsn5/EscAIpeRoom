@@ -16,7 +16,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -69,6 +71,38 @@ public class ChatController {
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
+    // Task<Void> riddleCall =
+    //     new Task<Void>() {
+
+    //       @Override
+    //       protected Void call() throws Exception {
+
+    //         chatCompletionRequest =
+    //             new ChatCompletionRequest()
+    //                 .setN(1)
+    //                 .setTemperature(0.7)
+    //                 .setTopP(0.7)
+    //                 .setMaxTokens(100);
+                    
+    //         gptMessage =
+    //             runGpt(
+    //                 new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+
+    //         updateProgress(1, 1);
+    //         return null;
+    //       }
+    //     };
+
+    MISSION firstMission;
+    MISSION secondMission;
+    for (int i = 0; i < 2; i++) {
+      if (GameState.missionManager.getMissionKey(i) == MISSION.WINDOW || GameState.missionManager.getMissionKey(i) == MISSION.FUEL) {
+        firstMission = GameState.missionManager.getMissionKey(i);
+      } else {
+        secondMission = GameState.missionManager.getMissionKey(i);
+      }
+    }
+
     Task<Void> riddleCall =
         new Task<Void>() {
 
@@ -81,7 +115,7 @@ public class ChatController {
                     .setTemperature(0.7)
                     .setTopP(0.7)
                     .setMaxTokens(100);
-
+                    
             gptMessage =
                 runGpt(
                     new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));

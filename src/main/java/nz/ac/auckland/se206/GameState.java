@@ -1,9 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
-
 import javafx.scene.effect.Glow;
-
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -13,6 +11,7 @@ public class GameState {
   public static int difficulty = 0;
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
+  public static boolean isGameStarted;
 
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
