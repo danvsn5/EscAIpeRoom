@@ -14,6 +14,7 @@ public class SceneManager {
     LOSE,
     WIN,
     THRUSTER,
+    CHEST,
     PROGRESS,
     PREVIOUS
   }
