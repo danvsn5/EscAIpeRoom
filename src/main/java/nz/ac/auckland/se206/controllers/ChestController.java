@@ -87,7 +87,6 @@ public class ChestController {
   public void check() {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == correctPassword) {
-      System.out.println("Lock opened");
       openChest();
     } else {
       System.out.println("Wrong password");
@@ -107,6 +106,6 @@ public class ChestController {
   }
 
   public void openChest() {
-
+    System.out.println("Chest opened");
   }
 }
