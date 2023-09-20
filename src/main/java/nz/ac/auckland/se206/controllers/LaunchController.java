@@ -42,6 +42,7 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.THRUSTER, loadFxml("thrusterRoom"));
     SceneManager.addPanel(AppPanel.CHEST, loadFxml("chest"));
     SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
+    SceneManager.addPanel(AppPanel.CRASHLAND, loadFxml("crashLand"));
 
     int timerState = GameState.getTimer();
 
