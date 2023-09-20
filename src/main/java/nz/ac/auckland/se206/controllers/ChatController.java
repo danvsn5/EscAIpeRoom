@@ -172,6 +172,7 @@ public class ChatController {
     speaking.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
+    listeningLabel.setVisible(false);
 
     Task<Void> typeCall =
         new Task<Void>() {
@@ -246,6 +247,8 @@ public class ChatController {
     thinking1.setVisible(true);
     thinking2.setVisible(true);
     listeningLabel.setVisible(true);
+    speaking.setVisible(false);
+    neutral.setVisible(true);
   }
 
   /**
