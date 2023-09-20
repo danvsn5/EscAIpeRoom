@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 public class CentralController {
   @FXML private Polygon outsideDoor;
   @FXML private Polygon processMachine;
+  @FXML private Polygon storage;
   @FXML private Label counter;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
@@ -21,6 +22,7 @@ public class CentralController {
   @FXML private ImageView chest;
   @FXML private ImageView doorImage;
   @FXML private ImageView processMachineImage;
+  @FXML private ImageView storageImage;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
@@ -29,6 +31,10 @@ public class CentralController {
 
   public void goProgress() {
     App.setUi(AppPanel.PROGRESS);
+  }
+
+  public void goStorage() {
+    App.setUi(AppPanel.STORAGE);
   }
 
   // if window and control panel are fixed, then game can be completed by pressing red button
@@ -64,5 +70,13 @@ public class CentralController {
 
   public void deactivateProcessMachineGlow() {
     processMachineImage.setEffect(GameState.glowDim);
+  }
+
+  public void activateStorageGlow() {
+    storageImage.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateStorageGlow() {
+    storageImage.setEffect(GameState.glowDim);
   }
 }
