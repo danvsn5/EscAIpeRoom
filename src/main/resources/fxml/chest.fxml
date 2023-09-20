@@ -5,30 +5,54 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1327.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
    <children>
-      <Button fx:id="backButton" layoutX="101.0" layoutY="292.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Label fx:id="firstDigit" layoutX="189.0" layoutY="141.0" text="0">
+      <Button fx:id="backButton" layoutX="117.0" layoutY="574.0" mnemonicParsing="false" onAction="#goBack" text="Back">
+         <font>
+            <Font name="Bank Gothic Light BT" size="50.0" />
+         </font></Button>
+      <Label fx:id="firstDigit" layoutX="473.0" layoutY="250.0" text="0">
          <font>
             <Font size="93.0" />
          </font>
       </Label>
-      <Label fx:id="secondDigit" layoutX="273.0" layoutY="141.0" text="0">
+      <Label fx:id="secondDigit" layoutX="641.0" layoutY="255.0" text="0">
          <font>
             <Font size="93.0" />
          </font>
       </Label>
-      <Label fx:id="thirdDigit" layoutX="354.0" layoutY="140.0" text="0">
+      <Label fx:id="thirdDigit" layoutX="815.0" layoutY="256.0" text="0">
          <font>
             <Font size="93.0" />
          </font>
       </Label>
-      <Button fx:id="firstDigitUpButton" layoutX="189.0" layoutY="129.0" mnemonicParsing="false" onAction="#firstDigitUp" text="Increase" />
-      <Button fx:id="firstDigitDownButton" layoutX="189.0" layoutY="247.0" mnemonicParsing="false" onAction="#firstDigitDown" text="Decrease" />
-      <Button fx:id="secondDigitUpButton" layoutX="273.0" layoutY="129.0" mnemonicParsing="false" onAction="#secondDigitUp" text="Increase" />
-      <Button fx:id="secondDigitDownButton" layoutX="272.0" layoutY="247.0" mnemonicParsing="false" onAction="#secondDigitDown" text="Decrease" />
-      <Button fx:id="thirdDigitUpButton" layoutX="354.0" layoutY="129.0" mnemonicParsing="false" onAction="#thirdDigitUp" text="Increase" />
-      <Button fx:id="thirdDigitDownButton" layoutX="354.0" layoutY="249.0" mnemonicParsing="false" onAction="#thirdDigitDown" text="Decrease" />
-      <Button fx:id="enterButton" layoutX="448.0" layoutY="292.0" mnemonicParsing="false" onAction="#check" text="Enter" />
+      <Button fx:id="firstDigitUpButton" layoutX="436.0" layoutY="183.0" mnemonicParsing="false" onAction="#firstDigitUp" text="Increase">
+         <font>
+            <Font name="Bank Gothic Light BT" size="20.0" />
+         </font></Button>
+      <Button fx:id="firstDigitDownButton" layoutX="432.0" layoutY="394.0" mnemonicParsing="false" onAction="#firstDigitDown" text="Decrease">
+         <font>
+            <Font name="Bank Gothic Light BT" size="20.0" />
+         </font></Button>
+      <Button fx:id="secondDigitUpButton" layoutX="613.0" layoutY="183.0" mnemonicParsing="false" onAction="#secondDigitUp" text="Increase">
+         <font>
+            <Font name="Bank Gothic Light BT" size="20.0" />
+         </font></Button>
+      <Button fx:id="secondDigitDownButton" layoutX="607.0" layoutY="396.0" mnemonicParsing="false" onAction="#secondDigitDown" text="Decrease">
+         <font>
+            <Font name="Bank Gothic Light BT" size="20.0" />
+         </font></Button>
+      <Button fx:id="thirdDigitUpButton" layoutX="789.0" layoutY="182.0" mnemonicParsing="false" onAction="#thirdDigitUp" text="Increase">
+         <font>
+            <Font name="Bank Gothic Light BT" size="20.0" />
+         </font></Button>
+      <Button fx:id="thirdDigitDownButton" layoutX="783.0" layoutY="395.0" mnemonicParsing="false" onAction="#thirdDigitDown" text="Decrease">
+         <font>
+            <Font name="Bank Gothic Light BT" size="20.0" />
+         </font></Button>
+      <Button fx:id="enterButton" layoutX="957.0" layoutY="575.0" mnemonicParsing="false" onAction="#check" text="Enter">
+         <font>
+            <Font name="Bank Gothic Light BT" size="50.0" />
+         </font></Button>
    </children>
 </Pane>
