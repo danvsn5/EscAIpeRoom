@@ -46,6 +46,7 @@ public class CentralController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView chest;
+  @FXML private ImageView miniTree;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
@@ -200,5 +201,17 @@ public class CentralController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public void goChat() {
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }
