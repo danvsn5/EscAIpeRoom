@@ -37,7 +37,7 @@ public class GameState {
   }
 
   public static MissionManager missionManager = new MissionManager();
-
+  public static ArrayList<Integer> missionList = new ArrayList<Integer>();
   public static ProgressBars progressBarGroup = new ProgressBars();
 
   public static Glow glowBright = new Glow(0.5);
