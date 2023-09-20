@@ -221,8 +221,11 @@ public class ChatController {
                 System.out.println("first riddle solved");
                 if (firstMission == 1) {
                   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                  System.out.println(
+                      GameState.missionManager.getMission(MISSION.WINDOW).getStage());
                 } else if (firstMission == 2) {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+                  System.out.println(GameState.missionManager.getMission(MISSION.FUEL).getStage());
                 }
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
