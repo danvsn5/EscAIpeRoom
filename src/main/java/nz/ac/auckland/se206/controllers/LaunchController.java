@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Random;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -9,10 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import nz.ac.SceneManager;
-import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RootBorder;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TimeCounter;
 
 public class LaunchController {
@@ -37,7 +39,37 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
+    SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
+
+    int timerState = GameState.getTimer();
+
+    switch (timerState) {
+      case 0:
+        RootBorder.treeTimelineTwo.setCycleCount(3);
+        RootBorder.treeTimelineTwo.play();
+        break;
+      case 1:
+        RootBorder.treeTimelineFour.setCycleCount(3);
+        RootBorder.treeTimelineFour.play();
+        break;
+      case 2:
+        RootBorder.treeTimelineSix.setCycleCount(3);
+        RootBorder.treeTimelineSix.play();
+        break;
+    }
     createTimer();
+    Random rand = new Random();
+    int task1 = rand.nextInt(4) + 1;
+    int task2 = rand.nextInt(4) + 1;
+    while (task2 == task1) {
+      task2 = rand.nextInt(4) + 1;
+    }
+    GameState.missionManager.addMission(task1);
+    GameState.missionManager.addMission(task2);
+    GameState.progressBarGroup.setMissionOne(task1);
+    GameState.progressBarGroup.setMissionTwo(task2);
+
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.MAIN_ROOM);
   }
 

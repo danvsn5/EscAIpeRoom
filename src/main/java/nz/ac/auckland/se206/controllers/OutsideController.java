@@ -2,12 +2,14 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
-import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class OutsideController {
   @FXML private Ellipse outsideReturnDoor;
@@ -19,13 +21,23 @@ public class OutsideController {
   @FXML private Label treeLabel;
   @FXML private Label shipLabel;
   @FXML private Label techLabel;
+  @FXML private ImageView progressButton;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
   // solved correctly, and sand is currently NOT in the inventory, then the sand appears inside the
   // panel.
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
+  }
+
   public void outsideReturn() {
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
@@ -89,6 +101,15 @@ public class OutsideController {
   }
 
   public void openRiddle() {
+    SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.CHAT);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }

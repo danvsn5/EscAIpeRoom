@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+
+import javafx.scene.effect.Glow;
+
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -25,6 +28,13 @@ public class GameState {
   // won; click on the control panel to finish the game
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
+
+  public static MissionManager missionManager = new MissionManager();
+
+  public static ProgressBars progressBarGroup = new ProgressBars();
+
+  public static Glow glowBright = new Glow(0.5);
+  public static Glow glowDim = new Glow(0.0);
 
   public static void setTimer(int timer) {
     GameState.timer = timer;

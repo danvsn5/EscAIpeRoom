@@ -14,8 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.SceneManager.AppPanel;
+import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -41,6 +44,7 @@ public class ChatController {
   @FXML private Label listeningLabel;
 
   @FXML private ProgressIndicator loading;
+  @FXML private ImageView progressButton;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -106,6 +110,10 @@ public class ChatController {
 
     Thread mainRiddleThread = new Thread(riddleCall);
     mainRiddleThread.start();
+  }
+
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
   }
 
   /**
@@ -238,6 +246,7 @@ public class ChatController {
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     speaking.setVisible(false);
     neutral.setVisible(true);
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
   }
 
@@ -272,5 +281,12 @@ public class ChatController {
       thinking2.setVisible(false);
       listeningLabel.setVisible(false);
     }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }

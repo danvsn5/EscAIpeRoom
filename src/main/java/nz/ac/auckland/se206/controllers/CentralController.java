@@ -3,14 +3,16 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import nz.ac.SceneManager.AppPanel;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CentralController {
   @FXML private Rectangle outsideDoor;
@@ -37,14 +39,24 @@ public class CentralController {
   @FXML private Label windowLabel;
   @FXML private Label hammerLabel;
   @FXML private Label workLabel;
-
   @FXML private Label panelLabel;
+  @FXML private ImageView progressButton;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   public void goOutside() {
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
   }
 
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
+  }
+
   public void goWorkshop() {
+    SceneManager.setPrevious(AppPanel.WORK);
     App.setUi(AppPanel.WORK);
   }
 
@@ -175,5 +187,13 @@ public class CentralController {
 
   public void redButtonNormal() {
     redButton.setFill(Color.valueOf("ff1f1f"));
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }
