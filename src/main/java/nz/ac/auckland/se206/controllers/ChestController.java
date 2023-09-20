@@ -29,6 +29,7 @@ public class ChestController {
   public ChestController() {
     rand = new Random();
     correctPassword = rand.nextInt(1000);
+    System.out.println(getCorrectPassword());
   }
 
   public void goBack() {
@@ -83,9 +84,13 @@ public class ChestController {
     thirdDigit.setText(Integer.toString(thirdDigitNum));
   }
 
-  public void getPassword() {
-    String s = firstDigit.getText() + secondDigit.getText() + thirdDigit.getText();
-    System.out.println(s);
+  public void check() {
+    int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
+    if (password == correctPassword) {
+      System.out.println("Lock opened");
+    } else {
+      System.out.println("Wrong password");
+    }
   }
 
   public String getCorrectPassword() {
