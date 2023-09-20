@@ -3,14 +3,15 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CentralController {
-  @FXML private Rectangle outsideDoor;
+  @FXML private Polygon outsideDoor;
+  @FXML private Polygon processMachine;
   @FXML private Label counter;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
@@ -18,6 +19,8 @@ public class CentralController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView chest;
+  @FXML private ImageView doorImage;
+  @FXML private ImageView processMachineImage;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
@@ -45,5 +48,21 @@ public class CentralController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public void activateDoorGlow() {
+    doorImage.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateDoorGlow() {
+    doorImage.setEffect(GameState.glowDim);
+  }
+
+  public void activateProcessMachineGlow() {
+    processMachineImage.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProcessMachineGlow() {
+    processMachineImage.setEffect(GameState.glowDim);
   }
 }
