@@ -44,6 +44,8 @@
       <Label fx:id="listeningLabel" alignment="CENTER" layoutX="48.0" layoutY="432.0" prefHeight="44.0" prefWidth="190.0" text="Listening..." textAlignment="CENTER" visible="false">
          <font>
             <Font size="36.0" />
+         </font>
+      </Label>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
