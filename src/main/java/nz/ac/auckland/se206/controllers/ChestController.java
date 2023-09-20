@@ -23,6 +23,7 @@ public class ChestController {
   private int thirdDigitNum = 0;
   private Random rand;
   private int correctPassword;
+  private boolean controllerCollected = false;
 
   public ChestController() {
     rand = new Random();
@@ -81,7 +82,10 @@ public class ChestController {
 
   public void openChest() {
     System.out.println("Chest opened");
-    System.out.println("Controll panel collected");
+    if (!controllerCollected) {
+      System.out.println("Controll panel collected");
+      controllerCollected = true;
+    }
   }
 
   public void firstDigitGlow() {
