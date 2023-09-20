@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -45,9 +46,12 @@ public class ChatController {
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
 
-  private ChatMessage thinkingMessage =
-      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+  // private ChatMessage thinkingMessage =
+  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
+
+  private int firstMission;
+  private int secondMission;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -69,11 +73,14 @@ public class ChatController {
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
-    Task<Void> riddleCall =
+    // greets the user at the start.
+    Task<Void> greetTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+
+            System.out.println("greet task");
 
             chatCompletionRequest =
                 new ChatCompletionRequest()
@@ -82,18 +89,16 @@ public class ChatController {
                     .setTopP(0.7)
                     .setMaxTokens(100);
 
-            gptMessage =
-                runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
 
             updateProgress(1, 1);
             return null;
           }
         };
 
-    loading.progressProperty().bind(riddleCall.progressProperty());
+    loading.progressProperty().bind(greetTask.progressProperty());
 
-    riddleCall.setOnSucceeded(
+    greetTask.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
           eye1.setVisible(true);
@@ -107,7 +112,7 @@ public class ChatController {
           inputText.setDisable(false);
         });
 
-    Thread mainRiddleThread = new Thread(riddleCall);
+    Thread mainRiddleThread = new Thread(greetTask);
     mainRiddleThread.start();
   }
 
@@ -137,9 +142,7 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Mystical Tree");
       appendChatMessage(result.getChatMessage());
-      result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       ChatMessage error = new ChatMessage(null, null);
@@ -186,29 +189,56 @@ public class ChatController {
     thinking2.setVisible(true);
     listeningLabel.setVisible(false);
 
+    if (!GameState.isGreetingShown) {
+      generateRiddle(message);
+      GameState.isGreetingShown = true;
+      listeningLabel.setVisible(false);
+      return;
+    }
+
     Task<Void> typeCall =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
 
+            System.out.println("type call");
+
             ChatMessage msg = new ChatMessage("user", message);
-            msg.setRole("You");
             appendChatMessage(msg);
-            msg.setRole("user");
-            appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
+
+            System.out.println("lastMsg");
 
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
             // from the launch panel and checks whether or not text to speech will be active
 
-            if (lastMsg.getRole().equals("assistant")
-                && lastMsg.getContent().startsWith("Correct")) {
-              GameState.inventory.add(-1);
+            if (!GameState.firstRiddleSolved) {
+              System.out.println("first riddle not solved");
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Correct")) {
+                GameState.firstRiddleSolved = true;
+                System.out.println("first riddle solved");
+                if (firstMission == 1) {
+                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                } else if (firstMission == 2) {
+                  GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+                }
+              }
+            } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Correct")) {
+                GameState.secondRiddleSolved = true;
+              }
             }
-            if (GameState.inventory.contains(-2)) {
-              GameState.textToSpeech.speak(lastMsg.getContent());
-            }
+
+            // if (lastMsg.getRole().equals("assistant")
+            //     && lastMsg.getContent().startsWith("Correct")) {
+            //   GameState.inventory.add(-1);
+            // }
+            // if (GameState.inventory.contains(-2)) {
+            //   GameState.textToSpeech.speak(lastMsg.getContent());
+            // }
             updateProgress(1, 1);
             return null;
           }
@@ -288,5 +318,92 @@ public class ChatController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public ChatMessage invokeRunGpt(ChatMessage msg) throws ApiProxyException {
+    return runGpt(msg);
+  }
+
+  private void generateRiddle(String message) {
+
+    inputText.setDisable(true);
+
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    neutral.setVisible(true);
+    speaking.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
+
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
+    System.out.println("generate riddle");
+
+    for (int i = 0; i < 2; i++) {
+      System.out.println("----");
+      if (GameState.missionList.get(i) == 1 || GameState.missionList.get(i) == 2) {
+        System.out.println("first mission");
+        firstMission = GameState.missionList.get(i);
+        System.out.println(firstMission);
+      } else {
+        System.out.println("second mission");
+        secondMission = GameState.missionList.get(i);
+        System.out.println(secondMission);
+      }
+    }
+
+    Task<Void> firstRiddleTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            ChatMessage msg = new ChatMessage("user", message);
+            appendChatMessage(msg);
+
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.5)
+                    .setTopP(0.2)
+                    .setMaxTokens(100);
+
+            System.out.println("first mission riddle");
+            if (firstMission == 1) { // if the first mission is the window
+              gptMessage =
+                  runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
+            } else if (firstMission == 2) { // if it is the fuel
+              gptMessage =
+                  runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getRiddleWithGivenWordFuel("sky", "lake")));
+            }
+
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+
+    loading.progressProperty().bind(firstRiddleTask.progressProperty());
+
+    firstRiddleTask.setOnSucceeded(
+        e2 -> {
+          loading.progressProperty().unbind();
+          eye1.setVisible(true);
+          eye2.setVisible(true);
+          thinking1.setVisible(false);
+          thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+        });
+
+    Thread firstRiddleThread = new Thread(firstRiddleTask);
+    firstRiddleThread.start();
   }
 }
