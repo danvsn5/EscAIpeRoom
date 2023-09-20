@@ -1,11 +1,8 @@
 package nz.ac.auckland.se206.missions;
 
-import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public class WindowMission extends Mission {
-
-  ChatController chatController;
 
   public WindowMission() {
     currentStage = 0;

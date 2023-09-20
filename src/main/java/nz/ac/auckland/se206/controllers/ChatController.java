@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -189,7 +190,7 @@ public class ChatController {
     listeningLabel.setVisible(false);
 
     if (!GameState.isGreetingShown) {
-      generateRiddle();
+      generateRiddle(message);
       GameState.isGreetingShown = true;
       listeningLabel.setVisible(false);
       return;
@@ -216,10 +217,13 @@ public class ChatController {
               System.out.println("first riddle not solved");
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
-                System.out.println("first riddle solvingg");
                 GameState.firstRiddleSolved = true;
-                System.out.println(GameState.firstRiddleSolved);
                 System.out.println("first riddle solved");
+                if (firstMission == 1) {
+                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                } else if (firstMission == 2) {
+                  GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+                }
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
               if (lastMsg.getRole().equals("assistant")
@@ -320,7 +324,7 @@ public class ChatController {
     return runGpt(msg);
   }
 
-  private void generateRiddle() {
+  private void generateRiddle(String message) {
 
     inputText.setDisable(true);
 
@@ -354,6 +358,9 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
+
+            ChatMessage msg = new ChatMessage("user", message);
+            appendChatMessage(msg);
 
             chatCompletionRequest =
                 new ChatCompletionRequest()
