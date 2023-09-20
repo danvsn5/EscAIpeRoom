@@ -217,6 +217,7 @@ public class ChatController {
     if (!GameState.isGreetingShown) {
       this.initialize();
       GameState.isGreetingShown = true;
+      return;
     }
 
     inputText.setDisable(true);
