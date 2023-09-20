@@ -96,7 +96,6 @@ public class OutsideController {
   }
 
   public void openRiddle() {
-    SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.CHAT);
   }
 
