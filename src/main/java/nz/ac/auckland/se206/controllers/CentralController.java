@@ -11,6 +11,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CentralController {
@@ -39,6 +40,7 @@ public class CentralController {
   @FXML private Label hammerLabel;
   @FXML private Label workLabel;
   @FXML private Label panelLabel;
+  @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
@@ -46,10 +48,16 @@ public class CentralController {
   @FXML private ImageView chest;
 
   public void goOutside() {
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
   }
 
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
+  }
+
   public void goWorkshop() {
+    SceneManager.setPrevious(AppPanel.WORK);
     App.setUi(AppPanel.WORK);
   }
 
@@ -184,5 +192,13 @@ public class CentralController {
 
   public void goToChest() {
     App.setUi(AppPanel.CHEST);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }

@@ -91,6 +91,19 @@
       </Rectangle>
       <Line fx:id="crossOne" endX="-76.0" endY="-18.0" layoutX="1284.0" layoutY="195.0" startX="-102.0" startY="-45.0" />
       <Line fx:id="crossTwo" endX="-65.0" endY="-37.0" layoutX="1274.0" layoutY="185.0" startX="-92.0" startY="-7.0" />
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
       <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/threeRoot.png" />

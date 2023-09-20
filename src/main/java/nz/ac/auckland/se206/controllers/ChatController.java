@@ -6,10 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -26,6 +33,17 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label counter;
+  @FXML private Rectangle neutral;
+  @FXML private Rectangle thinking1;
+  @FXML private Rectangle thinking2;
+  @FXML private Circle speaking;
+  @FXML private Circle eye1;
+  @FXML private Circle eye2;
+  @FXML private Circle loadingCircle;
+  @FXML private Label listeningLabel;
+
+  @FXML private ProgressIndicator loading;
+  @FXML private ImageView progressButton;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -38,6 +56,18 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+
+    inputText.setDisable(true);
+
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    neutral.setVisible(true);
+    speaking.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
+
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
 
     Task<Void> riddleCall =
         new Task<Void>() {
@@ -56,12 +86,33 @@ public class ChatController {
                 runGpt(
                     new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
 
+            updateProgress(1, 1);
             return null;
           }
         };
 
+    loading.progressProperty().bind(riddleCall.progressProperty());
+
+    riddleCall.setOnSucceeded(
+        e -> {
+          loading.progressProperty().unbind();
+          eye1.setVisible(true);
+          eye2.setVisible(true);
+          thinking1.setVisible(false);
+          thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+        });
+
     Thread mainRiddleThread = new Thread(riddleCall);
     mainRiddleThread.start();
+  }
+
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
   }
 
   /**
@@ -113,11 +164,27 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+
+    inputText.setDisable(true);
+
+    loading.setProgress(0);
+    loading.setVisible(true);
+
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
       return;
     }
     inputText.clear();
+
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    neutral.setVisible(true);
+    speaking.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
+    listeningLabel.setVisible(false);
 
     Task<Void> typeCall =
         new Task<Void>() {
@@ -142,9 +209,26 @@ public class ChatController {
             if (GameState.inventory.contains(-2)) {
               GameState.textToSpeech.speak(lastMsg.getContent());
             }
+            updateProgress(1, 1);
             return null;
           }
         };
+
+    loading.progressProperty().bind(typeCall.progressProperty());
+
+    typeCall.setOnSucceeded(
+        e -> {
+          loading.progressProperty().unbind();
+          eye1.setVisible(true);
+          eye2.setVisible(true);
+          thinking1.setVisible(false);
+          thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+        });
 
     Thread typeInThread = new Thread(typeCall);
     typeInThread.start();
@@ -159,6 +243,50 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    speaking.setVisible(false);
+    neutral.setVisible(true);
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.OUTSIDE);
+  }
+
+  /**
+   * Handles the key pressed event.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onKeyPressed(KeyEvent event) {
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
+    listeningLabel.setVisible(true);
+    speaking.setVisible(false);
+    neutral.setVisible(true);
+  }
+
+  /**
+   * Handles the key released event.
+   *
+   * @param event the key event
+   */
+  @FXML
+  public void onKeyReleased(KeyEvent event) {
+    System.out.println("key " + event.getCode() + " released");
+    if (inputText.getText().trim().isEmpty()) {
+      eye1.setVisible(true);
+      eye2.setVisible(true);
+      thinking1.setVisible(false);
+      thinking2.setVisible(false);
+      listeningLabel.setVisible(false);
+    }
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }

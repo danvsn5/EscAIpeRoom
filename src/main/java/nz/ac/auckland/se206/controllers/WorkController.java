@@ -10,6 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -36,6 +37,7 @@ public class WorkController {
   @FXML private Label centralLabel;
   @FXML private Label sandLabel;
   @FXML private Label voiceLabel;
+  @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
@@ -73,7 +75,12 @@ public class WorkController {
     workThread.start();
   }
 
+  public void goProgress() {
+    App.setUi(AppPanel.PROGRESS);
+  }
+
   public void workReturn() {
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
@@ -184,5 +191,13 @@ public class WorkController {
       questionLabel.setVisible(false);
     }
     furnace.setFill(Color.valueOf("5a636b"));
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }
