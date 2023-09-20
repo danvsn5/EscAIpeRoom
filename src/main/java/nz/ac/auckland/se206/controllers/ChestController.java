@@ -14,6 +14,7 @@ public class ChestController {
   @FXML private Button secondDigitDownButton;
   @FXML private Button thirdDigitUpButton;
   @FXML private Button thirdDigitDownButton;
+  @FXML private Button enterButton;
   @FXML private Label firstDigit;
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
@@ -72,5 +73,10 @@ public class ChestController {
       thirdDigitNum = 9;
     }
     thirdDigit.setText(Integer.toString(thirdDigitNum));
+  }
+
+  public void getPassword() {
+    String s = firstDigit.getText() + secondDigit.getText() + thirdDigit.getText();
+    System.out.println(s);
   }
 }
