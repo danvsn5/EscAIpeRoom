@@ -42,7 +42,7 @@
       <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="456.0" layoutY="381.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#firstDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
       <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="585.0" layoutY="381.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
       <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="712.0" layoutY="381.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#thirdDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
-      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/miniTreeTEMPORARY.png" />
          </image>

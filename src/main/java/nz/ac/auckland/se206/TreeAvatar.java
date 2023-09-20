@@ -48,4 +48,13 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
     SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setEffect(glowDim);
   }
+
+  public static void setTreeVisible() {
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setVisible(true);
+    SceneManager.getPanel(AppPanel.WORK).lookup("#miniTree").setVisible(true);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setVisible(true);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setVisible(true);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setVisible(true);
+    SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setVisible(true);
+  }
 }

@@ -66,7 +66,6 @@ public class CentralController {
   public void collectHammer() {
     GameState.inventory.add(0);
     hammer.setVisible(false);
-    TreeAvatar.startFlashTree();
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes

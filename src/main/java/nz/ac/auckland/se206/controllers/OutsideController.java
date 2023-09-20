@@ -101,6 +101,7 @@ public class OutsideController {
   public void openRiddle() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.setTreeVisible();
     App.setUi(AppPanel.CHAT);
   }
 
