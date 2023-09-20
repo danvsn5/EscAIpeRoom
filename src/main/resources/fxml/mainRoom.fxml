@@ -70,11 +70,6 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <ImageView fx:id="chest" fitHeight="150.0" fitWidth="200.0" layoutX="919.0" layoutY="469.0" onMouseClicked="#goToChest" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/chest.png" />
-         </image>
-      </ImageView>
       <Polygon fx:id="outsideDoor" fill="DODGERBLUE" layoutX="1047.0" layoutY="402.0" onMouseClicked="#goOutside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" opacity="0.0" points="50.0, 250.66668701171875, 216.111083984375, 272.888916015625, 216.111083984375, -108.4444580078125, 50.0, -99.5555419921875" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fx:id="processMachine" fill="DODGERBLUE" layoutX="292.0" layoutY="537.0" onMouseEntered="#activateProcessMachineGlow" onMouseExited="#deactivateProcessMachineGlow" opacity="0.0" points="-152.44444274902344, 141.44439697265625, 83.11114501953125, 98.77777099609375, 83.11114501953125, -105.66665649414062, -152.44444274902344, -126.111083984375" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fx:id="storage" fill="DODGERBLUE" layoutX="103.0" layoutY="436.0" onMouseClicked="#goStorage" onMouseEntered="#activateStorageGlow" onMouseExited="#deactivateStorageGlow" opacity="0.0" points="-103.00000762939453, 267.33331298828125, 14.333343505859375, 245.11114501953125, 18.333343505859375, -134.88888549804688, -103.00000762939453, -155.77777099609375" stroke="BLACK" strokeType="INSIDE" />

@@ -19,7 +19,6 @@ public class CentralController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView chest;
   @FXML private ImageView doorImage;
   @FXML private ImageView processMachineImage;
   @FXML private ImageView storageImage;
@@ -42,10 +41,6 @@ public class CentralController {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
     }
-  }
-
-  public void goToChest() {
-    App.setUi(AppPanel.CHEST);
   }
 
   public void activateProgressGlow() {
