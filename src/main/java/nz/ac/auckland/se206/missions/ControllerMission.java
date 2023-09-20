@@ -26,7 +26,7 @@ public class ControllerMission extends Mission {
   }
 
   @Override
-  public void askGpt() {
+  public ChatMessage askGpt() {
     // TODO ask gpt to generate riddle
 
     new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
@@ -38,5 +38,6 @@ public class ControllerMission extends Mission {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    return null;
   }
 }

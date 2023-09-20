@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.missions;
 
+import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public abstract class Mission {
   protected int currentStage;
@@ -27,5 +28,5 @@ public abstract class Mission {
   }
   ;
 
-  public abstract void askGpt();
+  public abstract ChatMessage askGpt();
 }

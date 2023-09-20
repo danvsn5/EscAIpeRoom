@@ -79,8 +79,10 @@ public class ChatController {
         if (GameState.missionManager.getMissionKey(i) == MISSION.WINDOW
             || GameState.missionManager.getMissionKey(i) == MISSION.FUEL) {
           firstMission = GameState.missionManager.getMissionKey(i);
+          System.out.println(firstMission.toString());
         } else {
           secondMission = GameState.missionManager.getMissionKey(i);
+          System.out.println(secondMission.toString());
         }
       }
 
@@ -90,7 +92,24 @@ public class ChatController {
             @Override
             protected Void call() throws Exception {
 
-              GameState.missionManager.getMission(firstMission).askGpt(); // get the riddle.
+              chatCompletionRequest =
+                  new ChatCompletionRequest()
+                      .setN(1)
+                      .setTemperature(0.7)
+                      .setTopP(0.7)
+                      .setMaxTokens(100);
+
+              if (firstMission == MISSION.WINDOW) { // if the first mission is the window
+                gptMessage =
+                    runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+              } else { // if it is the fuel
+                gptMessage =
+                    runGpt(
+                        new ChatMessage(
+                            "user", GptPromptEngineering.getRiddleWithGivenWord("blue")));
+              }
 
               updateProgress(1, 1);
               return null;
@@ -130,9 +149,7 @@ public class ChatController {
                       .setTopP(0.7)
                       .setMaxTokens(100);
 
-              gptMessage =
-                  runGpt(
-                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+              gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
 
               updateProgress(1, 1);
               return null;
