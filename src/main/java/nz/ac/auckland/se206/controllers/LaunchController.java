@@ -63,16 +63,13 @@ public class LaunchController {
     GameState.createRandomColorNumber();
 
     Random rand = new Random();
-    int task1 = rand.nextInt(4) + 1;
-    int task2 = rand.nextInt(4) + 1;
-    while (task2 == task1) {
-      task2 = rand.nextInt(4) + 1;
-    }
+    int task1 = rand.nextInt(2) + 1;
+    int task2 = rand.nextInt(2) + 3;
+    System.out.println(task1 + " " + task2);
     GameState.missionManager.addMission(task1);
     GameState.missionManager.addMission(task2);
     GameState.progressBarGroup.setMissionOne(task1);
     GameState.progressBarGroup.setMissionTwo(task2);
-
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 
     App.setUi(AppPanel.MAIN_ROOM);
