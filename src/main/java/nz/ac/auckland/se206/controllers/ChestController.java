@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +23,14 @@ public class ChestController {
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
   private int thirdDigitNum = 0;
+  private Random rand;
+  private int correctPassword;
+
+  public ChestController() {
+    rand = new Random();
+    correctPassword = rand.nextInt(1000);
+    System.out.println(correctPassword);
+  }
 
   public void goBack() {
     App.setUi(AppPanel.MAIN_ROOM);
