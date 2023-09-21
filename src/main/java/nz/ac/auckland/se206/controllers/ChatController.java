@@ -220,9 +220,9 @@ public class ChatController {
               System.out.println("first riddle not solved");
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
-                if (!GameState.firstRiddleSolved) {
+                if (!GameState.firstRiddleSolved && GameState.missionList.contains(2)) {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-                  GameState.progressBarGroup.updateProgressTwo(MISSION.FUEL);
+                  GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
                 }
                 GameState.firstRiddleSolved = true;
@@ -434,10 +434,9 @@ public class ChatController {
   }
 
   public void collectFuel() {
-
     GameState.inventory.add(8); // fuel collected
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-    GameState.progressBarGroup.updateProgressTwo(MISSION.FUEL);
+    GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
     System.out.println("Fuel Mission 2 Complete");
     fuel.setVisible(false);
     fuel.setDisable(true);

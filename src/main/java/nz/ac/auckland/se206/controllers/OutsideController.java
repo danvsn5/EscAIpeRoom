@@ -46,6 +46,13 @@ public class OutsideController {
   }
 
   public void goThruster() {
+    if (GameState.inventory.contains(8)) {
+      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      System.out.println("Fuel Mission Complete");
+      GameState.isFirstMissionCompleted = true;
+      GameState.inventory.remove(GameState.inventory.indexOf(8));
+    }
     App.setUi(AppPanel.THRUSTER);
   }
 
