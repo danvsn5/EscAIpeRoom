@@ -48,19 +48,6 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/ProgressButton.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
-         <font>
-            <Font name="Bank Gothic Light BT" size="34.0" />
-         </font>
-      </Label>
       <ImageView fx:id="fuel" fitHeight="150.0" fitWidth="200.0" layoutX="1074.0" layoutY="267.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/fueklTank.png" />
@@ -104,6 +91,19 @@
       </Label>
     <TextArea fx:id="chatTextArea" editable="false" layoutX="681.0" layoutY="46.0" prefHeight="473.0" prefWidth="542.0" wrapText="true" />
     <TextField fx:id="inputText" layoutX="684.0" layoutY="528.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="29.0" prefWidth="537.0" />
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
       <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <ProgressIndicator fx:id="loading" layoutX="80.0" layoutY="121.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
   </children>
