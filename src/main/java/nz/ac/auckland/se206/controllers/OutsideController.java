@@ -33,6 +33,8 @@ public class OutsideController {
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
+  @FXML private Label fuelCharged;
+
   public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
@@ -40,6 +42,24 @@ public class OutsideController {
   // panel.
   public void goProgress() {
     App.setUi(AppPanel.PROGRESS);
+  }
+
+  public void outsideReturn() {
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
+    App.setUi(AppPanel.MAIN_ROOM);
+  }
+
+  public void goThruster() {
+    if (GameState.inventory.contains(8)) {
+      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      System.out.println("Fuel Mission Complete");
+      GameState.isFirstMissionCompleted = true;
+      GameState.inventory.remove(GameState.inventory.indexOf(8));
+      fuelCharged.setVisible(true);
+    } else {
+      App.setUi(AppPanel.THRUSTER);
+    }
   }
 
   public void goCrashLand() {
