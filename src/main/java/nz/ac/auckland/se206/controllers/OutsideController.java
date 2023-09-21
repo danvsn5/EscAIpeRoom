@@ -61,6 +61,7 @@ public class OutsideController {
       App.setUi(AppPanel.THRUSTER);
     }
   }
+
   public void goCrashLand() {
     App.setUi(AppPanel.CRASHLAND);
   }

@@ -70,6 +70,9 @@
          </font>
       </Label>
       <ImageView fx:id="thruster" fitHeight="93.0" fitWidth="90.0" layoutX="88.0" layoutY="397.0" onMouseClicked="#goThruster" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Bottom%20Ship.png" />
+         </image></ImageView>
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/miniTreeTEMPORARY.png" />
