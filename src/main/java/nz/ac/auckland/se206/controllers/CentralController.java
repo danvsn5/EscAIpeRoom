@@ -7,6 +7,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
@@ -36,6 +37,58 @@ public class CentralController {
 
   public void goStorage() {
     App.setUi(AppPanel.STORAGE);
+  }
+    
+  public void goWorkshop() {
+    SceneManager.setPrevious(AppPanel.WORK);
+    App.setUi(AppPanel.WORK);
+  }
+
+  public void collectHammer() {
+    GameState.inventory.add(0);
+    hammer.setVisible(false);
+  }
+
+  // if inventory contains the necessary items, fixes the window and control panel and changes
+  // visibility of assets
+  public void repairWindow() {
+    if (GameState.inventory.contains(3)) {
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+
+      System.out.println("Window Mission Complete");
+      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
+
+      GameState.isFirstMissionCompleted = true;
+
+      System.out.println(GameState.isFirstMissionCompleted);
+      crackOne.setVisible(false);
+      crackTwo.setVisible(false);
+
+      window.setDisable(true);
+    }
+  }
+
+  public void repairPanel() {
+    if (GameState.inventory.contains(5)) {
+      GameState.inventory.add(7);
+      purpleStick.setVisible(true);
+      blueStick.setVisible(true);
+      greenStick.setVisible(true);
+      knobB.setVisible(true);
+      knobG.setVisible(true);
+      knobP.setVisible(true);
+      redButton.setVisible(true);
+    }
+  }
+
+  // closes the intro message by pressing the cross on the top left of the main room panel
+  public void closeMessage() {
+    introBackground.setVisible(false);
+    introLabel.setVisible(false);
+    cross.setVisible(false);
+    crossOne.setVisible(false);
+    crossTwo.setVisible(false);
   }
 
   // if window and control panel are fixed, then game can be completed by pressing red button

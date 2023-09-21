@@ -5,17 +5,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class OutsideController {
   @FXML private Circle sand;
+  @FXML private ImageView returnShip;
   @FXML private Circle tech;
   @FXML private Circle wiseTree;
   @FXML private Label counter;
-  @FXML private Label sandLabel;
   @FXML private Label treeLabel;
   @FXML private Label shipLabel;
   @FXML private Label techLabel;
@@ -25,6 +28,9 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView crashLand;
+
+  @FXML private Rectangle sand;
+  @FXML private Label isSandCollected;
 
   public void initialize() {}
 
@@ -55,10 +61,18 @@ public class OutsideController {
   }
 
   public void collectSand() {
+    System.out.println("Sand to be collected");
+    if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      System.out.println("Window Mission Complete");
+      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
 
-    if (GameState.inventory.contains(-1)) {
       GameState.inventory.add(2);
-      sand.setVisible(false);
+      sand.setDisable(true);
+      isSandCollected.setVisible(true);
+    } else {
+      System.out.println("You need to solve the riddle first!");
     }
   }
 
@@ -81,15 +95,13 @@ public class OutsideController {
 
   public void sandLight() {
     sand.setFill(Color.valueOf("fffccc"));
-    sandLabel.setVisible(true);
   }
 
   public void sandNormal() {
-    sand.setFill(Color.valueOf("fffba5"));
-    sandLabel.setVisible(false);
+    sand.setFill(Color.valueOf("ffba1f"));
   }
 
-  public void openRiddle() {
+  public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.CHAT);
   }

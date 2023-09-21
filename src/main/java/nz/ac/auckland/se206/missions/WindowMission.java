@@ -21,7 +21,12 @@ public class WindowMission extends Mission {
 
   @Override
   public ChatMessage askGpt() {
-    // TODO ask gpt to generate riddle
-    throw new UnsupportedOperationException("Unimplemented method 'askGpt'");
+
+    return null;
+  }
+
+  @Override
+  public void updateProgress() {
+    // TODO Auto-generated method stub
   }
 }

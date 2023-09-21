@@ -11,6 +11,10 @@ public class GameState {
   public static int difficulty = 0;
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
+  public static boolean isGreetingShown;
+  public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
+  public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
+  public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
 
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
@@ -36,7 +40,7 @@ public class GameState {
   }
 
   public static MissionManager missionManager = new MissionManager();
-
+  public static ArrayList<Integer> missionList = new ArrayList<Integer>();
   public static ProgressBars progressBarGroup = new ProgressBars();
 
   public static Glow glowBright = new Glow(0.5);

@@ -28,11 +28,6 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-      <Label fx:id="sandLabel" alignment="CENTER" layoutX="869.0" layoutY="529.0" prefHeight="35.0" prefWidth="200.0" text="Collect Sand" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
       <Label fx:id="treeLabel" alignment="CENTER" layoutX="503.0" layoutY="529.0" prefHeight="35.0" prefWidth="200.0" text="Talk to Tree" visible="false">
          <font>
             <Font size="24.0" />
@@ -46,19 +41,6 @@
       <Label fx:id="techLabel" alignment="CENTER" layoutX="927.0" layoutY="345.0" prefHeight="35.0" prefWidth="219.0" text="Collect Secret Tech" visible="false">
          <font>
             <Font size="24.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/ProgressButton.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
-         <font>
-            <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
       <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
@@ -86,5 +68,24 @@
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
+      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#ffba1f" height="148.0" layoutY="572.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+      <Label fx:id="isSandCollected" alignment="CENTER" layoutX="861.0" layoutY="612.0" prefHeight="47.0" prefWidth="258.0" text="Sand collected" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
