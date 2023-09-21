@@ -16,7 +16,7 @@
             <Image url="@../images/chestPanel.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="272.0" layoutY="569.0" mnemonicParsing="false" onAction="#goBack" text="Back">
+      <Button fx:id="backButton" layoutX="323.0" layoutY="569.0" mnemonicParsing="false" onAction="#goBack" text="Back">
          <font>
             <Font name="Bank Gothic Light BT" size="40.0" />
          </font></Button>
@@ -55,7 +55,7 @@
       </ImageView>
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/miniTreeTEMPORARY.png" />
+            <Image url="@../images/miniTree.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
