@@ -59,6 +59,10 @@ public class StorageController {
       GameState.inventory.add(3);
       furnace.setDisable(true);
       SceneManager.showDialog("Info", "Glass collected", "A well-made window");
+    } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) {
+      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace yet!");
+    } else {
+      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace!");
     }
   }
 
