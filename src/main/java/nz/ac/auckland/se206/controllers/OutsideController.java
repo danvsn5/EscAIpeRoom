@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -17,11 +18,11 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class OutsideController {
   @FXML private ImageView returnShip;
   @FXML private Circle tech;
-  @FXML private Circle wiseTree;
   @FXML private Label counter;
   @FXML private Label treeLabel;
   @FXML private Label shipLabel;
   @FXML private Label techLabel;
+  @FXML private Polygon wiseTree;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
@@ -29,6 +30,7 @@ public class OutsideController {
   @FXML private ImageView rootThree;
   @FXML private ImageView thruster;
   @FXML private ImageView miniTree;
+  @FXML private ImageView treeImage;
   @FXML private ImageView ship;
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
@@ -104,16 +106,6 @@ public class OutsideController {
   // invisible with Dark/Normal method
   // invokation.
 
-  public void treeLight() {
-    wiseTree.setFill(Color.valueOf("864310"));
-    treeLabel.setVisible(true);
-  }
-
-  public void treeNormal() {
-    wiseTree.setFill(Color.valueOf("6f3506"));
-    treeLabel.setVisible(false);
-  }
-
   public void sandLight() {
     sand.setFill(Color.valueOf("fffccc"));
   }
@@ -160,5 +152,13 @@ public class OutsideController {
 
   public void deactivateShipGlow() {
     ship.setEffect(GameState.glowDim);
+  }
+
+  public void activateTreeGlow() {
+    treeImage.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateTreeGlow() {
+    treeImage.setEffect(GameState.glowDim);
   }
 }
