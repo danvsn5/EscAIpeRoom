@@ -66,7 +66,19 @@ public class CentralController {
     }
   }
 
-  public void addFuel() {}
+  public void addFuel() {
+    if (GameState.inventory.contains(8)) {
+      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      System.out.println("Fuel Mission Complete");
+      GameState.isFirstMissionCompleted = true;
+      GameState.inventory.remove(GameState.inventory.indexOf(8));
+      fuelTank.setOpacity(0);
+      fuelTank.setDisable(true);
+    } else {
+      System.out.println("Fuel not collected");
+    }
+  }
 
   // if window and control panel are fixed, then game can be completed by pressing red button
   public void goHome() {
