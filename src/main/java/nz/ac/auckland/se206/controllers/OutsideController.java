@@ -18,15 +18,16 @@ public class OutsideController {
   @FXML private ImageView returnShip;
   @FXML private Label counter;
   @FXML private Polygon wiseTree;
+  @FXML private Polygon thruster;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView thruster;
   @FXML private ImageView miniTree;
   @FXML private ImageView treeImage;
   @FXML private ImageView ship;
+  @FXML private ImageView thrusterImage;
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
@@ -95,7 +96,7 @@ public class OutsideController {
   }
 
   public void openRiddle() throws ApiProxyException {
-    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
@@ -140,5 +141,13 @@ public class OutsideController {
 
   public void deactivateTreeGlow() {
     treeImage.setEffect(GameState.glowDim);
+  }
+
+  public void activateThrusterGlow() {
+    thrusterImage.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateThrusterGlow() {
+    thrusterImage.setEffect(GameState.glowDim);
   }
 }
