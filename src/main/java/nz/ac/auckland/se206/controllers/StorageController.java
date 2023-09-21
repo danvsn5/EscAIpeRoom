@@ -23,6 +23,10 @@ public class StorageController {
   @FXML private ImageView blueprint;
   @FXML private ImageView furnaceImage;
   @FXML private ImageView miniTree;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
   @FXML private Label counter;
 
   public void goInside() {
