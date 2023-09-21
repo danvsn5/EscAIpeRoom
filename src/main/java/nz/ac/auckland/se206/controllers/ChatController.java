@@ -462,9 +462,9 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
-    // TODO: hint number exceed
-    if (GameState.difficulty == 2) {
+    if (GameState.hintUsedUp()) {
       SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
+      return;
     }
     if (isGenerating) {
       SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
@@ -487,6 +487,7 @@ public class ChatController {
         askByStage(MISSION.THRUSTER);
       }
     }
+    GameState.useHint();
   }
 
   private void askByStage(MISSION missionType) {

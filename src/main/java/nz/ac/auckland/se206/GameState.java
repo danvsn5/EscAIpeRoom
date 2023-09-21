@@ -15,6 +15,8 @@ public class GameState {
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
   public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
+  public static int hintNumer = 1000;
+  public static int currentHint = 0;
 
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
@@ -65,5 +67,21 @@ public class GameState {
 
   public static int getRandomColorNumber() {
     return randomColorNumber;
+  }
+
+  public static void setHintNumber(int max) {
+    hintNumer = max;
+  }
+
+  public static void useHint() {
+    currentHint++;
+  }
+
+  public static boolean hintUsedUp() {
+    return currentHint >= hintNumer;
+  }
+
+  public static void clearHint() {
+    currentHint = 0;
   }
 }
