@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -17,11 +16,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class OutsideController {
   @FXML private ImageView returnShip;
-  @FXML private Circle tech;
   @FXML private Label counter;
-  @FXML private Label treeLabel;
-  @FXML private Label shipLabel;
-  @FXML private Label techLabel;
   @FXML private Polygon wiseTree;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
@@ -66,21 +61,6 @@ public class OutsideController {
     } else {
       App.setUi(AppPanel.THRUSTER);
     }
-  }
-
-  public void collectTech() {
-    GameState.inventory.add(1);
-    tech.setVisible(false);
-  }
-
-  // techLabel methods make the label appear and disappear depending on whether or not the mouse is
-  // hovering over the object
-  public void techLabelOn() {
-    techLabel.setVisible(true);
-  }
-
-  public void techLabelOff() {
-    techLabel.setVisible(false);
   }
 
   public void collectSand() {

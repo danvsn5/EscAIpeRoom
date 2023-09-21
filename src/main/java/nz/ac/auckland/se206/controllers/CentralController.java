@@ -31,7 +31,7 @@ public class CentralController {
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
-    App.setUi(AppPanel.CRASHLAND);
+    App.setUi(AppPanel.OUTSIDE);
   }
 
   public void goProgress() {
