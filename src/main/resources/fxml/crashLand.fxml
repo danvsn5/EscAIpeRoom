@@ -16,7 +16,7 @@
             <Image url="@../images/crashLandBack.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="299.0" fitWidth="296.0" layoutX="607.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" rotate="-24.8">
+      <ImageView fx:id="shuttleImage" fitHeight="299.0" fitWidth="296.0" layoutX="607.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" rotate="-24.8">
          <image>
             <Image url="@../images/spaceShuttle.png" />
          </image>
@@ -26,6 +26,7 @@
             <Image url="@../images/crashLandFront.png" />
          </image>
       </ImageView>
+      <Polygon fx:id="shuttlePolygon" fill="DODGERBLUE" layoutX="821.0" layoutY="564.0" onMouseClicked="#goInside" onMouseEntered="#activateShuttleGlow" onMouseExited="#deactivateShuttleGlow" opacity="0.0" points="-29.44439697265625, -133.33334350585938, -89.888916015625, -133.33334350585938, -208.111083984375, -162.66665649414062, -239.22222900390625, -144.0, -225.888916015625, -122.66665649414062, -137.0, -44.44439697265625, -9.888916015625, -4.44439697265625, 36.33331298828125, -18.66668701171875, 66.55548095703125, -93.33334350585938, 23.888916015625, -105.77774047851562, 23.888916015625, -144.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="thrusterImage" fitHeight="82.0" fitWidth="82.0" layoutX="815.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/warning.png" />

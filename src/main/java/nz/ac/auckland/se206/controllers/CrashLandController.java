@@ -11,10 +11,12 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CrashLandController {
   @FXML private Polygon thruster;
+  @FXML private Polygon shuttlePolygon;
   @FXML private ImageView shuttle;
   @FXML private ImageView forest;
   @FXML private ImageView progressButton;
   @FXML private ImageView thrusterImage;
+  @FXML private ImageView shuttleImage;
   @FXML private Label counter;
 
   public void goForest() {
@@ -51,10 +53,12 @@ public class CrashLandController {
   }
 
   public void activateShuttleGlow() {
+    shuttleImage.setEffect(GameState.glowBright);
     shuttle.setEffect(GameState.glowBright);
   }
 
   public void deactivateShuttleGlow() {
+    shuttleImage.setEffect(GameState.glowDim);
     shuttle.setEffect(GameState.glowDim);
   }
 
