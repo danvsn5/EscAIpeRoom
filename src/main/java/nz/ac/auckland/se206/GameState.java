@@ -66,4 +66,16 @@ public class GameState {
   public static int getRandomColorNumber() {
     return randomColorNumber;
   }
+
+  public static void reset() {
+    MissionManager.missionList.clear();
+    MissionManager.keyList.clear();
+    missionList.clear();
+    inventory.clear();
+    isGreetingShown = false;
+    firstRiddleSolved = false; // tracks if the first riddle has been solved.
+    secondRiddleSolved = false; // tracks if the second riddle has been solved.
+    isFirstMissionCompleted = false;
+    RootBorder.rootState = 0;
+  }
 }

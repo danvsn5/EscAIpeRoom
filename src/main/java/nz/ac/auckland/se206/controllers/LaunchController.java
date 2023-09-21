@@ -140,7 +140,7 @@ public class LaunchController {
           protected Void call() {
             TimeCounter timer;
             if (GameState.timer == 0) {
-              timer = new TimeCounter(2, 0);
+              timer = new TimeCounter(0, 20);
             } else if (GameState.timer == 1) {
               timer = new TimeCounter(4, 0);
             } else {
