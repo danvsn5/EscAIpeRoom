@@ -17,7 +17,6 @@ public class SceneManager {
     CHEST,
     PROGRESS,
     PREVIOUS,
-    CRASHLAND,
     STORAGE
   }
 
