@@ -17,17 +17,61 @@
             <Image url="@../images/storage.png" />
          </image>
       </ImageView>
+
       <ImageView fx:id="hiddenChestImage" fitHeight="720.0" fitWidth="1280.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/hiddenChest.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="chest" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="371.0" layoutY="535.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+
+      <ImageView fx:id="chest" disable="true" fitHeight="204.0" fitWidth="269.0" layoutX="900.0" layoutY="300.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/chest.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="blueprint" disable="true" fitHeight="87.0" fitWidth="99.0" layoutX="936.0" layoutY="491.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/blueprint.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Ellipse fill="#00000097" layoutX="632.0" layoutY="552.0" radiusX="100.0" radiusY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <ImageView fx:id="furnaceImage" fitHeight="266.0" fitWidth="409.0" layoutX="427.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" scaleX="-1.0">
+         <image>
+            <Image url="@../images/furnace.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="furnace" fill="DODGERBLUE" layoutX="582.0" layoutY="502.0" onMouseClicked="#meltSand" onMouseEntered="#activateFurnaceGlow" onMouseExited="#deactivateFurnaceGlow" opacity="0.0" points="18.66668701171875, 78.35833740234375, 167.99993896484375, 24.0, 167.99993896484375, -58.666656494140625, 159.99993896484375, -94.66665649414062, 135.33331298828125, -127.33334350585938, 86.66668701171875, -143.99996948242188, -35.3333740234375, -111.99996948242188, -80.66665649414062, -38.666656494140625, -69.3333740234375, 58.6666259765625" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/threeRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
+         <image>
+            <Image url="@../images/initalRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootOne" fitHeight="726.0" fitWidth="1280.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/oneRoot.png" />
+         </image>
+      </ImageView>
+
       <Rectangle fx:id="hiddenChest" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="250.0" layoutX="91.0" layoutY="410.0" onMouseClicked="#findChest" onMouseEntered="#activateHiddenChestGlow" onMouseExited="#deactivateHiddenChestGlow" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="292.0" />
+
+      <ImageView fx:id="rootTwo" fitHeight="726.0" fitWidth="1286.0" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/twoRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTree.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
       <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
          <font>
@@ -51,29 +95,6 @@
          <image>
             <Image url="@../images/pointer.png" />
          </image>
-      </ImageView>
-      <ImageView fx:id="blueprint" disable="true" fitHeight="87.0" fitWidth="99.0" layoutX="936.0" layoutY="491.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/blueprint.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <Ellipse fill="#00000097" layoutX="632.0" layoutY="552.0" radiusX="100.0" radiusY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <ImageView fx:id="furnaceImage" fitHeight="266.0" fitWidth="409.0" layoutX="427.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" scaleX="-1.0">
-         <image>
-            <Image url="@../images/furnace.png" />
-         </image>
-      </ImageView>
-      <Polygon fx:id="furnace" fill="DODGERBLUE" layoutX="582.0" layoutY="502.0" onMouseClicked="#meltSand" onMouseEntered="#activateFurnaceGlow" onMouseExited="#deactivateFurnaceGlow" opacity="0.0" points="18.66668701171875, 78.35833740234375, 167.99993896484375, 24.0, 167.99993896484375, -58.666656494140625, 159.99993896484375, -94.66665649414062, 135.33331298828125, -127.33334350585938, 86.66668701171875, -143.99996948242188, -35.3333740234375, -111.99996948242188, -80.66665649414062, -38.666656494140625, -69.3333740234375, 58.6666259765625" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/miniTreeTEMPORARY.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
       </ImageView>
    </children>
 </Pane>

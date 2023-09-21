@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -14,7 +13,6 @@ import nz.ac.auckland.se206.TreeAvatar;
 
 public class StorageController {
 
-  @FXML private Rectangle hiddenChest;
   @FXML private Polygon furnace;
   @FXML private ImageView progressButton;
   @FXML private ImageView storageDoor;
@@ -23,6 +21,10 @@ public class StorageController {
   @FXML private ImageView blueprint;
   @FXML private ImageView furnaceImage;
   @FXML private ImageView miniTree;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
   @FXML private Label counter;
 
   public void goInside() {
@@ -32,13 +34,6 @@ public class StorageController {
   public void goProgress() {
     SceneManager.setPrevious(AppPanel.STORAGE);
     App.setUi(AppPanel.PROGRESS);
-  }
-
-  public void findChest() {
-    hiddenChest.setDisable(true);
-    chest.setDisable(false);
-    chest.setOpacity(1);
-    SceneManager.showDialog("Info", "Chest found", "A wooden chest with a digital lock on it");
   }
 
   public void goToChest() {
