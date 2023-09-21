@@ -11,6 +11,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
@@ -69,8 +70,16 @@ public class CentralController {
   // if inventory contains the necessary items, fixes the window and control panel and changes
   // visibility of assets
   public void repairWindow() {
-    if (GameState.inventory.contains(4)) {
-      GameState.inventory.add(6);
+    if (GameState.inventory.contains(3)) {
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+
+      System.out.println("Window Mission Complete");
+      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
+
+      GameState.isFirstMissionCompleted = true;
+
+      System.out.println(GameState.isFirstMissionCompleted);
       crackOne.setVisible(false);
       crackTwo.setVisible(false);
     }

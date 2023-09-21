@@ -14,6 +14,7 @@ public class GameState {
   public static boolean isGreetingShown;
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
+  public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
 
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
