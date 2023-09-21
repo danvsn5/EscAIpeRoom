@@ -11,9 +11,9 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class StorageController {
 
-    @FXML private Rectangle hiddenChest;
-    @FXML private ImageView progressButton;
-    @FXML private ImageView storageDoor;
+  @FXML private Rectangle hiddenChest;
+  @FXML private ImageView progressButton;
+  @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
   @FXML private Label counter;
@@ -29,6 +29,7 @@ public class StorageController {
 
   public void findChest() {
     System.out.println("Find chest");
+    hiddenChest.setDisable(true);
     chest.setDisable(false);
     chest.setOpacity(1);
   }
