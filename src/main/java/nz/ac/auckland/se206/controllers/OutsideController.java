@@ -11,7 +11,11 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+
+import nz.ac.auckland.se206.TreeAvatar;
+
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+
 
 public class OutsideController {
   @FXML private ImageView returnShip;
@@ -27,6 +31,8 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView crashLand;
+  @FXML private ImageView thruster;
+  @FXML private ImageView miniTree;
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
@@ -41,6 +47,7 @@ public class OutsideController {
 
   public void goCrashLand() {
     App.setUi(AppPanel.CRASHLAND);
+  
   }
 
   public void collectTech() {
@@ -101,6 +108,10 @@ public class OutsideController {
 
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.CHAT);
+        TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.setTreeVisible();
+
     App.setUi(AppPanel.CHAT);
   }
 
@@ -118,5 +129,19 @@ public class OutsideController {
 
   public void deactivateCrashLandGlow() {
     crashLand.setEffect(GameState.glowDim);
+  }
+
+  public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }

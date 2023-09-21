@@ -64,9 +64,15 @@
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTreeTEMPORARY.png" />
+         </image>
+       </ImageView>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
+
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />

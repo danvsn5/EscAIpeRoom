@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
   @FXML private Polygon processMachine;
@@ -25,6 +26,8 @@ public class CentralController {
   @FXML private ImageView outsideDoorImage;
   @FXML private ImageView processMachineImage;
   @FXML private ImageView window;
+  @FXML private ImageView chest;
+  @FXML private ImageView miniTree;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -112,5 +115,19 @@ public class CentralController {
 
   public void deactivateWindowGlow() {
     window.setEffect(GameState.glowDim);
+  }
+
+  public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }
