@@ -84,7 +84,7 @@ public class ChatController {
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(100);
+                    .setMaxTokens(150);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
 
@@ -368,7 +368,7 @@ public class ChatController {
                     .setN(1)
                     .setTemperature(0.5)
                     .setTopP(0.2)
-                    .setMaxTokens(100);
+                    .setMaxTokens(150);
 
             System.out.println("first mission riddle");
             if (firstMission == 1) { // if the first mission is the window
@@ -509,7 +509,7 @@ public class ChatController {
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(100);
+                    .setMaxTokens(150);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
 
