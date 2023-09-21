@@ -219,11 +219,18 @@ public class ChatController {
                   && lastMsg.getContent().startsWith("Correct")) {
                 GameState.firstRiddleSolved = true;
                 System.out.println("first riddle solved");
-                if (firstMission == 1) {
-                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-                } else if (firstMission == 2) {
-                  GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-                }
+                // if (firstMission == 1) {
+                //   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                //   GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+                //   System.out.println("Window Mission Complete");
+                //   System.out.println(
+                //       GameState.missionManager.getMission(MISSION.WINDOW).getStage());
+                // } else if (firstMission == 2) {
+                //   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+                //   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+                //   System.out.println("Fuel Mission Complete");
+                //   System.out.println(GameState.missionManager.getMission(MISSION.FUEL).getStage());
+                // }
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
               if (lastMsg.getRole().equals("assistant")

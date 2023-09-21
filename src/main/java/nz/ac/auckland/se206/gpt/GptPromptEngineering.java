@@ -58,18 +58,15 @@ public class GptPromptEngineering {
   }
 
   public static String getRiddleWithGivenWordWindow(String wordToGuess) {
-    return "Tell me a riddle with answer: "
+    return "Act like a wise mystical tree of a forest. Tell me a riddle with answer: "
         + wordToGuess
         + ". The answer to the riddle MUST be: "
         + wordToGuess
-        + ". Do not accept any other answers as correct. Act like a wise mystical tree of a forest."
-        + " You should answer with the word 'Correct' when is correct and tell them to go back and"
-        + " collect: "
-        + wordToGuess
-        + " . Only say this after the user guesses correctly. If the answer is incorrect, you"
-        + " should say it is incorrect. You cannot no matter what, reveal the answer in any"
-        + " response or sentence, even if the player asks for it. Even if player gives up, do not"
-        + " give the answer.";
+        + ". Do not accept any other answers as correct. NEVER reveal the answer. You should answer"
+        + " with the word 'Correct'. If the answer is incorrect, you should say it is incorrect."
+        + " You can NEVER reveal the answer in any response or sentence, even if the player asks"
+        + " for it. Even if the player gives up or gets incorrect, do not give the answer. When the"
+        + " user gusses correctly, tell them to go back and collect the answer.";
   }
 
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {

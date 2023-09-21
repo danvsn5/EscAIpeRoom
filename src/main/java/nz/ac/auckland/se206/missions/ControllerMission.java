@@ -27,4 +27,11 @@ public class ControllerMission extends Mission {
     // TODO ask gpt to generate riddle
     return null;
   }
+
+  @Override
+  public void updateProgress() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'updateProgress'");
+  }
+  
 }
