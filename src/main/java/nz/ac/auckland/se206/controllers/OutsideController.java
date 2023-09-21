@@ -11,11 +11,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
-
 import nz.ac.auckland.se206.TreeAvatar;
-
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-
 
 public class OutsideController {
   @FXML private ImageView returnShip;
@@ -47,7 +44,6 @@ public class OutsideController {
 
   public void goCrashLand() {
     App.setUi(AppPanel.CRASHLAND);
-  
   }
 
   public void collectTech() {
@@ -107,8 +103,8 @@ public class OutsideController {
   }
 
   public void openRiddle() throws ApiProxyException {
-    SceneManager.setPrevious(AppPanel.CHAT);
-        TreeAvatar.treeFlash.pause();
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
+    TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
 
@@ -135,6 +131,7 @@ public class OutsideController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
   }
 
   public void miniTreeGlow() {
