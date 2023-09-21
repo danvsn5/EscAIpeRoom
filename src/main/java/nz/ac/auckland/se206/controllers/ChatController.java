@@ -476,12 +476,15 @@ public class ChatController {
         askByStage(MISSION.WINDOW);
       } else {
         System.out.println("Fuel hint");
+        askByStage(MISSION.FUEL);
       }
     } else {
       if (GameState.missionList.contains(3)) {
         System.out.println("Controller hint");
+        askByStage(MISSION.CONTROLLER);
       } else {
         System.out.println("Thruster hint");
+        askByStage(MISSION.THRUSTER);
       }
     }
   }
