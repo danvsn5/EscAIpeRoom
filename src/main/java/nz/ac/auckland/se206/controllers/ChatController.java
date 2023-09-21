@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -34,18 +33,13 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label counter;
-  @FXML private Rectangle neutral;
-  @FXML private Rectangle thinking1;
-  @FXML private Rectangle thinking2;
-  @FXML private Circle speaking;
-  @FXML private Circle eye1;
-  @FXML private Circle eye2;
   @FXML private Circle loadingCircle;
   @FXML private Label listeningLabel;
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
   @FXML private ImageView fuel;
   @FXML private ImageView sand;
+  @FXML private ImageView treeListening;
   @FXML private ImageView treeTalking;
   @FXML private ImageView treeThinking;
 
@@ -66,13 +60,8 @@ public class ChatController {
 
     inputText.setDisable(true);
 
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-    treeThinking.setVisible(true);
+    // Start thinking
+    startThink();
 
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
@@ -105,16 +94,11 @@ public class ChatController {
     greetTask.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
+          // End thinking, start talking
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
-          treeThinking.setVisible(false);
+          startTalk();
         });
 
     Thread mainRiddleThread = new Thread(greetTask);
@@ -187,13 +171,8 @@ public class ChatController {
     }
     inputText.clear();
 
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-    listeningLabel.setVisible(false);
+    // Start listen
+    startListen();
 
     if (!GameState.isGreetingShown) {
       generateRiddle(message);
@@ -276,15 +255,11 @@ public class ChatController {
     typeCall.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          // Start talk
+          startTalk();
         });
 
     Thread typeInThread = new Thread(typeCall);
@@ -300,8 +275,7 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    speaking.setVisible(false);
-    neutral.setVisible(true);
+    startListen();
     if (SceneManager.getPrevious() == AppPanel.CHAT) {
       SceneManager.setPrevious(AppPanel.OUTSIDE);
     }
@@ -315,13 +289,7 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) {
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-    listeningLabel.setVisible(true);
-    speaking.setVisible(false);
-    neutral.setVisible(true);
+    startListen();
     treeThinking.setVisible(true);
   }
 
@@ -334,12 +302,8 @@ public class ChatController {
   public void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
     if (inputText.getText().trim().isEmpty()) {
-      eye1.setVisible(true);
-      eye2.setVisible(true);
-      thinking1.setVisible(false);
-      thinking2.setVisible(false);
+      startTalk();
       listeningLabel.setVisible(false);
-      treeThinking.setVisible(false);
     }
   }
 
@@ -358,15 +322,7 @@ public class ChatController {
   private void generateRiddle(String message) {
 
     inputText.setDisable(true);
-
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-    treeThinking.setVisible(true);
-
+    startThink();
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
@@ -424,16 +380,12 @@ public class ChatController {
     firstRiddleTask.setOnSucceeded(
         e2 -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
+          startTalk();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           treeThinking.setVisible(false);
+          treeTalking.setVisible(true);
         });
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
@@ -474,5 +426,23 @@ public class ChatController {
     sand.setDisable(true);
     GameState.inventory.add(2);
     SceneManager.showDialog("Info", "Sand collected", "A pile sand, ingredient of glass");
+  }
+
+  private void startListen() {
+    treeListening.setVisible(true);
+    treeTalking.setVisible(false);
+    treeThinking.setVisible(false);
+  }
+
+  private void startTalk() {
+    treeListening.setVisible(false);
+    treeTalking.setVisible(true);
+    treeThinking.setVisible(false);
+  }
+
+  private void startThink() {
+    treeListening.setVisible(false);
+    treeTalking.setVisible(false);
+    treeThinking.setVisible(true);
   }
 }
