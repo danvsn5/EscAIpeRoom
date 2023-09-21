@@ -52,6 +52,7 @@
             <Image url="@../images/oneRoot.png" />
          </image>
       </ImageView>
+
       <ImageView fx:id="rootTwo" fitHeight="726.0" fitWidth="1286.0" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/twoRoot.png" />
@@ -65,6 +66,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
+
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
       <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
          <font>

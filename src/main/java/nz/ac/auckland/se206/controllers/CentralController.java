@@ -26,6 +26,7 @@ public class CentralController {
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
+  @FXML private ImageView controller;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -62,10 +63,9 @@ public class CentralController {
       activateChest();
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else if (GameState.inventory.contains(2)) {
-      SceneManager.showDialog("Info", "Need to melt sand", "A huge hole appears on the window");
+      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     } else {
-      SceneManager.showDialog(
-          "Info", "Need to collect window", "A huge hole appears on the window");
+      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
 
@@ -82,8 +82,20 @@ public class CentralController {
       activateChest();
       SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
     } else {
+      SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
+    }
+  }
+
+  public void fixController() {
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 3) {
       SceneManager.showDialog(
-          "Info", "Need to collect fuel", "Screen shows the fuel tank is empty");
+          "Info", "Broken Control Panel", "The control panel for the ship is broken!");
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 3) {
+      SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
+      System.out.println("Controller Mission Complete");
+      GameState.isSecondMissionCompleted = true;
     }
   }
 
@@ -150,6 +162,14 @@ public class CentralController {
 
   public void deactivateWindowGlow() {
     window.setEffect(GameState.glowDim);
+  }
+
+  public void activateControllerGlow() {
+    controller.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateControllerGlow() {
+    controller.setEffect(GameState.glowDim);
   }
 
   public void goChat() {

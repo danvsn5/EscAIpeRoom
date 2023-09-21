@@ -127,6 +127,13 @@ public class ThrusterController {
     // color puzzle. Only once both steps have been completed can the player begin the thruster
     // mini-game
 
+    if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
+      SceneManager.showDialog(
+          "Info", "Thruster Repair", "You are missing the blueprint and the colour key!");
+    } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+      SceneManager.showDialog("Info", "Thruster Repair", "You are missing the colour key!");
+    }
+
     if (buttonActivationCounter == 0
         && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 2) {
 

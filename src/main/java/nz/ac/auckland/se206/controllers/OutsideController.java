@@ -47,7 +47,13 @@ public class OutsideController {
   }
 
   public void goThruster() {
-    App.setUi(AppPanel.THRUSTER);
+    if (GameState.missionList.contains(4)) {
+      App.setUi(AppPanel.THRUSTER);
+    }
+  }
+
+  public void thrusterError() {
+    SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
   }
 
   // public void collectSand() {
@@ -122,12 +128,22 @@ public class OutsideController {
   }
 
   public void activateThrusterGlow() {
-    thrusterImage.setEffect(GameState.glowBright);
-    thrusterWarning.setEffect(GameState.glowBright);
+    if (GameState.missionList.contains(4)) {
+      thrusterImage.setEffect(GameState.glowBright);
+    }
   }
 
   public void deactivateThrusterGlow() {
-    thrusterImage.setEffect(GameState.glowDim);
+    if (GameState.missionList.contains(4)) {
+      thrusterImage.setEffect(GameState.glowDim);
+    }
+  }
+
+  public void activateThrusterErrorGlow() {
+    thrusterWarning.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateThrusterErrorGlow() {
     thrusterWarning.setEffect(GameState.glowDim);
   }
 }
