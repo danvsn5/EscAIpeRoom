@@ -4,8 +4,11 @@ import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class ChestController {
@@ -18,6 +21,7 @@ public class ChestController {
   @FXML private Rectangle firstDigitHighlight;
   @FXML private Rectangle secondDigitHighlight;
   @FXML private Rectangle thirdDigitHighlight;
+  @FXML private ImageView progressButton;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
@@ -33,6 +37,11 @@ public class ChestController {
 
   public void goBack() {
     App.setUi(AppPanel.STORAGE);
+  }
+
+  public void goProgress() {
+    SceneManager.setPrevious(AppPanel.CHEST);
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void firstDigitUp() {
@@ -92,6 +101,14 @@ public class ChestController {
     firstDigitHighlight.setDisable(true);
     secondDigitHighlight.setDisable(true);
     thirdDigitHighlight.setDisable(true);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 
   public void firstDigitGlow() {

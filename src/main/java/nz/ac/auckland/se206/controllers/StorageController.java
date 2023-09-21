@@ -6,12 +6,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class StorageController {
 
   @FXML private Rectangle storageDoor;
   @FXML private Rectangle hiddenChest;
+  @FXML private ImageView progressButton;
   @FXML private ImageView storageDoorImage;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
@@ -19,6 +21,11 @@ public class StorageController {
 
   public void goInside() {
     App.setUi(AppPanel.MAIN_ROOM);
+  }
+
+  public void goProgress() {
+    SceneManager.setPrevious(AppPanel.STORAGE);
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void findChest() {
@@ -29,6 +36,14 @@ public class StorageController {
 
   public void goToChest() {
     App.setUi(AppPanel.CHEST);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 
   public void activateDoorGlow() {
