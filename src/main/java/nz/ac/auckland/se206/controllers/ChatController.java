@@ -452,13 +452,21 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
-    if (!GameState.firstRiddleSolved) {
+    if (GameState.difficulty == 2) {
+      SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
+    }
+    if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
         System.out.println("Window hint");
+      } else {
+        System.out.println("Fuel hint");
       }
-
     } else {
-
+      if (GameState.missionList.contains(3)) {
+        System.out.println("Controller hint");
+      } else {
+        System.out.println("Thruster hint");
+      }
     }
   }
 }
