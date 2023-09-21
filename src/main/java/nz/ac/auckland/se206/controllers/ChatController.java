@@ -33,6 +33,7 @@ public class ChatController {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
+  @FXML private Button hintButton;
   @FXML private Label counter;
   @FXML private Circle loadingCircle;
   @FXML private Label listeningLabel;
@@ -167,24 +168,27 @@ public class ChatController {
 
     inputText.setDisable(true);
 
-    loading.setProgress(0);
-    loading.setVisible(true);
-
-    loadingCircle.setFill(Color.LIGHTGRAY);
-
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
+      inputText.setDisable(false);
       return;
     }
     inputText.clear();
 
     // Start listen
+    loadingCircle.setFill(Color.LIGHTGRAY);
+    loading.setProgress(0);
+    loading.setVisible(true);
     startListen();
 
     if (!GameState.isGreetingShown) {
       generateRiddle(message);
       GameState.isGreetingShown = true;
       listeningLabel.setVisible(false);
+      if (GameState.getDifficulty() != 2) {
+        hintButton.setVisible(true);
+        hintButton.setDisable(false);
+      }
       return;
     }
 
@@ -458,6 +462,7 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+    // TODO: hint number exceed
     if (GameState.difficulty == 2) {
       SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
     }

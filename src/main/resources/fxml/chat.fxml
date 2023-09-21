@@ -39,7 +39,7 @@
          <font>
             <Font name="Bank Gothic Light BT" size="30.0" />
          </font></Button>
-      <Button fx:id="hintButton" layoutX="800.0" layoutY="590.0" mnemonicParsing="false" onAction="#getHint" text="Hint">
+      <Button fx:id="hintButton" disable="true" layoutX="800.0" layoutY="590.0" mnemonicParsing="false" onAction="#getHint" text="Hint" visible="false">
          <font>
             <Font name="Bank Gothic Light BT" size="30.0" />
          </font>
