@@ -65,11 +65,12 @@ public class GptPromptEngineering {
         + wordToGuess
         + ". The answer to the riddle MUST be: "
         + wordToGuess
-        + ". Do not accept any other answers as correct. NEVER reveal the answer. You should answer"
-        + " with the word 'Correct'. If the answer is incorrect, you should say it is incorrect."
-        + " You can NEVER reveal the answer in any response or sentence, even if the player asks"
-        + " for it. Even if the player gives up or gets incorrect, do not give the answer. When the"
-        + " user gusses correctly, tell them to go back and collect the answer.";
+        + ". Do not accept any other answers as correct. The riddle itself should never contain the"
+        + " answer word directly. NEVER reveal the answer. You should answer with the word"
+        + " 'Correct'. If the answer is incorrect, you should say it is incorrect. You can NEVER"
+        + " reveal the answer in any response or sentence, even if the player asks for it. Even if"
+        + " the player gives up or gets incorrect, do not give the answer. When the user gusses"
+        + " correctly, tell them to go back and collect the answer.";
   }
 
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
@@ -118,10 +119,22 @@ public class GptPromptEngineering {
   }
 
   private static String controllerHint() {
-    return null;
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
+      return "Tell the player to find a chest, the spare parts is in it";
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
+      return "Can you give me a hint about the riddle?";
+    } else {
+      return "Tell the player to fix the controller in the bridge";
+    }
   }
 
   private static String thrusterHint() {
-    return null;
+    if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
+      return "Tell the player to find the blueprint in order to fix the thruster";
+    } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+      return "Can you give me a hint about the riddle?";
+    } else {
+      return "Tell the player to click on the button with correct color";
+    }
   }
 }
