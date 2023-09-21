@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -26,6 +27,10 @@ public class CentralController {
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
+
+  @FXML private Rectangle guideWindow;
+  @FXML private Label guideLabel;
+  @FXML private Button okButton;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -141,5 +146,12 @@ public class CentralController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void okBtnPressed() {
+    guideWindow.setVisible(false);
+    guideLabel.setVisible(false);
+    okButton.setVisible(false);
+    okButton.setDisable(true);
   }
 }
