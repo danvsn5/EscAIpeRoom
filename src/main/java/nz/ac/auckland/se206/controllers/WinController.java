@@ -15,6 +15,7 @@ public class WinController {
 
   public void returnMenu() throws IOException {
     GameState.inventory.clear();
+    LaunchController.timer.setFinish();
     App.setUi(AppPanel.LAUNCH);
   }
 

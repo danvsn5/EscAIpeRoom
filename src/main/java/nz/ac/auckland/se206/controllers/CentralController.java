@@ -44,6 +44,7 @@ public class CentralController {
   }
 
   public void goWin() {
+    LaunchController.timer.setFinish();
     App.setUi(AppPanel.WIN);
   }
 

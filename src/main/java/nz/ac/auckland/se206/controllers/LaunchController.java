@@ -29,6 +29,7 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
+  public static TimeCounter timer;
   MissionInitialise missionInitialise = new MissionInitialise();
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
@@ -126,7 +127,7 @@ public class LaunchController {
         new Task<Void>() {
           @Override
           protected Void call() {
-            TimeCounter timer;
+
             if (GameState.timer == 0) {
               timer = new TimeCounter(2, 0);
             } else if (GameState.timer == 1) {
