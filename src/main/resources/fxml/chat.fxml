@@ -65,5 +65,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffd512" height="200.0" layoutX="1049.0" layoutY="199.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
   </children>
 </AnchorPane>

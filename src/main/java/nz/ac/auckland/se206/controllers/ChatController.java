@@ -48,6 +48,7 @@ public class ChatController {
 
   @FXML private Rectangle fuel;
   @FXML private Label fuelCollected;
+  @FXML private Rectangle sand;
 
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -224,10 +225,16 @@ public class ChatController {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
+                  fuel.setDisable(false);
+                  fuel.setVisible(true);
+                } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                  GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+                  System.out.println("Window riddle solved");
+                  sand.setDisable(false);
+                  sand.setVisible(true);
                 }
                 GameState.firstRiddleSolved = true;
-                fuel.setDisable(false);
-                fuel.setVisible(true);
                 System.out.println("first riddle solved");
                 // if (firstMission == 1) {
                 //   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
@@ -440,5 +447,22 @@ public class ChatController {
     fuel.setVisible(false);
     fuel.setDisable(true);
     fuelCollected.setVisible(true);
+  }
+
+  public void activateSandGlow() {
+    sand.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateSandGlow() {
+    sand.setEffect(GameState.glowDim);
+  }
+
+  public void collectSand() {
+    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+    System.out.println("Collected sand");
+    sand.setVisible(false);
+    sand.setDisable(true);
+    GameState.inventory.add(2);
   }
 }
