@@ -11,10 +11,9 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class StorageController {
 
-  @FXML private Rectangle storageDoor;
-  @FXML private Rectangle hiddenChest;
-  @FXML private ImageView progressButton;
-  @FXML private ImageView storageDoorImage;
+    @FXML private Rectangle hiddenChest;
+    @FXML private ImageView progressButton;
+    @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
   @FXML private Label counter;
@@ -47,11 +46,11 @@ public class StorageController {
   }
 
   public void activateDoorGlow() {
-    storageDoorImage.setEffect(GameState.glowBright);
+    storageDoor.setEffect(GameState.glowBright);
   }
 
   public void deactivateDoorGlow() {
-    storageDoorImage.setEffect(GameState.glowDim);
+    storageDoor.setEffect(GameState.glowDim);
   }
 
   public void activateHiddenChestGlow() {

@@ -10,25 +10,24 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CentralController {
-  @FXML private Polygon outsideDoor;
   @FXML private Polygon processMachine;
-  @FXML private Polygon storage;
   @FXML private Label counter;
+  @FXML private ImageView outsideDoor;
+  @FXML private ImageView storage;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView doorImage;
   @FXML private ImageView processMachineImage;
-  @FXML private ImageView storageImage;
 
   public void goOutside() {
-    SceneManager.setPrevious(AppPanel.OUTSIDE);
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CRASHLAND);
   }
 
   public void goProgress() {
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.PROGRESS);
   }
 
@@ -52,11 +51,11 @@ public class CentralController {
   }
 
   public void activateDoorGlow() {
-    doorImage.setEffect(GameState.glowBright);
+    outsideDoor.setEffect(GameState.glowBright);
   }
 
   public void deactivateDoorGlow() {
-    doorImage.setEffect(GameState.glowDim);
+    outsideDoor.setEffect(GameState.glowDim);
   }
 
   public void activateProcessMachineGlow() {
@@ -68,10 +67,10 @@ public class CentralController {
   }
 
   public void activateStorageGlow() {
-    storageImage.setEffect(GameState.glowBright);
+    storage.setEffect(GameState.glowBright);
   }
 
   public void deactivateStorageGlow() {
-    storageImage.setEffect(GameState.glowDim);
+    storage.setEffect(GameState.glowDim);
   }
 }

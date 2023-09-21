@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StorageController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
@@ -16,17 +15,11 @@
             <Image url="@../images/storage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="storageDoorImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/storageDoor.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="hiddenChestImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/hiddenChest.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="storageDoor" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="422.0" layoutX="526.0" layoutY="170.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="148.0" />
       <ImageView fx:id="chest" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="737.0" layoutY="522.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/chest.png" />
@@ -52,5 +45,10 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
+      <ImageView fx:id="storageDoor" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pointer.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
