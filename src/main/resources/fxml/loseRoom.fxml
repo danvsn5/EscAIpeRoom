@@ -30,12 +30,12 @@
             <Image url="@../images/threeRoot.png" />
          </image>
       </ImageView>
-      <Button fx:id="returnMenuButton" layoutX="58.0" layoutY="601.0" mnemonicParsing="false" onMouseClicked="#returnMenu" prefHeight="81.0" prefWidth="383.0" text="Return to Menu">
+      <Button fx:id="returnMenuButton" layoutX="26.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#returnMenu" prefHeight="81.0" prefWidth="383.0" text="Return to Menu">
          <font>
             <Font name="Bank Gothic Light BT" size="37.0" />
          </font>
       </Button>
-      <ImageView fitHeight="364.0" fitWidth="468.0" layoutX="829.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="364.0" fitWidth="468.0" layoutX="822.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/treeTalking.png" />
          </image>
@@ -46,5 +46,10 @@
             <Font name="Bank Gothic Light BT" size="90.0" />
          </font>
       </Label>
+      <Button fx:id="quitButton" layoutX="872.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#quitGame" prefHeight="81.0" prefWidth="383.0" text="Quit Game">
+         <font>
+            <Font name="Bank Gothic Light BT" size="37.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
