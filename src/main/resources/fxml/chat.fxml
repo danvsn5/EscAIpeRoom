@@ -79,7 +79,7 @@
             <Image url="@../images/treeTalking.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeThinking" fitWidth="450.0" layoutX="-164.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="treeThinking" fitWidth="450.0" layoutX="-164.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/treeThinking.png" />
          </image>

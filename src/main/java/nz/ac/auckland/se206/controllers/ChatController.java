@@ -42,12 +42,12 @@ public class ChatController {
   @FXML private Circle eye2;
   @FXML private Circle loadingCircle;
   @FXML private Label listeningLabel;
-
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
-
   @FXML private ImageView fuel;
   @FXML private ImageView sand;
+  @FXML private ImageView treeTalking;
+  @FXML private ImageView treeThinking;
 
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -72,6 +72,7 @@ public class ChatController {
     speaking.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
+    treeThinking.setVisible(true);
 
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
@@ -113,6 +114,7 @@ public class ChatController {
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          treeThinking.setVisible(false);
         });
 
     Thread mainRiddleThread = new Thread(greetTask);
@@ -320,6 +322,7 @@ public class ChatController {
     listeningLabel.setVisible(true);
     speaking.setVisible(false);
     neutral.setVisible(true);
+    treeThinking.setVisible(true);
   }
 
   /**
@@ -336,6 +339,7 @@ public class ChatController {
       thinking1.setVisible(false);
       thinking2.setVisible(false);
       listeningLabel.setVisible(false);
+      treeThinking.setVisible(false);
     }
   }
 
@@ -361,6 +365,7 @@ public class ChatController {
     speaking.setVisible(false);
     thinking1.setVisible(true);
     thinking2.setVisible(true);
+    treeThinking.setVisible(true);
 
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
@@ -428,6 +433,7 @@ public class ChatController {
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          treeThinking.setVisible(false);
         });
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
