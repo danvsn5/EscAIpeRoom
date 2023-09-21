@@ -103,7 +103,8 @@ public class GptPromptEngineering {
 
   private static String windowHint() {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return "Give the player a hint on the answer sand";
+      return "Give the player a hint on the riddle answer, do not say it directly and remember to"
+          + " say word 'Correct' if the player is right";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the rewward";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -116,9 +117,10 @@ public class GptPromptEngineering {
 
   private static String fuelHint() {
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-      return "Give the player a hint on the answer sky";
+      return "Give the player a hint on the riddle answer, do not say it directly and remember to"
+          + " say the word 'You are right' if the player is right";
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
-      return "Give the player a hint on the answer lake";
+      return "Tell the player to collect the fuel";
     } else {
       return "Tell the player that the player needs to refuel the space shuttle";
     }
