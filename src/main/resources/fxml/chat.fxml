@@ -59,12 +59,20 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <Rectangle fx:id="fuel" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#b51412" height="200.0" layoutX="1039.0" layoutY="189.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
+      <ImageView fx:id="fuel" fitHeight="150.0" fitWidth="200.0" layoutX="1074.0" layoutY="267.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/fueklTank.png" />
+         </image>
+      </ImageView>
       <Label fx:id="fuelCollected" layoutX="1064.0" layoutY="275.0" text="Fuel Collected!" visible="false">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffd512" height="200.0" layoutX="1049.0" layoutY="199.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
+      <ImageView fx:id="sand" fitHeight="150.0" fitWidth="200.0" layoutX="1074.0" layoutY="292.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/sand.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

@@ -46,9 +46,9 @@ public class ChatController {
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
 
-  @FXML private Rectangle fuel;
+  @FXML private ImageView fuel;
   @FXML private Label fuelCollected;
-  @FXML private Rectangle sand;
+  @FXML private ImageView sand;
 
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -432,11 +432,11 @@ public class ChatController {
   }
 
   public void fuelLight() {
-    fuel.setFill(Color.valueOf("d0615f"));
+    fuel.setEffect(GameState.glowBright);
   }
 
   public void fuelNeutral() {
-    fuel.setFill(Color.valueOf("b51412"));
+    fuel.setEffect(GameState.glowDim);
   }
 
   public void collectFuel() {
