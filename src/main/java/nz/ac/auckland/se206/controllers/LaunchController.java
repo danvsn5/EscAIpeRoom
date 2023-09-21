@@ -188,5 +188,7 @@ public class LaunchController {
     ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.STORAGE).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.THRUSTER).lookup("#counter")).setText(time);
   }
 }

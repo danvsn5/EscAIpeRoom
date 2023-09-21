@@ -17,7 +17,7 @@ public class ProgressController {
   @FXML private Rectangle bottomBarCenter;
   @FXML private Rectangle bottomBarBottom;
   @FXML private Label bottomLabel;
-
+  @FXML private Label counter;
   @FXML private Button returnButton;
 
   public void initialize() {
