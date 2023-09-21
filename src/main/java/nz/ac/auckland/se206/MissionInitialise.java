@@ -14,10 +14,10 @@ public class MissionInitialise {
   }
 
   public void initialiseSecondMission(int taskTwo) {
-    if (taskTwo == 2) {
+    if (taskTwo == 3) {
       // initialise chest mission
     } else {
-      // initialise thruster mission
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setVisible(true);
     }
   }
 }
