@@ -103,6 +103,11 @@
             <Image url="@../images/Bottom%20Ship.png" />
          </image>
       </ImageView>
+
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTreeTEMPORARY.png" />
+
       <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#ffba1f" height="148.0" layoutY="572.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <Label fx:id="isSandCollected" alignment="CENTER" layoutX="861.0" layoutY="612.0" prefHeight="47.0" prefWidth="258.0" text="Sand collected" visible="false">
          <font>
@@ -112,11 +117,13 @@
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
+
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
+
       <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />

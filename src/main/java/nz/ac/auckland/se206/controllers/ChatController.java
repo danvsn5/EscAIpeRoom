@@ -282,8 +282,7 @@ public class ChatController {
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     speaking.setVisible(false);
     neutral.setVisible(true);
-    SceneManager.setPrevious(AppPanel.OUTSIDE);
-    App.setUi(AppPanel.OUTSIDE);
+    App.setUi(SceneManager.getPrevious());
   }
 
   /**

@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
   @FXML private Rectangle outsideDoor;
@@ -47,6 +48,7 @@ public class CentralController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView chest;
+  @FXML private ImageView miniTree;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
@@ -202,6 +204,7 @@ public class CentralController {
   }
 
   public void goToChest() {
+    SceneManager.setPrevious(AppPanel.CHEST);
     App.setUi(AppPanel.CHEST);
   }
 
@@ -211,5 +214,19 @@ public class CentralController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }
