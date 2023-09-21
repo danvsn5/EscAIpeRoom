@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
@@ -11,6 +12,7 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class CentralController {
   @FXML private Polygon processMachine;
+  @FXML private Rectangle outsideDoorRectangle;
   @FXML private Label counter;
   @FXML private ImageView outsideDoor;
   @FXML private ImageView storage;
@@ -19,6 +21,7 @@ public class CentralController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private ImageView outsideDoorImage;
   @FXML private ImageView processMachineImage;
 
   public void goOutside() {
@@ -51,10 +54,12 @@ public class CentralController {
   }
 
   public void activateDoorGlow() {
+    outsideDoorImage.setEffect(GameState.glowBright);
     outsideDoor.setEffect(GameState.glowBright);
   }
 
   public void deactivateDoorGlow() {
+    outsideDoorImage.setEffect(GameState.glowDim);
     outsideDoor.setEffect(GameState.glowDim);
   }
 

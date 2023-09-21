@@ -11,7 +11,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 public class OutsideController {
-  @FXML private ImageView returnShip;
   @FXML private Circle sand;
   @FXML private Circle tech;
   @FXML private Circle wiseTree;
@@ -25,7 +24,6 @@ public class OutsideController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView thruster;
   @FXML private ImageView crashLand;
 
   public void initialize() {}
@@ -39,15 +37,6 @@ public class OutsideController {
 
   public void goCrashLand() {
     App.setUi(AppPanel.CRASHLAND);
-  }
-
-  public void outsideReturn() {
-    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
-    App.setUi(AppPanel.MAIN_ROOM);
-  }
-
-  public void goThruster() {
-    App.setUi(AppPanel.THRUSTER);
   }
 
   public void collectTech() {
