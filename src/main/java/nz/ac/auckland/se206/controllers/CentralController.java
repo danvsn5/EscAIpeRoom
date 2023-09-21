@@ -59,6 +59,9 @@ public class CentralController {
 
       System.out.println(GameState.isFirstMissionCompleted);
       System.out.println("WindowFixed");
+
+      window.setOpacity(0);
+      window.setDisable(true);
     }
   }
 

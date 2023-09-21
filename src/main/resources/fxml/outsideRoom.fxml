@@ -64,11 +64,6 @@
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
-      <Label fx:id="isSandCollected" alignment="CENTER" layoutX="861.0" layoutY="612.0" prefHeight="47.0" prefWidth="258.0" text="Sand collected" visible="false">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
@@ -77,11 +72,16 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="isSandCollected" alignment="CENTER" layoutX="861.0" layoutY="612.0" prefHeight="47.0" prefWidth="258.0" text="Sand collected" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#fff201" height="200.0" layoutX="888.0" layoutY="516.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#fff201" height="200.0" layoutX="888.0" layoutY="516.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="200.0" />
    </children>
 </Pane>
