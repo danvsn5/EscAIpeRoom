@@ -24,6 +24,7 @@ public class CentralController {
   @FXML private ImageView rootThree;
   @FXML private ImageView outsideDoorImage;
   @FXML private ImageView processMachineImage;
+  @FXML private ImageView window;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -100,5 +101,13 @@ public class CentralController {
 
   public void deactivateStorageGlow() {
     storage.setEffect(GameState.glowDim);
+  }
+
+  public void activateWindowGlow() {
+    window.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateWindowGlow() {
+    window.setEffect(GameState.glowDim);
   }
 }
