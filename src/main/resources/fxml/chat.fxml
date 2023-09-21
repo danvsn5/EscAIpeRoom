@@ -43,12 +43,6 @@
          <font>
             <Font name="Bank Gothic Light BT" size="30.0" />
          </font></Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
-      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
-         <font>
-            <Font name="Bank Gothic Light BT" size="79.0" />
-         </font>
-      </Label>
       <Label fx:id="listeningLabel" alignment="CENTER" layoutX="48.0" layoutY="432.0" prefHeight="44.0" prefWidth="190.0" text="Listening..." textAlignment="CENTER" visible="false">
          <font>
             <Font size="36.0" />
@@ -82,8 +76,6 @@
             <Image url="@../images/sand.png" />
          </image>
       </ImageView>
-      <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
-      <ProgressIndicator fx:id="loading" layoutX="99.0" layoutY="136.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
       <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
          <image>
             <Image url="@../images/initalRoot.png" />
@@ -104,7 +96,15 @@
             <Image url="@../images/threeRoot.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
+      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
+         <font>
+            <Font name="Bank Gothic Light BT" size="79.0" />
+         </font>
+      </Label>
     <TextArea fx:id="chatTextArea" layoutX="681.0" layoutY="46.0" prefHeight="473.0" prefWidth="542.0" wrapText="true" />
     <TextField fx:id="inputText" layoutX="684.0" layoutY="528.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="29.0" prefWidth="537.0" />
+      <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <ProgressIndicator fx:id="loading" layoutX="80.0" layoutY="121.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
   </children>
 </AnchorPane>
