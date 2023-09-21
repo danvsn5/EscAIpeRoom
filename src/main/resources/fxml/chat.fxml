@@ -74,5 +74,15 @@
             <Image url="@../images/sand.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="treeTalking" fitWidth="450.0" layoutX="-164.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/treeTalking.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="treeThinking" fitWidth="450.0" layoutX="-164.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/treeThinking.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>
