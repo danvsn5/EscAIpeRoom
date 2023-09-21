@@ -26,6 +26,7 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView thruster;
+  @FXML private ImageView crashLand;
 
   public void initialize() {}
 
@@ -34,6 +35,10 @@ public class OutsideController {
   // panel.
   public void goProgress() {
     App.setUi(AppPanel.PROGRESS);
+  }
+
+  public void goCrashLand() {
+    App.setUi(AppPanel.CRASHLAND);
   }
 
   public void outsideReturn() {
@@ -106,5 +111,13 @@ public class OutsideController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public void activateCrashLandGlow() {
+    crashLand.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateCrashLandGlow() {
+    crashLand.setEffect(GameState.glowDim);
   }
 }
