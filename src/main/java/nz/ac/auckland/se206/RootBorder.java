@@ -56,7 +56,7 @@ public class RootBorder {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.CHEST).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.PROGRESS).lookup(rootId).setVisible(true);
-    // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(true);
+    SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(true);
   }
 
   public static void rootRemoveHelper(String rootId) {
@@ -66,6 +66,6 @@ public class RootBorder {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.CHEST).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.PROGRESS).lookup(rootId).setVisible(false);
-    // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(false);
+    SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(false);
   }
 }

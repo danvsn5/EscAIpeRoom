@@ -42,6 +42,10 @@ public class ChatController {
   @FXML private ImageView treeListening;
   @FXML private ImageView treeTalking;
   @FXML private ImageView treeThinking;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
