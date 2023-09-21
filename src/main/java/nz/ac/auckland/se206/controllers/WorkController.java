@@ -84,8 +84,8 @@ public class WorkController {
   }
 
   public void workReturn() {
-    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
-    App.setUi(AppPanel.MAIN_ROOM);
+    SceneManager.setPrevious(AppPanel.WORK);
+    App.setUi(AppPanel.CRASHLAND);
   }
 
   // if sand is inside the inventory, furnace is able to be used to melt sand into glass (3)
