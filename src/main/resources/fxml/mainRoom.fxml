@@ -35,7 +35,7 @@
             <Image url="@../images/shipInside.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="outsideDoorImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="outsideDoorImage" fitHeight="720.0" fitWidth="1280.0" layoutX="4.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/shipDoor.png" />
          </image>
@@ -84,6 +84,11 @@
          </cursor>
       </ImageView>
       <ImageView fx:id="fuelTank" fitHeight="122.0" fitWidth="115.0" layoutX="232.0" layoutY="454.0" onMouseClicked="#addFuel" onMouseEntered="#activateFuelTankGlow" onMouseExited="#deactivateFuelTankGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/warning.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="controller" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#fixController" onMouseEntered="#activateControllerGlow" onMouseExited="#deactivateControllerGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/warning.png" />
          </image>

@@ -69,14 +69,14 @@ public class LaunchController {
     int task1 = rand.nextInt(2) + 1;
     int task2 = rand.nextInt(2) + 3;
 
-    GameState.missionManager.addMission(1);
-    GameState.missionManager.addMission(4);
-    GameState.progressBarGroup.setMissionOne(1);
-    GameState.progressBarGroup.setMissionTwo(4);
-    GameState.missionList.add(1);
-    GameState.missionList.add(4);
-    missionInitialise.initialiseFirstMission(1);
-    missionInitialise.initialiseSecondMission(4);
+    GameState.missionManager.addMission(task1);
+    GameState.missionManager.addMission(task2);
+    GameState.progressBarGroup.setMissionOne(task1);
+    GameState.progressBarGroup.setMissionTwo(task2);
+    GameState.missionList.add(task1);
+    GameState.missionList.add(task2);
+    missionInitialise.initialiseFirstMission(task1);
+    missionInitialise.initialiseSecondMission(task2);
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 
     App.setUi(AppPanel.MAIN_ROOM);
