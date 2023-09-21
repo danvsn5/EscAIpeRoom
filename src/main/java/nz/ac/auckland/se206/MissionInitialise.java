@@ -9,7 +9,7 @@ public class MissionInitialise {
       // initialise window mission
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#window").setVisible(true);
     } else {
-      // initialise fuel mission
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#fuelTank").setVisible(true);
     }
   }
 

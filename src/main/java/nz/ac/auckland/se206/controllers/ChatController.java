@@ -449,7 +449,7 @@ public class ChatController {
     System.out.println("Fuel Mission 2 Complete");
     fuel.setVisible(false);
     fuel.setDisable(true);
-    SceneManager.showDialog("Info", "Fuel collected", "A heavy fuel tank");
+    SceneManager.showDialog("Info", "Fuel Collected", "A heavy fuel tank");
   }
 
   public void activateSandGlow() {
@@ -467,6 +467,7 @@ public class ChatController {
     sand.setVisible(false);
     sand.setDisable(true);
     GameState.inventory.add(2);
-    SceneManager.showDialog("Info", "Sand collected", "A pile sand, ingredient of glass");
+    SceneManager.showDialog(
+        "Info", "Sand Collected", "A pile of sand which can be melted into glass");
   }
 }

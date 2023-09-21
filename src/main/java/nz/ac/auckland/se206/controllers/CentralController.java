@@ -62,10 +62,9 @@ public class CentralController {
       activateChest();
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else if (GameState.inventory.contains(2)) {
-      SceneManager.showDialog("Info", "Need to melt sand", "A huge hole appears on the window");
+      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     } else {
-      SceneManager.showDialog(
-          "Info", "Need to collect window", "A huge hole appears on the window");
+      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
 
