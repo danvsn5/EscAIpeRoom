@@ -82,6 +82,8 @@ public class CentralController {
       System.out.println(GameState.isFirstMissionCompleted);
       crackOne.setVisible(false);
       crackTwo.setVisible(false);
+
+      window.setDisable(true);
     }
   }
 

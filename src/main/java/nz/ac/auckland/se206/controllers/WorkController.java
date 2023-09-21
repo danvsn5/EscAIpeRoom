@@ -94,6 +94,7 @@ public class WorkController {
       GameState.inventory.add(3);
       System.out.println("Window Mission Complete");
       System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
+      furnace.setDisable(true);
     }
   }
 
