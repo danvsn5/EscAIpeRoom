@@ -10,6 +10,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class StorageController {
 
@@ -21,6 +22,7 @@ public class StorageController {
   @FXML private ImageView chest;
   @FXML private ImageView blueprint;
   @FXML private ImageView furnaceImage;
+  @FXML private ImageView miniTree;
   @FXML private Label counter;
 
   public void goInside() {
@@ -98,5 +100,20 @@ public class StorageController {
 
   public void deactivateFurnaceGlow() {
     furnaceImage.setEffect(GameState.glowDim);
+  }
+
+  public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    SceneManager.setPrevious(AppPanel.STORAGE);
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }

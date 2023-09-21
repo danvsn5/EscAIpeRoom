@@ -67,5 +67,13 @@
          </image>
       </ImageView>
       <Polygon fx:id="furnace" fill="DODGERBLUE" layoutX="582.0" layoutY="502.0" onMouseClicked="#meltSand" onMouseEntered="#activateFurnaceGlow" onMouseExited="#deactivateFurnaceGlow" opacity="0.0" points="18.66668701171875, 78.35833740234375, 167.99993896484375, 24.0, 167.99993896484375, -58.666656494140625, 159.99993896484375, -94.66665649414062, 135.33331298828125, -127.33334350585938, 86.66668701171875, -143.99996948242188, -35.3333740234375, -111.99996948242188, -80.66665649414062, -38.666656494140625, -69.3333740234375, 58.6666259765625" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTreeTEMPORARY.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

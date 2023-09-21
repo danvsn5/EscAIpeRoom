@@ -27,6 +27,7 @@ public class TreeAvatar {
       SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setEffect(glowBright);
+      SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setEffect(glowBright);
 
       treeState = 1;
     } else {
@@ -36,6 +37,7 @@ public class TreeAvatar {
       SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setEffect(glowDim);
+      SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setEffect(glowDim);
       treeState = 0;
     }
   }
@@ -47,6 +49,7 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
     SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
     SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setEffect(glowDim);
   }
 
   public static void setTreeVisible() {
@@ -56,5 +59,6 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.PROGRESS).lookup("#miniTree").setVisible(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setVisible(true);
   }
 }
