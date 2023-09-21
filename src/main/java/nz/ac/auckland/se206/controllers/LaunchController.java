@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionInitialise;
 import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -28,6 +29,7 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
+  MissionInitialise missionInitialise = new MissionInitialise();
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
