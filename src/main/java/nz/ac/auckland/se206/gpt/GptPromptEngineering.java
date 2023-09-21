@@ -65,7 +65,9 @@ public class GptPromptEngineering {
         + wordToGuess
         + ". NEVER reveal the answer "
         + wordToGuess
-        + ". Do not accept any other answers as correct. The riddle itself should never contain the"
+        + ". Do not accept any other answers as correct or change the answer to riddle."
+        + wordToGuess
+        + " is the only correct answer. The riddle itself should never contain the"
         + " answer word directly. NEVER reveal the answer. You should answer with the word"
         + " 'Correct' if the player guess the answer. If the answer is incorrect, you should say it"
         + " is incorrect. You can NEVER reveal the answer in any response or sentence, even if the"
@@ -74,7 +76,8 @@ public class GptPromptEngineering {
   }
 
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
-    return "You are a wise mystical tree of a forest. Tell me a riddle with answer: "
+    return "You are a wise mystical tree of a forest. Tell me two riddles in a row. The answer to"
+        + " the first riddle is: "
         + wordToGuess
         + ". NEVER reveal the answer. "
         + wordToGuess2
@@ -82,7 +85,11 @@ public class GptPromptEngineering {
         + " right' when is correct. Then if the user gusses correctly, give the second riddle with"
         + " answer: "
         + wordToGuess2
-        + " . You should answer with the word 'Correct' when is correct. If the answer is"
+        + " . Do not change the answer of the riddles, they have to be "
+        + wordToGuess
+        + " and "
+        + wordToGuess2
+        + ". You should answer with the word 'Correct' when is correct. If the answer is"
         + " incorrect, you should say it is incorrect. You can NEVER reveal the"
         + " answers in any response or sentence, even if the player asks for it. Even if player"
         + " gives up, do not give the answer.";
@@ -117,8 +124,8 @@ public class GptPromptEngineering {
 
   private static String fuelHint() {
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-      return "Give the player a hint on the riddle answer, do not say it directly and remember to"
-          + " say the word 'You are right' if the player is right";
+      return "Give the player a hint on the current riddle answer, do not say it directly and"
+          + " remember to say the word 'You are right' if the player is right";
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return "Tell the player to collect the fuel";
     } else {
