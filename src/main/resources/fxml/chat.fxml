@@ -20,17 +20,17 @@
             <Image url="@../images/chatBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeListening" fitHeight="723.0" fitWidth="862.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="treeListening" fitHeight="655.0" fitWidth="786.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/treeListening.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeTalking" fitHeight="723.0" fitWidth="862.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="treeTalking" fitHeight="655.0" fitWidth="786.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/treeTalking.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeThinking" fitHeight="723.0" fitWidth="862.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="treeThinking" fitHeight="655.0" fitWidth="786.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/treeThinking.png" />
          </image>
@@ -48,19 +48,15 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <ImageView fx:id="fuel" fitHeight="150.0" fitWidth="200.0" layoutX="1074.0" layoutY="267.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/fueklTank.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="fuelCollected" layoutX="1064.0" layoutY="275.0" text="Fuel Collected!" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="sand" fitHeight="150.0" fitWidth="200.0" layoutX="1074.0" layoutY="292.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="139.0" layoutX="492.0" layoutY="420.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="143.0" />
+      <ImageView fx:id="sand" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="489.0" layoutY="415.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/sand.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="fuel" disable="true" fitHeight="123.0" fitWidth="123.0" layoutX="502.0" layoutY="428.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/fueklTank.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
