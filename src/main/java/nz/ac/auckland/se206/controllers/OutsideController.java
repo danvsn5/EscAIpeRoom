@@ -31,6 +31,8 @@ public class OutsideController {
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
+  @FXML private Label fuelCharged;
+
   public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
@@ -52,8 +54,10 @@ public class OutsideController {
       System.out.println("Fuel Mission Complete");
       GameState.isFirstMissionCompleted = true;
       GameState.inventory.remove(GameState.inventory.indexOf(8));
+      fuelCharged.setVisible(true);
+    } else {
+      App.setUi(AppPanel.THRUSTER);
     }
-    App.setUi(AppPanel.THRUSTER);
   }
 
   public void collectTech() {
