@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
@@ -16,6 +17,7 @@ public class StorageController {
   @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
+  @FXML private ImageView blueprint;
   @FXML private Label counter;
 
   public void goInside() {
@@ -36,6 +38,13 @@ public class StorageController {
 
   public void goToChest() {
     App.setUi(AppPanel.CHEST);
+  }
+
+  public void collectBlueprint() {
+    blueprint.setVisible(false);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
+    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 
   public void activateProgressGlow() {
