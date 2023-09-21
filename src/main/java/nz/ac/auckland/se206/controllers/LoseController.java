@@ -13,7 +13,7 @@ public class LoseController {
 
   // upon losing, gamestate is reset and returns to launch menu when return button is pressed
   public void returnMenu() throws IOException {
-    GameState.missionManager.missionList.clear();
+    GameState.reset();
     App.setUi(AppPanel.LAUNCH);
   }
 }
