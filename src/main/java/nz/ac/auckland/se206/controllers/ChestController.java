@@ -140,6 +140,7 @@ public class ChestController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
+    SceneManager.setPrevious(AppPanel.CHEST);
   }
 
   public void miniTreeGlow() {
