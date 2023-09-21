@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
@@ -147,6 +148,7 @@ public class ThrusterController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
+    SceneManager.setPrevious(AppPanel.THRUSTER);
   }
 
   public void miniTreeGlow() {

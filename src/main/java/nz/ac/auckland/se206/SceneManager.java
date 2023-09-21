@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.util.HashMap;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 public class SceneManager {
 
@@ -9,7 +10,6 @@ public class SceneManager {
     LAUNCH,
     MAIN_ROOM,
     OUTSIDE,
-    WORK,
     CHAT,
     LOSE,
     WIN,
@@ -17,7 +17,6 @@ public class SceneManager {
     CHEST,
     PROGRESS,
     PREVIOUS,
-    CRASHLAND,
     STORAGE
   }
 
@@ -43,5 +42,20 @@ public class SceneManager {
 
   public static void clearMap() {
     sceneMap.clear();
+  }
+
+  /**
+   * Displays a dialog box with the given title, header text, and message.
+   *
+   * @param title the title of the dialog box
+   * @param headerText the header text of the dialog box
+   * @param message the message content of the dialog box
+   */
+  public static void showDialog(String title, String headerText, String message) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle(title);
+    alert.setHeaderText(headerText);
+    alert.setContentText(message);
+    alert.showAndWait();
   }
 }

@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -13,7 +12,6 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
-  @FXML private Polygon processMachine;
   @FXML private Rectangle outsideDoorRectangle;
   @FXML private Label counter;
   @FXML private ImageView outsideDoor;
@@ -24,14 +22,14 @@ public class CentralController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView outsideDoorImage;
-  @FXML private ImageView processMachineImage;
   @FXML private ImageView window;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
+  @FXML private ImageView fuelTank;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
-    App.setUi(AppPanel.CRASHLAND);
+    App.setUi(AppPanel.OUTSIDE);
   }
 
   public void goProgress() {
@@ -41,11 +39,6 @@ public class CentralController {
 
   public void goStorage() {
     App.setUi(AppPanel.STORAGE);
-  }
-
-  public void goWorkshop() {
-    SceneManager.setPrevious(AppPanel.WORK);
-    App.setUi(AppPanel.WORK);
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes
@@ -65,6 +58,32 @@ public class CentralController {
 
       window.setOpacity(0);
       window.setDisable(true);
+      activateBlueprint();
+      activateChest();
+      SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
+    } else if (GameState.inventory.contains(2)) {
+      SceneManager.showDialog("Info", "Need to melt sand", "A huge hole appears on the window");
+    } else {
+      SceneManager.showDialog(
+          "Info", "Need to collect window", "A huge hole appears on the window");
+    }
+  }
+
+  public void addFuel() {
+    if (GameState.inventory.contains(8)) {
+      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      System.out.println("Fuel Mission Complete");
+      GameState.isFirstMissionCompleted = true;
+      GameState.inventory.remove(GameState.inventory.indexOf(8));
+      fuelTank.setOpacity(0);
+      fuelTank.setDisable(true);
+      activateBlueprint();
+      activateChest();
+      SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
+    } else {
+      SceneManager.showDialog(
+          "Info", "Need to collect fuel", "Screen shows the fuel tank is empty");
     }
   }
 
@@ -73,6 +92,21 @@ public class CentralController {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
     }
+  }
+
+  private void activateBlueprint() {
+    if (!GameState.firstRiddleSolved || GameState.missionList.contains(3)) {
+      return;
+    }
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
+  }
+
+  private void activateChest() {
+    if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
+      return;
+    }
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#hiddenChest").setDisable(false);
   }
 
   public void activateProgressGlow() {
@@ -93,12 +127,12 @@ public class CentralController {
     outsideDoor.setEffect(GameState.glowDim);
   }
 
-  public void activateProcessMachineGlow() {
-    processMachineImage.setEffect(GameState.glowBright);
+  public void activateFuelTankGlow() {
+    fuelTank.setEffect(GameState.glowBright);
   }
 
-  public void deactivateProcessMachineGlow() {
-    processMachineImage.setEffect(GameState.glowDim);
+  public void deactivateFuelTankGlow() {
+    fuelTank.setEffect(GameState.glowDim);
   }
 
   public void activateStorageGlow() {
@@ -120,6 +154,7 @@ public class CentralController {
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CHAT);
   }
 

@@ -6,7 +6,7 @@ public class WindowMission extends Mission {
 
   public WindowMission() {
     currentStage = 0;
-    totalStage = 3;
+    totalStage = 4;
   }
 
   @Override
