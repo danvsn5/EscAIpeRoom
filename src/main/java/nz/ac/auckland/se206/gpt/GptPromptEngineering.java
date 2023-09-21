@@ -94,21 +94,37 @@ public class GptPromptEngineering {
         + " reveal the answer even if the player asks for it.";
   }
 
+  // public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
+  //   return "You are a wise mystical tree of a forest. Tell the user two riddles in a row. The"
+  //       + " answer to the first riddle is: "
+  //       + wordToGuess
+  //       + ". NEVER reveal the answer. Do not say the answer when giving the riddle. Do not
+  // change"
+  //       + " the answer to riddle. In any circumstance "
+  //       + wordToGuess
+  //       + " is the correct answer. You should answer the phrase 'You are right' when is"
+  //       + " correct and then give the second riddle with answer: "
+  //       + wordToGuess2
+  //       + ". You should answer with the word 'Correct' when is correct. Do not accept any other"
+  //       + " answers as correct or change the answer to riddle. If the answer is incorrect, you"
+  //       + " should say it is incorrect. You can NEVER reveal the answers in any response or"
+  //       + " sentence, even if the player asks for it. Even if player gives up, do not give the"
+  //       + " answer.";
+  // }
+
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
-    return "You are a wise mystical tree of a forest. Tell the user two riddles in a row. The"
-        + " answer to the first riddle is: "
+    return "You are a mean mystical tree of a forest. Tell the user a riddle with answer: "
         + wordToGuess
-        + ". NEVER reveal the answer. Do not say the answer when giving the riddle. Do not change"
-        + " the answer to riddle. In any circumstance "
-        + wordToGuess
-        + " is the correct answer. You should answer the phrase 'You are right' when is"
-        + " correct and then give the second riddle with answer: "
+        + ". You should answer with the word 'You are right' when is correct and give a second"
+        + " riddle with answer: "
         + wordToGuess2
-        + ". You should answer with the word 'Correct' when is correct. Do not accept any other"
-        + " answers as correct or change the answer to riddle. If the answer is incorrect, you"
-        + " should say it is incorrect. You can NEVER reveal the answers in any response or"
-        + " sentence, even if the player asks for it. Even if player gives up, do not give the"
-        + " answer.";
+        + ", if the player answers correct in second riddle you should answer with the word Correct"
+        + " when is correct, if the user answers other words that have the same meaning, it is also"
+        + " correct, if the user asks for hints, DO NOT give a gint and taunt on them, if users"
+        + " guess incorrectly, taunt on them, do not give hint. If player gives up, do not give the"
+        + " answer, taunt on them. If the user ask for other information, generate a reasonable"
+        + " response. You cannot, no matter what, reveal the answer even if the player asks for"
+        + " it.";
   }
 
   public static String getHint(MISSION missionType) {
@@ -127,7 +143,7 @@ public class GptPromptEngineering {
   private static String windowHint() {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return "Tell the player to think of tiny things, it is still a part of riddle and you should"
-                 + " answer word 'Correct' if the player is right";
+          + " answer word 'Correct' if the player is right";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the rewward";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
