@@ -46,6 +46,9 @@ public class ChatController {
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
 
+  @FXML private Rectangle fuel;
+  @FXML private Label fuelCollected;
+
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
@@ -218,6 +221,8 @@ public class ChatController {
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 GameState.firstRiddleSolved = true;
+                fuel.setDisable(false);
+                fuel.setVisible(true);
                 System.out.println("first riddle solved");
                 // if (firstMission == 1) {
                 //   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
@@ -229,7 +234,8 @@ public class ChatController {
                 //   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                 //   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                 //   System.out.println("Fuel Mission Complete");
-                //   System.out.println(GameState.missionManager.getMission(MISSION.FUEL).getStage());
+                //
+                // System.out.println(GameState.missionManager.getMission(MISSION.FUEL).getStage());
                 // }
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
@@ -412,5 +418,23 @@ public class ChatController {
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
     firstRiddleThread.start();
+  }
+
+  public void fuelLight() {
+    fuel.setFill(Color.valueOf("d0615f"));
+  }
+
+  public void fuelNeutral() {
+    fuel.setFill(Color.valueOf("b51412"));
+  }
+
+  public void collectFuel() {
+    GameState.inventory.add(8); // fuel collected
+    GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+    GameState.progressBarGroup.updateProgressTwo(MISSION.FUEL);
+    System.out.println("Fuel Mission 1 Complete");
+    fuel.setVisible(false);
+    fuel.setDisable(true);
+    fuelCollected.setVisible(true);
   }
 }

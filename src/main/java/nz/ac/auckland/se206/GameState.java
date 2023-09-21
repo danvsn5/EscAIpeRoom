@@ -26,6 +26,7 @@ public class GameState {
   // 5: new control panel
   // 6: fixed window
   // 7: fixed control panel
+  // 8: fuel collected
   // once the control panel and the window is fixed ie. 6 and 7 are in the inventory, the game is
   // won; click on the control panel to finish the game
   //
