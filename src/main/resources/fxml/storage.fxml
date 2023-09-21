@@ -52,7 +52,7 @@
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blueprint" fitHeight="87.0" fitWidth="99.0" layoutX="895.0" layoutY="330.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blueprint" disable="true" fitHeight="87.0" fitWidth="99.0" layoutX="936.0" layoutY="491.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/blueprint.png" />
          </image>
