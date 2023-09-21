@@ -30,15 +30,13 @@ public class CentralController {
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
-  @FXML private ImageView completeGame;
-  private int winFlashState = 0;
-  private Timeline winFlash =
+  @FXML private static ImageView completeGame;
+  private static int winFlashState = 0;
+  private static Timeline winFlash =
       new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
-    completeGame.setVisible(true);
-    beginWinFlash();
     App.setUi(AppPanel.OUTSIDE);
   }
 
@@ -110,6 +108,8 @@ public class CentralController {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       System.out.println("Controller Mission Complete");
+      completeGame.setVisible(true);
+      beginWinFlash();
       GameState.isSecondMissionCompleted = true;
     }
   }
@@ -210,12 +210,12 @@ public class CentralController {
     completeGame.setEffect(GameState.glowDim);
   }
 
-  public void beginWinFlash() {
+  public static void beginWinFlash() {
     winFlash.setCycleCount(Timeline.INDEFINITE);
     winFlash.play();
   }
 
-  public void flashWinButton() {
+  public static void flashWinButton() {
     if (winFlashState == 0) {
       completeGame.setEffect(GameState.glowBright);
       winFlashState = 1;
