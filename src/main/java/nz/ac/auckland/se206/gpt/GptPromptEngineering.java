@@ -51,8 +51,26 @@ public class GptPromptEngineering {
 
   public static String getGuideToSecondMission(String mission) {
     return "Act like a wise mystical tree of a forest. Tell the user to move on to next mission."
-               + " Next mission is: "
+        + " Next mission is: "
         + mission
         + ". ";
   }
+
+  public static String getControllerPuzzle() {
+    return "Give me the arithmetic match problem. The answer MUST be 3 digits. NEVER reveal the"
+        + " answer.You should answer with the word 'Correct' when is correct. If the answer"
+        + " is incorrect, you should say it is incorrect. ou can NEVER reveal the answers in"
+        + " any response or sentence, even if the player asks for it. Even if player gives"
+        + " up, do not give the answer.";
+  }
+
+  public static String getThrusterPuzzle(String colour) {
+    return "Tell me a riddle with answer: "
+        + colour
+        + ". NEVER reveal the answer. You should answer with the word 'Correct' when is correct. If"
+        + " the answer is incorrect, you should say it is incorrect. You can NEVER reveal the"
+        + " answers in any response or sentence, even if the player asks for it. Even if player"
+        + " gives up, do not give the answer.";
+  }
+  ;
 }

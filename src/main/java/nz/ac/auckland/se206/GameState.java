@@ -33,7 +33,7 @@ public class GameState {
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
 
-  private static int randomColorNumber;
+  public static int randomColorNumber;
 
   // create random number between 1 and 4
 

@@ -66,6 +66,8 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
 
+    chatTextArea.setEditable(false); // prevents user from editing the chat text area
+
     inputText.setDisable(true);
 
     eye1.setVisible(false);
@@ -95,7 +97,7 @@ public class ChatController {
                     .setMaxTokens(100));
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
-            chatTextArea.setText(gptMessage.getContent());
+            appendChatMessage(gptMessage);
 
             updateProgress(1, 1);
             return null;
@@ -136,16 +138,23 @@ public class ChatController {
                     .setTopP(0.7)
                     .setMaxTokens(100));
 
-            secondGuideMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
+            if (true) { // controller
+              secondGuideMessage =
+                  runGpt(
+                      new ChatMessage(
+                          "user",
+                          GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
+              System.out.println("second guide message");
+            }
 
             updateProgress(1, 1);
             return null;
           }
         };
 
-    loading.progressProperty().bind(greetTask.progressProperty());
+    loading.progressProperty().bind(guideTask.progressProperty());
 
-    greetTask.setOnSucceeded(
+    guideTask.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
           eye1.setVisible(true);
@@ -243,9 +252,14 @@ public class ChatController {
     thinking2.setVisible(true);
     listeningLabel.setVisible(false);
 
-    if (!GameState.isGreetingShown) {
-      generateRiddle(message);
+    if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
+      generateFirstRiddle(message);
       GameState.isGreetingShown = true;
+      listeningLabel.setVisible(false);
+      return;
+    } else if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
+      generatePuzzle(message);
+      GameState.isSecondGuideShown = true;
       listeningLabel.setVisible(false);
       return;
     }
@@ -261,6 +275,7 @@ public class ChatController {
             ChatMessage msg = new ChatMessage("user", message);
             appendChatMessage(msg);
             ChatMessage lastMsg = runGpt(msg);
+            appendChatMessage(lastMsg);
 
             System.out.println("lastMsg");
 
@@ -287,14 +302,6 @@ public class ChatController {
                 GameState.secondRiddleSolved = true;
               }
             }
-
-            // if (lastMsg.getRole().equals("assistant")
-            //     && lastMsg.getContent().startsWith("Correct")) {
-            //   GameState.inventory.add(-1);
-            // }
-            // if (GameState.inventory.contains(-2)) {
-            //   GameState.textToSpeech.speak(lastMsg.getContent());
-            // }
             updateProgress(1, 1);
             return null;
           }
@@ -375,7 +382,7 @@ public class ChatController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  private void generateRiddle(String message) {
+  private void generateFirstRiddle(String message) {
 
     inputText.setDisable(true);
 
@@ -426,13 +433,13 @@ public class ChatController {
                   runGpt(
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
-              chatTextArea.setText(gptMessage.getContent());
+              appendChatMessage(gptMessage);
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
                   runGpt(
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordFuel("sky", "lake")));
-              chatTextArea.setText(gptMessage.getContent());
+              appendChatMessage(gptMessage);
             }
 
             updateProgress(1, 1);
@@ -476,5 +483,88 @@ public class ChatController {
     fuel.setVisible(false);
     fuel.setDisable(true);
     fuelCollected.setVisible(true);
+  }
+
+  private void generatePuzzle(String message) {
+    inputText.setDisable(true);
+
+    eye1.setVisible(false);
+    eye2.setVisible(false);
+    neutral.setVisible(true);
+    speaking.setVisible(false);
+    thinking1.setVisible(true);
+    thinking2.setVisible(true);
+
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
+    System.out.println("generate puzzle");
+
+    Task<Void> secondPuzzleTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            ChatMessage msg = new ChatMessage("user", message);
+            appendChatMessage(msg);
+
+            setChatCompletionRequest(
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.5)
+                    .setTopP(0.2)
+                    .setMaxTokens(100));
+
+            System.out.println("first mission riddle");
+            if (firstMission == 3) { // if the first mission is the controller
+              gptMessage =
+                  runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
+              appendChatMessage(gptMessage);
+            } else if (firstMission == 4) { // if it is the thruster
+              if (GameState.randomColorNumber == 1) { // red
+                gptMessage =
+                    runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                appendChatMessage(gptMessage);
+              } else if (GameState.randomColorNumber == 2) { // blue
+                gptMessage =
+                    runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                appendChatMessage(gptMessage);
+              } else if (GameState.randomColorNumber == 3) { // green
+                gptMessage =
+                    runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
+                appendChatMessage(gptMessage);
+              } else if (GameState.randomColorNumber == 4) { // purple
+                gptMessage =
+                    runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                appendChatMessage(gptMessage);
+              }
+            }
+
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+
+    loading.progressProperty().bind(secondPuzzleTask.progressProperty());
+
+    secondPuzzleTask.setOnSucceeded(
+        e2 -> {
+          loading.progressProperty().unbind();
+          eye1.setVisible(true);
+          eye2.setVisible(true);
+          thinking1.setVisible(false);
+          thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+        });
+
+    Thread secondPuzzleThread = new Thread(secondPuzzleTask);
+    secondPuzzleThread.start();
   }
 }
