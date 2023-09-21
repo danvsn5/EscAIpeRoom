@@ -102,7 +102,7 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-    <TextArea fx:id="chatTextArea" layoutX="681.0" layoutY="46.0" prefHeight="473.0" prefWidth="542.0" wrapText="true" />
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="681.0" layoutY="46.0" prefHeight="473.0" prefWidth="542.0" wrapText="true" />
     <TextField fx:id="inputText" layoutX="684.0" layoutY="528.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="29.0" prefWidth="537.0" />
       <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <ProgressIndicator fx:id="loading" layoutX="80.0" layoutY="121.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
