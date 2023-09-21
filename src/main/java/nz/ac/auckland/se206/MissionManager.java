@@ -9,7 +9,7 @@ public class MissionManager {
     WINDOW,
     CONTROLLER,
     FUEL,
-    THRUSTER
+    THRUSTER;
   }
 
   private HashMap<MISSION, Mission> missionList = new HashMap<>();
@@ -70,5 +70,9 @@ public class MissionManager {
    */
   public Mission getMission(MISSION key) {
     return missionList.get(key);
+  }
+
+  public MISSION getMissionKey(int index) {
+    return keyList.get(index);
   }
 }

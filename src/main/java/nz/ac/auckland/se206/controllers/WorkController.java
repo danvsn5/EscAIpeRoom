@@ -91,7 +91,12 @@ public class WorkController {
   // if sand is inside the inventory, furnace is able to be used to melt sand into glass (3)
   public void meltSand() {
     if (GameState.inventory.contains(2)) {
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
       GameState.inventory.add(3);
+      System.out.println("Window Mission Complete");
+      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
+      furnace.setDisable(true);
     }
   }
 
