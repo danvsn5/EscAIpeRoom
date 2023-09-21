@@ -17,17 +17,11 @@
             <Image url="@../images/storage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hiddenChestImage" fitHeight="720.0" fitWidth="1280.0" layoutX="-156.0" layoutY="-64.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/hiddenChest.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="chest" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="371.0" layoutY="535.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="chest" disable="true" fitHeight="204.0" fitWidth="269.0" layoutX="900.0" layoutY="300.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/chest.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="hiddenChest" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="250.0" layoutX="73.0" layoutY="417.0" onMouseClicked="#findChest" onMouseEntered="#activateHiddenChestGlow" onMouseExited="#deactivateHiddenChestGlow" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="292.0" />
       <ImageView fx:id="storageDoor" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pointer.png" />

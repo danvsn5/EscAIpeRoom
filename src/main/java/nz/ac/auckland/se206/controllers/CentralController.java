@@ -106,7 +106,8 @@ public class CentralController {
     if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
       return;
     }
-    SceneManager.getPanel(AppPanel.STORAGE).lookup("#hiddenChest").setDisable(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
   }
 
   public void activateProgressGlow() {
