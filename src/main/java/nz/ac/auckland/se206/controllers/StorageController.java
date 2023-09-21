@@ -35,10 +35,10 @@ public class StorageController {
   }
 
   public void findChest() {
-    SceneManager.showDialog("Info", "Chest found", "A wooden chest with a digital lock on it");
     hiddenChest.setDisable(true);
     chest.setDisable(false);
     chest.setOpacity(1);
+    SceneManager.showDialog("Info", "Chest found", "A wooden chest with a digital lock on it");
   }
 
   public void goToChest() {

@@ -64,6 +64,7 @@ public class CentralController {
       window.setOpacity(0);
       window.setDisable(true);
       activateBlueprint();
+      activateChest();
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else if (GameState.inventory.contains(2)) {
       SceneManager.showDialog("Info", "Need to melt sand", "A huge hole appears on the window");
@@ -83,6 +84,7 @@ public class CentralController {
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
       activateBlueprint();
+      activateChest();
       SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
     } else {
       SceneManager.showDialog(
@@ -103,6 +105,13 @@ public class CentralController {
     }
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
+  }
+
+  private void activateChest() {
+    if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
+      return;
+    }
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#hiddenChest").setDisable(false);
   }
 
   public void activateProgressGlow() {
