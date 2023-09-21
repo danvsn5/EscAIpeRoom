@@ -27,9 +27,9 @@ public class OutsideController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView crashLand;
   @FXML private ImageView thruster;
   @FXML private ImageView miniTree;
+  @FXML private ImageView ship;
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
@@ -42,6 +42,10 @@ public class OutsideController {
   // panel.
   public void goProgress() {
     App.setUi(AppPanel.PROGRESS);
+  }
+
+  public void goToShip() {
+    App.setUi(AppPanel.MAIN_ROOM);
   }
 
   public void outsideReturn() {
@@ -60,10 +64,6 @@ public class OutsideController {
     } else {
       App.setUi(AppPanel.THRUSTER);
     }
-  }
-
-  public void goCrashLand() {
-    App.setUi(AppPanel.CRASHLAND);
   }
 
   public void collectTech() {
@@ -139,14 +139,6 @@ public class OutsideController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  public void activateCrashLandGlow() {
-    crashLand.setEffect(GameState.glowBright);
-  }
-
-  public void deactivateCrashLandGlow() {
-    crashLand.setEffect(GameState.glowDim);
-  }
-
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
@@ -160,5 +152,13 @@ public class OutsideController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void activateShipGlow() {
+    ship.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateShipGlow() {
+    ship.setEffect(GameState.glowDim);
   }
 }

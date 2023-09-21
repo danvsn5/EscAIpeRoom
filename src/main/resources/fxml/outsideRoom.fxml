@@ -59,11 +59,6 @@
             <Image url="@../images/twoRoot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="crashLand" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goCrashLand" onMouseEntered="#activateCrashLandGlow" onMouseExited="#deactivateCrashLandGlow" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pointer.png" />
-         </image>
-      </ImageView>
       <Label fx:id="fuelCharged" layoutX="54.0" layoutY="486.0" text="FUEL CHARGED" textFill="#54040b" visible="false">
          <font>
             <Font size="24.0" />
@@ -98,5 +93,10 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
+      <ImageView fx:id="ship" fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="560.0" onMouseClicked="#goToShip" onMouseEntered="#activateShipGlow" onMouseExited="#deactivateShipGlow" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../images/pointer.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
