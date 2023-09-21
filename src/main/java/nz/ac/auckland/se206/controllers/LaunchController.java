@@ -34,7 +34,6 @@ public class LaunchController {
     SceneManager.clearMap();
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
-    SceneManager.addPanel(AppPanel.WORK, loadFxml("workRoom"));
     SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
@@ -187,7 +186,6 @@ public class LaunchController {
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
-    ((Label) SceneManager.getPanel(AppPanel.WORK).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.STORAGE).lookup("#counter")).setText(time);
   }

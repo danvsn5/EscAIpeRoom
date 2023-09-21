@@ -41,11 +41,6 @@ public class CentralController {
     App.setUi(AppPanel.STORAGE);
   }
 
-  public void goWorkshop() {
-    SceneManager.setPrevious(AppPanel.WORK);
-    App.setUi(AppPanel.WORK);
-  }
-
   // if inventory contains the necessary items, fixes the window and control panel and changes
   // visibility of assets
   public void repairWindow() {

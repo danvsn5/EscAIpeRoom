@@ -10,7 +10,6 @@ public class SceneManager {
     LAUNCH,
     MAIN_ROOM,
     OUTSIDE,
-    WORK,
     CHAT,
     LOSE,
     WIN,

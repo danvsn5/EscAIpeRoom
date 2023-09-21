@@ -22,7 +22,6 @@ public class TreeAvatar {
   public static void flashTree() {
     if (treeState == 0) {
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setEffect(glowBright);
-      SceneManager.getPanel(AppPanel.WORK).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowBright);
@@ -31,7 +30,6 @@ public class TreeAvatar {
       treeState = 1;
     } else {
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setEffect(glowDim);
-      SceneManager.getPanel(AppPanel.WORK).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
@@ -42,7 +40,6 @@ public class TreeAvatar {
 
   public static void deactivateTreeGlow() {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setEffect(glowDim);
-    SceneManager.getPanel(AppPanel.WORK).lookup("#miniTree").setEffect(glowDim);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowDim);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
     SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
@@ -51,7 +48,6 @@ public class TreeAvatar {
 
   public static void setTreeVisible() {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setVisible(true);
-    SceneManager.getPanel(AppPanel.WORK).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setVisible(true);
