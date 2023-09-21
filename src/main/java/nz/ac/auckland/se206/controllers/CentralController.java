@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -13,7 +12,6 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
-  @FXML private Polygon processMachine;
   @FXML private Rectangle outsideDoorRectangle;
   @FXML private Label counter;
   @FXML private ImageView outsideDoor;
@@ -24,10 +22,10 @@ public class CentralController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView outsideDoorImage;
-  @FXML private ImageView processMachineImage;
   @FXML private ImageView window;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
+  @FXML private ImageView fuelTank;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -68,6 +66,8 @@ public class CentralController {
     }
   }
 
+  public void addFuel() {}
+
   // if window and control panel are fixed, then game can be completed by pressing red button
   public void goHome() {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
@@ -93,12 +93,12 @@ public class CentralController {
     outsideDoor.setEffect(GameState.glowDim);
   }
 
-  public void activateProcessMachineGlow() {
-    processMachineImage.setEffect(GameState.glowBright);
+  public void activateFuelTankGlow() {
+    fuelTank.setEffect(GameState.glowBright);
   }
 
-  public void deactivateProcessMachineGlow() {
-    processMachineImage.setEffect(GameState.glowDim);
+  public void deactivateFuelTankGlow() {
+    fuelTank.setEffect(GameState.glowDim);
   }
 
   public void activateStorageGlow() {

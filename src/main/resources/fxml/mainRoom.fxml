@@ -5,7 +5,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -41,11 +40,6 @@
             <Image url="@../images/shipDoor.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="processMachineImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/processMachine.png" />
-         </image>
-      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
       <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
          <font>
@@ -65,7 +59,6 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <Polygon fx:id="processMachine" fill="DODGERBLUE" layoutX="292.0" layoutY="537.0" onMouseEntered="#activateProcessMachineGlow" onMouseExited="#deactivateProcessMachineGlow" opacity="0.0" points="-152.44444274902344, 141.44439697265625, 83.11114501953125, 98.77777099609375, 83.11114501953125, -105.66665649414062, -152.44444274902344, -126.111083984375" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="storage" fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="560.0" onMouseClicked="#goStorage" onMouseEntered="#activateStorageGlow" onMouseExited="#deactivateStorageGlow" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
             <Image url="@../images/pointer.png" />
@@ -89,6 +82,11 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
+      </ImageView>
+      <ImageView fx:id="fuelTank" fitHeight="122.0" fitWidth="115.0" layoutX="183.0" layoutY="480.0" onMouseClicked="#addFuel" onMouseEntered="#activateFuelTankGlow" onMouseExited="#deactivateFuelTankGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning.png" />
+         </image>
       </ImageView>
    </children>
 </Pane>
