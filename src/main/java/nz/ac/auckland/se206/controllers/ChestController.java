@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -73,10 +74,13 @@ public class ChestController {
   public void check() {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == correctPassword) {
-      openChest();
+      GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.CONTROLLER);
+      SceneManager.showDialog(
+          "Info", "Control panel collected", "The spare part of the controller");
       disableLock();
     } else {
-      System.out.println("Wrong password");
+      SceneManager.showDialog("Info", "Wrong password", "Access denied");
     }
   }
 
@@ -90,11 +94,6 @@ public class ChestController {
       result = Integer.toString(correctPassword);
     }
     return result;
-  }
-
-  public void openChest() {
-    System.out.println("Chest opened");
-    System.out.println("Controll panel collected");
   }
 
   public void disableLock() {

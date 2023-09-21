@@ -63,6 +63,12 @@ public class CentralController {
 
       window.setOpacity(0);
       window.setDisable(true);
+      SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
+    } else if (GameState.inventory.contains(2)) {
+      SceneManager.showDialog("Info", "Need to melt sand", "A huge hole appears on the window");
+    } else {
+      SceneManager.showDialog(
+          "Info", "Need to collect window", "A huge hole appears on the window");
     }
   }
 
@@ -75,8 +81,10 @@ public class CentralController {
       GameState.inventory.remove(GameState.inventory.indexOf(8));
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
+      SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
     } else {
-      System.out.println("Fuel not collected");
+      SceneManager.showDialog(
+          "Info", "Need to collect fuel", "Screen shows the fuel tank is empty");
     }
   }
 
