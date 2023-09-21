@@ -33,6 +33,7 @@ public class OutsideController {
   // solved correctly, and sand is currently NOT in the inventory, then the sand appears inside the
   // panel.
   public void goProgress() {
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.PROGRESS);
   }
 
