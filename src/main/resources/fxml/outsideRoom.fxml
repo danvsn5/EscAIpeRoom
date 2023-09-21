@@ -12,9 +12,32 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutsideController">
    <children>
-      <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/threeRoot.png" />
+            <Image url="@../images/outside.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="treeImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tree.png" />
+         </image>
+      </ImageView>
+      <Ellipse fill="#00000080" layoutX="88.0" layoutY="486.0" radiusX="196.0" radiusY="136.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <ImageView fx:id="thrusterImage" fitHeight="434.0" fitWidth="514.0" layoutX="-171.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" rotate="22.4">
+         <image>
+            <Image url="@../images/thruster.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ship" fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="560.0" onMouseClicked="#goToShip" onMouseEntered="#activateShipGlow" onMouseExited="#deactivateShipGlow" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@../images/pointer.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="wiseTree" fill="DODGERBLUE" layoutX="503.0" layoutY="251.0" onMouseClicked="#openRiddle" onMouseEntered="#activateTreeGlow" onMouseExited="#deactivateTreeGlow" opacity="0.0" points="-112.33334350585938, -184.33334350585938, -62.333343505859375, -155.0, -62.333343505859375, -81.00001525878906, -8.999969482421875, -14.333328247070312, 98.33331298828125, 19.66668701171875, 90.33331298828125, 137.00003051757812, -8.999969482421875, 219.00003051757812, -126.99996948242188, 285.0, -87.66665649414062, 309.6666259765625, 380.33331298828125, 337.0, 487.0, 337.0, 623.0, 309.6666259765625, 637.0, 254.33334350585938, 507.6666259765625, 219.00003051757812, 405.66668701171875, 154.33334350585938, 380.33331298828125, 13.66668701171875, 474.3333740234375, -2.3333282470703125, 521.6666259765625, -33.66667175292969, 531.6666259765625, -120.33332824707031, 495.0, -184.33334350585938, 531.6666259765625, -201.0, 562.3333740234375, -251.0, -95.66665649414062, -251.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon fx:id="thruster" fill="#0084ff" layoutX="144.0" layoutY="335.0" onMouseClicked="#goThruster" onMouseEntered="#activateThrusterGlow" onMouseExited="#deactivateThrusterGlow" opacity="0.0" points="127.2890625, 171.00003051757812, 165.9556884765625, 87.66665649414062, 154.62237548828125, -13.0, 41.95567321777344, -140.3333282470703, -64.71094512939453, -183.6666717529297, -146.71095275878906, -169.6666717529297, -146.71095275878906, 212.33331298828125, -64.71094512939453, 225.0, 27.289047241210938, 212.33331298828125" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="thrusterWarning" fitHeight="126.0" fitWidth="151.0" layoutX="65.0" layoutY="334.0" onMouseClicked="#goThruster" onMouseEntered="#activateThrusterGlow" onMouseExited="#deactivateThrusterGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/warning.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
@@ -32,45 +55,16 @@
             <Image url="@../images/twoRoot.png" />
          </image>
       </ImageView>
-      <Label fx:id="fuelCharged" layoutX="54.0" layoutY="486.0" text="FUEL CHARGED" textFill="#54040b" visible="false">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/outside.png" />
+            <Image url="@../images/threeRoot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/tree.png" />
+            <Image url="@../images/miniTree.png" />
          </image>
-      </ImageView>
-      <Ellipse fill="#00000080" layoutX="88.0" layoutY="486.0" radiusX="196.0" radiusY="136.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <ImageView fx:id="thrusterImage" fitHeight="434.0" fitWidth="514.0" layoutX="-171.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" rotate="22.4">
-         <image>
-            <Image url="@../images/thruster.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="ship" fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="560.0" onMouseClicked="#goToShip" onMouseEntered="#activateShipGlow" onMouseExited="#deactivateShipGlow" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-         <image>
-            <Image url="@../images/pointer.png" />
-         </image>
-      </ImageView>
-      <Polygon fx:id="wiseTree" fill="DODGERBLUE" layoutX="503.0" layoutY="251.0" onMouseClicked="#openRiddle" onMouseEntered="#activateTreeGlow" onMouseExited="#deactivateTreeGlow" opacity="0.0" points="-112.33334350585938, -184.33334350585938, -62.333343505859375, -155.0, -62.333343505859375, -81.00001525878906, -8.999969482421875, -14.333328247070312, 98.33331298828125, 19.66668701171875, 90.33331298828125, 137.00003051757812, -8.999969482421875, 219.00003051757812, -126.99996948242188, 285.0, -87.66665649414062, 309.6666259765625, 380.33331298828125, 337.0, 487.0, 337.0, 623.0, 309.6666259765625, 637.0, 254.33334350585938, 507.6666259765625, 219.00003051757812, 405.66668701171875, 154.33334350585938, 380.33331298828125, 13.66668701171875, 474.3333740234375, -2.3333282470703125, 521.6666259765625, -33.66667175292969, 531.6666259765625, -120.33332824707031, 495.0, -184.33334350585938, 531.6666259765625, -201.0, 562.3333740234375, -251.0, -95.66665649414062, -251.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fx:id="thruster" fill="#0084ff" layoutX="144.0" layoutY="335.0" onMouseClicked="#goThruster" onMouseEntered="#activateThrusterGlow" onMouseExited="#deactivateThrusterGlow" opacity="0.0" points="127.2890625, 171.00003051757812, 165.9556884765625, 87.66665649414062, 154.62237548828125, -13.0, 41.95567321777344, -140.3333282470703, -64.71094512939453, -183.6666717529297, -146.71095275878906, -169.6666717529297, -146.71095275878906, 212.33331298828125, -64.71094512939453, 225.0, 27.289047241210938, 212.33331298828125" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fx:id="thrusterWarning" fitHeight="126.0" fitWidth="151.0" layoutX="65.0" layoutY="334.0" onMouseClicked="#goThruster" onMouseEntered="#activateThrusterGlow" onMouseExited="#deactivateThrusterGlow" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/warning.png" />
-         </image>
-      </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
-      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
-         <font>
-            <Font name="Bank Gothic Light BT" size="79.0" />
-         </font>
-      </Label>
+       </ImageView>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
@@ -85,10 +79,11 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/miniTreeTEMPORARY.png" />
-         </image>
-       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
+      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
+         <font>
+            <Font name="Bank Gothic Light BT" size="79.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

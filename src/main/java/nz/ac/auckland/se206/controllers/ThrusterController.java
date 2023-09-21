@@ -24,7 +24,12 @@ public class ThrusterController {
   @FXML private ImageView topLeftClicked;
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
   @FXML private Button returnOutside;
+  @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
   private int buttonActivationCounter = 0;
   public static int isGameActive = 0;
@@ -42,6 +47,11 @@ public class ThrusterController {
         isMissionComplete();
       }
     }
+  }
+
+  public void goProgress() {
+    SceneManager.setPrevious(AppPanel.THRUSTER);
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void setBottomLeftInvisible() {
@@ -157,5 +167,13 @@ public class ThrusterController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }
