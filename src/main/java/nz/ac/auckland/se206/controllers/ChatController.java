@@ -28,6 +28,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
+  private boolean isGenerating = false;
 
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
@@ -62,11 +63,9 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
 
-    inputText.setDisable(true);
-
     // Start thinking
+    inputText.setDisable(true);
     startThink();
-
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
@@ -77,7 +76,7 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
 
-            System.out.println("greet task");
+            isGenerating = true;
 
             chatCompletionRequest =
                 new ChatCompletionRequest()
@@ -97,8 +96,9 @@ public class ChatController {
 
     greetTask.setOnSucceeded(
         e -> {
-          loading.progressProperty().unbind();
+          isGenerating = false;
           // End thinking, start talking
+          loading.progressProperty().unbind();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
@@ -191,7 +191,7 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
 
-            System.out.println("type call");
+            isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
             appendChatMessage(msg);
@@ -258,11 +258,12 @@ public class ChatController {
 
     typeCall.setOnSucceeded(
         e -> {
+          isGenerating = false;
+          // Start talk
           loading.progressProperty().unbind();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
-          // Start talk
           startTalk();
         });
 
@@ -350,6 +351,7 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
+            isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
             appendChatMessage(msg);
@@ -383,6 +385,7 @@ public class ChatController {
 
     firstRiddleTask.setOnSucceeded(
         e2 -> {
+          isGenerating = false;
           loading.progressProperty().unbind();
           startTalk();
           loading.setVisible(false);
@@ -452,6 +455,10 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+    if (isGenerating) {
+      SceneManager.showDialog("Info", "Tree is thinking, don't interrupt it", "Quiet!");
+      return;
+    }
     if (GameState.difficulty == 2) {
       SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
     }
@@ -472,13 +479,19 @@ public class ChatController {
   }
 
   private void askByStage(MISSION missionType) {
+    // Start thinking
+    inputText.setDisable(true);
+    startThink();
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
     Task<Void> hintTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
 
-            System.out.println("hint task");
+            isGenerating = true;
 
             chatCompletionRequest =
                 new ChatCompletionRequest()
@@ -496,8 +509,9 @@ public class ChatController {
 
     hintTask.setOnSucceeded(
         e -> {
-          loading.progressProperty().unbind();
+          isGenerating = false;
           // End thinking, start talking
+          loading.progressProperty().unbind();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
