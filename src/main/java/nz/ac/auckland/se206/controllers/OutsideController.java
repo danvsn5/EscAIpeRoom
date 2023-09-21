@@ -54,7 +54,7 @@ public class OutsideController {
   }
 
   public void thrusterError() {
-    if (ThrusterController.buttonActivationCounter == 4) {
+    if (ThrusterController.buttonActivationCounter != 4) {
       SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
     } else {
       SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
