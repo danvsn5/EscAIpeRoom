@@ -8,8 +8,10 @@ public class MissionInitialise {
     if (taskOne == 1) {
       // initialise window mission
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#window").setVisible(true);
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#window").setDisable(false);
     } else {
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#fuelTank").setVisible(true);
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#fuelTank").setDisable(false);
     }
   }
 
@@ -17,9 +19,10 @@ public class MissionInitialise {
     if (taskTwo == 3) {
       // initialise chest mission
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controller").setVisible(true);
-
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controller").setDisable(false);
     } else {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setDisable(false);
     }
   }
 }
