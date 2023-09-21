@@ -62,5 +62,10 @@
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="workRoom" fitHeight="150.0" fitWidth="200.0" layoutX="1158.0" layoutY="542.0" onMouseClicked="#goWorkRoom" onMouseEntered="#activateWorkRoomGlow" onMouseExited="#deactivateWorkRoomGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pointer.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

@@ -14,6 +14,7 @@ public class CrashLandController {
   @FXML private Polygon shuttlePolygon;
   @FXML private ImageView shuttle;
   @FXML private ImageView forest;
+  @FXML private ImageView workRoom;
   @FXML private ImageView progressButton;
   @FXML private ImageView thrusterImage;
   @FXML private ImageView shuttleImage;
@@ -34,6 +35,10 @@ public class CrashLandController {
   public void goProgress() {
     SceneManager.setPrevious(AppPanel.CRASHLAND);
     App.setUi(AppPanel.PROGRESS);
+  }
+
+  public void goWorkRoom() {
+    App.setUi(AppPanel.WORK);
   }
 
   public void activateProgressGlow() {
@@ -68,5 +73,13 @@ public class CrashLandController {
 
   public void deactivateThrusterGlow() {
     thrusterImage.setEffect(GameState.glowDim);
+  }
+
+  public void activateWorkRoomGlow() {
+    workRoom.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateWorkRoomGlow() {
+    workRoom.setEffect(GameState.glowDim);
   }
 }
