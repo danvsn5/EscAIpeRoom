@@ -62,6 +62,7 @@ public class OutsideController {
       GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
       System.out.println("Thruster Mission Complete");
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
+      thrusterWarning.setVisible(false);
       CentralController.beginWinFlash();
       CentralController.flashWinButton();
     }

@@ -154,11 +154,7 @@ public class ThrusterController {
   }
 
   public void isMissionComplete() {
-    if (buttonActivationCounter == 4) {
-      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
-      System.out.println("Thruster Mission Complete");
-    }
+    if (buttonActivationCounter == 4) {}
   }
 
   public void goChat() {
