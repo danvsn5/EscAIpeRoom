@@ -48,4 +48,11 @@ public class GptPromptEngineering {
         + " answers in any response or sentence, even if the player asks for it. Even if player"
         + " gives up, do not give the answer.";
   }
+
+  public static String getGuideToSecondMission(String mission) {
+    return "Act like a wise mystical tree of a forest. Tell the user to move on to next mission."
+               + " Next mission is: "
+        + mission
+        + ". ";
+  }
 }

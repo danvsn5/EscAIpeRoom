@@ -53,6 +53,8 @@ public class ChatController {
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
 
+  public static ChatMessage secondGuideMessage;
+
   private int firstMission;
   private int secondMission;
 
@@ -85,14 +87,15 @@ public class ChatController {
 
             System.out.println("greet task");
 
-            chatCompletionRequest =
+            setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(100);
+                    .setMaxTokens(100));
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
+            chatTextArea.setText(gptMessage.getContent());
 
             updateProgress(1, 1);
             return null;
@@ -117,6 +120,55 @@ public class ChatController {
 
     Thread mainRiddleThread = new Thread(greetTask);
     mainRiddleThread.start();
+
+    Task<Void> guideTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            System.out.println("greet task");
+
+            setChatCompletionRequest(
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.7)
+                    .setTopP(0.7)
+                    .setMaxTokens(100));
+
+            secondGuideMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
+
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+
+    loading.progressProperty().bind(greetTask.progressProperty());
+
+    greetTask.setOnSucceeded(
+        e -> {
+          loading.progressProperty().unbind();
+          eye1.setVisible(true);
+          eye2.setVisible(true);
+          thinking1.setVisible(false);
+          thinking2.setVisible(false);
+          neutral.setVisible(false);
+          speaking.setVisible(true);
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+        });
+
+    Thread guideThread = new Thread(guideTask);
+    guideThread.start();
+  }
+
+  public ChatCompletionRequest getChatCompletionRequest() {
+    return chatCompletionRequest;
+  }
+
+  public void setChatCompletionRequest(ChatCompletionRequest chatCompletionRequest) {
+    this.chatCompletionRequest = chatCompletionRequest;
   }
 
   public void goProgress() {
@@ -140,12 +192,11 @@ public class ChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    chatCompletionRequest.addMessage(msg);
+    getChatCompletionRequest().addMessage(msg);
     try {
-      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+      ChatCompletionResult chatCompletionResult = getChatCompletionRequest().execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
+      getChatCompletionRequest().addMessage(result.getChatMessage());
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       ChatMessage error = new ChatMessage(null, null);
@@ -324,10 +375,6 @@ public class ChatController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  public ChatMessage invokeRunGpt(ChatMessage msg) throws ApiProxyException {
-    return runGpt(msg);
-  }
-
   private void generateRiddle(String message) {
 
     inputText.setDisable(true);
@@ -366,12 +413,12 @@ public class ChatController {
             ChatMessage msg = new ChatMessage("user", message);
             appendChatMessage(msg);
 
-            chatCompletionRequest =
+            setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.5)
                     .setTopP(0.2)
-                    .setMaxTokens(100);
+                    .setMaxTokens(100));
 
             System.out.println("first mission riddle");
             if (firstMission == 1) { // if the first mission is the window
@@ -379,11 +426,13 @@ public class ChatController {
                   runGpt(
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
+              chatTextArea.setText(gptMessage.getContent());
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
                   runGpt(
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordFuel("sky", "lake")));
+              chatTextArea.setText(gptMessage.getContent());
             }
 
             updateProgress(1, 1);
@@ -427,9 +476,5 @@ public class ChatController {
     fuel.setVisible(false);
     fuel.setDisable(true);
     fuelCollected.setVisible(true);
-  }
-
-  public static void guideToSecondMission() {
-   System.out.println("guide to second mission");
   }
 }
