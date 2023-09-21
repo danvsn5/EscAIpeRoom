@@ -1,9 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -28,9 +31,14 @@ public class CentralController {
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
   @FXML private ImageView completeGame;
+  private int winFlashState = 0;
+  private Timeline winFlash =
+      new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
+    completeGame.setVisible(true);
+    beginWinFlash();
     App.setUi(AppPanel.OUTSIDE);
   }
 
@@ -45,6 +53,7 @@ public class CentralController {
 
   public void goWin() {
     LaunchController.timer.setFinish();
+    winFlash.stop();
     App.setUi(AppPanel.WIN);
   }
 
@@ -199,5 +208,20 @@ public class CentralController {
 
   public void deactivateWinGlow() {
     completeGame.setEffect(GameState.glowDim);
+  }
+
+  public void beginWinFlash() {
+    winFlash.setCycleCount(Timeline.INDEFINITE);
+    winFlash.play();
+  }
+
+  public void flashWinButton() {
+    if (winFlashState == 0) {
+      completeGame.setEffect(GameState.glowBright);
+      winFlashState = 1;
+    } else {
+      completeGame.setEffect(GameState.glowDim);
+      winFlashState = 0;
+    }
   }
 }

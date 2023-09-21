@@ -94,7 +94,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="completeGame" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#goWin" onMouseEntered="#activateWinGlow" onMouseExited="#deactivateWinGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="completeGame" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#goWin" onMouseEntered="#activateWinGlow" onMouseExited="#deactivateWinGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/winNotification.png" />
          </image>
