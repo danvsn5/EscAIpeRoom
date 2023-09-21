@@ -28,6 +28,7 @@ public class OutsideController {
   @FXML private ImageView treeImage;
   @FXML private ImageView ship;
   @FXML private ImageView thrusterImage;
+  @FXML private ImageView thrusterWarning;
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
@@ -145,9 +146,11 @@ public class OutsideController {
 
   public void activateThrusterGlow() {
     thrusterImage.setEffect(GameState.glowBright);
+    thrusterWarning.setEffect(GameState.glowBright);
   }
 
   public void deactivateThrusterGlow() {
     thrusterImage.setEffect(GameState.glowDim);
+    thrusterWarning.setEffect(GameState.glowDim);
   }
 }
