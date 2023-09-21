@@ -61,38 +61,36 @@ public class GptPromptEngineering {
   }
 
   public static String getRiddleWithGivenWordWindow(String wordToGuess) {
-    return "You are a wise mystical tree of a forest. Tell me a riddle with answer: "
+    return "You are a wise mystical tree of a forest. Tell the user a riddle with answer: "
         + wordToGuess
         + ". NEVER reveal the answer "
         + wordToGuess
-        + ". Do not accept any other answers as correct or change the answer to riddle."
+        + "Do not change the answer to riddle, in any circumstance "
         + wordToGuess
-        + " is the only correct answer. The riddle itself should never contain the"
-        + " answer word directly. NEVER reveal the answer. You should answer with the word"
-        + " 'Correct' if the player guess the answer. If the answer is incorrect, you should say it"
-        + " is incorrect. You can NEVER reveal the answer in any response or sentence, even if the"
-        + " player asks for it. Even if the player gives up or gets incorrect, do not give the"
-        + " answer. When the user gusses correctly, tell them to go back and collect the answer.";
+        + " is the correct answer. The riddle itself should never contain the answer word directly."
+        + " NEVER reveal the answer. You should answer with the word 'Correct' if the player guess"
+        + " the answer. If the answer is incorrect, you should say it is incorrect. You can NEVER"
+        + " reveal the answer in any response or sentence, even if the player asks for it. Even if"
+        + " the player gives up or gets incorrect, do not give the answer. Do not give a hint even"
+        + " if the player asks for it, unless you hear word 'SYSTEM.HINT'. When the user gusses"
+        + " correctly, tell them to go back and collect the answer.";
   }
 
   public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
-    return "You are a wise mystical tree of a forest. Tell me two riddles in a row. The answer to"
-        + " the first riddle is: "
+    return "You are a wise mystical tree of a forest. Tell the user two riddles in a row. The"
+        + " answer to the first riddle is: "
         + wordToGuess
-        + ". NEVER reveal the answer. "
-        + wordToGuess2
-        + " is not an answer for the first riddle. You should answer with the phrase 'You are"
-        + " right' when is correct. Then if the user gusses correctly, give the second riddle with"
-        + " answer: "
-        + wordToGuess2
-        + " . Do not change the answer of the riddles, they have to be "
+        + ". NEVER reveal the answer. Do not say the answer when giving the riddle. Do not change"
+        + " the answer to riddle. In any circumstance "
         + wordToGuess
-        + " and "
+        + " is the correct answer. You should answer the phrase 'You are right' when is"
+        + " correct and then give the second riddle with answer: "
         + wordToGuess2
-        + ". You should answer with the word 'Correct' when is correct. If the answer is"
-        + " incorrect, you should say it is incorrect. You can NEVER reveal the"
-        + " answers in any response or sentence, even if the player asks for it. Even if player"
-        + " gives up, do not give the answer.";
+        + ". You should answer with the word 'Correct' when is correct. Do not accept any other"
+        + " answers as correct or change the answer to riddle. If the answer is incorrect, you"
+        + " should say it is incorrect. You can NEVER reveal the answers in any response or"
+        + " sentence, even if the player asks for it. Even if player gives up, do not give the"
+        + " answer.";
   }
 
   public static String getHint(MISSION missionType) {
@@ -110,8 +108,8 @@ public class GptPromptEngineering {
 
   private static String windowHint() {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return "Give the player a hint on the riddle answer, do not say it directly and remember to"
-          + " say word 'Correct' if the player is right";
+      return "SYSTEM.HINT. Give the player a hint on the riddle answer, do not say it directly and"
+          + " remember to say word 'Correct' if the player is right";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the rewward";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
