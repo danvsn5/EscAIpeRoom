@@ -47,7 +47,6 @@ public class ChatController {
   @FXML private ImageView progressButton;
 
   @FXML private ImageView fuel;
-  @FXML private Label fuelCollected;
   @FXML private ImageView sand;
 
   // private ChatMessage thinkingMessage =
@@ -121,6 +120,7 @@ public class ChatController {
   }
 
   public void goProgress() {
+    SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.PROGRESS);
   }
 
@@ -300,6 +300,9 @@ public class ChatController {
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     speaking.setVisible(false);
     neutral.setVisible(true);
+    if (SceneManager.getPrevious() == AppPanel.CHAT) {
+      SceneManager.setPrevious(AppPanel.OUTSIDE);
+    }
     App.setUi(SceneManager.getPrevious());
   }
 
@@ -446,7 +449,6 @@ public class ChatController {
     System.out.println("Fuel Mission 2 Complete");
     fuel.setVisible(false);
     fuel.setDisable(true);
-    fuelCollected.setVisible(true);
     SceneManager.showDialog("Info", "Fuel collected", "A heavy fuel tank");
   }
 
