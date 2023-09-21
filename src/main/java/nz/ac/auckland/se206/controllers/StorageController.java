@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -13,11 +14,13 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 public class StorageController {
 
   @FXML private Rectangle hiddenChest;
+  @FXML private Polygon furnace;
   @FXML private ImageView progressButton;
   @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
   @FXML private ImageView blueprint;
+  @FXML private ImageView furnaceImage;
   @FXML private Label counter;
 
   public void goInside() {
@@ -45,6 +48,16 @@ public class StorageController {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+  }
+
+  public void meltSand() {
+    if (GameState.inventory.contains(2)) {
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      GameState.inventory.add(3);
+      furnace.setDisable(true);
+      SceneManager.showDialog("Info", "Glass collected", "A well-made window");
+    }
   }
 
   public void activateProgressGlow() {
@@ -77,5 +90,13 @@ public class StorageController {
 
   public void deactivateChestGlow() {
     chest.setEffect(GameState.glowDim);
+  }
+
+  public void activateFurnaceGlow() {
+    furnaceImage.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateFurnaceGlow() {
+    furnaceImage.setEffect(GameState.glowDim);
   }
 }
