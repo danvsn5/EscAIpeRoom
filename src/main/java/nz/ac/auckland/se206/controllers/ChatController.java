@@ -458,6 +458,7 @@ public class ChatController {
     if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
         System.out.println("Window hint");
+        askByStage(MISSION.WINDOW);
       } else {
         System.out.println("Fuel hint");
       }
@@ -468,5 +469,31 @@ public class ChatController {
         System.out.println("Thruster hint");
       }
     }
+  }
+
+  private void askByStage(MISSION missionType) {
+    Task<Void> hintTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            System.out.println("hint task");
+
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.7)
+                    .setTopP(0.7)
+                    .setMaxTokens(100);
+
+            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
+
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+    Thread hintThread = new Thread(hintTask);
+    hintThread.start();
   }
 }

@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.gpt;
 
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
+
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
@@ -82,5 +85,38 @@ public class GptPromptEngineering {
         + " incorrect, you should say it is incorrect. You can NEVER reveal the"
         + " answers in any response or sentence, even if the player asks for it. Even if player"
         + " gives up, do not give the answer.";
+  }
+
+  public static String getHint(MISSION missionType) {
+    switch (missionType) {
+      case WINDOW:
+        return windowHint();
+      case FUEL:
+        return fuelHint();
+      case CONTROLLER:
+        return controllerHint();
+      default:
+        return thrusterHint();
+    }
+  }
+
+  private static String windowHint() {
+    if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
+      return "Can you give me a hint about the riddle?";
+    }
+
+    return null;
+  }
+
+  private static String fuelHint() {
+    return null;
+  }
+
+  private static String controllerHint() {
+    return null;
+  }
+
+  private static String thrusterHint() {
+    return null;
   }
 }
