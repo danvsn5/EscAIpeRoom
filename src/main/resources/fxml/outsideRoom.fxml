@@ -52,8 +52,10 @@
       </ImageView>
 
       <Polygon fx:id="wiseTree" fill="DODGERBLUE" layoutX="503.0" layoutY="251.0" onMouseClicked="#openRiddle" onMouseEntered="#activateTreeGlow" onMouseExited="#deactivateTreeGlow" opacity="0.0" points="-112.33334350585938, -184.33334350585938, -62.333343505859375, -155.0, -62.333343505859375, -81.00001525878906, -8.999969482421875, -14.333328247070312, 98.33331298828125, 19.66668701171875, 90.33331298828125, 137.00003051757812, -8.999969482421875, 219.00003051757812, -126.99996948242188, 285.0, -87.66665649414062, 309.6666259765625, 380.33331298828125, 337.0, 487.0, 337.0, 623.0, 309.6666259765625, 637.0, 254.33334350585938, 507.6666259765625, 219.00003051757812, 405.66668701171875, 154.33334350585938, 380.33331298828125, 13.66668701171875, 474.3333740234375, -2.3333282470703125, 521.6666259765625, -33.66667175292969, 531.6666259765625, -120.33332824707031, 495.0, -184.33334350585938, 531.6666259765625, -201.0, 562.3333740234375, -251.0, -95.66665649414062, -251.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fx:id="thrusterWarning" disable="true" fitHeight="126.0" fitWidth="151.0" layoutX="65.0" layoutY="334.0" onMouseClicked="#thrusterError" onMouseEntered="#activateThrusterErrorGlow" onMouseExited="#deactivateThrusterErrorGlow" pickOnBounds="true" preserveRatio="true" visible="false">
-      </ImageView>
+      <ImageView fx:id="thrusterWarning" disable="true" fitHeight="126.0" fitWidth="151.0" layoutX="75.0" layoutY="186.0" onMouseClicked="#thrusterError" onMouseEntered="#activateThrusterErrorGlow" onMouseExited="#deactivateThrusterErrorGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/warning.png" />
+         </image></ImageView>
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
 
          <image>
