@@ -1,11 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -28,7 +28,7 @@ public class OutsideController {
   @FXML private ImageView rootThree;
   @FXML private ImageView thruster;
 
-  @FXML private Button sand;
+  @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
   public void initialize() {}
@@ -97,15 +97,13 @@ public class OutsideController {
     treeLabel.setVisible(false);
   }
 
-  // public void sandLight() {
-  //   sand.setFill(Color.valueOf("fffccc"));
-  //   sandLabel.setVisible(true);
-  // }
+  public void sandLight() {
+    sand.setFill(Color.valueOf("fffccc"));
+  }
 
-  // public void sandNormal() {
-  //   sand.setFill(Color.valueOf("fffba5"));
-  //   sandLabel.setVisible(false);
-  // }
+  public void sandNormal() {
+    sand.setFill(Color.valueOf("ffba1f"));
+  }
 
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.CHAT);
