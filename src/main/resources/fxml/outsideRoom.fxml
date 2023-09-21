@@ -82,6 +82,6 @@
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#fff201" height="200.0" layoutX="888.0" layoutY="516.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#fff201" height="200.0" layoutX="888.0" layoutY="516.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="200.0" />
    </children>
 </Pane>
