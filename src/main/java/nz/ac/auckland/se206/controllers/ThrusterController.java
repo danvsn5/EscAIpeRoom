@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
 import nz.ac.auckland.se206.ThrusterButtons.TopLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.TopRightButton;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class ThrusterController {
 
@@ -23,6 +24,7 @@ public class ThrusterController {
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
   @FXML private Button returnOutside;
+  @FXML private ImageView miniTree;
   private int buttonActivationCounter = 0;
   public static int isGameActive = 0;
 
@@ -139,5 +141,19 @@ public class ThrusterController {
       GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
       System.out.println("Thruster Mission Complete");
     }
+  }
+
+  public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }

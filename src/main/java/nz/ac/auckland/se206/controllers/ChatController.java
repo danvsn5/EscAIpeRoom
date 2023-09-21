@@ -16,7 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -293,8 +292,7 @@ public class ChatController {
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     speaking.setVisible(false);
     neutral.setVisible(true);
-    SceneManager.setPrevious(AppPanel.OUTSIDE);
-    App.setUi(AppPanel.OUTSIDE);
+    App.setUi(SceneManager.getPrevious());
   }
 
   /**

@@ -4,9 +4,13 @@ import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class ChestController {
   @FXML private Button backButton;
@@ -14,9 +18,12 @@ public class ChestController {
   @FXML private Label firstDigit;
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
+  @FXML private Label counter;
   @FXML private Rectangle firstDigitHighlight;
   @FXML private Rectangle secondDigitHighlight;
   @FXML private Rectangle thirdDigitHighlight;
+  @FXML private ImageView progressButton;
+  @FXML private ImageView miniTree;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
@@ -31,7 +38,12 @@ public class ChestController {
   }
 
   public void goBack() {
-    App.setUi(AppPanel.MAIN_ROOM);
+    App.setUi(AppPanel.STORAGE);
+  }
+
+  public void goProgress() {
+    SceneManager.setPrevious(AppPanel.CHEST);
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void firstDigitUp() {
@@ -93,6 +105,14 @@ public class ChestController {
     thirdDigitHighlight.setDisable(true);
   }
 
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
+  }
+
   public void firstDigitGlow() {
     firstDigitHighlight.setOpacity(1);
   }
@@ -115,5 +135,19 @@ public class ChestController {
 
   public void thirdDigitDark() {
     thirdDigitHighlight.setOpacity(0);
+  }
+
+  public void goChat() {
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
+    App.setUi(AppPanel.CHAT);
+  }
+
+  public void miniTreeGlow() {
+    miniTree.setEffect(GameState.glowBright);
+  }
+
+  public void miniTreeDim() {
+    miniTree.setEffect(GameState.glowDim);
   }
 }
