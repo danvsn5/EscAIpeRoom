@@ -42,14 +42,6 @@
       <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="456.0" layoutY="381.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#firstDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
       <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="585.0" layoutY="381.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
       <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="712.0" layoutY="381.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#thirdDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
-      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/miniTree.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
          <image>
             <Image url="@../images/initalRoot.png" />
@@ -69,6 +61,14 @@
          <image>
             <Image url="@../images/threeRoot.png" />
          </image>
+      </ImageView>
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTree.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
