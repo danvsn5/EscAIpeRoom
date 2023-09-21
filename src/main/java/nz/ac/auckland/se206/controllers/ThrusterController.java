@@ -24,6 +24,10 @@ public class ThrusterController {
   @FXML private ImageView topLeftClicked;
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
   @FXML private Button returnOutside;
   @FXML private ImageView miniTree;
   private int buttonActivationCounter = 0;
