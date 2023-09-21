@@ -493,6 +493,17 @@ public class ChatController {
             return null;
           }
         };
+
+    hintTask.setOnSucceeded(
+        e -> {
+          loading.progressProperty().unbind();
+          // End thinking, start talking
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+          startTalk();
+        });
+
     Thread hintThread = new Thread(hintTask);
     hintThread.start();
   }

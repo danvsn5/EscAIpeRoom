@@ -103,13 +103,18 @@ public class GptPromptEngineering {
   private static String windowHint() {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return "Can you give me a hint about the riddle?";
+    } else {
+      return "Tell the player that the player needs to melt sand, ask the player to check the"
+          + " furnace";
     }
-
-    return null;
   }
 
   private static String fuelHint() {
-    return null;
+    if (GameState.missionManager.getMission(MISSION.FUEL).getStage() <= 1) {
+      return "Can you give me a hint about the riddle?";
+    } else {
+      return "Tell the player that the player needs to refuel the space shuttle";
+    }
   }
 
   private static String controllerHint() {
