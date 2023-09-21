@@ -22,7 +22,7 @@
             <Image url="@../images/chest.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="storageDoor" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="storageDoor" fitHeight="150.0" fitWidth="200.0" layoutX="1080.0" layoutY="560.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pointer.png" />
          </image>
