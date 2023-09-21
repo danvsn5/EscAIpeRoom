@@ -27,6 +27,7 @@ public class CentralController {
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
+  @FXML private ImageView completeGame;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -40,6 +41,10 @@ public class CentralController {
 
   public void goStorage() {
     App.setUi(AppPanel.STORAGE);
+  }
+
+  public void goWin() {
+    App.setUi(AppPanel.WIN);
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes
@@ -185,5 +190,13 @@ public class CentralController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void activateWinGlow() {
+    completeGame.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateWinGlow() {
+    completeGame.setEffect(GameState.glowDim);
   }
 }
