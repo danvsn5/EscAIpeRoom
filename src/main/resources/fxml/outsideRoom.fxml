@@ -6,53 +6,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutsideController">
    <children>
-      <Line endX="-33.0" endY="-252.0" layoutX="715.0" layoutY="406.0" startX="-56.0" startY="-145.0" strokeWidth="5.0" />
-      <Line endX="17.0" endY="-217.0" layoutX="774.0" layoutY="469.0" startX="-56.0" startY="-145.0" strokeWidth="5.0" />
-      <Line endX="24.0" endY="40.0" layoutX="538.0" layoutY="207.0" startX="7.0" startY="-54.0" strokeWidth="5.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="368.0" layoutY="239.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="388.0" layoutY="143.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Line endX="23.0" endY="-39.0" layoutX="470.0" layoutY="331.0" startX="-67.0" startY="-134.0" strokeWidth="5.0" />
       <Circle fx:id="tech" fill="DODGERBLUE" layoutX="918.0" layoutY="402.0" onMouseClicked="#collectTech" onMouseEntered="#techLabelOn" onMouseExited="#techLabelOff" radius="7.0" stroke="BLACK" strokeType="INSIDE">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Circle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="359.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="379.0" layoutY="422.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="379.0" layoutY="366.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="856.0" layoutY="446.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="876.0" layoutY="350.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="876.0" layoutY="294.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="388.0" layoutY="87.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="1094.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="1114.0" layoutY="140.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="1114.0" layoutY="84.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="1166.0" layoutY="488.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="1186.0" layoutY="392.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="1186.0" layoutY="336.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="781.0" layoutY="212.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="801.0" layoutY="116.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="801.0" layoutY="60.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8a4f14" height="41.0" layoutX="197.0" layoutY="424.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
-      <Polygon fill="#06610e" layoutX="217.0" layoutY="328.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fill="#06610e" layoutX="217.0" layoutY="272.0" points="-60.0, 108.0, 61.0, 108.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="wiseTree" fill="#6f3506" layoutX="603.0" layoutY="371.0" onMouseClicked="#openRiddle" onMouseEntered="#treeLight" onMouseExited="#treeNormal" radius="152.0" stroke="BLACK" strokeType="INSIDE">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></Circle>
-      <Circle layoutX="539.0" layoutY="323.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle layoutX="668.0" layoutY="323.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="503.0" layoutY="417.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Circle fill="#264f31" layoutX="389.0" layoutY="167.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#1b7952" layoutX="539.0" layoutY="111.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#368d30" layoutX="678.0" layoutY="149.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#49993a" layoutX="795.0" layoutY="251.0" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="counter" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="72.0" prefWidth="250.0">
          <font>
             <Font name="Bank Gothic Light BT" size="79.0" />
@@ -93,27 +59,16 @@
             <Image url="@../images/twoRoot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="returnShip" fitHeight="304.0" fitWidth="250.0" layoutX="39.0" layoutY="126.0" onMouseClicked="#outsideReturn" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="crashLand" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goCrashLand" onMouseEntered="#activateCrashLandGlow" onMouseExited="#deactivateCrashLandGlow" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/topShip.png" />
+            <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thruster" fitHeight="93.0" fitWidth="90.0" layoutX="88.0" layoutY="397.0" onMouseClicked="#goThruster" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Bottom%20Ship.png" />
-         </image>
-      </ImageView>
-
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/miniTreeTEMPORARY.png" />
-
-      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#ffba1f" height="148.0" layoutY="572.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
-      <Label fx:id="isSandCollected" alignment="CENTER" layoutX="861.0" layoutY="612.0" prefHeight="47.0" prefWidth="258.0" text="Sand collected" visible="false">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+         </image>
+       </ImageView>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
@@ -123,7 +78,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-
+      <Rectangle fx:id="sand" arcHeight="5.0" arcWidth="5.0" fill="#fff201" height="200.0" layoutX="888.0" layoutY="516.0" onMouseClicked="#collectSand" onMouseEntered="#sandLight" onMouseExited="#sandNormal" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Label fx:id="isSandCollected" alignment="CENTER" layoutX="861.0" layoutY="612.0" prefHeight="47.0" prefWidth="258.0" text="Sand collected" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
       <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />

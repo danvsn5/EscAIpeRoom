@@ -16,7 +16,9 @@ public class SceneManager {
     THRUSTER,
     CHEST,
     PROGRESS,
-    PREVIOUS
+    PREVIOUS,
+    CRASHLAND,
+    STORAGE
   }
 
   private static HashMap<AppPanel, Parent> sceneMap = new HashMap<AppPanel, Parent>();

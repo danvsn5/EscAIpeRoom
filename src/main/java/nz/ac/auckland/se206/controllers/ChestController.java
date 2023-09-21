@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
@@ -17,9 +18,11 @@ public class ChestController {
   @FXML private Label firstDigit;
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
+  @FXML private Label counter;
   @FXML private Rectangle firstDigitHighlight;
   @FXML private Rectangle secondDigitHighlight;
   @FXML private Rectangle thirdDigitHighlight;
+  @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
 
   private int firstDigitNum = 0;
@@ -35,7 +38,12 @@ public class ChestController {
   }
 
   public void goBack() {
-    App.setUi(AppPanel.MAIN_ROOM);
+    App.setUi(AppPanel.STORAGE);
+  }
+
+  public void goProgress() {
+    SceneManager.setPrevious(AppPanel.CHEST);
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void firstDigitUp() {
@@ -95,6 +103,14 @@ public class ChestController {
     firstDigitHighlight.setDisable(true);
     secondDigitHighlight.setDisable(true);
     thirdDigitHighlight.setDisable(true);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 
   public void firstDigitGlow() {

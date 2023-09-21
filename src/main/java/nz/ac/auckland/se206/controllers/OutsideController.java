@@ -11,11 +11,8 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
-
 import nz.ac.auckland.se206.TreeAvatar;
-
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-
 
 public class OutsideController {
   @FXML private ImageView returnShip;
@@ -30,9 +27,9 @@ public class OutsideController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private ImageView crashLand;
   @FXML private ImageView thruster;
   @FXML private ImageView miniTree;
-
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 
@@ -45,14 +42,8 @@ public class OutsideController {
     App.setUi(AppPanel.PROGRESS);
   }
 
-  public void outsideReturn() {
-    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
-    App.setUi(AppPanel.MAIN_ROOM);
-  }
-
-  public void goThruster() {
-    SceneManager.setPrevious(AppPanel.THRUSTER);
-    App.setUi(AppPanel.THRUSTER);
+  public void goCrashLand() {
+    App.setUi(AppPanel.CRASHLAND);
   }
 
   public void collectTech() {
@@ -112,8 +103,8 @@ public class OutsideController {
   }
 
   public void openRiddle() throws ApiProxyException {
-    SceneManager.setPrevious(AppPanel.CHAT);
-        TreeAvatar.treeFlash.pause();
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
+    TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
 
@@ -128,10 +119,19 @@ public class OutsideController {
     progressButton.setEffect(GameState.glowDim);
   }
 
+  public void activateCrashLandGlow() {
+    crashLand.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateCrashLandGlow() {
+    crashLand.setEffect(GameState.glowDim);
+  }
+
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
   }
 
   public void miniTreeGlow() {

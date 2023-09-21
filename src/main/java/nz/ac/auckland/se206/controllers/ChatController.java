@@ -16,7 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -229,7 +228,8 @@ public class ChatController {
                 //   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                 //   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                 //   System.out.println("Fuel Mission Complete");
-                //   System.out.println(GameState.missionManager.getMission(MISSION.FUEL).getStage());
+                //
+                // System.out.println(GameState.missionManager.getMission(MISSION.FUEL).getStage());
                 // }
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
