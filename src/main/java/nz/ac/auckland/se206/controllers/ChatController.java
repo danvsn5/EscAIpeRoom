@@ -428,4 +428,8 @@ public class ChatController {
     fuel.setDisable(true);
     fuelCollected.setVisible(true);
   }
+
+  public static void guideToSecondMission() {
+   System.out.println("guide to second mission");
+  }
 }

@@ -66,6 +66,8 @@ public class CentralController {
       System.out.println(GameState.isFirstMissionCompleted);
       System.out.println("WindowFixed");
 
+      TreeAvatar.startFlashTree();
+
       window.setOpacity(0);
       window.setDisable(true);
     }
@@ -78,6 +80,9 @@ public class CentralController {
       System.out.println("Fuel Mission Complete");
       GameState.isFirstMissionCompleted = true;
       GameState.inventory.remove(GameState.inventory.indexOf(8));
+
+      TreeAvatar.startFlashTree();
+
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
     } else {
@@ -137,6 +142,12 @@ public class CentralController {
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+
+    if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
+      ChatController.guideToSecondMission();
+      GameState.isSecondGuideShown = true;
+    }
+
     App.setUi(AppPanel.CHAT);
   }
 
