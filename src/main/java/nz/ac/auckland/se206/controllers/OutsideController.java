@@ -14,7 +14,6 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class OutsideController {
-  @FXML private Circle sand;
   @FXML private ImageView returnShip;
   @FXML private Circle tech;
   @FXML private Circle wiseTree;
@@ -28,7 +27,6 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView crashLand;
-
   @FXML private Rectangle sand;
   @FXML private Label isSandCollected;
 

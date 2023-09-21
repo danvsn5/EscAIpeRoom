@@ -38,15 +38,10 @@ public class CentralController {
   public void goStorage() {
     App.setUi(AppPanel.STORAGE);
   }
-    
+
   public void goWorkshop() {
     SceneManager.setPrevious(AppPanel.WORK);
     App.setUi(AppPanel.WORK);
-  }
-
-  public void collectHammer() {
-    GameState.inventory.add(0);
-    hammer.setVisible(false);
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes
@@ -62,33 +57,8 @@ public class CentralController {
       GameState.isFirstMissionCompleted = true;
 
       System.out.println(GameState.isFirstMissionCompleted);
-      crackOne.setVisible(false);
-      crackTwo.setVisible(false);
-
-      window.setDisable(true);
+      System.out.println("WindowFixed");
     }
-  }
-
-  public void repairPanel() {
-    if (GameState.inventory.contains(5)) {
-      GameState.inventory.add(7);
-      purpleStick.setVisible(true);
-      blueStick.setVisible(true);
-      greenStick.setVisible(true);
-      knobB.setVisible(true);
-      knobG.setVisible(true);
-      knobP.setVisible(true);
-      redButton.setVisible(true);
-    }
-  }
-
-  // closes the intro message by pressing the cross on the top left of the main room panel
-  public void closeMessage() {
-    introBackground.setVisible(false);
-    introLabel.setVisible(false);
-    cross.setVisible(false);
-    crossOne.setVisible(false);
-    crossTwo.setVisible(false);
   }
 
   // if window and control panel are fixed, then game can be completed by pressing red button
