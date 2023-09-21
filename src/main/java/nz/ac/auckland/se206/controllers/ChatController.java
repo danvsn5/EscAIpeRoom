@@ -161,6 +161,9 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    if (isGenerating) {
+      return;
+    }
 
     inputText.setDisable(true);
 
@@ -455,12 +458,12 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
-    if (isGenerating) {
-      SceneManager.showDialog("Info", "Tree is thinking, don't interrupt it", "Quiet!");
-      return;
-    }
     if (GameState.difficulty == 2) {
       SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
+    }
+    if (isGenerating) {
+      SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
+      return;
     }
     if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
