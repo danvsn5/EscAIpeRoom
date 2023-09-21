@@ -449,4 +449,16 @@ public class ChatController {
     treeTalking.setVisible(false);
     treeThinking.setVisible(true);
   }
+
+  @FXML
+  private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+    if (!GameState.firstRiddleSolved) {
+      if (GameState.missionList.contains(1)) {
+        System.out.println("Window hint");
+      }
+
+    } else {
+
+    }
+  }
 }
