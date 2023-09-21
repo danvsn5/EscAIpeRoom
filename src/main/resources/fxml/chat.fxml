@@ -24,7 +24,6 @@
          </font>
       </Label>
       <Circle fx:id="loadingCircle" fill="#264f31" layoutX="32.0" layoutY="236.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
-      <ProgressIndicator fx:id="loading" layoutX="13.0" layoutY="216.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
       <Label fx:id="listeningLabel" alignment="CENTER" layoutX="48.0" layoutY="432.0" prefHeight="44.0" prefWidth="190.0" text="Listening..." textAlignment="CENTER" visible="false">
          <font>
             <Font size="36.0" />
@@ -73,5 +72,6 @@
             <Image url="@../images/treeThinking.png" />
          </image>
       </ImageView>
+      <ProgressIndicator fx:id="loading" layoutX="21.0" layoutY="227.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
   </children>
 </AnchorPane>
