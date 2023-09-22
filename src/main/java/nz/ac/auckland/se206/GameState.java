@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.controllers.ThrusterController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -15,7 +18,12 @@ public class GameState {
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
   public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
+
   public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
+
+  public static int hintNumer = 1000;
+  public static int currentHint = 0;
+
   public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
 
   // inventory holds integers that correspond to different actions having taken place:
@@ -67,5 +75,39 @@ public class GameState {
 
   public static int getRandomColorNumber() {
     return randomColorNumber;
+  }
+
+  public static void setHintNumber(int max) {
+    hintNumer = max;
+  }
+
+  public static void useHint() {
+    currentHint++;
+    if (difficulty == 1) {
+      int hintRemain = hintNumer - currentHint;
+      ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#hintNumber"))
+          .setText(Integer.toString(hintRemain));
+    }
+  }
+
+  public static boolean hintUsedUp() {
+    return currentHint >= hintNumer;
+  }
+
+  public static void clearHint() {
+    currentHint = 0;
+  }
+  
+  public static void reset() {
+    MissionManager.missionList.clear();
+    MissionManager.keyList.clear();
+    missionList.clear();
+    inventory.clear();
+    isGreetingShown = false;
+    firstRiddleSolved = false; // tracks if the first riddle has been solved.
+    secondRiddleSolved = false; // tracks if the second riddle has been solved.
+    isFirstMissionCompleted = false;
+    ThrusterController.buttonActivationCounter = 0;
+    ThrusterController.isGameActive = 0;
   }
 }

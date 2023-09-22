@@ -53,9 +53,20 @@ public class OutsideController {
   }
 
   public void thrusterError() {
-    SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
+    if (ThrusterController.buttonActivationCounter != 4) {
+      SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
+    } else {
+      SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
+      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+      System.out.println("Thruster Mission Complete");
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
+      thrusterWarning.setVisible(false);
+      CentralController.beginWinFlash();
+      CentralController.flashWinButton();
+    }
   }
-
+  
   // public void collectSand() {
   //   System.out.println("Sand to be collected");
   //   if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {

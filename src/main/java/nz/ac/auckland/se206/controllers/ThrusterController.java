@@ -31,7 +31,7 @@ public class ThrusterController {
   @FXML private Button returnOutside;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
-  private int buttonActivationCounter = 0;
+  public static int buttonActivationCounter = 0;
   public static int isGameActive = 0;
 
   public void initialize() {}
@@ -154,11 +154,7 @@ public class ThrusterController {
   }
 
   public void isMissionComplete() {
-    if (buttonActivationCounter == 4) {
-      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
-      System.out.println("Thruster Mission Complete");
-    }
+    if (buttonActivationCounter == 4) {}
   }
 
   public void goChat() {

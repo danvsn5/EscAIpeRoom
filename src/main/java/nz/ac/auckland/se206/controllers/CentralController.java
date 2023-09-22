@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -28,6 +31,11 @@ public class CentralController {
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
+  @FXML private ImageView controller;
+  @FXML private static ImageView completeGame;
+  private static int winFlashState = 0;
+  private static Timeline winFlash =
+      new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
 
   @FXML private Rectangle guideWindow;
   @FXML private Label guideLabel;
@@ -46,6 +54,12 @@ public class CentralController {
 
   public void goStorage() {
     App.setUi(AppPanel.STORAGE);
+  }
+
+  public void goWin() {
+    LaunchController.timer.setFinish();
+    winFlash.stop();
+    App.setUi(AppPanel.WIN);
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes
@@ -106,6 +120,8 @@ public class CentralController {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       System.out.println("Controller Mission Complete");
+      completeGame.setVisible(true);
+      beginWinFlash();
       GameState.isSecondMissionCompleted = true;
     }
   }
@@ -186,10 +202,12 @@ public class CentralController {
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+
     if (GameState.isFirstMissionCompleted) {
       ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
           .appendText(ChatController.secondGuideMessage.getContent());
     }
+
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CHAT);
   }
@@ -207,5 +225,27 @@ public class CentralController {
     guideLabel.setVisible(false);
     okButton.setVisible(false);
     okButton.setDisable(true);
+
+  public void activateWinGlow() {
+    completeGame.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateWinGlow() {
+    completeGame.setEffect(GameState.glowDim);
+  }
+
+  public static void beginWinFlash() {
+    winFlash.setCycleCount(Timeline.INDEFINITE);
+    winFlash.play();
+  }
+
+  public static void flashWinButton() {
+    if (winFlashState == 0) {
+      completeGame.setEffect(GameState.glowBright);
+      winFlashState = 1;
+    } else {
+      completeGame.setEffect(GameState.glowDim);
+      winFlashState = 0;
+    }
   }
 }

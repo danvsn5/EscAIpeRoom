@@ -74,4 +74,9 @@ public class TimeCounter {
     double currentSeconds = secondCounter + minuteCounter * 60 + 1;
     return currentSeconds * 100 / totalSeconds;
   }
+
+  public void setFinish() {
+    secondCounter = -1;
+    minuteCounter = -1;
+  }
 }

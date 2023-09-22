@@ -28,10 +28,12 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
+  private boolean isGenerating = false;
 
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
+  @FXML private Button hintButton;
   @FXML private Label counter;
   @FXML private Circle loadingCircle;
   @FXML private Label listeningLabel;
@@ -49,6 +51,15 @@ public class ChatController {
 
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+
+  @FXML private Rectangle hintRectangle;
+  @FXML private Label hintNumber;
+
+  private ChatMessage thinkingMessage =
+      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+  private ChatMessage activationMessage =
+      new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
+
   private ChatCompletionRequest chatCompletionRequest;
 
   public static ChatMessage secondGuideMessage;
@@ -94,14 +105,14 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
 
-            System.out.println("greet task");
+            isGenerating = true;
 
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(100));
+                    .setMaxTokens(150);
 
             if (true) { // controller
               secondGuideMessage =
@@ -121,8 +132,9 @@ public class ChatController {
 
     guideTask.setOnSucceeded(
         e -> {
-          loading.progressProperty().unbind();
+          isGenerating = false;
           // End thinking, start talking
+          loading.progressProperty().unbind();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
@@ -167,7 +179,10 @@ public class ChatController {
     try {
       ChatCompletionResult chatCompletionResult = getChatCompletionRequest().execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
-      getChatCompletionRequest().addMessage(result.getChatMessage());
+      chatCompletionRequest.addMessage(result.getChatMessage());
+      result.getChatMessage().setRole("Wise Ancient Tree");
+      appendChatMessage(result.getChatMessage());
+      result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       ChatMessage error = new ChatMessage(null, null);
@@ -192,27 +207,45 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    if (isGenerating) {
+      return;
+    }
 
     inputText.setDisable(true);
-
     loading.setProgress(0);
     loading.setVisible(true);
-
     loadingCircle.setFill(Color.LIGHTGRAY);
 
     String message = inputText.getText();
+    System.out.println(message);
     if (message.trim().isEmpty()) {
+      inputText.setDisable(false);
       return;
     }
     inputText.clear();
 
     // Start listen
+    loadingCircle.setFill(Color.LIGHTGRAY);
+    loading.setProgress(0);
+    loading.setVisible(true);
     startListen();
 
     if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
       generateFirstRiddle(message);
       GameState.isGreetingShown = true;
       listeningLabel.setVisible(false);
+      if (GameState.getDifficulty() != 2) {
+        hintButton.setVisible(true);
+        hintButton.setDisable(false);
+        System.out.println("1");
+        if (GameState.getDifficulty() == 1) {
+          hintNumber.setVisible(true);
+          hintNumber.setDisable(false);
+          hintRectangle.setVisible(true);
+          hintRectangle.setDisable(false);
+          System.out.println("2");
+        }
+      }
       return;
     } else if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
       generatePuzzle(message);
@@ -227,10 +260,14 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
 
-            System.out.println("type call");
+            isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
+            msg.setRole("You");
             appendChatMessage(msg);
+            System.out.println(msg.getContent());
+            msg.setRole("user");
+            appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
             appendChatMessage(lastMsg);
 
@@ -274,11 +311,12 @@ public class ChatController {
 
     typeCall.setOnSucceeded(
         e -> {
+          isGenerating = false;
+          // Start talk
           loading.progressProperty().unbind();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
-          // Start talk
           startTalk();
         });
 
@@ -362,16 +400,21 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
+            isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
+
+            msg.setRole("You");
             appendChatMessage(msg);
+            msg.setRole("user");
+            appendChatMessage(activationMessage);
 
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.5)
                     .setTopP(0.2)
-                    .setMaxTokens(100));
+                    .setMaxTokens(150);
 
             System.out.println("first mission riddle");
             if (firstMission == 1) { // if the first mission is the window
@@ -384,7 +427,7 @@ public class ChatController {
               gptMessage =
                   runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordFuel("sky", "lake")));
+                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
               appendChatMessage(gptMessage);
             }
 
@@ -397,6 +440,7 @@ public class ChatController {
 
     firstRiddleTask.setOnSucceeded(
         e2 -> {
+          isGenerating = false;
           loading.progressProperty().unbind();
           startTalk();
           loading.setVisible(false);
@@ -464,8 +508,8 @@ public class ChatController {
     treeTalking.setVisible(false);
     treeThinking.setVisible(true);
   }
-
-  private void generatePuzzle(String message) {
+              
+private void generatePuzzle(String message) {
     inputText.setDisable(true);
 
     startThink();
@@ -537,4 +581,78 @@ public class ChatController {
     Thread secondPuzzleThread = new Thread(secondPuzzleTask);
     secondPuzzleThread.start();
   }
+              
+  @FXML
+  private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+    if (GameState.hintUsedUp()) {
+      SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
+      return;
+    }
+    if (isGenerating) {
+      SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
+      return;
+    }
+    if (!GameState.isFirstMissionCompleted) {
+      if (GameState.missionList.contains(1)) {
+        System.out.println("Window hint");
+        askByStage(MISSION.WINDOW);
+      } else {
+        System.out.println("Fuel hint");
+        askByStage(MISSION.FUEL);
+      }
+    } else {
+      if (GameState.missionList.contains(3)) {
+        System.out.println("Controller hint");
+        askByStage(MISSION.CONTROLLER);
+      } else {
+        System.out.println("Thruster hint");
+        askByStage(MISSION.THRUSTER);
+      }
+    }
+    GameState.useHint();
+  }
+
+  private void askByStage(MISSION missionType) {
+    // Start thinking
+    inputText.setDisable(true);
+    startThink();
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
+    Task<Void> hintTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            isGenerating = true;
+
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.7)
+                    .setTopP(0.7)
+                    .setMaxTokens(150);
+
+            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
+
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+
+    hintTask.setOnSucceeded(
+        e -> {
+          isGenerating = false;
+          // End thinking, start talking
+          loading.progressProperty().unbind();
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+          startTalk();
+        });
+
+    Thread hintThread = new Thread(hintTask);
+    hintThread.start();
+  }           
 }
