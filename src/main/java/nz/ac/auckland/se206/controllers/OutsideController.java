@@ -50,11 +50,16 @@ public class OutsideController {
   }
 
   public void goThruster() {
-    if (GameState.missionList.contains(4)) {
+    if (GameState.missionList.contains(4)
+        && GameState.isFirstMissionCompleted == true
+        && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+      TreeAvatar.startFlashTree();
       App.setUi(AppPanel.THRUSTER);
-    } else if (GameState.missionList.contains(4) && GameState.isFirstMissionCompleted == true) {
       ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-          .appendText("this is a test");
+          .appendText(ChatController.secondMissionPuzzle.getContent());
+
+    } else if (GameState.missionList.contains(4)) {
+      App.setUi(AppPanel.THRUSTER);
     }
   }
 

@@ -44,6 +44,7 @@ public class StorageController {
     blueprint.setVisible(false);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+    System.out.println(GameState.missionManager.getMission(MISSION.THRUSTER).getStage());
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 
