@@ -250,7 +250,7 @@ public class CentralController {
 
   public static void beginWinFlash() {
     winFlash.setCycleCount(Timeline.INDEFINITE);
-    winFlash.play();
+    // winFlash.play();
   }
 
   public static void flashWinButton() {

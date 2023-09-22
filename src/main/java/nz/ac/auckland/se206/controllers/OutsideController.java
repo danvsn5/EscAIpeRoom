@@ -54,14 +54,14 @@ public class OutsideController {
     }
   }
 
-  public void showTrusterError() { // shows the message when clicked.
-    if (ThrusterController.buttonActivationCounter != 4) { // if the thruster is not fixed
+  public void thrusterError() {
+    if (ThrusterController.buttonActivationCounter != 4) {
       SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
-    } else { // if the thruster is fixed
+    } else {
       SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
       GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER); // updates the progress bar
-      System.out.println("Thruster Mission Complete"); // prints to console
+      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+      System.out.println("Thruster Mission Complete");
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
       thrusterWarning.setVisible(false);
       CentralController.beginWinFlash();
@@ -69,14 +69,20 @@ public class OutsideController {
     }
   }
 
-  public void openRiddle() throws ApiProxyException { // opens the riddle
+  // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
+  // method is invoked: the color of the selected object becomes lighter and a label becomes
+  // visible, indicating it is
+  // clickble. Once mouse is moved from object, color returns to original and the label is made
+  // invisible with Dark/Normal method
+  // invokation.
+
+  public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
     TreeAvatar.treeFlash.pause();
-    TreeAvatar.deactivateTreeGlow(); // deactivates the glow
-    TreeAvatar.setTreeVisible(); // sets the tree visible
+    TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.setTreeVisible();
     if (GameState.inventory.contains(-2) && ChatController.seenFirstMessage == 0) {
 
-      // creates a new thread to speak the first message
       Task<Void> speakFirstMessage =
           new Task<Void>() {
 
@@ -89,8 +95,8 @@ public class OutsideController {
           };
 
       Thread typeInThread = new Thread(speakFirstMessage);
-      typeInThread.start(); // starts the thread
-      ChatController.seenFirstMessage = 1; // sets the seenFirstMessage to 1
+      typeInThread.start();
+      ChatController.seenFirstMessage = 1;
     }
 
     App.setUi(AppPanel.CHAT);
