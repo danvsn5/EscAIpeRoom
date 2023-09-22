@@ -15,8 +15,6 @@ import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
 
-  @FXML private static ImageView completeGame;
-
   @FXML private Button okButton;
   @FXML private Label counter;
   @FXML private Label guideLabel;
@@ -34,9 +32,6 @@ public class CentralController {
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
   @FXML private ImageView completeGame;
-  @FXML private Rectangle guideWindow;
-  @FXML private Label guideLabel;
-  @FXML private Button okButton;
   @FXML private Rectangle guideWindow;
   @FXML private Rectangle outsideDoorRectangle;
 
@@ -112,7 +107,7 @@ public class CentralController {
   }
 
   public void fixController() {
-  // This method trys to fix the controller
+    // This method trys to fix the controller
     // If the controller mission less than stage 0 (not having spare part on hand), show broken
     // controller message
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
