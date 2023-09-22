@@ -374,24 +374,20 @@ public class ChatController {
   }
 
   private void generateFirstRiddle(String message) {
-
+    // This method generates the first riddle
+    // Disable the text box
     inputText.setDisable(true);
+    // Start thinking
     startThink();
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
-
-    System.out.println("generate riddle");
-
+    // Get the type of missions and record them
     for (int i = 0; i < 2; i++) {
       System.out.println("----");
       if (GameState.missionList.get(i) == 1 || GameState.missionList.get(i) == 2) {
-        System.out.println("first mission");
         firstMission = GameState.missionList.get(i);
-        System.out.println(firstMission);
       } else {
-        System.out.println("second mission");
         secondMission = GameState.missionList.get(i);
-        System.out.println(secondMission);
       }
     }
 
