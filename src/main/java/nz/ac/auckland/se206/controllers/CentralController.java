@@ -17,8 +17,12 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
-  @FXML private Rectangle outsideDoorRectangle;
+
+  @FXML private static ImageView completeGame;
+
+  @FXML private Button okButton;
   @FXML private Label counter;
+  @FXML private Label guideLabel;
   @FXML private ImageView outsideDoor;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
@@ -32,14 +36,12 @@ public class CentralController {
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
-  @FXML private static ImageView completeGame;
+  @FXML private Rectangle guideWindow;
+  @FXML private Rectangle outsideDoorRectangle;
+
   private static int winFlashState = 0;
   private static Timeline winFlash =
       new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
-
-  @FXML private Rectangle guideWindow;
-  @FXML private Label guideLabel;
-  @FXML private Button okButton;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -64,61 +66,69 @@ public class CentralController {
   // if inventory contains the necessary items, fixes the window and control panel and changes
   // visibility of assets
   public void repairWindow() {
+    // If the inventory contains window
     if (GameState.inventory.contains(3)) {
+      // Increase the stage of the window mission and update progress bar
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-
-      System.out.println("Window Mission Complete");
-      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
-
+      // Record that the first mission is completed
       GameState.isFirstMissionCompleted = true;
-
-      System.out.println(GameState.isFirstMissionCompleted);
-      System.out.println("WindowFixed");
-
+      // Tree start flashing
       TreeAvatar.startFlashTree();
-
+      // Remove the warning message
       window.setOpacity(0);
       window.setDisable(true);
+      // Initialise the second mission
       activateBlueprint();
       activateChest();
+      // Show the fix window message
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
-    } else if (GameState.inventory.contains(2)) {
-      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     } else {
+      // If the inventory does not contain a window, show broken message
       SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
 
   public void addFuel() {
+    // This method adds fuel to the ship
     if (GameState.inventory.contains(8)) {
+      // If the inventory contains fuel, increase missing stage and fill up the ship
       GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
-      System.out.println("Fuel Mission Complete");
+      // Record that the first mission is completed
       GameState.isFirstMissionCompleted = true;
+      // Remove fuel from inventory
       GameState.inventory.remove(GameState.inventory.indexOf(8));
-
+      // Tree start flashing
       TreeAvatar.startFlashTree();
-
+      // Hide the fuel warning
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
+      // Initialise the second mission
       activateBlueprint();
       activateChest();
+      // Show success message
       SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
     } else {
+      // If the inventory does not contain fuel, show error message
       SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
     }
   }
 
   public void fixController() {
-    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 3) {
+    // This method trys to fix the controller
+    // If the controller mission less than stage 2 (not having spare part on hand), show broken
+    // controller message
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() <= 1) {
       SceneManager.showDialog(
           "Info", "Broken Control Panel", "The control panel for the ship is broken!");
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 3) {
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 2) {
+      // If the controller mission is at stage 2, indicating panel can be fixed, show message
       SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
-      System.out.println("Controller Mission Complete");
+      // Set the end game button visible
       completeGame.setVisible(true);
       beginWinFlash();
       GameState.isSecondMissionCompleted = true;
@@ -199,14 +209,18 @@ public class CentralController {
   }
 
   public void goChat() {
+    // This method set the panel to chat
+    // Stop the tree flashing
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
 
+    // If the first mission is completed, show the second guide message
     if (GameState.isFirstMissionCompleted) {
       ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
           .appendText(ChatController.secondGuideMessage.getContent());
     }
 
+    // Set the previous panel to Main room then go to chat room
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CHAT);
   }
