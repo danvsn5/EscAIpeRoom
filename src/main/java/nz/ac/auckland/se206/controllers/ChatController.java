@@ -49,10 +49,6 @@ public class ChatController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-
-  // private ChatMessage thinkingMessage =
-  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
-
   @FXML private Rectangle hintRectangle;
   @FXML private Label hintNumber;
 
@@ -119,11 +115,20 @@ public class ChatController {
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
             firstMesage = gptMessage;
             if (true) { // controller
-              secondGuideMessage =
-                  runGpt(
-                      new ChatMessage(
-                          "user",
-                          GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
+              if (GameState.missionListA.contains(3)) {
+                secondGuideMessage =
+                    runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
+              } else {
+                secondGuideMessage =
+                    runGpt(
+                        new ChatMessage(
+                            "user",
+                            GptPromptEngineering.getGuideToSecondMission(
+                                "Fix the thrusters by finding the blueprint")));
+              }
               System.out.println("second guide message");
             }
             updateProgress(1, 1);
@@ -386,7 +391,7 @@ public class ChatController {
 
     System.out.println("generate riddle");
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 1; i++) {
       System.out.println("----");
       if (GameState.missionList.get(i) == 1 || GameState.missionList.get(i) == 2) {
         System.out.println("first mission");

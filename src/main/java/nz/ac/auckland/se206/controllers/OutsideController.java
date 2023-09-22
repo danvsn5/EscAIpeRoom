@@ -69,22 +69,6 @@ public class OutsideController {
     }
   }
 
-  // public void collectSand() {
-  //   System.out.println("Sand to be collected");
-  //   if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
-  //     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-  //     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-  //     System.out.println("Window Mission Complete");
-  //     System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
-
-  //     GameState.inventory.add(2);
-  //     sand.setDisable(true);
-  //     isSandCollected.setVisible(true);
-  //   } else {
-  //     System.out.println("You need to solve the riddle first!");
-  //   }
-  // }
-
   // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
   // method is invoked: the color of the selected object becomes lighter and a label becomes
   // visible, indicating it is
