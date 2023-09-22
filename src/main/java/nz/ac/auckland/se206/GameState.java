@@ -45,7 +45,6 @@ public class GameState {
   public static int randomColorNumber;
 
   // create random number between 1 and 4
-
   public static void createRandomColorNumber() {
     randomColorNumber = (int) (Math.random() * 4 + 1);
   }
@@ -58,32 +57,41 @@ public class GameState {
   public static Glow glowDim = new Glow(0.0);
 
   public static void setTimer(int timer) {
+    // Set the timer to the correct time
     GameState.timer = timer;
   }
 
   public static int getTimer() {
+    // Get the current time
     return GameState.timer;
   }
 
   public static void setDifficulty(int difficulty) {
+    // Set the difficulty
     GameState.difficulty = difficulty;
   }
 
   public static int getDifficulty() {
+    // Get the difficulty
     return GameState.difficulty;
   }
 
   public static int getRandomColorNumber() {
+    // Get the number of the random color
     return randomColorNumber;
   }
 
   public static void setHintNumber(int max) {
+    // Set the maximum hint number
     hintNumer = max;
   }
 
   public static void useHint() {
+    // Use a hint
+    // Increase the hint count
     currentHint++;
     if (difficulty == 1) {
+      // If the difficulty is medium, show the remaining hint to label
       int hintRemain = hintNumer - currentHint;
       ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#hintNumber"))
           .setText(Integer.toString(hintRemain));
@@ -91,22 +99,25 @@ public class GameState {
   }
 
   public static boolean hintUsedUp() {
+    // Check if the hint used up
     return currentHint >= hintNumer;
   }
 
   public static void clearHint() {
+    // Reset the used hint
     currentHint = 0;
   }
-  
+
   public static void reset() {
-    MissionManager.missionList.clear();
-    MissionManager.keyList.clear();
+    // Reset the game
+    MissionManager.missionList.clear(); // clear the mission list
+    MissionManager.keyList.clear(); // clear the key list
     missionList.clear();
-    inventory.clear();
-    isGreetingShown = false;
+    inventory.clear(); // clear the inventory
+    isGreetingShown = false; // reset greeting
     firstRiddleSolved = false; // tracks if the first riddle has been solved.
     secondRiddleSolved = false; // tracks if the second riddle has been solved.
-    isFirstMissionCompleted = false;
+    isFirstMissionCompleted = false; // reset first mission
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
   }
