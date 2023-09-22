@@ -47,14 +47,21 @@ public class StorageController {
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 
-  public void meltSand() {
-    if (GameState.inventory.contains(2)) {
+  public void meltSand() { // furnace button when the mission is the window.
+    if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-      GameState.inventory.add(3);
+      GameState.inventory.add(3); // add glass to inventory
       furnace.setDisable(true);
       SceneManager.showDialog("Info", "Glass collected", "A well-made window");
-    } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) {
+    } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
+      // inventory
+      // does not
+      // contain
+      // sand and
+      // the mission
+      // is the
+      // window
       SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace yet!");
     } else {
       SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace!");
