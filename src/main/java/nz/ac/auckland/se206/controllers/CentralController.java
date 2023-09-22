@@ -17,8 +17,12 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
-  @FXML private Rectangle outsideDoorRectangle;
+
+  @FXML private static ImageView completeGame;
+
+  @FXML private Button okButton;
   @FXML private Label counter;
+  @FXML private Label guideLabel;
   @FXML private ImageView outsideDoor;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
@@ -32,14 +36,12 @@ public class CentralController {
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
-  @FXML private static ImageView completeGame;
+  @FXML private Rectangle guideWindow;
+  @FXML private Rectangle outsideDoorRectangle;
+
   private static int winFlashState = 0;
   private static Timeline winFlash =
       new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
-
-  @FXML private Rectangle guideWindow;
-  @FXML private Label guideLabel;
-  @FXML private Button okButton;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -88,21 +90,27 @@ public class CentralController {
   }
 
   public void addFuel() {
+    // This method adds fuel to the ship
     if (GameState.inventory.contains(8)) {
+      // If the inventory contains fuel, increase missing stage and fill up the ship
       GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
-      System.out.println("Fuel Mission Complete");
+      // Record that the first mission is completed
       GameState.isFirstMissionCompleted = true;
+      // Remove fuel from inventory
       GameState.inventory.remove(GameState.inventory.indexOf(8));
-
+      // Tree start flashing
       TreeAvatar.startFlashTree();
-
+      // Hide the fuel warning
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
+      // Initialise the second mission
       activateBlueprint();
       activateChest();
+      // Show success message
       SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
     } else {
+      // If the inventory does not contain fuel, show error message
       SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
     }
   }
