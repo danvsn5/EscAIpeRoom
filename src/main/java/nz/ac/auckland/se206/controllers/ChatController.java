@@ -602,31 +602,36 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+    // If the hint is used up, return
     if (GameState.hintUsedUp()) {
       SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
       return;
     }
+    // If gpt is generating answer, return
     if (isGenerating) {
       SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
       return;
     }
+    // If first mission is not complete, choose between window and fuel
     if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
-        System.out.println("Window hint");
+        // If window mission is activate, ask window hint
         askByStage(MISSION.WINDOW);
       } else {
-        System.out.println("Fuel hint");
+        // If fuel mission is activate, ask fuel hint
         askByStage(MISSION.FUEL);
       }
     } else {
+      // If first mission is completed, choose between controller and thruster
       if (GameState.missionList.contains(3)) {
-        System.out.println("Controller hint");
+        // Choose controller
         askByStage(MISSION.CONTROLLER);
       } else {
-        System.out.println("Thruster hint");
+        // Choose thruster
         askByStage(MISSION.THRUSTER);
       }
     }
+    // Record that a hint is used
     GameState.useHint();
   }
 
@@ -642,21 +647,23 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
-
+            // Record that gpt is generating answer
             isGenerating = true;
-
+            // Record the setting of gpt
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
                     .setMaxTokens(150);
-
+            // Runs gpt and get message using hint prompt
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
+            // Set the role of gpt's answer to tree
             gptMessage.setRole("Wise Ancient Tree");
+            // Show the message on the textbox
             appendChatMessage(gptMessage);
             gptMessage.setRole("assistant");
-
+            // Update progress circle
             updateProgress(1, 1);
             return null;
           }
