@@ -255,9 +255,8 @@ public class ChatController {
         }
       }
       return;
-    } else if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
+    } else if (GameState.isFirstMissionCompleted) {
       generatePuzzle(message);
-      GameState.isSecondGuideShown = true;
       listeningLabel.setVisible(false);
       return;
     }

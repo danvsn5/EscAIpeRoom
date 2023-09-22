@@ -64,8 +64,6 @@ public class OutsideController {
       System.out.println("Thruster Mission Complete");
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
       thrusterWarning.setVisible(false);
-      CentralController.beginWinFlash();
-      CentralController.flashWinButton();
     }
   }
 

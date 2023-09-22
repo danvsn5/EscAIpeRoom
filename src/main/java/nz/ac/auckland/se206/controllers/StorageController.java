@@ -37,6 +37,13 @@ public class StorageController {
   }
 
   public void goToChest() {
+    GameState.generatePassWord();
+    ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#firstNumber"))
+        .setText(Integer.toString(GameState.firstDigit));
+    ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber"))
+        .setText(Integer.toString(GameState.secondDigit));
+    System.out.println(GameState.passWord);
+    SceneManager.showDialog("Info", "+", "What does this mean?");
     App.setUi(AppPanel.CHEST);
   }
 
@@ -60,6 +67,7 @@ public class StorageController {
     }
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+    System.out.println(GameState.missionManager.getMission(MISSION.THRUSTER).getStage());
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 

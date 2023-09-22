@@ -5,7 +5,7 @@ public class ControllerMission extends Mission {
 
   public ControllerMission() {
     currentStage = 0;
-    totalStage = 3;
+    totalStage = 2;
   }
 
   /**

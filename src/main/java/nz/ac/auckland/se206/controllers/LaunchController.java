@@ -50,7 +50,6 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
     SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
-    SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
     SceneManager.addPanel(AppPanel.THRUSTER, loadFxml("thrusterRoom"));
@@ -70,6 +69,8 @@ public class LaunchController {
     GameState.progressBarGroup.setMissionTwo(task2);
     missionInitialise.initialiseFirstMission(task1);
     missionInitialise.initialiseSecondMission(task2);
+
+    SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
 
     if (GameState.missionList.contains(1)) {
       mission1 = "Fix the Window";

@@ -1,14 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -17,8 +14,6 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
 public class CentralController {
-
-  @FXML private static ImageView completeGame;
 
   @FXML private Button okButton;
   @FXML private Label counter;
@@ -36,12 +31,9 @@ public class CentralController {
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
+  @FXML private ImageView completeGame;
   @FXML private Rectangle guideWindow;
   @FXML private Rectangle outsideDoorRectangle;
-
-  private static int winFlashState = 0;
-  private static Timeline winFlash =
-      new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -59,7 +51,6 @@ public class CentralController {
 
   public void goWin() {
     LaunchController.timer.setFinish();
-    winFlash.stop();
     App.setUi(AppPanel.WIN);
   }
 
@@ -117,20 +108,20 @@ public class CentralController {
 
   public void fixController() {
     // This method trys to fix the controller
-    // If the controller mission less than stage 2 (not having spare part on hand), show broken
+    // If the controller mission less than stage 0 (not having spare part on hand), show broken
     // controller message
-    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() <= 1) {
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
       SceneManager.showDialog(
           "Info", "Broken Control Panel", "The control panel for the ship is broken!");
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 2) {
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
       // If the controller mission is at stage 2, indicating panel can be fixed, show message
       SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
       // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       // Set the end game button visible
+      completeGame.setDisable(false);
       completeGame.setVisible(true);
-      beginWinFlash();
       GameState.isSecondMissionCompleted = true;
     }
   }
@@ -216,8 +207,31 @@ public class CentralController {
 
     // If the first mission is completed, show the second guide message
     if (GameState.isFirstMissionCompleted) {
-      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-          .appendText(ChatController.secondGuideMessage.getContent());
+      if (GameState.missionList.contains(1) && GameState.missionList.contains(4)) {
+        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+            .appendText(
+                "You have repaired the window... Well done. You still cannot leave however, as the"
+                    + " thrusters are still damaged. In amongst your ship, I have hidden a"
+                    + " blueprint that should help you fix the thrusters");
+      } else if (GameState.missionList.contains(1) && GameState.missionList.contains(3)) {
+        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+            .appendText(
+                "You have repaired the window... Well done. You still cannot leave however, as the"
+                    + " control panel is still damaged. In amongst your ship, I have hidden a"
+                    + " chest containing spare parts that should help you fix the control panel");
+      } else if (GameState.missionList.contains(2) && GameState.missionList.contains(4)) {
+        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+            .appendText(
+                "You have refueled the ship... Well done. You still cannot leave however, as the"
+                    + " thrusters are still damaged. In amongst your ship, I have hidden a"
+                    + " blueprint that should help you fix the thrusters");
+      } else {
+        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+            .appendText(
+                "You have refueled the ship... Well done. You still cannot leave however, as the"
+                    + " control panel is still damaged. In amongst your ship, I have hidden a"
+                    + " chest containing spare parts that should help you fix the control panel");
+      }
     }
 
     // Set the previous panel to Main room then go to chat room
@@ -246,20 +260,5 @@ public class CentralController {
 
   public void deactivateWinGlow() {
     completeGame.setEffect(GameState.glowDim);
-  }
-
-  public static void beginWinFlash() {
-    winFlash.setCycleCount(Timeline.INDEFINITE);
-    // winFlash.play();
-  }
-
-  public static void flashWinButton() {
-    if (winFlashState == 0) {
-      completeGame.setEffect(GameState.glowBright);
-      winFlashState = 1;
-    } else {
-      completeGame.setEffect(GameState.glowDim);
-      winFlashState = 0;
-    }
   }
 }

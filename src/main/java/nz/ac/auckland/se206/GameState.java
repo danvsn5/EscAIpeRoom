@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -20,10 +21,13 @@ public class GameState {
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
   public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
 
-  public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
+  // public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
 
   public static int hintNumer = 1000;
   public static int currentHint = 0;
+  public static int passWord;
+  public static int firstDigit;
+  public static int secondDigit;
 
   public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
 
@@ -123,5 +127,15 @@ public class GameState {
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
     ChatController.seenFirstMessage = 0;
+  }
+
+  public static void generatePassWord() {
+    Random rand = new Random();
+    firstDigit = rand.nextInt(500);
+    System.out.println(firstDigit);
+    secondDigit = rand.nextInt(500);
+    System.out.println(secondDigit);
+    passWord = firstDigit + secondDigit;
+    System.out.println(passWord);
   }
 }

@@ -20,6 +20,8 @@ public class ChestController {
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
   @FXML private Label counter;
+  @FXML private Label firstNumebr;
+  @FXML private Label secondNumber;
   @FXML private Rectangle firstDigitHighlight;
   @FXML private Rectangle secondDigitHighlight;
   @FXML private Rectangle thirdDigitHighlight;
@@ -77,9 +79,9 @@ public class ChestController {
 
   public void check() {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
-    if (password == correctPassword) {
+    if (password == GameState.passWord) {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.CONTROLLER);
+      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       SceneManager.showDialog(
           "Info", "Control panel collected", "The spare part of the controller");
       disableLock();

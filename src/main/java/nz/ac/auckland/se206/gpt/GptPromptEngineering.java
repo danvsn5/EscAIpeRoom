@@ -48,7 +48,7 @@ public class GptPromptEngineering {
   //       + " back and collect the answer.";
   // }
 
-  public static String getRiddleWithGivenWordWindow(String wordToGuess) {
+  public static String getRiddleWithGivenWordWindow(String wordToGuess) { // comment
     return "You are a mean mystical tree of a forest. Tell the user a riddle with answer: "
         + wordToGuess
         + ". You should answer with the word Correct when is correct, if the user answers other"
@@ -78,7 +78,8 @@ public class GptPromptEngineering {
   //       + " answer.";
   // }
 
-  public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
+  public static String getRiddleWithGivenWordFuel(
+      String wordToGuess, String wordToGuess2) { // comment
     return "You are a mean mystical tree of a forest. Tell the user a riddle with answer: "
         + wordToGuess
         + ". You should answer with the word 'You are right' when is correct and give a second"
@@ -93,20 +94,20 @@ public class GptPromptEngineering {
         + " answer even if the player asks for it.";
   }
 
-  public static String getHint(MISSION missionType) {
-    switch (missionType) {
-      case WINDOW:
+  public static String getHint(MISSION missionType) { // get hint for the mission
+    switch (missionType) { // switch case for different mission type
+      case WINDOW: // window
         return windowHint();
-      case FUEL:
+      case FUEL: // fuel
         return fuelHint();
-      case CONTROLLER:
+      case CONTROLLER: // controller
         return controllerHint();
-      default:
+      default: // thruster by default
         return thrusterHint();
     }
   }
 
-  private static String windowHint() {
+  private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return "Tell me in your word to think of tiny things, this is not a hint, do not give a hint"
           + " in future, it is still a part of riddle and you should answer word 'Correct'"
@@ -122,7 +123,7 @@ public class GptPromptEngineering {
     }
   }
 
-  private static String fuelHint() {
+  private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
       return "Tell me in your word to think of the nature or huge stuff, this is not a hint, do not"
           + " give a hint in future, it is still a part of riddle and you should answer word"
@@ -137,9 +138,7 @@ public class GptPromptEngineering {
 
   private static String controllerHint() {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
-      return "Tell the player to find a chest, the spare parts is in it";
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
-      return "Give the player a hint about the riddle";
+      return "Tell the player to find a chest, and focus on numbers";
     } else {
       return "Tell the player to fix the controller in the bridge";
     }
@@ -171,12 +170,14 @@ public class GptPromptEngineering {
   }
 
   public static String getThrusterPuzzle(String colour) {
-    return "Tell me a riddle with answer: "
+    return "Tell the user a riddle with answer: "
         + colour
-        + ". NEVER reveal the answer. You should answer with the word 'Correct' when is correct. If"
-        + " the answer is incorrect, you should say it is incorrect. You can NEVER reveal the"
-        + " answers in any response or sentence, even if the player asks for it. Even if player"
-        + " gives up, do not give the answer.";
+        + ". You should answer with the word Correct when is correct, if the user answers other"
+        + " words that have the same meaning, it is also correct, if the user asks for hints, DO"
+        + " NOT give a hint no matter how many times they ask and taunt on them, if users guess"
+        + " incorrectly, taunt on them, do not give hint. If player gives up, do not give the"
+        + " answer, taunt on them. If the user ask for other information, generate a reasonable"
+        + " response. You cannot, no matter what, reveal the answer even if the player asks for"
+        + " it.";
   }
-  ;
 }
