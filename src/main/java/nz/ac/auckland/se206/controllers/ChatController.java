@@ -29,16 +29,17 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
-  private boolean isGenerating = false;
 
-  @FXML private TextArea chatTextArea;
-  @FXML private TextField inputText;
+  private boolean isGenerating = false;
   @FXML private Button sendButton;
   @FXML private Button hintButton;
-  @FXML private Label counter;
   @FXML private Circle loadingCircle;
+  @FXML private Label counter;
   @FXML private Label listeningLabel;
+  @FXML private Label hintNumber;
   @FXML private ProgressIndicator loading;
+  @FXML private TextArea chatTextArea;
+  @FXML private TextField inputText;
   @FXML private ImageView progressButton;
   @FXML private ImageView fuel;
   @FXML private ImageView sand;
@@ -49,12 +50,7 @@ public class ChatController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-
-  // private ChatMessage thinkingMessage =
-  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
-
   @FXML private Rectangle hintRectangle;
-  @FXML private Label hintNumber;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -471,12 +467,15 @@ public class ChatController {
   }
 
   public void collectFuel() {
+    // This method collects fuel
     GameState.inventory.add(8); // fuel collected
+    // Increase fuel mission stage and update progressbar
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
-    System.out.println("Fuel Mission 2 Complete");
+    // Hide fuel
     fuel.setVisible(false);
     fuel.setDisable(true);
+    // Show message
     SceneManager.showDialog("Info", "Fuel Collected", "A heavy fuel tank");
   }
 
@@ -489,12 +488,16 @@ public class ChatController {
   }
 
   public void collectSand() {
+    // This method collects sand
+    // Increase the window mission by one stage and update progressbar
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-    System.out.println("Collected sand");
+    // Hide the sand
     sand.setVisible(false);
     sand.setDisable(true);
+    // Add sand to inventory
     GameState.inventory.add(2);
+    // Show collect message
     SceneManager.showDialog(
         "Info", "Sand Collected", "A pile of sand which can be melted into glass");
   }
