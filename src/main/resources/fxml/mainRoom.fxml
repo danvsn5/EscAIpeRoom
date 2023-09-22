@@ -95,14 +95,6 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="completeGame" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#goWin" onMouseEntered="#activateWinGlow" onMouseExited="#deactivateWinGlow" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/winNotification.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
       <Rectangle fx:id="guideWindow" arcHeight="5.0" arcWidth="5.0" fill="#004683" height="562.0" layoutX="159.0" layoutY="90.0" opacity="0.9" stroke="BLACK" strokeType="INSIDE" width="937.0" />
       <Label fx:id="guideLabel" alignment="TOP_LEFT" layoutX="192.0" layoutY="125.0" prefHeight="483.0" prefWidth="863.0" text="Welcome! &#10;Wonder who I am? &#10;I am the mysterious tree of the forest.&#10;If you want to escape, you should have to &#10;fix this ship first!&#10;You have two missions to be completed.&#10;Wonder what are they?&#10;Check the progress bar first then find me on outside!&#10;&#10;&#10;" textFill="WHITE">
          <font>
@@ -114,5 +106,13 @@
             <Font size="36.0" />
          </font>
       </Button>
+      <ImageView fx:id="completeGame" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#goWin" onMouseEntered="#activateWinGlow" onMouseExited="#deactivateWinGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/winNotification.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

@@ -49,11 +49,11 @@ public class StorageController {
           "Info", "Colour Key", "You found the blueprint and discovered the colour key is purple!");
     } else if (GameState.getRandomColorNumber() == 2) {
       SceneManager.showDialog(
-          "Info", "Colour Key", "You found the blueprint and discovered the colour key is blue!");
+          "Info", "Colour Key", "You found the blueprint and discovered the colour key is red!");
 
     } else if (GameState.getRandomColorNumber() == 3) {
       SceneManager.showDialog(
-          "Info", "Colour Key", "You found the blueprint and discovered the colour key is red!");
+          "Info", "Colour Key", "You found the blueprint and discovered the colour key is blue!");
     } else if (GameState.getRandomColorNumber() == 4) {
       SceneManager.showDialog(
           "Info", "Colour Key", "You found the blueprint and discovered the colour key is green!");
