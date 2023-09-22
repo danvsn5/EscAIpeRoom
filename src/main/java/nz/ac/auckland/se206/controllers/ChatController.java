@@ -74,44 +74,19 @@ public class ChatController {
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
-    // greets the user at the start.
-    Task<Void> greetTask =
-        new Task<Void>() {
+    String mission1;
 
-          @Override
-          protected Void call() throws Exception {
-
-            System.out.println("greet task");
-
-            setChatCompletionRequest(
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.7)
-                    .setMaxTokens(100));
-
-            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
-            appendChatMessage(gptMessage);
-
-            updateProgress(1, 1);
-            return null;
-          }
-        };
-
-    loading.progressProperty().bind(greetTask.progressProperty());
-
-    greetTask.setOnSucceeded(
-        e -> {
-          loading.progressProperty().unbind();
-          // End thinking, start talking
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
-          inputText.setDisable(false);
-          startTalk();
-        });
-
-    Thread mainRiddleThread = new Thread(greetTask);
-    mainRiddleThread.start();
+    if (GameState.missionList.contains(1)) {
+      mission1 =
+          "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
+              + " to the next step.";
+      chatTextArea.appendText(mission1);
+    } else if (GameState.missionList.contains(2)) {
+      mission1 =
+          "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
+              + " you to the next step.";
+      chatTextArea.appendText(mission1);
+    }
 
     Task<Void> guideTask =
         new Task<Void>() {

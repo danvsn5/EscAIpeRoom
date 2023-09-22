@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -104,6 +105,23 @@ public class LaunchController {
             + ".\nFind me outside for the clue to the first step!";
 
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#guideLabel")).setText(text);
+
+    String mission1;
+
+    if (GameState.missionList.contains(1)) {
+      mission1 =
+          "Know how to fix the window? I shall give you a riddle and the answer should guide you"
+              + " to the next step. You ready?\n";
+      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+          .appendText(mission1);
+
+    } else if (GameState.missionList.contains(2)) {
+      mission1 =
+          "Know how to charge the fuel? I shall give you a riddle and the answer should guide"
+              + " you to the next step. You ready?\n";
+      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+          .appendText(mission1);
+    }
 
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 

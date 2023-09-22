@@ -61,8 +61,6 @@ public class App extends Application {
           }
         });
 
-    Parent root = loadFxml("chat");
-    root.requestFocus();
     stage.show();
   }
 }
