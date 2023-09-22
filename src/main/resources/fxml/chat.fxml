@@ -85,7 +85,10 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-    <TextArea fx:id="chatTextArea" editable="false" layoutX="681.0" layoutY="46.0" opacity="0.85" prefHeight="473.0" prefWidth="542.0" wrapText="true" />
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="681.0" layoutY="46.0" opacity="0.85" prefHeight="473.0" prefWidth="542.0" wrapText="true">
+         <font>
+            <Font name="Bank Gothic Medium BT" size="15.0" />
+         </font></TextArea>
     <TextField fx:id="inputText" layoutX="684.0" layoutY="528.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" opacity="0.85" prefHeight="29.0" prefWidth="537.0" />
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
