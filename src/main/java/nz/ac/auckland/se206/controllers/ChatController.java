@@ -544,13 +544,13 @@ public class ChatController {
                     .setMaxTokens(100));
 
             System.out.println("first mission riddle");
-            if (firstMission == 3) { // if the first mission is the controller
+            if (secondMission == 3) { // if the first mission is the controller
               gptMessage =
                   runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
               gptMessage.setRole("Wise Ancient Tree");
               appendChatMessage(gptMessage);
               gptMessage.setRole("assistant");
-            } else if (firstMission == 4) { // if it is the thruster
+            } else if (secondMission == 4) { // if it is the thruster
               if (GameState.randomColorNumber == 1) { // red
                 gptMessage =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
