@@ -114,7 +114,7 @@ public class ChatController {
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(150);
+                    .setMaxTokens(150));
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
             firstMesage = gptMessage;
