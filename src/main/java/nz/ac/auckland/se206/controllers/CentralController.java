@@ -111,14 +111,19 @@ public class CentralController {
   }
 
   public void fixController() {
-    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 3) {
+    // This method trys to fix the controller
+    // If the controller mission less than stage 2 (not having spare part on hand), show broken
+    // controller message
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() <= 1) {
       SceneManager.showDialog(
           "Info", "Broken Control Panel", "The control panel for the ship is broken!");
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 3) {
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 2) {
+      // If the controller mission is at stage 2, indicating panel can be fixed, show message
       SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
-      System.out.println("Controller Mission Complete");
+      // Set the end game button visible
       completeGame.setVisible(true);
       beginWinFlash();
       GameState.isSecondMissionCompleted = true;
@@ -199,14 +204,18 @@ public class CentralController {
   }
 
   public void goChat() {
+    // This method set the panel to chat
+    // Stop the tree flashing
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
 
+    // If the first mission is completed, show the second guide message
     if (GameState.isFirstMissionCompleted) {
       ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
           .appendText(ChatController.secondGuideMessage.getContent());
     }
 
+    // Set the previous panel to Main room then go to chat room
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CHAT);
   }
