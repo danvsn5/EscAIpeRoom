@@ -65,6 +65,7 @@ public class ChatController {
   public static ChatMessage firstMesage;
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
+  public static ChatMessage secondMissionPuzzle;
 
   private int firstMission;
   private int secondMission;
@@ -548,34 +549,34 @@ public class ChatController {
               gptMessage =
                   runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
               gptMessage.setRole("Wise Ancient Tree");
-              appendChatMessage(gptMessage);
+              secondMissionPuzzle = gptMessage;
               gptMessage.setRole("assistant");
             } else if (secondMission == 4) { // if it is the thruster
               if (GameState.randomColorNumber == 1) { // red
                 gptMessage =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
                 gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
+                secondMissionPuzzle = gptMessage;
                 gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 2) { // blue
                 gptMessage =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
                 gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
+                secondMissionPuzzle = gptMessage;
                 gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 3) { // green
                 gptMessage =
                     runGpt(
                         new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
                 gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
+                secondMissionPuzzle = gptMessage;
                 gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 4) { // purple
                 gptMessage =
                     runGpt(
                         new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("purple")));
                 gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
+                secondMissionPuzzle = gptMessage;
                 gptMessage.setRole("assistant");
               }
             }

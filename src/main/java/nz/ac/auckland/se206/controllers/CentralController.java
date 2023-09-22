@@ -202,9 +202,14 @@ public class CentralController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
 
-    if (GameState.isFirstMissionCompleted) {
+    if (GameState.isFirstMissionCompleted
+        && GameState.missionList.contains(1)
+        && GameState.missionList.contains(4)) {
       ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-          .appendText(ChatController.secondGuideMessage.getContent());
+          .appendText(
+              "You have repaired the window... Well done. You still cannot leave however, as the"
+                  + " thrusters are still damaged. In amongst your ship, I have hidden a blueprint"
+                  + " that should help you fix the thrusters");
     }
 
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
