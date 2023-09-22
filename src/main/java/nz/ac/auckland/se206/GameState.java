@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.ThrusterController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -93,7 +94,7 @@ public class GameState {
   public static void clearHint() {
     currentHint = 0;
   }
-  
+
   public static void reset() {
     MissionManager.missionList.clear();
     MissionManager.keyList.clear();
@@ -105,5 +106,6 @@ public class GameState {
     isFirstMissionCompleted = false;
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
+    ChatController.seenFirstMessage = 0;
   }
 }
