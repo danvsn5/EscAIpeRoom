@@ -6,8 +6,7 @@ public class GptPromptEngineering {
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
   public static String introCall() {
-    return "Act like a wise mystical tree of a forest. Greet me and ask if i want to solve the"
-        + " riddle to collect the item for the mission.";
+    return "Act like a wise mystical tree of a forest. Tell the user to ";
   }
 
   public static String loseCall() {
