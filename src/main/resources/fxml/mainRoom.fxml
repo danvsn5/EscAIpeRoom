@@ -90,7 +90,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="fuelTank" fitHeight="122.0" fitWidth="115.0" layoutX="183.0" layoutY="480.0" onMouseClicked="#addFuel" onMouseEntered="#activateFuelTankGlow" onMouseExited="#deactivateFuelTankGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fuelTank" disable="true" fitHeight="122.0" fitWidth="115.0" layoutX="183.0" layoutY="480.0" onMouseClicked="#addFuel" onMouseEntered="#activateFuelTankGlow" onMouseExited="#deactivateFuelTankGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/warning.png" />
          </image>
