@@ -20,7 +20,7 @@ public class GameState {
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
   public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
 
-  public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
+  // public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
 
   public static int hintNumer = 1000;
   public static int currentHint = 0;

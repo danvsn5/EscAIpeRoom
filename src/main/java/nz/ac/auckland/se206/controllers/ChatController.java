@@ -79,7 +79,7 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
 
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
-    generatePuzzle();
+    generatePuzzleee();
     inputText.setDisable(true);
 
     // Start thinking
@@ -117,16 +117,9 @@ public class ChatController {
                     .setTopP(0.7)
                     .setMaxTokens(150));
 
-            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
-            firstMesage = gptMessage;
-            if (true) { // controller
-              secondGuideMessage =
-                  runGpt(
-                      new ChatMessage(
-                          "user",
-                          GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
-              System.out.println("second guide message");
-            }
+            // gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.loseCall()));
+            // firstMesage = gptMessage;
+
             updateProgress(1, 1);
             return null;
           }
@@ -250,10 +243,6 @@ public class ChatController {
           System.out.println("2");
         }
       }
-      return;
-    } else if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
-      GameState.isSecondGuideShown = true;
-      listeningLabel.setVisible(false);
       return;
     }
 
@@ -629,6 +618,83 @@ public class ChatController {
             gptMessage.setRole("Wise Ancient Tree");
             appendChatMessage(gptMessage);
             gptMessage.setRole("assistant");
+
+            updateProgress(1, 1);
+            return null;
+          }
+        };
+
+    hintTask.setOnSucceeded(
+        e -> {
+          isGenerating = false;
+          // End thinking, start talking
+          loading.progressProperty().unbind();
+          loading.setVisible(false);
+          loadingCircle.setFill(Color.valueOf("264f31"));
+          inputText.setDisable(false);
+          startTalk();
+        });
+
+    Thread hintThread = new Thread(hintTask);
+    hintThread.start();
+  }
+
+  private void generatePuzzleee() {
+    // Start thinking
+    inputText.setDisable(true);
+    startThink();
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
+
+    Task<Void> hintTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            isGenerating = true;
+
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.7)
+                    .setTopP(0.7)
+                    .setMaxTokens(150);
+
+            if (GameState.missionList.contains(3)) { // if the first mission is the controller
+              secondMissionPuzzle =
+                  runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
+              secondMissionPuzzle.setRole("Wise Ancient Tree");
+
+              secondMissionPuzzle.setRole("assistant");
+            } else if (GameState.missionList.contains(4)) { // if it is the thruster
+              if (GameState.randomColorNumber == 1) { // red
+                secondMissionPuzzle =
+                    runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                secondMissionPuzzle.setRole("Wise Ancient Tree");
+
+                secondMissionPuzzle.setRole("assistant");
+              } else if (GameState.randomColorNumber == 2) { // blue
+                secondMissionPuzzle =
+                    runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                secondMissionPuzzle.setRole("Wise Ancient Tree");
+
+                secondMissionPuzzle.setRole("assistant");
+              } else if (GameState.randomColorNumber == 3) { // green
+                secondMissionPuzzle =
+                    runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
+                gptMessage.setRole("Wise Ancient Tree");
+
+                gptMessage.setRole("assistant");
+              } else if (GameState.randomColorNumber == 4) { // purple
+                secondMissionPuzzle =
+                    runGpt(
+                        new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                secondMissionPuzzle.setRole("Wise Ancient Tree");
+                secondMissionPuzzle.setRole("assistant");
+              }
+            }
 
             updateProgress(1, 1);
             return null;
