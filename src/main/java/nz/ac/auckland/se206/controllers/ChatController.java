@@ -62,7 +62,8 @@ public class ChatController {
       new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
 
   private ChatCompletionRequest chatCompletionRequest;
-
+  public static ChatMessage firstMesage;
+  public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
 
   private int firstMission;
@@ -114,6 +115,9 @@ public class ChatController {
                     .setTemperature(0.7)
                     .setTopP(0.7)
                     .setMaxTokens(150));
+
+            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
+            firstMesage = gptMessage;
             if (true) { // controller
               secondGuideMessage =
                   runGpt(
@@ -122,7 +126,6 @@ public class ChatController {
                           GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
               System.out.println("second guide message");
             }
-
             updateProgress(1, 1);
             return null;
           }
@@ -273,7 +276,6 @@ public class ChatController {
             appendChatMessage(lastMsg);
             lastMsg.setRole("assistant");
             System.out.println("lastMsg");
-
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
             // from the launch panel and checks whether or not text to speech will be active
 
@@ -295,6 +297,7 @@ public class ChatController {
                   sand.setVisible(true);
                 }
                 GameState.firstRiddleSolved = true;
+                GameState.textToSpeech.speak(lastMsg.getContent());
                 System.out.println("first riddle solved");
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {

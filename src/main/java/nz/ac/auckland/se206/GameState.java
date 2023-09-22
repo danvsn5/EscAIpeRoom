@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.ThrusterController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -120,5 +121,6 @@ public class GameState {
     isFirstMissionCompleted = false; // reset first mission
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
+    ChatController.seenFirstMessage = 0;
   }
 }

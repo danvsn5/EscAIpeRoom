@@ -165,6 +165,7 @@ public class LaunchController {
     } else {
       GameState.inventory.add(-2);
       speechButton.setText("Text to Speech: On");
+      System.out.println("tts is active");
     }
   }
 
