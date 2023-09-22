@@ -302,7 +302,9 @@ public class ChatController {
                   sand.setVisible(true);
                 }
                 GameState.firstRiddleSolved = true;
-                GameState.textToSpeech.speak(lastMsg.getContent());
+                if (GameState.inventory.contains(-2)) {
+                  GameState.textToSpeech.speak(lastMsg.getContent());
+                }
                 System.out.println("first riddle solved");
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
