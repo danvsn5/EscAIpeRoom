@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -112,8 +113,7 @@ public class ChatController {
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(150);
-
+                    .setMaxTokens(150));
             if (true) { // controller
               secondGuideMessage =
                   runGpt(
@@ -414,7 +414,7 @@ public class ChatController {
                     .setN(1)
                     .setTemperature(0.5)
                     .setTopP(0.2)
-                    .setMaxTokens(150);
+                    .setMaxTokens(150));
 
             System.out.println("first mission riddle");
             if (firstMission == 1) { // if the first mission is the window
@@ -508,8 +508,8 @@ public class ChatController {
     treeTalking.setVisible(false);
     treeThinking.setVisible(true);
   }
-              
-private void generatePuzzle(String message) {
+
+  private void generatePuzzle(String message) {
     inputText.setDisable(true);
 
     startThink();
@@ -581,7 +581,7 @@ private void generatePuzzle(String message) {
     Thread secondPuzzleThread = new Thread(secondPuzzleTask);
     secondPuzzleThread.start();
   }
-              
+
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
     if (GameState.hintUsedUp()) {
@@ -654,5 +654,5 @@ private void generatePuzzle(String message) {
 
     Thread hintThread = new Thread(hintTask);
     hintThread.start();
-  }           
+  }
 }

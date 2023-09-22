@@ -30,6 +30,6 @@
          <font>
             <Font name="Bank Gothic Light BT" size="37.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </Pane>

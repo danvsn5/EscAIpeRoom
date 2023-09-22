@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -66,7 +67,7 @@ public class OutsideController {
       CentralController.flashWinButton();
     }
   }
-  
+
   // public void collectSand() {
   //   System.out.println("Sand to be collected");
   //   if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {

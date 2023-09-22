@@ -40,7 +40,6 @@ public class CentralController {
   @FXML private Rectangle guideWindow;
   @FXML private Label guideLabel;
   @FXML private Button okButton;
-  @FXML private ImageView controller;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -225,6 +224,7 @@ public class CentralController {
     guideLabel.setVisible(false);
     okButton.setVisible(false);
     okButton.setDisable(true);
+  }
 
   public void activateWinGlow() {
     completeGame.setEffect(GameState.glowBright);
