@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.thrusterButtons;
+package nz.ac.auckland.se206.ThrusterButtons;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
