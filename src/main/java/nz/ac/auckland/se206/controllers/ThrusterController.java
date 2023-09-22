@@ -16,6 +16,9 @@ import nz.ac.auckland.se206.buttons.TopRightButton;
 
 public class ThrusterController {
 
+  public static int buttonActivationCounter = 0;
+  public static int isGameActive = 0;
+
   @FXML private ImageView bottomLeftUnclicked;
   @FXML private ImageView bottomLeftClicked;
   @FXML private ImageView bottomRightUnclicked;
@@ -31,20 +34,17 @@ public class ThrusterController {
   @FXML private Button returnOutside;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
-  public static int buttonActivationCounter = 0;
-  public static int isGameActive = 0;
 
   public void initialize() {}
 
-  public void setBottomLeftVisible() {
-    if (isGameActive == 1) {
+  public void setBottomLeftVisible() { // sets the bottom left button to visible
+    if (isGameActive == 1) { // checks if the game is active
       if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
         BottomLeftButton.timeline.play();
-        bottomLeftUnclicked.setVisible(true);
+        bottomLeftUnclicked.setVisible(true); // sets the button to visible
       } else {
         BottomLeftButton.timeline.pause();
-        buttonActivationCounter++;
-        isMissionComplete();
+        buttonActivationCounter++; // increments the button activation counter
       }
     }
   }
@@ -68,15 +68,14 @@ public class ThrusterController {
     }
   }
 
-  public void setBottomRightVisible() {
-    if (isGameActive == 1) {
+  public void setBottomRightVisible() { // sets the bottom right button to visible
+    if (isGameActive == 1) { // checks if the game is active
       if (BottomRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
         BottomRightButton.timeline.play();
-        bottomRightUnclicked.setVisible(true);
+        bottomRightUnclicked.setVisible(true); // sets the button to visible
       } else {
         BottomRightButton.timeline.pause();
-        buttonActivationCounter++;
-        isMissionComplete();
+        buttonActivationCounter++; // increments the button activation counter
       }
     }
   }
@@ -88,15 +87,14 @@ public class ThrusterController {
     }
   }
 
-  public void setTopLeftVisible() {
-    if (isGameActive == 1) {
+  public void setTopLeftVisible() { // sets the top left button to visible
+    if (isGameActive == 1) { // checks if the game is active
       if (TopLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
-        topLeftUnclicked.setVisible(true);
+        topLeftUnclicked.setVisible(true); // sets the button to visible
         TopLeftButton.timeline.play();
       } else {
         TopLeftButton.timeline.pause();
-        buttonActivationCounter++;
-        isMissionComplete();
+        buttonActivationCounter++; // increments the button activation counter
       }
     }
   }
@@ -108,15 +106,14 @@ public class ThrusterController {
     }
   }
 
-  public void setTopRightVisible() {
-    if (isGameActive == 1) {
+  public void setTopRightVisible() { // sets the top right button to visible
+    if (isGameActive == 1) { // checks if the game is active
       if (TopRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
         TopRightButton.timeline.play();
-        topRightUnclicked.setVisible(true);
+        topRightUnclicked.setVisible(true); // sets the button to visible
       } else {
         TopRightButton.timeline.pause();
-        buttonActivationCounter++;
-        isMissionComplete();
+        buttonActivationCounter++; // increments the button activation counter
       }
     }
   }
@@ -151,10 +148,6 @@ public class ThrusterController {
 
   public void goOutside() {
     App.setUi(AppPanel.OUTSIDE);
-  }
-
-  public void isMissionComplete() {
-    if (buttonActivationCounter == 4) {}
   }
 
   public void goChat() {
