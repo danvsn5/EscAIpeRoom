@@ -61,13 +61,13 @@ public class LaunchController {
     int task2 = rand.nextInt(2) + 3;
 
     GameState.missionManager.addMission(1);
-    GameState.missionManager.addMission(4);
+    GameState.missionManager.addMission(3);
     GameState.progressBarGroup.setMissionOne(1);
-    GameState.progressBarGroup.setMissionTwo(4);
+    GameState.progressBarGroup.setMissionTwo(3);
     GameState.missionList.add(1);
-    GameState.missionList.add(4);
+    GameState.missionList.add(3);
     missionInitialise.initialiseFirstMission(1);
-    missionInitialise.initialiseSecondMission(4);
+    missionInitialise.initialiseSecondMission(3);
 
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
 

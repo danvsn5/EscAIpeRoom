@@ -25,9 +25,9 @@ public class GameState {
 
   public static int hintNumer = 1000;
   public static int currentHint = 0;
-  public static int passWord = 0;
-  public static int firstDigit = 0;
-  public static int secondDigit = 0;
+  public static int passWord;
+  public static int firstDigit;
+  public static int secondDigit;
 
   public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
 
@@ -131,7 +131,10 @@ public class GameState {
   public static void generatePassWord() {
     Random rand = new Random();
     firstDigit = rand.nextInt(500);
+    System.out.println(firstDigit);
     secondDigit = rand.nextInt(500);
+    System.out.println(secondDigit);
     passWord = firstDigit + secondDigit;
+    System.out.println(passWord);
   }
 }

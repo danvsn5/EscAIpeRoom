@@ -111,10 +111,10 @@ public class CentralController {
   }
 
   public void fixController() {
-    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 3) {
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
       SceneManager.showDialog(
           "Info", "Broken Control Panel", "The control panel for the ship is broken!");
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 3) {
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
       SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);

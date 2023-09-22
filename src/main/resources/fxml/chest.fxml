@@ -86,5 +86,15 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
+      <Label fx:id="firstNumber" layoutX="53.0" layoutY="163.0" rotate="-19.3" text="200">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
+      <Label fx:id="secondNumber" layoutX="1101.0" layoutY="508.0" rotate="45.0" text="200">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

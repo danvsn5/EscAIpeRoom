@@ -38,6 +38,11 @@ public class StorageController {
 
   public void goToChest() {
     GameState.generatePassWord();
+    ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#firstNumber"))
+        .setText(Integer.toString(GameState.firstDigit));
+    ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber"))
+        .setText(Integer.toString(GameState.secondDigit));
+    System.out.println(GameState.passWord);
     SceneManager.showDialog("Info", "+", "What does this mean?");
     App.setUi(AppPanel.CHEST);
   }
