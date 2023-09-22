@@ -77,11 +77,6 @@
             <Image url="@../images/warning.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="fuelTank" disable="true" fitHeight="122.0" fitWidth="115.0" layoutX="232.0" layoutY="454.0" onMouseClicked="#addFuel" onMouseEntered="#activateFuelTankGlow" onMouseExited="#deactivateFuelTankGlow" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/warning.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="controller" disable="true" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#fixController" onMouseEntered="#activateControllerGlow" onMouseExited="#deactivateControllerGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/warning.png" />

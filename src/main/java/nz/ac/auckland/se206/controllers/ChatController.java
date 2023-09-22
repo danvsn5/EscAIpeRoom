@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -34,20 +33,19 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label counter;
-  @FXML private Rectangle neutral;
-  @FXML private Rectangle thinking1;
-  @FXML private Rectangle thinking2;
-  @FXML private Circle speaking;
-  @FXML private Circle eye1;
-  @FXML private Circle eye2;
   @FXML private Circle loadingCircle;
   @FXML private Label listeningLabel;
-
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
-
-  @FXML private Rectangle fuel;
-  @FXML private Label fuelCollected;
+  @FXML private ImageView fuel;
+  @FXML private ImageView sand;
+  @FXML private ImageView treeListening;
+  @FXML private ImageView treeTalking;
+  @FXML private ImageView treeThinking;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
 
   // private ChatMessage thinkingMessage =
   //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -70,12 +68,8 @@ public class ChatController {
 
     inputText.setDisable(true);
 
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
+    // Start thinking
+    startThink();
 
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
@@ -109,15 +103,11 @@ public class ChatController {
     greetTask.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
+          // End thinking, start talking
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          startTalk();
         });
 
     Thread mainRiddleThread = new Thread(greetTask);
@@ -157,15 +147,11 @@ public class ChatController {
     guideTask.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
+          // End thinking, start talking
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          startTalk();
         });
 
     Thread guideThread = new Thread(guideTask);
@@ -181,6 +167,7 @@ public class ChatController {
   }
 
   public void goProgress() {
+    SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.PROGRESS);
   }
 
@@ -244,13 +231,8 @@ public class ChatController {
     }
     inputText.clear();
 
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-    listeningLabel.setVisible(false);
+    // Start listen
+    startListen();
 
     if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
       generateFirstRiddle(message);
@@ -290,10 +272,16 @@ public class ChatController {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
+                  fuel.setDisable(false);
+                  fuel.setVisible(true);
+                } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                  GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+                  System.out.println("Window riddle solved");
+                  sand.setDisable(false);
+                  sand.setVisible(true);
                 }
                 GameState.firstRiddleSolved = true;
-                fuel.setDisable(false);
-                fuel.setVisible(true);
                 System.out.println("first riddle solved");
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
@@ -312,15 +300,11 @@ public class ChatController {
     typeCall.setOnSucceeded(
         e -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          // Start talk
+          startTalk();
         });
 
     Thread typeInThread = new Thread(typeCall);
@@ -336,8 +320,10 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    speaking.setVisible(false);
-    neutral.setVisible(true);
+    startListen();
+    if (SceneManager.getPrevious() == AppPanel.CHAT) {
+      SceneManager.setPrevious(AppPanel.OUTSIDE);
+    }
     App.setUi(SceneManager.getPrevious());
   }
 
@@ -348,13 +334,8 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) {
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-    listeningLabel.setVisible(true);
-    speaking.setVisible(false);
-    neutral.setVisible(true);
+    startListen();
+    treeThinking.setVisible(true);
   }
 
   /**
@@ -366,10 +347,7 @@ public class ChatController {
   public void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
     if (inputText.getText().trim().isEmpty()) {
-      eye1.setVisible(true);
-      eye2.setVisible(true);
-      thinking1.setVisible(false);
-      thinking2.setVisible(false);
+      startTalk();
       listeningLabel.setVisible(false);
     }
   }
@@ -385,14 +363,7 @@ public class ChatController {
   private void generateFirstRiddle(String message) {
 
     inputText.setDisable(true);
-
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
-
+    startThink();
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
@@ -452,15 +423,12 @@ public class ChatController {
     firstRiddleTask.setOnSucceeded(
         e2 -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
+          startTalk();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          treeThinking.setVisible(false);
+          treeTalking.setVisible(true);
         });
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
@@ -468,11 +436,11 @@ public class ChatController {
   }
 
   public void fuelLight() {
-    fuel.setFill(Color.valueOf("d0615f"));
+    fuel.setEffect(GameState.glowBright);
   }
 
   public void fuelNeutral() {
-    fuel.setFill(Color.valueOf("b51412"));
+    fuel.setEffect(GameState.glowDim);
   }
 
   public void collectFuel() {
@@ -482,18 +450,50 @@ public class ChatController {
     System.out.println("Fuel Mission 2 Complete");
     fuel.setVisible(false);
     fuel.setDisable(true);
-    fuelCollected.setVisible(true);
+    SceneManager.showDialog("Info", "Fuel Collected", "A heavy fuel tank");
+  }
+
+  public void activateSandGlow() {
+    sand.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateSandGlow() {
+    sand.setEffect(GameState.glowDim);
+  }
+
+  public void collectSand() {
+    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+    System.out.println("Collected sand");
+    sand.setVisible(false);
+    sand.setDisable(true);
+    GameState.inventory.add(2);
+    SceneManager.showDialog(
+        "Info", "Sand Collected", "A pile of sand which can be melted into glass");
+  }
+
+  private void startListen() {
+    treeListening.setVisible(true);
+    treeTalking.setVisible(false);
+    treeThinking.setVisible(false);
+  }
+
+  private void startTalk() {
+    treeListening.setVisible(false);
+    treeTalking.setVisible(true);
+    treeThinking.setVisible(false);
+  }
+
+  private void startThink() {
+    treeListening.setVisible(false);
+    treeTalking.setVisible(false);
+    treeThinking.setVisible(true);
   }
 
   private void generatePuzzle(String message) {
     inputText.setDisable(true);
 
-    eye1.setVisible(false);
-    eye2.setVisible(false);
-    neutral.setVisible(true);
-    speaking.setVisible(false);
-    thinking1.setVisible(true);
-    thinking2.setVisible(true);
+    startThink();
 
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
@@ -553,15 +553,10 @@ public class ChatController {
     secondPuzzleTask.setOnSucceeded(
         e2 -> {
           loading.progressProperty().unbind();
-          eye1.setVisible(true);
-          eye2.setVisible(true);
-          thinking1.setVisible(false);
-          thinking2.setVisible(false);
-          neutral.setVisible(false);
-          speaking.setVisible(true);
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
+          startTalk();
         });
 
     Thread secondPuzzleThread = new Thread(secondPuzzleTask);
