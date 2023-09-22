@@ -65,11 +65,11 @@ public class MissionManager {
   /**
    * Get the Mission instance according to input key
    *
-   * @param key a MISSION enum
+   * @param mission a MISSION enum
    * @return the class that extends Mission abstract class
    */
-  public Mission getMission(MISSION key) {
-    return missionList.get(key);
+  public Mission getMission(MISSION mission) {
+    return missionList.get(mission);
   }
 
   public MISSION getMissionKey(int index) {

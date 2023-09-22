@@ -48,8 +48,6 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
 
-    Parent root = loadFxml("chat");
-
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
     scene = new Scene(SceneManager.getPanel(AppPanel.LAUNCH), 1280, 720);
     stage.setScene(scene);
@@ -63,7 +61,6 @@ public class App extends Application {
           }
         });
 
-    root.requestFocus();
     stage.show();
   }
 }

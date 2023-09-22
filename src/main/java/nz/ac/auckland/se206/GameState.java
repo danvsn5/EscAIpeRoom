@@ -19,8 +19,12 @@ public class GameState {
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
   public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
+
+  public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
+
   public static int hintNumer = 1000;
   public static int currentHint = 0;
+
   public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
 
   // inventory holds integers that correspond to different actions having taken place:
@@ -39,7 +43,7 @@ public class GameState {
   //
   public static ArrayList<Integer> inventory = new ArrayList<Integer>();
 
-  private static int randomColorNumber;
+  public static int randomColorNumber;
 
   // create random number between 1 and 4
 
