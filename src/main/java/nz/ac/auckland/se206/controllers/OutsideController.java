@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
@@ -50,15 +49,7 @@ public class OutsideController {
   }
 
   public void goThruster() {
-    if (GameState.missionList.contains(4)
-        && GameState.isFirstMissionCompleted == true
-        && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
-      TreeAvatar.startFlashTree();
-      App.setUi(AppPanel.THRUSTER);
-      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-          .appendText(ChatController.secondMissionPuzzle.getContent());
-
-    } else if (GameState.missionList.contains(4)) {
+    if (GameState.missionList.contains(4)) {
       App.setUi(AppPanel.THRUSTER);
     }
   }
