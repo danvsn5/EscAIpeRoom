@@ -47,8 +47,8 @@ public class ChatController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
 
-  // private ChatMessage thinkingMessage =
-  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+  private ChatMessage thinkingMessage =
+      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
 
   private int firstMission;
@@ -136,7 +136,9 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
+      result.getChatMessage().setRole("Wise Ancient Tree");
       appendChatMessage(result.getChatMessage());
+      result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       ChatMessage error = new ChatMessage(null, null);
