@@ -52,7 +52,8 @@ public class ChatController {
   private ChatMessage activationMessage =
       new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
-
+  public static ChatMessage firstMesage;
+  public static int seenFirstMessage = 0;
   private int firstMission;
   private int secondMission;
 
@@ -89,7 +90,7 @@ public class ChatController {
                     .setMaxTokens(100);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
-
+            firstMesage = gptMessage;
             updateProgress(1, 1);
             return null;
           }
@@ -205,7 +206,6 @@ public class ChatController {
             ChatMessage lastMsg = runGpt(msg);
 
             System.out.println("lastMsg");
-
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
             // from the launch panel and checks whether or not text to speech will be active
 
