@@ -49,8 +49,10 @@ public class ChatController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
 
-  // private ChatMessage thinkingMessage =
-  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+  private ChatMessage thinkingMessage =
+      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
+  private ChatMessage activationMessage =
+      new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
   private ChatCompletionRequest chatCompletionRequest;
 
   private int firstMission;
@@ -137,7 +139,9 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
+      result.getChatMessage().setRole("Wise Ancient Tree");
       appendChatMessage(result.getChatMessage());
+      result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       ChatMessage error = new ChatMessage(null, null);
@@ -167,8 +171,12 @@ public class ChatController {
     }
 
     inputText.setDisable(true);
+    loading.setProgress(0);
+    loading.setVisible(true);
+    loadingCircle.setFill(Color.LIGHTGRAY);
 
     String message = inputText.getText();
+    System.out.println(message);
     if (message.trim().isEmpty()) {
       inputText.setDisable(false);
       return;
@@ -201,7 +209,11 @@ public class ChatController {
             isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
+            msg.setRole("You");
             appendChatMessage(msg);
+            System.out.println(msg.getContent());
+            msg.setRole("user");
+            appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
 
             System.out.println("lastMsg");
@@ -361,7 +373,11 @@ public class ChatController {
             isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
+
+            msg.setRole("You");
             appendChatMessage(msg);
+            msg.setRole("user");
+            appendChatMessage(activationMessage);
 
             chatCompletionRequest =
                 new ChatCompletionRequest()
