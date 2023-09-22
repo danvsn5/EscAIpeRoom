@@ -74,14 +74,17 @@ public class LaunchController {
     switch (difficulty) {
       case 0:
         GameState.setDifficulty(1);
+        GameState.setHintNumber(5);
         diffButton.setText("Difficulty: Medium");
         break;
       case 1:
         GameState.setDifficulty(2);
+        GameState.setHintNumber(0);
         diffButton.setText("Difficulty: Hard");
         break;
       case 2:
         GameState.setDifficulty(0);
+        GameState.setHintNumber(1000);
         diffButton.setText("Difficulty: Easy");
         break;
     }
