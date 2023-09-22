@@ -77,20 +77,21 @@ public class ChatController {
 
     inputText.setDisable(true);
 
-    // Start thinking
+    // Start thinking set up
     startThink();
-
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
     String mission1;
 
+    // If the first mission is window mission, append relative intro
     if (GameState.missionList.contains(1)) {
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
               + " to the next step.";
       chatTextArea.appendText(mission1);
     } else if (GameState.missionList.contains(2)) {
+      // If the first mission is fuel mission, append relative intro
       mission1 =
           "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
               + " you to the next step.";
@@ -102,19 +103,20 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
-
+            // Record gpt generating
             isGenerating = true;
-
+            // Record gpt setting
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
                     .setMaxTokens(150));
-
+            // Create new message
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
             firstMesage = gptMessage;
-            if (true) { // controller
+            // Get the Guide message of the second mission
+            if (true) {
               secondGuideMessage =
                   runGpt(
                       new ChatMessage(
