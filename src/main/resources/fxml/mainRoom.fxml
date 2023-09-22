@@ -106,7 +106,7 @@
             <Font size="36.0" />
          </font>
       </Button>
-      <ImageView fx:id="completeGame" disable="true" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#goWin" onMouseEntered="#activateWinGlow" onMouseExited="#deactivateWinGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="completeGame" fitHeight="122.0" fitWidth="115.0" layoutX="506.0" layoutY="454.0" onMouseClicked="#goWin" onMouseEntered="#activateWinGlow" onMouseExited="#deactivateWinGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/winNotification.png" />
          </image>

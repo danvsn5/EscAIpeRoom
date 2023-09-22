@@ -40,6 +40,11 @@ public class LaunchController {
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
+    Random rand = new Random();
+    int task1 = rand.nextInt(2) + 1;
+    int task2 = rand.nextInt(2) + 3;
+    GameState.missionListA.add(task1);
+    GameState.missionListA.add(task1);
 
     SceneManager.clearMap();
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
@@ -56,16 +61,12 @@ public class LaunchController {
 
     GameState.createRandomColorNumber();
 
-    Random rand = new Random();
-    int task1 = rand.nextInt(2) + 1;
-    int task2 = rand.nextInt(2) + 3;
-
     GameState.missionManager.addMission(task1);
     GameState.missionManager.addMission(task2);
-    GameState.progressBarGroup.setMissionOne(task1);
-    GameState.progressBarGroup.setMissionTwo(task2);
     GameState.missionList.add(task1);
     GameState.missionList.add(task2);
+    GameState.progressBarGroup.setMissionOne(task1);
+    GameState.progressBarGroup.setMissionTwo(task2);
     missionInitialise.initialiseFirstMission(task1);
     missionInitialise.initialiseSecondMission(task2);
 
