@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
+/** This class counts down from given time */
 public class TimeCounter {
   private int secondCounter;
   private int minuteCounter;
@@ -70,11 +71,18 @@ public class TimeCounter {
     return minuteCounter;
   }
 
+  /**
+   * Return the remaining time in percentage * 100
+   *
+   * @return double value of the remaining time in percentage * 100
+   */
   public double getRemainingPercentage() {
+    // Calculates the current time in seconds
     double currentSeconds = secondCounter + minuteCounter * 60 + 1;
     return currentSeconds * 100 / totalSeconds;
   }
 
+  /** Set the timer to finish state */
   public void setFinish() {
     secondCounter = -1;
     minuteCounter = -1;
