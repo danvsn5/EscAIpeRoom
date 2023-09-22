@@ -143,9 +143,9 @@ public class GptPromptEngineering {
 
   private static String windowHint() {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return "Tell the player to think of tiny things, this is not a hint, do not give a hint in"
-          + " future, it is still a part of riddle and you should answer word 'Correct' if"
-          + " the player is right";
+      return "Tell the player in your word to think of tiny things, this is not a hint, do not give"
+          + " a hint in future, it is still a part of riddle and you should answer word"
+          + " 'Correct' if the player guessed the answer. Don't repeat my word.";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the rewward";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -158,9 +158,9 @@ public class GptPromptEngineering {
 
   private static String fuelHint() {
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-      return "Tell the player to think of the nature or huge stuff, this is not a hint, do not give"
-          + " a hint in future, it is still a part of riddle and you should answer word"
-          + " 'Correct' if the player is right";
+      return "Tell the player in your word to think of the nature or huge stuff, this is not a"
+          + " hint, do not give a hint in future, it is still a part of riddle and you"
+          + " should answer word 'Correct' if the player guessed the answer. Don't repeat my word.";
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return "Tell the player to collect the fuel";
     } else {
