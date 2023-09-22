@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import nz.ac.auckland.se206.missions.*;
 
+/** This class manages the mission, records the selected mission */
 public class MissionManager {
+
+  /** The enum of mission types */
   public enum MISSION {
     WINDOW,
     CONTROLLER,
@@ -12,6 +15,7 @@ public class MissionManager {
     THRUSTER;
   }
 
+  // The hash map is storing the mission class using the MISSION enum
   public static HashMap<MISSION, Mission> missionList = new HashMap<>();
   public static ArrayList<MISSION> keyList = new ArrayList<>();
 
@@ -21,14 +25,18 @@ public class MissionManager {
    * @param missionNumber an integer which decides which mission to be added to list
    */
   public void addMission(int missionNumber) {
+    // If the mission numer is 1, add window mission
     if (missionNumber == 1) {
       missionList.put(MISSION.WINDOW, new WindowMission());
       keyList.add(MISSION.WINDOW);
     } else if (missionNumber == 2) {
+      // If the mission numer is 2, add fuel mission
       missionList.put(MISSION.FUEL, new FuelMission());
     } else if (missionNumber == 3) {
+      // If the mission numer is 3, add controller mission
       missionList.put(MISSION.CONTROLLER, new ControllerMission());
     } else {
+      // If the mission numer is 4, add thruster mission
       missionList.put(MISSION.THRUSTER, new ThrusterMission());
     }
 
@@ -72,6 +80,12 @@ public class MissionManager {
     return missionList.get(mission);
   }
 
+  /**
+   * Get the Mission key according to input index
+   *
+   * @param index an int that represnents the id of mission
+   * @return the MISSION enum that is the key
+   */
   public MISSION getMissionKey(int index) {
     return keyList.get(index);
   }

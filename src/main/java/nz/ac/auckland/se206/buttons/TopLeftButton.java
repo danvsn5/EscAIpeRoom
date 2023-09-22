@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.ThrusterButtons;
+package nz.ac.auckland.se206.buttons;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -8,10 +8,10 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
-public class TopRightButton {
+public class TopLeftButton {
 
   public static Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> cycle()));
-  private static int cycleNumber = 2;
+  private static int cycleNumber = 3;
   private static ColorAdjust purpleColor = new ColorAdjust(0, 0, 0, 0);
   private static ColorAdjust greenColor = new ColorAdjust(1, 0, 0, 0);
   private static ColorAdjust redColor = new ColorAdjust(0.5, 0, 0, 0);
@@ -23,30 +23,30 @@ public class TopRightButton {
     switch (cycleNumber) {
       case 1:
         // if current color is purple, move to red
-        visibleHelper("#topRightUnclicked", redColor);
-        visibleHelper("#topRightClicked", redColor);
+        visibleHelper("#topLeftUnclicked", redColor);
+        visibleHelper("#topLeftClicked", redColor);
 
         cycleNumber = 2;
         break;
       case 2:
         // if current color is red, move to blue
-        visibleHelper("#topRightUnclicked", blueColor);
-        visibleHelper("#topRightClicked", blueColor);
+        visibleHelper("#topLeftUnclicked", blueColor);
+        visibleHelper("#topLeftClicked", blueColor);
 
         cycleNumber = 3;
 
         break;
       case 3:
         // if current color is blue, move to green
-        visibleHelper("#topRightUnclicked", greenColor);
-        visibleHelper("#topRightClicked", greenColor);
+        visibleHelper("#topLeftUnclicked", greenColor);
+        visibleHelper("#topLeftClicked", greenColor);
 
         cycleNumber = 4;
         break;
       case 4:
         // if current color is green, move to purple
-        visibleHelper("#topRightUnclicked", purpleColor);
-        visibleHelper("#topRightClicked", purpleColor);
+        visibleHelper("#topLeftUnclicked", purpleColor);
+        visibleHelper("#topLeftClicked", purpleColor);
 
         cycleNumber = 1;
         break;

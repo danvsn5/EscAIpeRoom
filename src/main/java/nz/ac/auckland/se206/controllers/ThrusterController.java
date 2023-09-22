@@ -8,11 +8,11 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
-import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
-import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
-import nz.ac.auckland.se206.ThrusterButtons.TopLeftButton;
-import nz.ac.auckland.se206.ThrusterButtons.TopRightButton;
 import nz.ac.auckland.se206.TreeAvatar;
+import nz.ac.auckland.se206.buttons.BottomLeftButton;
+import nz.ac.auckland.se206.buttons.BottomRightButton;
+import nz.ac.auckland.se206.buttons.TopLeftButton;
+import nz.ac.auckland.se206.buttons.TopRightButton;
 
 public class ThrusterController {
 

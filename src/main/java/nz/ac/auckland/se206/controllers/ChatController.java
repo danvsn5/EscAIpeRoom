@@ -283,7 +283,6 @@ public class ChatController {
               System.out.println("first riddle not solved");
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
-                GameState.textToSpeech.speak(lastMsg.getContent());
                 if (!GameState.firstRiddleSolved && GameState.missionList.contains(2)) {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
@@ -298,6 +297,7 @@ public class ChatController {
                   sand.setVisible(true);
                 }
                 GameState.firstRiddleSolved = true;
+                GameState.textToSpeech.speak(lastMsg.getContent());
                 System.out.println("first riddle solved");
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
