@@ -37,6 +37,8 @@ public class StorageController {
   }
 
   public void goToChest() {
+    GameState.generatePassWord();
+    SceneManager.showDialog("Info", "+", "What does this mean?");
     App.setUi(AppPanel.CHEST);
   }
 

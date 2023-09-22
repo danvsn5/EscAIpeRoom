@@ -77,7 +77,7 @@ public class ChestController {
 
   public void check() {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
-    if (password == correctPassword) {
+    if (password == GameState.passWord) {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.CONTROLLER);
       SceneManager.showDialog(

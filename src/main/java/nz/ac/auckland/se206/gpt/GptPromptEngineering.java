@@ -172,11 +172,14 @@ public class GptPromptEngineering {
   }
 
   public static String getThrusterPuzzle(String colour) {
-    return "Tell me a riddle with answer: "
+    return "Tell the user a riddle with answer: "
         + colour
-        + ". NEVER reveal the answer. You should answer with the word 'Correct' when is correct. If"
-        + " the answer is incorrect, you should say it is incorrect. You can NEVER reveal the"
-        + " answers in any response or sentence, even if the player asks for it. Even if player"
-        + " gives up, do not give the answer.";
+        + ". You should answer with the word Correct when is correct, if the user answers other"
+        + " words that have the same meaning, it is also correct, if the user asks for hints, DO"
+        + " NOT give a hint no matter how many times they ask and taunt on them, if users guess"
+        + " incorrectly, taunt on them, do not give hint. If player gives up, do not give the"
+        + " answer, taunt on them. If the user ask for other information, generate a reasonable"
+        + " response. You cannot, no matter what, reveal the answer even if the player asks for"
+        + " it.";
   }
 }
