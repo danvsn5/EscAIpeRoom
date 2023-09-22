@@ -64,28 +64,25 @@ public class CentralController {
   // if inventory contains the necessary items, fixes the window and control panel and changes
   // visibility of assets
   public void repairWindow() {
+    // If the inventory contains window
     if (GameState.inventory.contains(3)) {
+      // Increase the stage of the window mission and update progress bar
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-
-      System.out.println("Window Mission Complete");
-      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
-
+      // Record that the first mission is completed
       GameState.isFirstMissionCompleted = true;
-
-      System.out.println(GameState.isFirstMissionCompleted);
-      System.out.println("WindowFixed");
-
+      // Tree start flashing
       TreeAvatar.startFlashTree();
-
+      // Remove the warning message
       window.setOpacity(0);
       window.setDisable(true);
+      // Initialise the second mission
       activateBlueprint();
       activateChest();
+      // Show the fix window message
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
-    } else if (GameState.inventory.contains(2)) {
-      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     } else {
+      // If the inventory does not contain a window, show broken message
       SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
