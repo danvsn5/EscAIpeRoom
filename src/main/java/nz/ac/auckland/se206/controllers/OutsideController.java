@@ -3,12 +3,9 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -29,8 +26,6 @@ public class OutsideController {
   @FXML private ImageView ship;
   @FXML private ImageView thrusterImage;
   @FXML private ImageView thrusterWarning;
-  @FXML private Rectangle sand;
-  @FXML private Label isSandCollected;
 
   public void initialize() {}
 
@@ -38,6 +33,7 @@ public class OutsideController {
   // solved correctly, and sand is currently NOT in the inventory, then the sand appears inside the
   // panel.
   public void goProgress() {
+    SceneManager.setPrevious(AppPanel.OUTSIDE);
     App.setUi(AppPanel.PROGRESS);
   }
 
@@ -51,24 +47,30 @@ public class OutsideController {
   }
 
   public void goThruster() {
-    App.setUi(AppPanel.THRUSTER);
-  }
-
-  public void collectSand() {
-    System.out.println("Sand to be collected");
-    if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
-      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-      System.out.println("Window Mission Complete");
-      System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
-
-      GameState.inventory.add(2);
-      sand.setDisable(true);
-      isSandCollected.setVisible(true);
-    } else {
-      System.out.println("You need to solve the riddle first!");
+    if (GameState.missionList.contains(4)) {
+      App.setUi(AppPanel.THRUSTER);
     }
   }
+
+  public void thrusterError() {
+    SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
+  }
+
+  // public void collectSand() {
+  //   System.out.println("Sand to be collected");
+  //   if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+  //     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+  //     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+  //     System.out.println("Window Mission Complete");
+  //     System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
+
+  //     GameState.inventory.add(2);
+  //     sand.setDisable(true);
+  //     isSandCollected.setVisible(true);
+  //   } else {
+  //     System.out.println("You need to solve the riddle first!");
+  //   }
+  // }
 
   // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
   // method is invoked: the color of the selected object becomes lighter and a label becomes
@@ -76,14 +78,6 @@ public class OutsideController {
   // clickble. Once mouse is moved from object, color returns to original and the label is made
   // invisible with Dark/Normal method
   // invokation.
-
-  public void sandLight() {
-    sand.setFill(Color.valueOf("fffccc"));
-  }
-
-  public void sandNormal() {
-    sand.setFill(Color.valueOf("ffba1f"));
-  }
 
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
@@ -134,12 +128,22 @@ public class OutsideController {
   }
 
   public void activateThrusterGlow() {
-    thrusterImage.setEffect(GameState.glowBright);
-    thrusterWarning.setEffect(GameState.glowBright);
+    if (GameState.missionList.contains(4)) {
+      thrusterImage.setEffect(GameState.glowBright);
+    }
   }
 
   public void deactivateThrusterGlow() {
-    thrusterImage.setEffect(GameState.glowDim);
+    if (GameState.missionList.contains(4)) {
+      thrusterImage.setEffect(GameState.glowDim);
+    }
+  }
+
+  public void activateThrusterErrorGlow() {
+    thrusterWarning.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateThrusterErrorGlow() {
     thrusterWarning.setEffect(GameState.glowDim);
   }
 }

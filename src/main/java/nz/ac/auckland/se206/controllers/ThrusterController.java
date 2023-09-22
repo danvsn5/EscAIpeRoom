@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.ThrusterButtons.BottomLeftButton;
 import nz.ac.auckland.se206.ThrusterButtons.BottomRightButton;
@@ -23,7 +24,12 @@ public class ThrusterController {
   @FXML private ImageView topLeftClicked;
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
+  @FXML private ImageView rootInitial;
+  @FXML private ImageView rootOne;
+  @FXML private ImageView rootTwo;
+  @FXML private ImageView rootThree;
   @FXML private Button returnOutside;
+  @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
   private int buttonActivationCounter = 0;
   public static int isGameActive = 0;
@@ -41,6 +47,11 @@ public class ThrusterController {
         isMissionComplete();
       }
     }
+  }
+
+  public void goProgress() {
+    SceneManager.setPrevious(AppPanel.THRUSTER);
+    App.setUi(AppPanel.PROGRESS);
   }
 
   public void setBottomLeftInvisible() {
@@ -116,6 +127,13 @@ public class ThrusterController {
     // color puzzle. Only once both steps have been completed can the player begin the thruster
     // mini-game
 
+    if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
+      SceneManager.showDialog(
+          "Info", "Thruster Repair", "You are missing the blueprint and the colour key!");
+    } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+      SceneManager.showDialog("Info", "Thruster Repair", "You are missing the colour key!");
+    }
+
     if (buttonActivationCounter == 0
         && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 2) {
 
@@ -147,6 +165,7 @@ public class ThrusterController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
+    SceneManager.setPrevious(AppPanel.THRUSTER);
   }
 
   public void miniTreeGlow() {
@@ -155,5 +174,13 @@ public class ThrusterController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void activateProgressGlow() {
+    progressButton.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateProgressGlow() {
+    progressButton.setEffect(GameState.glowDim);
   }
 }

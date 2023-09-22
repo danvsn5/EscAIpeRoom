@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionInitialise;
 import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -28,13 +29,13 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
+  MissionInitialise missionInitialise = new MissionInitialise();
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
     SceneManager.clearMap();
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
-    SceneManager.addPanel(AppPanel.WORK, loadFxml("workRoom"));
     SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
     SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
@@ -74,6 +75,8 @@ public class LaunchController {
     GameState.progressBarGroup.setMissionTwo(task2);
     GameState.missionList.add(task1);
     GameState.missionList.add(task2);
+    missionInitialise.initialiseFirstMission(task1);
+    missionInitialise.initialiseSecondMission(task2);
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 
     App.setUi(AppPanel.MAIN_ROOM);
@@ -187,8 +190,9 @@ public class LaunchController {
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
-    ((Label) SceneManager.getPanel(AppPanel.WORK).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.STORAGE).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#counter")).setText(time);
+    ((Label) SceneManager.getPanel(AppPanel.THRUSTER).lookup("#counter")).setText(time);
   }
 }

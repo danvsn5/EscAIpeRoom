@@ -21,12 +21,14 @@ public abstract class Mission {
   public int getStage() {
     return currentStage;
   }
-  ;
 
   public int getPercentage() {
     return currentStage * 100 / totalStage;
   }
-  ;
+
+  public boolean isEnd() {
+    return currentStage == totalStage;
+  }
 
   public abstract ChatMessage askGpt();
 

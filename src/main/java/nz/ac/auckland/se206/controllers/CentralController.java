@@ -32,6 +32,7 @@ public class CentralController {
   @FXML private Rectangle guideWindow;
   @FXML private Label guideLabel;
   @FXML private Button okButton;
+  @FXML private ImageView controller;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -45,11 +46,6 @@ public class CentralController {
 
   public void goStorage() {
     App.setUi(AppPanel.STORAGE);
-  }
-
-  public void goWorkshop() {
-    SceneManager.setPrevious(AppPanel.WORK);
-    App.setUi(AppPanel.WORK);
   }
 
   // if inventory contains the necessary items, fixes the window and control panel and changes
@@ -71,6 +67,13 @@ public class CentralController {
 
       window.setOpacity(0);
       window.setDisable(true);
+      activateBlueprint();
+      activateChest();
+      SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
+    } else if (GameState.inventory.contains(2)) {
+      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
+    } else {
+      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
 
@@ -86,8 +89,24 @@ public class CentralController {
 
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
+      activateBlueprint();
+      activateChest();
+      SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
     } else {
-      System.out.println("Fuel not collected");
+      SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
+    }
+  }
+
+  public void fixController() {
+    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 3) {
+      SceneManager.showDialog(
+          "Info", "Broken Control Panel", "The control panel for the ship is broken!");
+    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 3) {
+      SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
+      System.out.println("Controller Mission Complete");
+      GameState.isSecondMissionCompleted = true;
     }
   }
 
@@ -96,6 +115,22 @@ public class CentralController {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
     }
+  }
+
+  private void activateBlueprint() {
+    if (!GameState.firstRiddleSolved || GameState.missionList.contains(3)) {
+      return;
+    }
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
+  }
+
+  private void activateChest() {
+    if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
+      return;
+    }
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
   }
 
   public void activateProgressGlow() {
@@ -140,11 +175,20 @@ public class CentralController {
     window.setEffect(GameState.glowDim);
   }
 
+  public void activateControllerGlow() {
+    controller.setEffect(GameState.glowBright);
+  }
+
+  public void deactivateControllerGlow() {
+    controller.setEffect(GameState.glowDim);
+  }
+
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
         .appendText(ChatController.secondGuideMessage.getContent());
+    SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CHAT);
   }
 

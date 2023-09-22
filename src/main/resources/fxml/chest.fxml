@@ -16,7 +16,7 @@
             <Image url="@../images/chestPanel.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="272.0" layoutY="569.0" mnemonicParsing="false" onAction="#goBack" text="Back">
+      <Button fx:id="backButton" layoutX="323.0" layoutY="569.0" mnemonicParsing="false" onAction="#goBack" text="Back">
          <font>
             <Font name="Bank Gothic Light BT" size="40.0" />
          </font></Button>
@@ -42,28 +42,48 @@
       <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="456.0" layoutY="381.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#firstDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
       <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="585.0" layoutY="381.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
       <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="712.0" layoutY="381.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#thirdDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
-      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
-         <font>
-            <Font name="Bank Gothic Light BT" size="79.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
          <image>
-            <Image url="@../images/ProgressButton.png" />
+            <Image url="@../images/initalRoot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="rootOne" fitHeight="726.0" fitWidth="1280.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/miniTreeTEMPORARY.png" />
+            <Image url="@../images/oneRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootTwo" fitHeight="726.0" fitWidth="1286.0" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/twoRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/threeRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTree.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+      </ImageView>
       <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
+      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
+         <font>
+            <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
    </children>

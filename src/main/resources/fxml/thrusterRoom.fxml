@@ -2,14 +2,21 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ThrusterController">
    <children>
+      <ImageView fitHeight="732.0" fitWidth="1316.0" layoutX="-24.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/image1.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="bottomLeftClicked" fitHeight="150.0" fitWidth="200.0" layoutX="480.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ThrusterButtons/PurpleClicked.png" />
@@ -102,23 +109,62 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="701.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blueprintSlot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blueprint" fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="blueprint" fitHeight="150.0" fitWidth="200.0" layoutX="701.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/blueprint.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="64.0" layoutY="497.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/miniTreeTEMPORARY.png" />
+            <Image url="@../images/threeRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
+         <image>
+            <Image url="@../images/initalRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootOne" fitHeight="726.0" fitWidth="1280.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/oneRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rootTwo" fitHeight="726.0" fitWidth="1286.0" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/twoRoot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/miniTree.png" />
          </image>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
+      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
+         <font>
+            <Font name="Bank Gothic Light BT" size="79.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ProgressButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+         <font>
+            <Font name="Bank Gothic Light BT" size="34.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
