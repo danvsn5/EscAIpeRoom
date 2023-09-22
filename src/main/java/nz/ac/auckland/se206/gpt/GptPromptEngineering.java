@@ -44,8 +44,8 @@ public class GptPromptEngineering {
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
   public static String introCall() {
-    return "Act like a wise mystical tree of a forest. Greet me and ask if i want to solve the"
-        + " riddle to collect the item for the mission.";
+    return "Act like a wise mystical tree of a forest. Greet me in one sentence and ask if i want"
+        + " to solve the riddle to collect the item for the mission.";
   }
 
   public static String loseCall() {
@@ -88,10 +88,11 @@ public class GptPromptEngineering {
         + wordToGuess
         + ". You should answer with the word Correct when is correct, if the user answers other"
         + " words that have the same meaning, it is also correct, if the user asks for hints, DO"
-        + " NOT give a gint and taunt on them, if users guess incorrectly, taunt on them, do not"
-        + " give hint. If player gives up, do not give the answer, taunt on them. If the user ask"
-        + " for other information, generate a reasonable response. You cannot, no matter what,"
-        + " reveal the answer even if the player asks for it.";
+        + " NOT give a hint no matter how many times they ask and taunt on them, if users guess"
+        + " incorrectly, taunt on them, do not give hint. If player gives up, do not give the"
+        + " answer, taunt on them. If the user ask for other information, generate a reasonable"
+        + " response. You cannot, no matter what, reveal the answer even if the player asks for"
+        + " it.";
   }
 
   // public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
@@ -120,11 +121,11 @@ public class GptPromptEngineering {
         + wordToGuess2
         + ", if the player answers correct in second riddle you should answer with the word Correct"
         + " when is correct, if the user answers other words that have the same meaning, it is also"
-        + " correct, if the user asks for hints, DO NOT give a gint and taunt on them, if users"
-        + " guess incorrectly, taunt on them, do not give hint. If player gives up, do not give the"
-        + " answer, taunt on them. If the user ask for other information, generate a reasonable"
-        + " response. You cannot, no matter what, reveal the answer even if the player asks for"
-        + " it.";
+        + " correct, if the user asks for hints, DO NOT give a hint no matter how many times they"
+        + " ask and taunt on them, if users guess incorrectly, taunt on them, do not give hint. If"
+        + " player gives up, do not give the answer, taunt on them. If the user ask for other"
+        + " information, generate a reasonable response. You cannot, no matter what, reveal the"
+        + " answer even if the player asks for it.";
   }
 
   public static String getHint(MISSION missionType) {
@@ -142,8 +143,9 @@ public class GptPromptEngineering {
 
   private static String windowHint() {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return "Tell the player to think of tiny things, it is still a part of riddle and you should"
-          + " answer word 'Correct' if the player is right";
+      return "Tell the player to think of tiny things, this is not a hint, do not give a hint in"
+                 + " future, it is still a part of riddle and you should answer word 'Correct' if"
+                 + " the player is right";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the rewward";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
