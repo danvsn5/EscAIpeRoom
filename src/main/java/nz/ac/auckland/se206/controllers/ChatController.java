@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -48,6 +49,8 @@ public class ChatController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private Rectangle hintRectangle;
+  @FXML private Label hintNumber;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -196,6 +199,14 @@ public class ChatController {
       if (GameState.getDifficulty() != 2) {
         hintButton.setVisible(true);
         hintButton.setDisable(false);
+        System.out.println("1");
+        if (GameState.getDifficulty() == 1) {
+          hintNumber.setVisible(true);
+          hintNumber.setDisable(false);
+          hintRectangle.setVisible(true);
+          hintRectangle.setDisable(false);
+          System.out.println("2");
+        }
       }
       return;
     }

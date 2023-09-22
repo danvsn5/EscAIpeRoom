@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
+import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -76,6 +78,11 @@ public class GameState {
 
   public static void useHint() {
     currentHint++;
+    if (difficulty == 1) {
+      int hintRemain = hintNumer - currentHint;
+      ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#hintNumber"))
+          .setText(Integer.toString(hintRemain));
+    }
   }
 
   public static boolean hintUsedUp() {
