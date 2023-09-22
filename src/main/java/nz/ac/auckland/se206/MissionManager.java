@@ -12,8 +12,8 @@ public class MissionManager {
     THRUSTER;
   }
 
-  private HashMap<MISSION, Mission> missionList = new HashMap<>();
-  private ArrayList<MISSION> keyList = new ArrayList<>();
+  public static HashMap<MISSION, Mission> missionList = new HashMap<>();
+  public static ArrayList<MISSION> keyList = new ArrayList<>();
 
   /**
    * Add mission to list according to input integer

@@ -29,6 +29,7 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
+  public static TimeCounter timer;
   MissionInitialise missionInitialise = new MissionInitialise();
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
@@ -45,22 +46,6 @@ public class LaunchController {
     SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
     SceneManager.addPanel(AppPanel.STORAGE, loadFxml("storage"));
 
-    int timerState = GameState.getTimer();
-
-    switch (timerState) {
-      case 0:
-        RootBorder.treeTimelineTwo.setCycleCount(3);
-        RootBorder.treeTimelineTwo.play();
-        break;
-      case 1:
-        RootBorder.treeTimelineFour.setCycleCount(3);
-        RootBorder.treeTimelineFour.play();
-        break;
-      case 2:
-        RootBorder.treeTimelineSix.setCycleCount(3);
-        RootBorder.treeTimelineSix.play();
-        break;
-    }
     createTimer();
 
     GameState.createRandomColorNumber();
@@ -142,7 +127,7 @@ public class LaunchController {
         new Task<Void>() {
           @Override
           protected Void call() {
-            TimeCounter timer;
+
             if (GameState.timer == 0) {
               timer = new TimeCounter(2, 0);
             } else if (GameState.timer == 1) {
@@ -166,10 +151,14 @@ public class LaunchController {
               // Implement methods for 25%, 50%, 75% progress of game
               if (timer.getRemainingPercentage() == 75) {
                 System.out.println("25% passed");
+                RootBorder.rootGrow();
               } else if (timer.getRemainingPercentage() == 50) {
                 System.out.println("50% passed");
+                RootBorder.rootGrow();
+
               } else if (timer.getRemainingPercentage() == 25) {
                 System.out.println("75% passed");
+                RootBorder.rootGrow();
               }
 
               // Decrease the counter by 1 unit every 1 second

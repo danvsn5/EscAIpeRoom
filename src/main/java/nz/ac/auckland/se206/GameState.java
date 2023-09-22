@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import javafx.scene.effect.Glow;
+import nz.ac.auckland.se206.controllers.ThrusterController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the state of the game. */
@@ -66,5 +67,18 @@ public class GameState {
 
   public static int getRandomColorNumber() {
     return randomColorNumber;
+  }
+
+  public static void reset() {
+    MissionManager.missionList.clear();
+    MissionManager.keyList.clear();
+    missionList.clear();
+    inventory.clear();
+    isGreetingShown = false;
+    firstRiddleSolved = false; // tracks if the first riddle has been solved.
+    secondRiddleSolved = false; // tracks if the second riddle has been solved.
+    isFirstMissionCompleted = false;
+    ThrusterController.buttonActivationCounter = 0;
+    ThrusterController.isGameActive = 0;
   }
 }
