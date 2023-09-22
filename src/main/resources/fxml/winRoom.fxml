@@ -10,12 +10,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="733.0" fitWidth="1292.0" layoutX="-6.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/win.png" />
          </image>
       </ImageView>
-      <Button fx:id="returnMenuButton" layoutX="58.0" layoutY="601.0" mnemonicParsing="false" onMouseClicked="#returnMenu" prefHeight="81.0" prefWidth="383.0" text="Return to Menu">
+      <Button fx:id="returnMenuButton" layoutX="26.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#returnMenu" prefHeight="81.0" prefWidth="383.0" text="Return to Menu">
          <font>
             <Font name="Bank Gothic Light BT" size="37.0" />
          </font>
@@ -26,5 +26,10 @@
             <Font name="Bank Gothic Light BT" size="90.0" />
          </font>
       </Label>
+      <Button fx:id="quitButton" layoutX="872.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#quitGame" prefHeight="81.0" prefWidth="383.0" text="Quit Game">
+         <font>
+            <Font name="Bank Gothic Light BT" size="37.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
