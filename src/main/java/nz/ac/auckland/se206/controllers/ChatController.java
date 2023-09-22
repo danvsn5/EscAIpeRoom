@@ -181,7 +181,7 @@ public class ChatController {
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
       result.getChatMessage().setRole("Wise Ancient Tree");
-      appendChatMessage(result.getChatMessage());
+      // appendChatMessage(result.getChatMessage());
       result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
@@ -269,8 +269,9 @@ public class ChatController {
             msg.setRole("user");
             appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
+            lastMsg.setRole("Wise Ancient Tree");
             appendChatMessage(lastMsg);
-
+            lastMsg.setRole("assistant");
             System.out.println("lastMsg");
 
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
@@ -422,13 +423,17 @@ public class ChatController {
                   runGpt(
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
+              gptMessage.setRole("Wise Ancient Tree");
               appendChatMessage(gptMessage);
+              gptMessage.setRole("assistant");
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
                   runGpt(
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
+              gptMessage.setRole("Wise Ancient Tree");
               appendChatMessage(gptMessage);
+              gptMessage.setRole("assistant");
             }
 
             updateProgress(1, 1);
@@ -539,26 +544,36 @@ public class ChatController {
             if (firstMission == 3) { // if the first mission is the controller
               gptMessage =
                   runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
+              gptMessage.setRole("Wise Ancient Tree");
               appendChatMessage(gptMessage);
+              gptMessage.setRole("assistant");
             } else if (firstMission == 4) { // if it is the thruster
               if (GameState.randomColorNumber == 1) { // red
                 gptMessage =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                gptMessage.setRole("Wise Ancient Tree");
                 appendChatMessage(gptMessage);
+                gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 2) { // blue
                 gptMessage =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                gptMessage.setRole("Wise Ancient Tree");
                 appendChatMessage(gptMessage);
+                gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 3) { // green
                 gptMessage =
                     runGpt(
                         new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
+                gptMessage.setRole("Wise Ancient Tree");
                 appendChatMessage(gptMessage);
+                gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 4) { // purple
                 gptMessage =
                     runGpt(
                         new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                gptMessage.setRole("Wise Ancient Tree");
                 appendChatMessage(gptMessage);
+                gptMessage.setRole("assistant");
               }
             }
 
@@ -635,6 +650,9 @@ public class ChatController {
                     .setMaxTokens(150);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
+            gptMessage.setRole("Wise Ancient Tree");
+            appendChatMessage(gptMessage);
+            gptMessage.setRole("assistant");
 
             updateProgress(1, 1);
             return null;
