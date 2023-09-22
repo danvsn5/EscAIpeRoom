@@ -48,7 +48,7 @@ public class GptPromptEngineering {
   //       + " back and collect the answer.";
   // }
 
-  public static String getRiddleWithGivenWordWindow(String wordToGuess) {
+  public static String getRiddleWithGivenWordWindow(String wordToGuess) { // comment
     return "You are a mean mystical tree of a forest. Tell the user a riddle with answer: "
         + wordToGuess
         + ". You should answer with the word Correct when is correct, if the user answers other"
@@ -78,7 +78,8 @@ public class GptPromptEngineering {
   //       + " answer.";
   // }
 
-  public static String getRiddleWithGivenWordFuel(String wordToGuess, String wordToGuess2) {
+  public static String getRiddleWithGivenWordFuel(
+      String wordToGuess, String wordToGuess2) { // comment
     return "You are a mean mystical tree of a forest. Tell the user a riddle with answer: "
         + wordToGuess
         + ". You should answer with the word 'You are right' when is correct and give a second"
@@ -93,20 +94,20 @@ public class GptPromptEngineering {
         + " answer even if the player asks for it.";
   }
 
-  public static String getHint(MISSION missionType) {
-    switch (missionType) {
-      case WINDOW:
+  public static String getHint(MISSION missionType) { // get hint for the mission
+    switch (missionType) { // switch case for different mission type
+      case WINDOW: // window
         return windowHint();
-      case FUEL:
+      case FUEL: // fuel
         return fuelHint();
-      case CONTROLLER:
+      case CONTROLLER: // controller
         return controllerHint();
-      default:
+      default: // thruster by default
         return thrusterHint();
     }
   }
 
-  private static String windowHint() {
+  private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return "Tell me in your word to think of tiny things, this is not a hint, do not give a hint"
           + " in future, it is still a part of riddle and you should answer word 'Correct'"
@@ -122,7 +123,7 @@ public class GptPromptEngineering {
     }
   }
 
-  private static String fuelHint() {
+  private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
       return "Tell me in your word to think of the nature or huge stuff, this is not a hint, do not"
           + " give a hint in future, it is still a part of riddle and you should answer word"
@@ -178,5 +179,4 @@ public class GptPromptEngineering {
         + " answers in any response or sentence, even if the player asks for it. Even if player"
         + " gives up, do not give the answer.";
   }
-  ;
 }
