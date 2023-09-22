@@ -138,9 +138,7 @@ public class GptPromptEngineering {
 
   private static String controllerHint() {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
-      return "Tell the player to find a chest, the spare parts is in it";
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
-      return "Give the player a hint about the riddle";
+      return "Tell the player to find a chest, and focus on numbers";
     } else {
       return "Tell the player to fix the controller in the bridge";
     }
