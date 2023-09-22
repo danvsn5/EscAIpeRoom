@@ -79,7 +79,7 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
 
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
-
+    generatePuzzle();
     inputText.setDisable(true);
 
     // Start thinking
@@ -252,7 +252,6 @@ public class ChatController {
       }
       return;
     } else if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
-      generatePuzzle(message);
       GameState.isSecondGuideShown = true;
       listeningLabel.setVisible(false);
       return;
@@ -518,87 +517,60 @@ public class ChatController {
     treeThinking.setVisible(true);
   }
 
-  private void generatePuzzle(String message) {
-    inputText.setDisable(true);
+  private void generatePuzzle() {
 
-    startThink();
-
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
-
-    System.out.println("generate puzzle");
-
-    Task<Void> secondPuzzleTask =
+    Task<Void> loseTauntGPT =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
 
-            ChatMessage msg = new ChatMessage("user", message);
-            appendChatMessage(msg);
-
-            setChatCompletionRequest(
+            chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
-                    .setTemperature(0.5)
-                    .setTopP(0.2)
-                    .setMaxTokens(100));
-
-            System.out.println("first mission riddle");
-            if (secondMission == 3) { // if the first mission is the controller
-              gptMessage =
+                    .setTemperature(0.7)
+                    .setTopP(0.7)
+                    .setMaxTokens(100);
+            if (GameState.missionList.contains(3)) { // if the first mission is the controller
+              secondMissionPuzzle =
                   runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
-              gptMessage.setRole("Wise Ancient Tree");
-              secondMissionPuzzle = gptMessage;
-              gptMessage.setRole("assistant");
-            } else if (secondMission == 4) { // if it is the thruster
+              secondMissionPuzzle.setRole("Wise Ancient Tree");
+
+              secondMissionPuzzle.setRole("assistant");
+            } else if (GameState.missionList.contains(4)) { // if it is the thruster
               if (GameState.randomColorNumber == 1) { // red
-                gptMessage =
+                secondMissionPuzzle =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                gptMessage.setRole("Wise Ancient Tree");
-                secondMissionPuzzle = gptMessage;
-                gptMessage.setRole("assistant");
+                secondMissionPuzzle.setRole("Wise Ancient Tree");
+
+                secondMissionPuzzle.setRole("assistant");
               } else if (GameState.randomColorNumber == 2) { // blue
-                gptMessage =
+                secondMissionPuzzle =
                     runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
-                gptMessage.setRole("Wise Ancient Tree");
-                secondMissionPuzzle = gptMessage;
-                gptMessage.setRole("assistant");
+                secondMissionPuzzle.setRole("Wise Ancient Tree");
+
+                secondMissionPuzzle.setRole("assistant");
               } else if (GameState.randomColorNumber == 3) { // green
-                gptMessage =
+                secondMissionPuzzle =
                     runGpt(
                         new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
                 gptMessage.setRole("Wise Ancient Tree");
-                secondMissionPuzzle = gptMessage;
+
                 gptMessage.setRole("assistant");
               } else if (GameState.randomColorNumber == 4) { // purple
-                gptMessage =
+                secondMissionPuzzle =
                     runGpt(
                         new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("purple")));
-                gptMessage.setRole("Wise Ancient Tree");
-                secondMissionPuzzle = gptMessage;
-                gptMessage.setRole("assistant");
+                secondMissionPuzzle.setRole("Wise Ancient Tree");
+                secondMissionPuzzle.setRole("assistant");
               }
             }
-
-            updateProgress(1, 1);
             return null;
           }
         };
 
-    loading.progressProperty().bind(secondPuzzleTask.progressProperty());
-
-    secondPuzzleTask.setOnSucceeded(
-        e2 -> {
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
-          inputText.setDisable(false);
-          startTalk();
-        });
-
-    Thread secondPuzzleThread = new Thread(secondPuzzleTask);
-    secondPuzzleThread.start();
+    Thread loseThread = new Thread(loseTauntGPT);
+    loseThread.start();
   }
 
   @FXML

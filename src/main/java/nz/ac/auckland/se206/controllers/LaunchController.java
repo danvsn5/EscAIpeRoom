@@ -40,11 +40,11 @@ public class LaunchController {
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
+
     SceneManager.clearMap();
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
     SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
-    SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
     SceneManager.addPanel(AppPanel.THRUSTER, loadFxml("thrusterRoom"));
@@ -68,6 +68,8 @@ public class LaunchController {
     GameState.missionList.add(4);
     missionInitialise.initialiseFirstMission(1);
     missionInitialise.initialiseSecondMission(4);
+
+    SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
 
     if (GameState.missionList.contains(1)) {
       mission1 = "Fix the Window";
