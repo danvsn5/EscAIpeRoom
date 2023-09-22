@@ -29,16 +29,17 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
-  private boolean isGenerating = false;
 
-  @FXML private TextArea chatTextArea;
-  @FXML private TextField inputText;
+  private boolean isGenerating = false;
   @FXML private Button sendButton;
   @FXML private Button hintButton;
-  @FXML private Label counter;
   @FXML private Circle loadingCircle;
+  @FXML private Label counter;
   @FXML private Label listeningLabel;
+  @FXML private Label hintNumber;
   @FXML private ProgressIndicator loading;
+  @FXML private TextArea chatTextArea;
+  @FXML private TextField inputText;
   @FXML private ImageView progressButton;
   @FXML private ImageView fuel;
   @FXML private ImageView sand;
@@ -49,12 +50,7 @@ public class ChatController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-
-  // private ChatMessage thinkingMessage =
-  //     new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
-
   @FXML private Rectangle hintRectangle;
-  @FXML private Label hintNumber;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -82,20 +78,21 @@ public class ChatController {
     generatePuzzleee();
     inputText.setDisable(true);
 
-    // Start thinking
+    // Start thinking set up
     startThink();
-
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
 
     String mission1;
 
+    // If the first mission is window mission, append relative intro
     if (GameState.missionList.contains(1)) {
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
               + " to the next step.";
       chatTextArea.appendText(mission1);
     } else if (GameState.missionList.contains(2)) {
+      // If the first mission is fuel mission, append relative intro
       mission1 =
           "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
               + " you to the next step.";
@@ -107,9 +104,9 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
-
+            // Record gpt generating
             isGenerating = true;
-
+            // Record gpt setting
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
@@ -117,9 +114,18 @@ public class ChatController {
                     .setTopP(0.7)
                     .setMaxTokens(150));
 
-            // gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.loseCall()));
-            // firstMesage = gptMessage;
-
+            // Create new message
+            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
+            firstMesage = gptMessage;
+            // Get the Guide message of the second mission
+            if (true) {
+              secondGuideMessage =
+                  runGpt(
+                      new ChatMessage(
+                          "user",
+                          GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
+              System.out.println("second guide message");
+            }
             updateProgress(1, 1);
             return null;
           }
@@ -367,24 +373,20 @@ public class ChatController {
   }
 
   private void generateFirstRiddle(String message) {
-
+    // This method generates the first riddle
+    // Disable the text box
     inputText.setDisable(true);
+    // Start thinking
     startThink();
     loading.setVisible(true);
     loadingCircle.setFill(Color.LIGHTGRAY);
-
-    System.out.println("generate riddle");
-
+    // Get the type of missions and record them
     for (int i = 0; i < 2; i++) {
       System.out.println("----");
       if (GameState.missionList.get(i) == 1 || GameState.missionList.get(i) == 2) {
-        System.out.println("first mission");
         firstMission = GameState.missionList.get(i);
-        System.out.println(firstMission);
       } else {
-        System.out.println("second mission");
         secondMission = GameState.missionList.get(i);
-        System.out.println(secondMission);
       }
     }
 
@@ -393,15 +395,15 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
+            // Record that gpt is generating
             isGenerating = true;
-
+            // Create new message
             ChatMessage msg = new ChatMessage("user", message);
-
             msg.setRole("You");
             appendChatMessage(msg);
             msg.setRole("user");
             appendChatMessage(activationMessage);
-
+            // Record gpt setting
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
@@ -409,7 +411,7 @@ public class ChatController {
                     .setTopP(0.2)
                     .setMaxTokens(150));
 
-            System.out.println("first mission riddle");
+            // Generate first mission
             if (firstMission == 1) { // if the first mission is the window
               gptMessage =
                   runGpt(
@@ -437,14 +439,13 @@ public class ChatController {
 
     firstRiddleTask.setOnSucceeded(
         e2 -> {
+          // Record that generating stops
           isGenerating = false;
           loading.progressProperty().unbind();
           startTalk();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
-          treeThinking.setVisible(false);
-          treeTalking.setVisible(true);
         });
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
@@ -460,12 +461,15 @@ public class ChatController {
   }
 
   public void collectFuel() {
+    // This method collects fuel
     GameState.inventory.add(8); // fuel collected
+    // Increase fuel mission stage and update progressbar
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
-    System.out.println("Fuel Mission 2 Complete");
+    // Hide fuel
     fuel.setVisible(false);
     fuel.setDisable(true);
+    // Show message
     SceneManager.showDialog("Info", "Fuel Collected", "A heavy fuel tank");
   }
 
@@ -478,12 +482,16 @@ public class ChatController {
   }
 
   public void collectSand() {
+    // This method collects sand
+    // Increase the window mission by one stage and update progressbar
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-    System.out.println("Collected sand");
+    // Hide the sand
     sand.setVisible(false);
     sand.setDisable(true);
+    // Add sand to inventory
     GameState.inventory.add(2);
+    // Show collect message
     SceneManager.showDialog(
         "Info", "Sand Collected", "A pile of sand which can be melted into glass");
   }
@@ -564,31 +572,36 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+    // If the hint is used up, return
     if (GameState.hintUsedUp()) {
       SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
       return;
     }
+    // If gpt is generating answer, return
     if (isGenerating) {
       SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
       return;
     }
+    // If first mission is not complete, choose between window and fuel
     if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
-        System.out.println("Window hint");
+        // If window mission is activate, ask window hint
         askByStage(MISSION.WINDOW);
       } else {
-        System.out.println("Fuel hint");
+        // If fuel mission is activate, ask fuel hint
         askByStage(MISSION.FUEL);
       }
     } else {
+      // If first mission is completed, choose between controller and thruster
       if (GameState.missionList.contains(3)) {
-        System.out.println("Controller hint");
+        // Choose controller
         askByStage(MISSION.CONTROLLER);
       } else {
-        System.out.println("Thruster hint");
+        // Choose thruster
         askByStage(MISSION.THRUSTER);
       }
     }
+    // Record that a hint is used
     GameState.useHint();
   }
 
@@ -604,21 +617,23 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
-
+            // Record that gpt is generating answer
             isGenerating = true;
-
+            // Record the setting of gpt
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
                     .setMaxTokens(150);
-
+            // Runs gpt and get message using hint prompt
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
+            // Set the role of gpt's answer to tree
             gptMessage.setRole("Wise Ancient Tree");
+            // Show the message on the textbox
             appendChatMessage(gptMessage);
             gptMessage.setRole("assistant");
-
+            // Update progress circle
             updateProgress(1, 1);
             return null;
           }

@@ -63,49 +63,27 @@ public class OutsideController {
     }
   }
 
-  public void thrusterError() {
-    if (ThrusterController.buttonActivationCounter != 4) {
+  public void showTrusterError() { // shows the message when clicked.
+    if (ThrusterController.buttonActivationCounter != 4) { // if the thruster is not fixed
       SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
-    } else {
+    } else { // if the thruster is fixed
       SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
       GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
-      System.out.println("Thruster Mission Complete");
+      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER); // updates the progress bar
+      System.out.println("Thruster Mission Complete"); // prints to console
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
       thrusterWarning.setVisible(false);
     }
   }
 
-  // public void collectSand() {
-  //   System.out.println("Sand to be collected");
-  //   if (GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
-  //     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-  //     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-  //     System.out.println("Window Mission Complete");
-  //     System.out.println(GameState.missionManager.getMission(MISSION.WINDOW).getStage());
-
-  //     GameState.inventory.add(2);
-  //     sand.setDisable(true);
-  //     isSandCollected.setVisible(true);
-  //   } else {
-  //     System.out.println("You need to solve the riddle first!");
-  //   }
-  // }
-
-  // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
-  // method is invoked: the color of the selected object becomes lighter and a label becomes
-  // visible, indicating it is
-  // clickble. Once mouse is moved from object, color returns to original and the label is made
-  // invisible with Dark/Normal method
-  // invokation.
-
-  public void openRiddle() throws ApiProxyException {
+  public void openRiddle() throws ApiProxyException { // opens the riddle
     SceneManager.setPrevious(AppPanel.OUTSIDE);
     TreeAvatar.treeFlash.pause();
-    TreeAvatar.deactivateTreeGlow();
-    TreeAvatar.setTreeVisible();
+    TreeAvatar.deactivateTreeGlow(); // deactivates the glow
+    TreeAvatar.setTreeVisible(); // sets the tree visible
     if (GameState.inventory.contains(-2) && ChatController.seenFirstMessage == 0) {
 
+      // creates a new thread to speak the first message
       Task<Void> speakFirstMessage =
           new Task<Void>() {
 
@@ -118,8 +96,8 @@ public class OutsideController {
           };
 
       Thread typeInThread = new Thread(speakFirstMessage);
-      typeInThread.start();
-      ChatController.seenFirstMessage = 1;
+      typeInThread.start(); // starts the thread
+      ChatController.seenFirstMessage = 1; // sets the seenFirstMessage to 1
     }
 
     App.setUi(AppPanel.CHAT);
