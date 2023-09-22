@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -20,6 +21,9 @@ import nz.ac.auckland.se206.TimeCounter;
 
 public class LaunchController {
 
+  private String mission1;
+  private String mission2;
+
   private static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
@@ -29,7 +33,9 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
+
   public static TimeCounter timer;
+
   MissionInitialise missionInitialise = new MissionInitialise();
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
@@ -62,6 +68,48 @@ public class LaunchController {
     GameState.missionList.add(task2);
     missionInitialise.initialiseFirstMission(task1);
     missionInitialise.initialiseSecondMission(task2);
+
+    if (GameState.missionList.contains(1)) {
+      mission1 = "Fix the Window";
+    } else if (GameState.missionList.contains(2)) {
+      mission1 = "Charge the Fuel";
+    }
+
+    if (GameState.missionList.contains(3)) {
+      mission2 = "Fix the Controller";
+    } else if (GameState.missionList.contains(4)) {
+      mission2 = "Fix the Thruster";
+    }
+
+    String text =
+        "Hey there, Seems like you have crush-landed \non this planet! "
+            + "\nWonder who I am?\n"
+            + "I am the mysterious tree of this planet.\n"
+            + "To leave, you should have to fix this ship.\nFirst, "
+            + mission1
+            + " and then "
+            + mission2
+            + ".\nFind me outside for the clue to the first step!";
+
+    ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#guideLabel")).setText(text);
+
+    String mission1;
+
+    if (GameState.missionList.contains(1)) {
+      mission1 =
+          "Know how to fix the window? I shall give you a riddle and the answer should guide you"
+              + " to the next step. You ready?\n";
+      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+          .appendText(mission1);
+
+    } else if (GameState.missionList.contains(2)) {
+      mission1 =
+          "Know how to charge the fuel? I shall give you a riddle and the answer should guide"
+              + " you to the next step. You ready?\n";
+      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+          .appendText(mission1);
+    }
+
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 
     App.setUi(AppPanel.MAIN_ROOM);

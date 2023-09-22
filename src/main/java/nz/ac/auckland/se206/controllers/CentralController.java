@@ -3,7 +3,9 @@ package nz.ac.auckland.se206.controllers;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -34,6 +36,10 @@ public class CentralController {
   private static int winFlashState = 0;
   private static Timeline winFlash =
       new Timeline(new KeyFrame(Duration.millis(500), e -> flashWinButton()));
+
+  @FXML private Rectangle guideWindow;
+  @FXML private Label guideLabel;
+  @FXML private Button okButton;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -70,6 +76,8 @@ public class CentralController {
       System.out.println(GameState.isFirstMissionCompleted);
       System.out.println("WindowFixed");
 
+      TreeAvatar.startFlashTree();
+
       window.setOpacity(0);
       window.setDisable(true);
       activateBlueprint();
@@ -89,6 +97,9 @@ public class CentralController {
       System.out.println("Fuel Mission Complete");
       GameState.isFirstMissionCompleted = true;
       GameState.inventory.remove(GameState.inventory.indexOf(8));
+
+      TreeAvatar.startFlashTree();
+
       fuelTank.setOpacity(0);
       fuelTank.setDisable(true);
       activateBlueprint();
@@ -190,6 +201,12 @@ public class CentralController {
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+
+    if (GameState.isFirstMissionCompleted) {
+      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+          .appendText(ChatController.secondGuideMessage.getContent());
+    }
+
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.CHAT);
   }
@@ -200,6 +217,13 @@ public class CentralController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void okBtnPressed() {
+    guideWindow.setVisible(false);
+    guideLabel.setVisible(false);
+    okButton.setVisible(false);
+    okButton.setDisable(true);
   }
 
   public void activateWinGlow() {
