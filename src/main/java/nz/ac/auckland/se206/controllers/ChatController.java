@@ -396,15 +396,15 @@ public class ChatController {
 
           @Override
           protected Void call() throws Exception {
+            // Record that gpt is generating
             isGenerating = true;
-
+            // Create new message
             ChatMessage msg = new ChatMessage("user", message);
-
             msg.setRole("You");
             appendChatMessage(msg);
             msg.setRole("user");
             appendChatMessage(activationMessage);
-
+            // Record gpt setting
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
@@ -412,7 +412,7 @@ public class ChatController {
                     .setTopP(0.2)
                     .setMaxTokens(150));
 
-            System.out.println("first mission riddle");
+            // Generate first mission
             if (firstMission == 1) { // if the first mission is the window
               gptMessage =
                   runGpt(
@@ -440,14 +440,13 @@ public class ChatController {
 
     firstRiddleTask.setOnSucceeded(
         e2 -> {
+          // Record that generating stops
           isGenerating = false;
           loading.progressProperty().unbind();
           startTalk();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
-          treeThinking.setVisible(false);
-          treeTalking.setVisible(true);
         });
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
