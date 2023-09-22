@@ -81,7 +81,7 @@ public class ChestController {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == GameState.passWord) {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.CONTROLLER);
+      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       SceneManager.showDialog(
           "Info", "Control panel collected", "The spare part of the controller");
       disableLock();
