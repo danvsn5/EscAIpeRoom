@@ -43,6 +43,22 @@ public class StorageController {
   public void collectBlueprint() {
     blueprint.setVisible(false);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
+    // 1: purple    2: blue     3: red    4: green
+    if (GameState.getRandomColorNumber() == 1) {
+      SceneManager.showDialog(
+          "Info", "Colour Key", "You found the blueprint and discovered the colour key is purple!");
+    } else if (GameState.getRandomColorNumber() == 2) {
+      SceneManager.showDialog(
+          "Info", "Colour Key", "You found the blueprint and discovered the colour key is blue!");
+
+    } else if (GameState.getRandomColorNumber() == 3) {
+      SceneManager.showDialog(
+          "Info", "Colour Key", "You found the blueprint and discovered the colour key is red!");
+    } else if (GameState.getRandomColorNumber() == 4) {
+      SceneManager.showDialog(
+          "Info", "Colour Key", "You found the blueprint and discovered the colour key is green!");
+    }
+    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
