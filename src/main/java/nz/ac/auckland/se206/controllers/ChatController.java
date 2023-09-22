@@ -380,7 +380,7 @@ public class ChatController {
               gptMessage =
                   runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordFuel("sky", "lake")));
+                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
             }
 
             updateProgress(1, 1);
