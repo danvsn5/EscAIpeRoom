@@ -142,7 +142,12 @@ public class GameState {
 
   public static void speak(String message) {
     if (textToSpeechSetting) {
-      textToSpeech.speak(message);
+      Thread speakThread =
+          new Thread(
+              () -> {
+                textToSpeech.speak(message);
+              });
+      speakThread.start();
     }
   }
 }
