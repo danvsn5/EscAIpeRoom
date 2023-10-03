@@ -16,7 +16,7 @@ public class GameState {
   public static int difficulty = 0;
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
-  private static boolean textToSpeechSetting = false;
+  public static boolean textToSpeechSetting = false;
   public static boolean isGreetingShown;
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
