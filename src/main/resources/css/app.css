@@ -1,0 +1,21 @@
+.button {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 20;
+    -fx-background-color: lightgrey;
+}
+
+.button:hover {
+    -fx-background-color: #ffffff;
+}
+
+.button:pressed {
+    -fx-background-color: #a9a9a9;
+}
+
+#launchButton {
+    -fx-font-size: 50;
+}
+
+#quitButton {
+    -fx-font-size: 50;
+}
