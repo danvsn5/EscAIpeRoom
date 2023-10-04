@@ -61,6 +61,7 @@ public class App extends Application {
           }
         });
 
+    scene.getStylesheets().add("/css/app.css");
     stage.show();
   }
 }
