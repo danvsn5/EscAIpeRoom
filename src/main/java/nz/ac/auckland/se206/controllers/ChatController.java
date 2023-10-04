@@ -301,9 +301,9 @@ public class ChatController {
                   sand.setVisible(true);
                 }
                 GameState.firstRiddleSolved = true;
-                if (GameState.inventory.contains(-2)) {
-                  GameState.textToSpeech.speak(lastMsg.getContent());
-                }
+
+                // Speak the correct message from the tree
+                GameState.speak(lastMsg.getContent());
                 System.out.println("first riddle solved");
               }
             } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {

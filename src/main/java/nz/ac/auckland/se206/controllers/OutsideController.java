@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -79,21 +78,7 @@ public class OutsideController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
-    if (GameState.inventory.contains(-2) && ChatController.seenFirstMessage == 0) {
-
-      Task<Void> speakFirstMessage =
-          new Task<Void>() {
-
-            @Override
-            protected Void call() throws Exception {
-              GameState.textToSpeech.speak(ChatController.firstMesage.getContent());
-
-              return null;
-            }
-          };
-
-      Thread typeInThread = new Thread(speakFirstMessage);
-      typeInThread.start();
+    if (ChatController.seenFirstMessage == 0) {
       ChatController.seenFirstMessage = 1;
     }
 

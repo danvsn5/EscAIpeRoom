@@ -16,6 +16,7 @@ public class GameState {
   public static int difficulty = 0;
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
+  public static boolean textToSpeechSetting = false;
   public static boolean isGreetingShown;
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
   public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
@@ -137,5 +138,16 @@ public class GameState {
     System.out.println(secondDigit);
     passWord = firstDigit + secondDigit;
     System.out.println(passWord);
+  }
+
+  public static void speak(String message) {
+    if (textToSpeechSetting) {
+      Thread speakThread =
+          new Thread(
+              () -> {
+                textToSpeech.speak(message);
+              });
+      speakThread.start();
+    }
   }
 }

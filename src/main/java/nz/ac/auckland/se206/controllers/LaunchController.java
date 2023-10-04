@@ -162,13 +162,12 @@ public class LaunchController {
   }
 
   public void changeSpeech() {
-    if (GameState.inventory.contains(-2)) {
-      GameState.inventory.clear();
+    if (GameState.textToSpeechSetting) {
+      GameState.textToSpeechSetting = false;
       speechButton.setText("Text to Speech: Off");
     } else {
-      GameState.inventory.add(-2);
+      GameState.textToSpeechSetting = true;
       speechButton.setText("Text to Speech: On");
-      System.out.println("tts is active");
     }
   }
 
