@@ -2,6 +2,7 @@
     -fx-font-family: 'Impact';
     -fx-font-size: 20;
     -fx-background-color: lightgrey;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
 }
 
 .button:hover {
@@ -10,6 +11,7 @@
 
 .button:pressed {
     -fx-background-color: #a9a9a9;
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 3, 3);
 }
 
 #launchButton {
