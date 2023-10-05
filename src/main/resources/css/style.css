@@ -21,3 +21,8 @@
 #quitButton {
     -fx-font-size: 50;
 }
+
+#chatTextArea {
+    -fx-font: 20 'Times New Roman';
+    -fx-font-weight: bold;
+}
