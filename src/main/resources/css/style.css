@@ -22,6 +22,10 @@
     -fx-font-size: 50;
 }
 
+#okButton {
+    -fx-font-size: 36;
+}
+
 #chatTextArea {
     -fx-font: 20 'Times New Roman';
     -fx-font-weight: bold;
