@@ -81,7 +81,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="552.0" layoutY="618.0" mouseTransparent="true" text="Progress">
+      <Label fx:id="progressLabel" layoutX="530.0" layoutY="618.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>

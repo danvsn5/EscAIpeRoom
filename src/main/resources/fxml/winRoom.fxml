@@ -21,7 +21,7 @@
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="113.0" layoutX="409.0" layoutY="52.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="463.0" />
-      <Label layoutX="450.0" layoutY="59.0" text="You Win">
+      <Label fx:id="winLabel" layoutX="412.0" layoutY="56.0" prefHeight="88.0" prefWidth="457.0" text="You Win">
          <font>
             <Font name="Bank Gothic Light BT" size="90.0" />
          </font>

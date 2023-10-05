@@ -41,7 +41,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="113.0" layoutX="409.0" layoutY="52.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="463.0" />
-      <Label layoutX="420.0" layoutY="59.0" text="You Lost">
+      <Label fx:id="lostLabel" layoutX="414.0" layoutY="56.0" prefHeight="113.0" prefWidth="455.0" text="You Lost">
          <font>
             <Font name="Bank Gothic Light BT" size="90.0" />
          </font>

@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* buttons */
+.button {
+    -fx-font-family: 'Press Start 2P';
+    -fx-font-size: 14;
+    -fx-background-color: lightgrey;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
+}
+
+.button:hover {
+    -fx-background-color: #ffffff;
+}
+
+.button:pressed {
+    -fx-background-color: #a9a9a9;
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 3, 3);
+}
+
+/* labels */
+.label {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);
+}
+
+/* progress button label */
+#progressLabel {
+    -fx-font-family: 'Press Start 2P';
+    -fx-font-size: 13;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 71, 9, 0.3), 8, 0.5, 0.0, 0.0);
+}
+
+/* progress room lables */
+#progressTitleLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 70;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0.0, 0.0);
+}
+
+#topLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 50;
+    -fx-text-fill: rgb(49, 49, 49);
+    -fx-alignment: center;
+}
+
+#bottomLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 50;
+    -fx-text-fill: rgb(49, 49, 49);
+    -fx-alignment: center;
+}
+
+/* buttons in the launch room */
+#launchButton {
+    -fx-font-size: 38;
+}
+
+#quitButton {
+    -fx-font-size: 46;
+}
+
+#diffButton {
+    -fx-font-size: 12;
+}
+
+#timerButton {
+    -fx-font-size: 12;
+}
+
+#speechButton {
+    -fx-font-size: 12;
+}
+
+/* ok button in the main room */
+#okButton {
+    -fx-font-size: 32;
+}
+
+/* guide lable in the main room */
+#guideLabel {
+    -fx-font-family: 'Times New Roman';
+    -fx-font-size: 38;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-effect: dropshadow(gaussian, rgba(239, 239, 239, 0.3), 15, 0.5, 0.0, 0.0);
+}
+
+/* return button in the progress room */
+#returnButton {
+    -fx-font-size: 28;
+}
+
+/* repair button in the thruster mini game room */
+#repairButton {
+    -fx-font-size: 40;
+}
+
+/* buttons in the win/lose room */
+#returnMenuButton {
+    -fx-font-size: 22;
+}
+
+#quitButton {
+    -fx-font-size: 30;
+}
+
+/* label in the lose room */
+#lostLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 75;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0.0, 0.0);
+}
+
+/* label in the win room */
+#winLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 75;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0.0, 0.0);
+}
+
+/* text area in the chat room */
+#chatTextArea {
+    -fx-font: 20 'Times New Roman';
+    -fx-font-weight: bold;
+}
+
+#counter {
+    -fx-font: 65 'Impact';
+}

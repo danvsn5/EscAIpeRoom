@@ -15,11 +15,11 @@
       </ImageView>
       <Button fx:id="launchButton" layoutX="38.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#launchGame" prefHeight="100.0" prefWidth="282.0" text="Launch">
          <font>
-            <Font name="Bank Gothic Light BT" size="50.0" />
+            <Font name="Press Start 2P Regular" size="36.0" />
          </font></Button>
       <Button fx:id="diffButton" layoutX="48.0" layoutY="238.0" mnemonicParsing="false" onMouseClicked="#changeDiff" prefHeight="52.0" prefWidth="263.0" text="Difficulty: Easy">
          <font>
-            <Font name="Bank Gothic Light BT" size="20.0" />
+            <Font name="Press Start 2P Regular" size="14.0" />
          </font>
       </Button>
       <Button fx:id="timerButton" layoutX="48.0" layoutY="308.0" mnemonicParsing="false" onMouseClicked="#changeTimer" prefHeight="52.0" prefWidth="263.0" text="Timer: Two Minutes">
