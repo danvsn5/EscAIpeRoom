@@ -14,6 +14,13 @@
     -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 3, 3);
 }
 
+#progressLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 30;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-alignment: center;
+}
+
 #launchButton {
     -fx-font-size: 50;
 }
