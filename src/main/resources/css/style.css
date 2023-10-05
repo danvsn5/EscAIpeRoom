@@ -23,7 +23,7 @@
 /* progress button label */
 #progressLabel {
     -fx-font-family: 'Press Start 2P';
-    -fx-font-size: 12;
+    -fx-font-size: 13;
     -fx-text-fill: rgb(29, 29, 29);
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0, 71, 9, 0.3), 8, 0.5, 0.0, 0.0);
@@ -54,7 +54,7 @@
 
 /* buttons in the launch room */
 #launchButton {
-    -fx-font-size: 40;
+    -fx-font-size: 38;
 }
 
 #quitButton {
@@ -80,8 +80,39 @@
 
 /* return button in the progress room */
 #returnButton {
+    -fx-font-size: 28;
+}
+
+/* repair button in the thruster mini game room */
+#repairButton {
+    -fx-font-size: 40;
+}
+
+/* buttons in the win/lose room */
+#returnMenuButton {
+    -fx-font-size: 22;
+}
+
+#quitButton {
     -fx-font-size: 30;
-    -fx-text-fill: rgb(49, 49, 49);
+}
+
+/* label in the lose room */
+#lostLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 75;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0.0, 0.0);
+}
+
+/* label in the win room */
+#winLabel {
+    -fx-font-family: 'Impact';
+    -fx-font-size: 75;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0.0, 0.0);
 }
 
 /* text area in the chat room */
