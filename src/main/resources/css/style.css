@@ -1,7 +1,7 @@
 /* buttons */
 .button {
-    -fx-font-family: 'Impact';
-    -fx-font-size: 20;
+    -fx-font-family: 'Press Start 2P';
+    -fx-font-size: 14;
     -fx-background-color: lightgrey;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
 }
@@ -15,16 +15,18 @@
     -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 3, 3);
 }
 
-/* progress button label */
-#progressLabel {
-    -fx-font-family: 'Impact';
-    -fx-font-size: 26;
-    -fx-text-fill: rgb(49, 49, 49);
-    -fx-alignment: center;
-}
-
+/* labels */
 .label {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);
+}
+
+/* progress button label */
+#progressLabel {
+    -fx-font-family: 'Press Start 2P';
+    -fx-font-size: 12;
+    -fx-text-fill: rgb(29, 29, 29);
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 71, 9, 0.3), 8, 0.5, 0.0, 0.0);
 }
 
 /* progress room lables */
@@ -52,21 +54,32 @@
 
 /* buttons in the launch room */
 #launchButton {
-    -fx-font-size: 50;
+    -fx-font-size: 40;
 }
 
 #quitButton {
-    -fx-font-size: 50;
+    -fx-font-size: 46;
+}
+
+#diffButton {
+    -fx-font-size: 12;
+}
+
+#timerButton {
+    -fx-font-size: 12;
+}
+
+#speechButton {
+    -fx-font-size: 12;
 }
 
 /* ok button in the main room */
 #okButton {
-    -fx-font-size: 36;
+    -fx-font-size: 32;
 }
 
 /* return button in the progress room */
 #returnButton {
-    -fx-font-family: 'Impact';
     -fx-font-size: 30;
     -fx-text-fill: rgb(49, 49, 49);
 }
