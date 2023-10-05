@@ -93,9 +93,13 @@
     -fx-font-size: 28;
 }
 
-/* repair button in the thruster mini game room */
+/* buttons in the thruster mini game room */
 #repairButton {
-    -fx-font-size: 40;
+    -fx-font-size: 20;
+}
+
+#returnOutside {
+    -fx-font-size: 12;
 }
 
 /* buttons in the win/lose room */
