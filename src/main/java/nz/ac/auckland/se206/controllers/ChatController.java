@@ -354,11 +354,16 @@ public class ChatController {
    * Handles the key pressed event.
    *
    * @param event the key event
+   * @throws IOException
+   * @throws ApiProxyException
    */
   @FXML
-  public void onKeyPressed(KeyEvent event) {
+  public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
     startListen();
     treeThinking.setVisible(true);
+    if (event.getCode().toString().equals("ENTER")) {
+      onSendMessage(new ActionEvent());
+    }
   }
 
   /**
