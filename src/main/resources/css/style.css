@@ -2,7 +2,7 @@
 
 /* buttons */
 .button {
-    -fx-font-family: 'Press Start 2P', cursive;
+    -fx-font-family: 'Press Start 2P';
     -fx-font-size: 14;
     -fx-background-color: lightgrey;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
@@ -83,7 +83,7 @@
 /* guide lable in the main room */
 #guideLabel {
     -fx-font-family: 'Times New Roman';
-    -fx-font-size: 40;
+    -fx-font-size: 38;
     -fx-text-fill: rgb(255, 255, 255);
     -fx-effect: dropshadow(gaussian, rgba(239, 239, 239, 0.3), 15, 0.5, 0.0, 0.0);
 }
