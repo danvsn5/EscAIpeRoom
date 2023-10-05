@@ -23,12 +23,17 @@
     -fx-alignment: center;
 }
 
+.label {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.5, 0.0, 0.0);
+}
+
 /* progress room lables */
 #progressTitleLabel {
     -fx-font-family: 'Impact';
     -fx-font-size: 70;
     -fx-text-fill: rgb(29, 29, 29);
     -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0.0, 0.0);
 }
 
 #topLabel {
@@ -70,4 +75,8 @@
 #chatTextArea {
     -fx-font: 20 'Times New Roman';
     -fx-font-weight: bold;
+}
+
+#counter {
+    -fx-font: 65 'Impact';
 }

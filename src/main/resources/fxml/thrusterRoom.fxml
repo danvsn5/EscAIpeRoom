@@ -148,9 +148,9 @@
          </cursor>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="72.0" layoutX="34.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="235.0" />
-      <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
+      <Label fx:id="counter" alignment="CENTER" layoutX="36.0" layoutY="31.0" prefHeight="72.0" prefWidth="229.0" text="2:00">
          <font>
-            <Font name="Bank Gothic Light BT" size="79.0" />
+            <Font size="79.0" />
          </font>
       </Label>
       <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
