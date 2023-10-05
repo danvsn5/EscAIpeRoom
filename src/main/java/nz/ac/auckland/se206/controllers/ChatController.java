@@ -217,6 +217,8 @@ public class ChatController {
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
     if (isGenerating) {
       return;
+    } else if (inputText.getText().trim().isEmpty()) {
+      return;
     }
 
     inputText.setDisable(true);
