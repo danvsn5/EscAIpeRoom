@@ -78,12 +78,13 @@ public class CentralController {
       GameState.isFirstMissionCompleted = true;
       // Tree start flashing
       TreeAvatar.startFlashTree();
-      // Remove the warning message
+      // Remove the window collision box
       window.setOpacity(0);
       window.setDisable(true);
       // Initialise the second mission
       activateBlueprint();
       activateChest();
+
       // Show the fix window message
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else {
@@ -151,6 +152,7 @@ public class CentralController {
     }
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
+    windowThruster2.setVisible(true);
   }
 
   private void activateChest() {
@@ -159,6 +161,7 @@ public class CentralController {
     }
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+    windowController2.setVisible(true);
   }
 
   public void activateProgressGlow() {
