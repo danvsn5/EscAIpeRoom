@@ -57,6 +57,11 @@
             <Image url="@../images/MainRoom/Indoor-FuelThruster-2.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="completeImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/MainRoom/Indoor-Complete.png" />
+         </image>
+      </ImageView>
       <Polygon fx:id="storageDoor" fill="#f2ff0000" layoutX="391.0" layoutY="213.0" onMouseClicked="#goStorage" onMouseEntered="#activateStorageGlow" onMouseExited="#deactivateStorageGlow" opacity="0.0" points="-137.99998474121094, 36.33332824707031, -134.0, 201.33334350585938, -112.33334350585938, 223.66668701171875, -99.0, 227.66668701171875, 2.33331298828125, 187.66668701171875, 18.0, 158.0, 13.666656494140625, -1.0, -6.66668701171875, -24.666671752929688, -21.0, -30.333343505859375, -121.66668701171875, 3.0" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
       <Polygon fx:id="outsideDoor" fill="#f2ff0000" layoutX="799.0" layoutY="135.0" onMouseClicked="#goOutside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" opacity="0.0" points="-64.66668701171875, -92.5, -67.16668701171875, 195.66665649414062, -55.5, 224.66665649414062, 93.83331298828125, 278.5, 128.16668701171875, 264.5, 141.66668701171875, 244.0, 151.16668701171875, -53.0, 138.5, -81.33332824707031, -16.0, -125.33333587646484, -52.5, -114.5" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
       <Polygon fx:id="window" disable="true" fill="#1f93ff00" layoutX="921.0" layoutY="467.0" onMouseClicked="#repairWindow" onMouseEntered="#activateWindowGlow" onMouseExited="#deactivateWindowGlow" opacity="0.0" points="123.5, -69.5, 128.8333740234375, -197.0, 114.6666259765625, -219.66665649414062, 47.83331298828125, -240.66665649414062, 31.5, -227.6666717529297, 26.83331298828125, -103.33334350585938, 40.33331298828125, -80.33334350585938, 107.1666259765625, -56.166656494140625" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />

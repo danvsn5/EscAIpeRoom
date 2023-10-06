@@ -46,6 +46,7 @@ public class CentralController {
   @FXML private ImageView windowThruster2;
   @FXML private ImageView fuelThruster1;
   @FXML private ImageView fuelThruster2;
+  @FXML private ImageView completeImage;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -136,6 +137,8 @@ public class CentralController {
       completeGame.setDisable(false);
       completeGame.setVisible(true);
       GameState.isSecondMissionCompleted = true;
+      // Show the complete image
+      completeImage.setVisible(true);
     }
   }
 
