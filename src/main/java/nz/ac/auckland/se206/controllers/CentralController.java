@@ -25,7 +25,6 @@ public class CentralController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView window;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
   @FXML private ImageView fuelTank;
@@ -34,6 +33,7 @@ public class CentralController {
   @FXML private Rectangle guideWindow;
 
   @FXML private Polygon outsideDoor;
+  @FXML private Polygon window;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -182,11 +182,11 @@ public class CentralController {
   }
 
   public void activateWindowGlow() {
-    window.setEffect(GameState.glowBright);
+    window.setOpacity(1);
   }
 
   public void deactivateWindowGlow() {
-    window.setEffect(GameState.glowDim);
+    window.setOpacity(0);
   }
 
   public void activateControllerGlow() {
