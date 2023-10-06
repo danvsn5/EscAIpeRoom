@@ -38,6 +38,15 @@ public class CentralController {
   @FXML private Polygon controllerBroken1;
   @FXML private Polygon controllerBroken2;
 
+  @FXML private ImageView windowController1;
+  @FXML private ImageView windowController2;
+  @FXML private ImageView fuelController1;
+  @FXML private ImageView fuelController2;
+  @FXML private ImageView windowThruster1;
+  @FXML private ImageView windowThruster2;
+  @FXML private ImageView fuelThruster1;
+  @FXML private ImageView fuelThruster2;
+
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.OUTSIDE);
