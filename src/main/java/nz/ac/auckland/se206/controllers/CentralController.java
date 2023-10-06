@@ -27,13 +27,14 @@ public class CentralController {
   @FXML private ImageView rootThree;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
-  @FXML private ImageView controller;
   @FXML private ImageView completeGame;
   @FXML private Rectangle guideWindow;
 
   @FXML private Polygon outsideDoor;
   @FXML private Polygon window;
   @FXML private Polygon fuelTank;
+  @FXML private Polygon controllerBroken1;
+  @FXML private Polygon controllerBroken2;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -190,11 +191,13 @@ public class CentralController {
   }
 
   public void activateControllerGlow() {
-    controller.setEffect(GameState.glowBright);
+    controllerBroken1.setOpacity(1);
+    controllerBroken2.setOpacity(1);
   }
 
   public void deactivateControllerGlow() {
-    controller.setEffect(GameState.glowDim);
+    controllerBroken1.setOpacity(0);
+    controllerBroken2.setOpacity(0);
   }
 
   public void goChat() {
