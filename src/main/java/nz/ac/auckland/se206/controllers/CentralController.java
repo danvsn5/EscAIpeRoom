@@ -27,13 +27,13 @@ public class CentralController {
   @FXML private ImageView rootThree;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
-  @FXML private ImageView fuelTank;
   @FXML private ImageView controller;
   @FXML private ImageView completeGame;
   @FXML private Rectangle guideWindow;
 
   @FXML private Polygon outsideDoor;
   @FXML private Polygon window;
+  @FXML private Polygon fuelTank;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -166,11 +166,11 @@ public class CentralController {
   }
 
   public void activateFuelTankGlow() {
-    fuelTank.setEffect(GameState.glowBright);
+    fuelTank.setOpacity(1);
   }
 
   public void deactivateFuelTankGlow() {
-    fuelTank.setEffect(GameState.glowDim);
+    fuelTank.setOpacity(0);
   }
 
   public void activateStorageGlow() {
