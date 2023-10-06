@@ -19,6 +19,8 @@ public class MissionInitialise {
     if (taskTwo == 3) {
       // initialise chest mission
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controllerBroken1").setVisible(true);
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controllerBroken2").setVisible(true);
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controllerBroken1").setDisable(false);
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controllerBroken2").setDisable(false);
     } else {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setVisible(true);
