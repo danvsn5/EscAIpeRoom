@@ -19,6 +19,7 @@ public class CentralController {
   @FXML private Button okButton;
   @FXML private Label counter;
   @FXML private Label guideLabel;
+  @FXML private ImageView outside;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
@@ -160,10 +161,12 @@ public class CentralController {
   }
 
   public void activateDoorGlow() {
+    outside.setEffect(GameState.glowBright);
     outsideDoor.setOpacity(1);
   }
 
   public void deactivateDoorGlow() {
+    outside.setEffect(GameState.glowDim);
     outsideDoor.setOpacity(0);
   }
 
