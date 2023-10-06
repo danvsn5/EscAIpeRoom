@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -18,14 +19,12 @@ public class CentralController {
   @FXML private Button okButton;
   @FXML private Label counter;
   @FXML private Label guideLabel;
-  @FXML private ImageView outsideDoor;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView outsideDoorImage;
   @FXML private ImageView window;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
@@ -33,7 +32,8 @@ public class CentralController {
   @FXML private ImageView controller;
   @FXML private ImageView completeGame;
   @FXML private Rectangle guideWindow;
-  @FXML private Rectangle outsideDoorRectangle;
+
+  @FXML private Polygon outsideDoor;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -158,13 +158,11 @@ public class CentralController {
   }
 
   public void activateDoorGlow() {
-    outsideDoorImage.setEffect(GameState.glowBright);
-    outsideDoor.setEffect(GameState.glowBright);
+    outsideDoor.setOpacity(1);
   }
 
   public void deactivateDoorGlow() {
-    outsideDoorImage.setEffect(GameState.glowDim);
-    outsideDoor.setEffect(GameState.glowDim);
+    outsideDoor.setOpacity(0);
   }
 
   public void activateFuelTankGlow() {
