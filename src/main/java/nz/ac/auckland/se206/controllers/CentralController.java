@@ -31,6 +31,7 @@ public class CentralController {
   @FXML private Rectangle guideWindow;
 
   @FXML private Polygon outsideDoor;
+  @FXML private Polygon storageDoor;
   @FXML private Polygon window;
   @FXML private Polygon fuelTank;
   @FXML private Polygon controllerBroken1;
@@ -176,10 +177,12 @@ public class CentralController {
 
   public void activateStorageGlow() {
     storage.setEffect(GameState.glowBright);
+    storageDoor.setOpacity(1);
   }
 
   public void deactivateStorageGlow() {
     storage.setEffect(GameState.glowDim);
+    storageDoor.setOpacity(0);
   }
 
   public void activateWindowGlow() {
