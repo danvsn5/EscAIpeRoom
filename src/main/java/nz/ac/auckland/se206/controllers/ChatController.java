@@ -267,15 +267,31 @@ public class ChatController {
 
             if (!GameState.firstRiddleSolved) {
               System.out.println("first riddle not solved");
+              // Check if the player gussess correctly
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 if (!GameState.firstRiddleSolved && GameState.missionList.contains(2)) {
+                  // If the player guesses correctly and its fuel mission, show the fuel and
+                  // increase stage
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
                   fuel.setDisable(false);
                   fuel.setVisible(true);
+                } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+                  // If the player guesses correctly and its window mission, show the sand and
+                  // increase stage
+                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                  GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+                  System.out.println("Window riddle solved");
+                  sand.setDisable(false);
+                  sand.setVisible(true);
                 }
+                GameState.firstRiddleSolved = true;
+
+                // Speak the correct message from the tree
+                GameState.speak(lastMsg.getContent());
+                System.out.println("first riddle solved");
               }
             }
 
