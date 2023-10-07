@@ -275,24 +275,21 @@ public class ChatController {
                   System.out.println("Fuel Mission 1 Complete");
                   fuel.setDisable(false);
                   fuel.setVisible(true);
+                } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+                  GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+                  System.out.println("Window riddle solved");
+                  sand.setDisable(false);
+                  sand.setVisible(true);
                 }
+                GameState.firstRiddleSolved = true;
+
+                // Speak the correct message from the tree
+                GameState.speak(lastMsg.getContent());
+                System.out.println("first riddle solved");
               }
             }
-
-            //     else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
-            //       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-            //       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-            //       System.out.println("Window riddle solved");
-            //       sand.setDisable(false);
-            //       sand.setVisible(true);
-            //     }
-            //     GameState.firstRiddleSolved = true;
-
-            //     // Speak the correct message from the tree
-            //     GameState.speak(lastMsg.getContent());
-            //     System.out.println("first riddle solved");
-            //   }
-            // } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
+            // else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
             //   if (lastMsg.getRole().equals("assistant")
             //       && lastMsg.getContent().startsWith("Correct")) {
             //     GameState.secondRiddleSolved = true;
