@@ -162,13 +162,11 @@ public class GptPromptEngineering {
   }
 
   public static String getControllerPuzzle(int password) {
-    return "Give me a simple addition or subtraction problem where the answer MUST be"
+    return "Now that the user has successfully found the chest; give the user a simple addition or"
+        + " subtraction maths puzzle with the answer being: "
         + password
-        + ". NEVER reveal the"
-        + " answer.You should answer with the word 'Correct' when is correct. If the answer"
-        + " is incorrect, you should say it is incorrect. ou can NEVER reveal the answers in"
-        + " any response or sentence, even if the player asks for it. Even if player gives"
-        + " up, do not give the answer.";
+        + " . Never reveal the answer.  If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
+        + " 'correct'. tell the user they may now unlock the chest";
   }
 
   public static String getThrusterPuzzle(String colour) {
