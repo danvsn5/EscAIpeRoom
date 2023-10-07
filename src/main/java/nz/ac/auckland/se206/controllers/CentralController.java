@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -228,33 +227,37 @@ public class CentralController {
     TreeAvatar.deactivateTreeGlow();
 
     // If the first mission is completed, show the second guide message
-    if (GameState.isFirstMissionCompleted) {
-      if (GameState.missionList.contains(1) && GameState.missionList.contains(4)) {
-        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(
-                "You have repaired the window... Well done. You still cannot leave however, as the"
-                    + " thrusters are still damaged. In amongst your ship, I have hidden a"
-                    + " blueprint that should help you fix the thrusters");
-      } else if (GameState.missionList.contains(1) && GameState.missionList.contains(3)) {
-        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(
-                "You have repaired the window... Well done. You still cannot leave however, as the"
-                    + " control panel is still damaged. In amongst your ship, I have hidden a"
-                    + " chest containing spare parts that should help you fix the control panel");
-      } else if (GameState.missionList.contains(2) && GameState.missionList.contains(4)) {
-        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(
-                "You have refueled the ship... Well done. You still cannot leave however, as the"
-                    + " thrusters are still damaged. In amongst your ship, I have hidden a"
-                    + " blueprint that should help you fix the thrusters");
-      } else {
-        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(
-                "You have refueled the ship... Well done. You still cannot leave however, as the"
-                    + " control panel is still damaged. In amongst your ship, I have hidden a"
-                    + " chest containing spare parts that should help you fix the control panel");
-      }
-    }
+    // if (GameState.isFirstMissionCompleted) {
+    //   if (GameState.missionList.contains(1) && GameState.missionList.contains(4)) {
+    //     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+    //         .appendText(
+    //             "You have repaired the window... Well done. You still cannot leave however, as
+    // the"
+    //                 + " thrusters are still damaged. In amongst your ship, I have hidden a"
+    //                 + " blueprint that should help you fix the thrusters");
+    //   } else if (GameState.missionList.contains(1) && GameState.missionList.contains(3)) {
+    //     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+    //         .appendText(
+    //             "You have repaired the window... Well done. You still cannot leave however, as
+    // the"
+    //                 + " control panel is still damaged. In amongst your ship, I have hidden a"
+    //                 + " chest containing spare parts that should help you fix the control
+    // panel");
+    //   } else if (GameState.missionList.contains(2) && GameState.missionList.contains(4)) {
+    //     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+    //         .appendText(
+    //             "You have refueled the ship... Well done. You still cannot leave however, as the"
+    //                 + " thrusters are still damaged. In amongst your ship, I have hidden a"
+    //                 + " blueprint that should help you fix the thrusters");
+    //   } else {
+    //     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+    //         .appendText(
+    //             "You have refueled the ship... Well done. You still cannot leave however, as the"
+    //                 + " control panel is still damaged. In amongst your ship, I have hidden a"
+    //                 + " chest containing spare parts that should help you fix the control
+    // panel");
+    //   }
+    // }
 
     // Set the previous panel to Main room then go to chat room
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);

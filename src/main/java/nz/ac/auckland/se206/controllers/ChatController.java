@@ -97,48 +97,32 @@ public class ChatController {
       chatTextArea.appendText(mission1);
     }
 
-    Task<Void> guideTask =
+    Task<Void> introCall =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
 
             isGenerating = true;
-
-            setChatCompletionRequest(
+            chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
                     .setTopP(0.7)
-                    .setMaxTokens(150));
-
+                    .setMaxTokens(100);
+            // runs the initial gpt compulsory message for working. message does not get appended to
+            // the chat box and TTS is NOT applied to this message.
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
-            firstMesage = gptMessage;
-            if (true) { // controller
-              if (GameState.missionListA.contains(3)) {
-                secondGuideMessage =
-                    runGpt(
-                        new ChatMessage(
-                            "user",
-                            GptPromptEngineering.getGuideToSecondMission("Fix the Controller")));
-              } else {
-                secondGuideMessage =
-                    runGpt(
-                        new ChatMessage(
-                            "user",
-                            GptPromptEngineering.getGuideToSecondMission(
-                                "Fix the thrusters by finding the blueprint")));
-              }
-              System.out.println("second guide message");
-            }
-            updateProgress(1, 1);
+
+            /* ================================== MESSAGE DOES NOT GET APPENDED ================================= */
+            // appendChatMessage(gptMessage);
+
             return null;
           }
         };
+    loading.progressProperty().bind(introCall.progressProperty());
 
-    loading.progressProperty().bind(guideTask.progressProperty());
-
-    guideTask.setOnSucceeded(
+    introCall.setOnSucceeded(
         e -> {
           isGenerating = false;
           // End thinking, start talking
@@ -149,8 +133,8 @@ public class ChatController {
           startTalk();
         });
 
-    Thread guideThread = new Thread(guideTask);
-    guideThread.start();
+    Thread mainRiddleThread = new Thread(introCall);
+    mainRiddleThread.start();
   }
 
   public ChatCompletionRequest getChatCompletionRequest() {
@@ -257,10 +241,6 @@ public class ChatController {
         }
       }
       return;
-    } else if (GameState.isFirstMissionCompleted) {
-      generatePuzzle(message);
-      listeningLabel.setVisible(false);
-      return;
     }
 
     Task<Void> typeCall =
@@ -295,25 +275,29 @@ public class ChatController {
                   System.out.println("Fuel Mission 1 Complete");
                   fuel.setDisable(false);
                   fuel.setVisible(true);
-                } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
-                  GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-                  GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-                  System.out.println("Window riddle solved");
-                  sand.setDisable(false);
-                  sand.setVisible(true);
                 }
-                GameState.firstRiddleSolved = true;
-
-                // Speak the correct message from the tree
-                GameState.speak(lastMsg.getContent());
-                System.out.println("first riddle solved");
-              }
-            } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
-              if (lastMsg.getRole().equals("assistant")
-                  && lastMsg.getContent().startsWith("Correct")) {
-                GameState.secondRiddleSolved = true;
               }
             }
+
+            //     else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+            //       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+            //       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+            //       System.out.println("Window riddle solved");
+            //       sand.setDisable(false);
+            //       sand.setVisible(true);
+            //     }
+            //     GameState.firstRiddleSolved = true;
+
+            //     // Speak the correct message from the tree
+            //     GameState.speak(lastMsg.getContent());
+            //     System.out.println("first riddle solved");
+            //   }
+            // } else if (GameState.firstRiddleSolved && !GameState.secondRiddleSolved) {
+            //   if (lastMsg.getRole().equals("assistant")
+            //       && lastMsg.getContent().startsWith("Correct")) {
+            //     GameState.secondRiddleSolved = true;
+            //   }
+            // }
             updateProgress(1, 1);
             return null;
           }
