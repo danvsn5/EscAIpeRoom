@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
@@ -10,6 +11,10 @@ import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class StorageController {
 
@@ -43,7 +48,11 @@ public class StorageController {
     ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber"))
         .setText(Integer.toString(GameState.secondDigit));
     System.out.println(GameState.passWord);
-    SceneManager.showDialog("Info", "+", "What does this mean?");
+    // SceneManager.showDialog("Info", "+", "What does this mean?");
+    // when the user goes to the chest for the first time, the user sees the tree begin flashing
+    // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the user
+    // will be prompted with intro text while they wait for the tree to stop flashing.
+
     App.setUi(AppPanel.CHEST);
   }
 
@@ -145,5 +154,36 @@ public class StorageController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  /* ======================================= GPT Helper Methods ======================================= */
+  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    ChatController.chatCompletionRequest.addMessage(msg);
+    try {
+      ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
+      Choice result = chatCompletionResult.getChoices().iterator().next();
+      ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
+      result.getChatMessage().setRole("Wise Mystical Tree");
+      appendChatMessage(result.getChatMessage());
+      result.getChatMessage().setRole("assistant");
+      return result.getChatMessage();
+    } catch (ApiProxyException e) {
+      ChatMessage error = new ChatMessage(null, null);
+
+      error.setRole("Wise Mystical Tree");
+
+      error.setContent(
+          "Sorry, there was a problem generating a response. Please try restarting the"
+              + " application.");
+      appendChatMessage(error);
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private void appendChatMessage(ChatMessage msg) {
+    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+        .appendText(msg.getContent() + "\n\n");
   }
 }

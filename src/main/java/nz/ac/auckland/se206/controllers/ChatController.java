@@ -57,7 +57,7 @@ public class ChatController {
   private ChatMessage activationMessage =
       new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
 
-  private ChatCompletionRequest chatCompletionRequest;
+  public static ChatCompletionRequest chatCompletionRequest;
   public static ChatMessage firstMesage;
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
