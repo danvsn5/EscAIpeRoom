@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
@@ -10,7 +12,11 @@ import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class OutsideController {
   @FXML private ImageView returnShip;
@@ -27,6 +33,8 @@ public class OutsideController {
   @FXML private ImageView ship;
   @FXML private ImageView thrusterImage;
   @FXML private ImageView thrusterWarning;
+  private int thrusterPuzzleGenerate = 0;
+  private ChatMessage gptMessage;
 
   public void initialize() {}
 
@@ -49,6 +57,54 @@ public class OutsideController {
 
   public void goThruster() {
     if (GameState.missionList.contains(4)) {
+      if (thrusterPuzzleGenerate == 0) {
+
+        Task<Void> riddleSecondCall =
+            new Task<Void>() {
+
+              @Override
+              protected Void call() throws Exception {
+
+                System.out.println("this code is working");
+
+                // switch case from 1 to 4 based on the variable GameState.randomColourNumber
+                // 1: purple    2: blue     3: red    4: green
+                switch (GameState.randomColorNumber) {
+                  case 1:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage(
+                                "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                    break;
+                  case 2:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                    break;
+                  case 3:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage(
+                                "user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                    break;
+                  case 4:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage(
+                                "user", GptPromptEngineering.getThrusterPuzzle("green")));
+                    break;
+                }
+
+                System.out.println(gptMessage.getContent());
+
+                return null;
+              }
+            };
+
+        Thread secondRiddleThread = new Thread(riddleSecondCall);
+        secondRiddleThread.start();
+        TreeAvatar.treeFlash.play();
+      }
       App.setUi(AppPanel.THRUSTER);
     }
   }
@@ -142,5 +198,36 @@ public class OutsideController {
 
   public void deactivateThrusterErrorGlow() {
     thrusterWarning.setEffect(GameState.glowDim);
+  }
+
+  /* ======================================= GPT Helper Methods ======================================= */
+  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    ChatController.chatCompletionRequest.addMessage(msg);
+    try {
+      ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
+      Choice result = chatCompletionResult.getChoices().iterator().next();
+      ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
+      result.getChatMessage().setRole("Wise Mystical Tree");
+      appendChatMessage(result.getChatMessage());
+      result.getChatMessage().setRole("assistant");
+      return result.getChatMessage();
+    } catch (ApiProxyException e) {
+      ChatMessage error = new ChatMessage(null, null);
+
+      error.setRole("Wise Mystical Tree");
+
+      error.setContent(
+          "Sorry, there was a problem generating a response. Please try restarting the"
+              + " application.");
+      appendChatMessage(error);
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  private void appendChatMessage(ChatMessage msg) {
+    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+        .appendText("\n\n" + msg.getContent() + "\n\n");
   }
 }
