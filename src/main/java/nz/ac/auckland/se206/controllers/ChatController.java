@@ -265,17 +265,23 @@ public class ChatController {
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
             // from the launch panel and checks whether or not text to speech will be active
 
+            // If the first riddle is not solved, check if the player guesses correctly
             if (!GameState.firstRiddleSolved) {
               System.out.println("first riddle not solved");
+              // Check if the player gussess correctly
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 if (!GameState.firstRiddleSolved && GameState.missionList.contains(2)) {
+                  // If the player guesses correctly and its fuel mission, show the fuel and
+                  // increase stage
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
                   fuel.setDisable(false);
                   fuel.setVisible(true);
                 } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
+                  // If the player guesses correctly and its window mission, show the sand and
+                  // increase stage
                   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
                   System.out.println("Window riddle solved");
