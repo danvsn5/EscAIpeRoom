@@ -36,7 +36,7 @@ public class ChestController {
   private int secondDigitNum = 0;
   private int thirdDigitNum = 0;
   private Random rand;
-  private int correctPassword;
+  public static int correctPassword;
 
   public ChestController() {
     rand = new Random();
