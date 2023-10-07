@@ -161,8 +161,10 @@ public class GptPromptEngineering {
         + ". ";
   }
 
-  public static String getControllerPuzzle() {
-    return "Give me the arithmetic match problem. The answer MUST be 3 digits. NEVER reveal the"
+  public static String getControllerPuzzle(int password) {
+    return "Give me a simple addition or subtraction problem where the answer MUST be"
+        + password
+        + ". NEVER reveal the"
         + " answer.You should answer with the word 'Correct' when is correct. If the answer"
         + " is incorrect, you should say it is incorrect. ou can NEVER reveal the answers in"
         + " any response or sentence, even if the player asks for it. Even if player gives"

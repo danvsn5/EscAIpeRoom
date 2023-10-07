@@ -43,8 +43,8 @@ public class LaunchController {
     Random rand = new Random();
     int task1 = rand.nextInt(2) + 1;
     int task2 = rand.nextInt(2) + 3;
-    GameState.missionListA.add(task1);
-    GameState.missionListA.add(task1);
+    GameState.missionListA.add(2);
+    GameState.missionListA.add(3);
 
     SceneManager.clearMap();
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
@@ -62,14 +62,14 @@ public class LaunchController {
 
     GameState.createRandomColorNumber();
 
-    GameState.missionManager.addMission(task1);
-    GameState.missionManager.addMission(task2);
-    GameState.missionList.add(task1);
-    GameState.missionList.add(task2);
-    GameState.progressBarGroup.setMissionOne(task1);
-    GameState.progressBarGroup.setMissionTwo(task2);
-    missionInitialise.initialiseFirstMission(task1);
-    missionInitialise.initialiseSecondMission(task2);
+    GameState.missionManager.addMission(2);
+    GameState.missionManager.addMission(3);
+    GameState.missionList.add(2);
+    GameState.missionList.add(3);
+    GameState.progressBarGroup.setMissionOne(2);
+    GameState.progressBarGroup.setMissionTwo(3);
+    missionInitialise.initialiseFirstMission(2);
+    missionInitialise.initialiseSecondMission(3);
 
     if (GameState.missionList.contains(1)) {
       mission1 = "Fix the Window";

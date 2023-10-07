@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -12,6 +13,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
@@ -31,6 +33,7 @@ public class StorageController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private Label counter;
+  private ChatMessage gptMessage;
 
   public void goInside() {
     App.setUi(AppPanel.MAIN_ROOM);
@@ -53,6 +56,25 @@ public class StorageController {
     // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the user
     // will be prompted with intro text while they wait for the tree to stop flashing.
 
+    Task<Void> riddleSecondCall =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            System.out.println("this code is working");
+            gptMessage =
+                runGpt(
+                    new ChatMessage(
+                        "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
+            System.out.println(gptMessage.getContent());
+
+            return null;
+          }
+        };
+
+    Thread secondRiddleThread = new Thread(riddleSecondCall);
+    secondRiddleThread.start();
     App.setUi(AppPanel.CHEST);
   }
 

@@ -540,77 +540,81 @@ public class ChatController {
 
     System.out.println("generate puzzle");
 
-    Task<Void> secondPuzzleTask =
-        new Task<Void>() {
+    //   Task<Void> secondPuzzleTask =
+    //       new Task<Void>() {
 
-          @Override
-          protected Void call() throws Exception {
+    //         @Override
+    //         protected Void call() throws Exception {
 
-            ChatMessage msg = new ChatMessage("user", message);
-            appendChatMessage(msg);
+    //           ChatMessage msg = new ChatMessage("user", message);
+    //           appendChatMessage(msg);
 
-            setChatCompletionRequest(
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.5)
-                    .setTopP(0.2)
-                    .setMaxTokens(100));
+    //           setChatCompletionRequest(
+    //               new ChatCompletionRequest()
+    //                   .setN(1)
+    //                   .setTemperature(0.5)
+    //                   .setTopP(0.2)
+    //                   .setMaxTokens(100));
 
-            System.out.println("first mission riddle");
-            if (firstMission == 3) { // if the first mission is the controller
-              gptMessage =
-                  runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
-              gptMessage.setRole("Wise Ancient Tree");
-              appendChatMessage(gptMessage);
-              gptMessage.setRole("assistant");
-            } else if (firstMission == 4) { // if it is the thruster
-              if (GameState.randomColorNumber == 1) { // red
-                gptMessage =
-                    runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
-                gptMessage.setRole("assistant");
-              } else if (GameState.randomColorNumber == 2) { // blue
-                gptMessage =
-                    runGpt(new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
-                gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
-                gptMessage.setRole("assistant");
-              } else if (GameState.randomColorNumber == 3) { // green
-                gptMessage =
-                    runGpt(
-                        new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
-                gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
-                gptMessage.setRole("assistant");
-              } else if (GameState.randomColorNumber == 4) { // purple
-                gptMessage =
-                    runGpt(
-                        new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("purple")));
-                gptMessage.setRole("Wise Ancient Tree");
-                appendChatMessage(gptMessage);
-                gptMessage.setRole("assistant");
-              }
-            }
+    //           System.out.println("first mission riddle");
+    //           if (firstMission == 3) { // if the first mission is the controller
+    //             gptMessage =
+    //                 runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
+    //             gptMessage.setRole("Wise Ancient Tree");
+    //             appendChatMessage(gptMessage);
+    //             gptMessage.setRole("assistant");
+    //           } else if (firstMission == 4) { // if it is the thruster
+    //             if (GameState.randomColorNumber == 1) { // red
+    //               gptMessage =
+    //                   runGpt(new ChatMessage("user",
+    // GptPromptEngineering.getThrusterPuzzle("red")));
+    //               gptMessage.setRole("Wise Ancient Tree");
+    //               appendChatMessage(gptMessage);
+    //               gptMessage.setRole("assistant");
+    //             } else if (GameState.randomColorNumber == 2) { // blue
+    //               gptMessage =
+    //                   runGpt(new ChatMessage("user",
+    // GptPromptEngineering.getThrusterPuzzle("blue")));
+    //               gptMessage.setRole("Wise Ancient Tree");
+    //               appendChatMessage(gptMessage);
+    //               gptMessage.setRole("assistant");
+    //             } else if (GameState.randomColorNumber == 3) { // green
+    //               gptMessage =
+    //                   runGpt(
+    //                       new ChatMessage("user",
+    // GptPromptEngineering.getThrusterPuzzle("green")));
+    //               gptMessage.setRole("Wise Ancient Tree");
+    //               appendChatMessage(gptMessage);
+    //               gptMessage.setRole("assistant");
+    //             } else if (GameState.randomColorNumber == 4) { // purple
+    //               gptMessage =
+    //                   runGpt(
+    //                       new ChatMessage("user",
+    // GptPromptEngineering.getThrusterPuzzle("purple")));
+    //               gptMessage.setRole("Wise Ancient Tree");
+    //               appendChatMessage(gptMessage);
+    //               gptMessage.setRole("assistant");
+    //             }
+    //           }
 
-            updateProgress(1, 1);
-            return null;
-          }
-        };
+    //           updateProgress(1, 1);
+    //           return null;
+    //         }
+    //       };
 
-    loading.progressProperty().bind(secondPuzzleTask.progressProperty());
+    //   loading.progressProperty().bind(secondPuzzleTask.progressProperty());
 
-    secondPuzzleTask.setOnSucceeded(
-        e2 -> {
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
-          inputText.setDisable(false);
-          startTalk();
-        });
+    //   secondPuzzleTask.setOnSucceeded(
+    //       e2 -> {
+    //         loading.progressProperty().unbind();
+    //         loading.setVisible(false);
+    //         loadingCircle.setFill(Color.valueOf("264f31"));
+    //         inputText.setDisable(false);
+    //         startTalk();
+    //       });
 
-    Thread secondPuzzleThread = new Thread(secondPuzzleTask);
-    secondPuzzleThread.start();
+    //   Thread secondPuzzleThread = new Thread(secondPuzzleTask);
+    //   secondPuzzleThread.start();
   }
 
   @FXML
