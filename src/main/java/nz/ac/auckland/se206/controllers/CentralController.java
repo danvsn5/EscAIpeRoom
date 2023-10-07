@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -18,22 +19,34 @@ public class CentralController {
   @FXML private Button okButton;
   @FXML private Label counter;
   @FXML private Label guideLabel;
-  @FXML private ImageView outsideDoor;
+  @FXML private ImageView outside;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private ImageView outsideDoorImage;
-  @FXML private ImageView window;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
-  @FXML private ImageView fuelTank;
-  @FXML private ImageView controller;
   @FXML private ImageView completeGame;
   @FXML private Rectangle guideWindow;
-  @FXML private Rectangle outsideDoorRectangle;
+
+  @FXML private Polygon outsideDoor;
+  @FXML private Polygon storageDoor;
+  @FXML private Polygon window;
+  @FXML private Polygon fuelTank;
+  @FXML private Polygon controllerBroken1;
+  @FXML private Polygon controllerBroken2;
+
+  @FXML private ImageView windowController1;
+  @FXML private ImageView windowController2;
+  @FXML private ImageView fuelController1;
+  @FXML private ImageView fuelController2;
+  @FXML private ImageView windowThruster1;
+  @FXML private ImageView windowThruster2;
+  @FXML private ImageView fuelThruster1;
+  @FXML private ImageView fuelThruster2;
+  @FXML private ImageView completeImage;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -66,12 +79,13 @@ public class CentralController {
       GameState.isFirstMissionCompleted = true;
       // Tree start flashing
       TreeAvatar.startFlashTree();
-      // Remove the warning message
+      // Remove the window collision box
       window.setOpacity(0);
       window.setDisable(true);
       // Initialise the second mission
       activateBlueprint();
       activateChest();
+
       // Show the fix window message
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else {
@@ -123,6 +137,8 @@ public class CentralController {
       completeGame.setDisable(false);
       completeGame.setVisible(true);
       GameState.isSecondMissionCompleted = true;
+      // Show the complete image
+      completeImage.setVisible(true);
     }
   }
 
@@ -139,6 +155,7 @@ public class CentralController {
     }
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
+    windowThruster2.setVisible(true);
   }
 
   private void activateChest() {
@@ -147,6 +164,7 @@ public class CentralController {
     }
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+    windowController2.setVisible(true);
   }
 
   public void activateProgressGlow() {
@@ -158,45 +176,49 @@ public class CentralController {
   }
 
   public void activateDoorGlow() {
-    outsideDoorImage.setEffect(GameState.glowBright);
-    outsideDoor.setEffect(GameState.glowBright);
+    outside.setEffect(GameState.glowBright);
+    outsideDoor.setOpacity(1);
   }
 
   public void deactivateDoorGlow() {
-    outsideDoorImage.setEffect(GameState.glowDim);
-    outsideDoor.setEffect(GameState.glowDim);
+    outside.setEffect(GameState.glowDim);
+    outsideDoor.setOpacity(0);
   }
 
   public void activateFuelTankGlow() {
-    fuelTank.setEffect(GameState.glowBright);
+    fuelTank.setOpacity(1);
   }
 
   public void deactivateFuelTankGlow() {
-    fuelTank.setEffect(GameState.glowDim);
+    fuelTank.setOpacity(0);
   }
 
   public void activateStorageGlow() {
     storage.setEffect(GameState.glowBright);
+    storageDoor.setOpacity(1);
   }
 
   public void deactivateStorageGlow() {
     storage.setEffect(GameState.glowDim);
+    storageDoor.setOpacity(0);
   }
 
   public void activateWindowGlow() {
-    window.setEffect(GameState.glowBright);
+    window.setOpacity(1);
   }
 
   public void deactivateWindowGlow() {
-    window.setEffect(GameState.glowDim);
+    window.setOpacity(0);
   }
 
   public void activateControllerGlow() {
-    controller.setEffect(GameState.glowBright);
+    controllerBroken1.setOpacity(1);
+    controllerBroken2.setOpacity(1);
   }
 
   public void deactivateControllerGlow() {
-    controller.setEffect(GameState.glowDim);
+    controllerBroken1.setOpacity(0);
+    controllerBroken2.setOpacity(0);
   }
 
   public void goChat() {
