@@ -48,10 +48,8 @@ public class StorageController {
   public void goToChest() {
     if (passwordGenerate == 0) {
       GameState.generatePassWord();
-      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#firstNumber"))
-          .setText(Integer.toString(GameState.firstDigit));
-      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber"))
-          .setText(Integer.toString(GameState.secondDigit));
+      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#firstNumber")).setText("");
+      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber")).setText("");
       System.out.println(GameState.passWord);
       // SceneManager.showDialog("Info", "+", "What does this mean?");
       // when the user goes to the chest for the first time, the user sees the tree begin flashing
@@ -78,6 +76,8 @@ public class StorageController {
 
       Thread secondRiddleThread = new Thread(riddleSecondCall);
       secondRiddleThread.start();
+      passwordGenerate = 1;
+      TreeAvatar.treeFlash.play();
       App.setUi(AppPanel.CHEST);
     } else {
       App.setUi(AppPanel.CHEST);
@@ -173,6 +173,7 @@ public class StorageController {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
     SceneManager.setPrevious(AppPanel.STORAGE);
+
     App.setUi(AppPanel.CHAT);
   }
 
@@ -212,6 +213,6 @@ public class StorageController {
   private void appendChatMessage(ChatMessage msg) {
     // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText(msg.getContent() + "\n\n");
+        .appendText("\n\n" + msg.getContent() + "\n\n");
   }
 }
