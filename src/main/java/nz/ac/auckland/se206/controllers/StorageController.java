@@ -141,6 +141,8 @@ public class StorageController {
   }
 
   public void collectGlass() {
+    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     GameState.inventory.add(3);
     glass.setVisible(false);
     glass.setDisable(true);
