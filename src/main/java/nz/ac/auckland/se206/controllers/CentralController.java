@@ -173,10 +173,10 @@ public class CentralController {
       windowController2.setVisible(true);
     } else if (GameState.missionList.contains(1) && GameState.missionList.contains(4)) {
       // Activate background image for window & thruster mission
-      fuelController2.setVisible(true);
+      windowThruster2.setVisible(true);
     } else if (GameState.missionList.contains(2) && GameState.missionList.contains(3)) {
       // Activate background image for fuel & controller mission
-      windowThruster2.setVisible(true);
+      fuelController2.setVisible(true);
     } else {
       // Activate background image for fuel & thruster mission
       fuelThruster2.setVisible(true);
