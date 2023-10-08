@@ -37,8 +37,11 @@ public class LaunchController {
   @FXML private Button speechButton;
   @FXML private Button quitButton;
   @FXML private MediaView loopingVideo;
-  private Media media;
-  private MediaPlayer mediaPlayer;
+  @FXML private MediaView launchVideo;
+  private Media mediaOne;
+  private MediaPlayer mediaPlayerOne;
+  private Media mediaTwo;
+  private MediaPlayer mediaPlayerTwo;
   public static TimeCounter timer;
 
   MissionInitialise missionInitialise = new MissionInitialise();
@@ -49,12 +52,18 @@ public class LaunchController {
 
           @Override
           protected Void call() throws Exception {
-            media =
+            mediaOne =
                 new Media(App.class.getResource("/videos/launch/0000-0180.mp4").toURI().toString());
-            mediaPlayer = new MediaPlayer(media);
-            loopingVideo.setMediaPlayer(mediaPlayer);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setAutoPlay(true);
+            mediaPlayerOne = new MediaPlayer(mediaOne);
+            loopingVideo.setMediaPlayer(mediaPlayerOne);
+            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayerOne.setAutoPlay(true);
+
+            mediaTwo =
+                new Media(App.class.getResource("/videos/launch/0180-0330.mp4").toURI().toString());
+            mediaPlayerTwo = new MediaPlayer(mediaTwo);
+            launchVideo.setMediaPlayer(mediaPlayerTwo);
+
             return null;
           }
         };
@@ -65,13 +74,32 @@ public class LaunchController {
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
+    mediaPlayerOne.setOnEndOfMedia(
+        new Runnable() {
+          @Override
+          public void run() {
+            loopingVideo.setVisible(false);
+            mediaPlayerTwo.setCycleCount(1);
+            mediaPlayerTwo.play();
+          }
+        });
+    SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
+
+    mediaPlayerTwo.setOnEndOfMedia(
+        new Runnable() {
+          @Override
+          public void run() {
+            App.setUi(AppPanel.MAIN_ROOM);
+          }
+        });
     Random rand = new Random();
     int task1 = rand.nextInt(2) + 1;
     int task2 = rand.nextInt(2) + 3;
     GameState.missionListA.add(task1);
     GameState.missionListA.add(task2);
+
     SceneManager.clearMap();
-    SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
+
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
     SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
     SceneManager.addPanel(AppPanel.WIN, loadFxml("winRoom"));
