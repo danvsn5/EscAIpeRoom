@@ -20,19 +20,23 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class StorageController {
 
-  @FXML private Polygon furnace;
   @FXML private ImageView progressButton;
   @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
   @FXML private ImageView chest;
   @FXML private ImageView blueprint;
-  @FXML private ImageView furnaceImage;
   @FXML private ImageView miniTree;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private Label counter;
+
+  @FXML private Polygon processMachine;
+  @FXML private Polygon bridgeDoor;
+  // @FXML private Polygon chest;
+  @FXML private Polygon glass;
+
   private ChatMessage gptMessage;
   private int passwordGenerate = 0;
 
@@ -99,7 +103,8 @@ public class StorageController {
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
       GameState.inventory.add(3); // add glass to inventory
-      furnace.setDisable(true);
+      processMachine.setVisible(false);
+      processMachine.setDisable(true);
       SceneManager.showDialog("Info", "Glass collected", "A well-made window");
     } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
       // inventory
@@ -125,10 +130,12 @@ public class StorageController {
 
   public void activateDoorGlow() {
     storageDoor.setEffect(GameState.glowBright);
+    bridgeDoor.setOpacity(1);
   }
 
   public void deactivateDoorGlow() {
     storageDoor.setEffect(GameState.glowDim);
+    bridgeDoor.setOpacity(0);
   }
 
   public void activateHiddenChestGlow() {
@@ -147,12 +154,20 @@ public class StorageController {
     chest.setEffect(GameState.glowDim);
   }
 
-  public void activateFurnaceGlow() {
-    furnaceImage.setEffect(GameState.glowBright);
+  public void activateProcessMachineGlow() {
+    processMachine.setOpacity(1);
   }
 
-  public void deactivateFurnaceGlow() {
-    furnaceImage.setEffect(GameState.glowDim);
+  public void deactivateProcessMachineGlow() {
+    processMachine.setOpacity(0);
+  }
+
+  public void activateGlassGlow() {
+    glass.setOpacity(1);
+  }
+
+  public void deactivateGlassGlow() {
+    glass.setOpacity(0);
   }
 
   public void goChat() {
