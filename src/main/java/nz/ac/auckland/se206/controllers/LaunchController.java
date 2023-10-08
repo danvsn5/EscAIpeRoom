@@ -83,7 +83,6 @@ public class LaunchController {
             mediaPlayerTwo.play();
           }
         });
-    SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
 
     mediaPlayerTwo.setOnEndOfMedia(
         new Runnable() {
@@ -99,6 +98,7 @@ public class LaunchController {
     GameState.missionListA.add(task2);
 
     SceneManager.clearMap();
+    SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
 
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
     SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
@@ -166,7 +166,7 @@ public class LaunchController {
 
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 
-    App.setUi(AppPanel.MAIN_ROOM);
+    // App.setUi(AppPanel.MAIN_ROOM);
   }
 
   public void changeDiff() {
