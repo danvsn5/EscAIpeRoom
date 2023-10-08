@@ -5,7 +5,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -50,7 +49,6 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Ellipse fill="#00000097" layoutX="632.0" layoutY="552.0" radiusX="100.0" radiusY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" />
       <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/threeRoot.png" />
@@ -87,7 +85,7 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
@@ -95,12 +93,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="progressLabel" layoutX="530.0" layoutY="618.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <ImageView fx:id="storageDoor" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="storageDoor" fitHeight="65.0" fitWidth="65.0" layoutX="1216.0" layoutY="631.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pointer.png" />
          </image>
