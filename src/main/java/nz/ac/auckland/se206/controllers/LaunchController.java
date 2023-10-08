@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import javafx.application.Platform;
@@ -38,12 +37,31 @@ public class LaunchController {
   @FXML private Button speechButton;
   @FXML private Button quitButton;
   @FXML private MediaView loopingVideo;
-  private File file;
   private Media media;
   private MediaPlayer mediaPlayer;
   public static TimeCounter timer;
 
   MissionInitialise missionInitialise = new MissionInitialise();
+
+  public void initialize() throws Exception {
+    Task<Void> videoTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            media =
+                new Media(App.class.getResource("/videos/launch/0000-0180.mp4").toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            loopingVideo.setMediaPlayer(mediaPlayer);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setAutoPlay(true);
+            return null;
+          }
+        };
+
+    Thread videoInitialisationThread = new Thread(videoTask);
+    videoInitialisationThread.start();
+  }
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
@@ -52,7 +70,6 @@ public class LaunchController {
     int task2 = rand.nextInt(2) + 3;
     GameState.missionListA.add(task1);
     GameState.missionListA.add(task2);
-
     SceneManager.clearMap();
     SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
     SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
