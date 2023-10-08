@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LaunchController">
@@ -37,5 +38,6 @@
             <Font name="Bank Gothic Light BT" size="50.0" />
          </font>
       </Button>
+      <MediaView fx:id="loopingVideo" fitHeight="200.0" fitWidth="200.0" />
    </children>
 </Pane>

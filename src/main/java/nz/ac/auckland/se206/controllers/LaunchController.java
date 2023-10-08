@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import javafx.application.Platform;
@@ -11,6 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionInitialise;
@@ -33,7 +37,10 @@ public class LaunchController {
   @FXML private Button timerButton;
   @FXML private Button speechButton;
   @FXML private Button quitButton;
-
+  @FXML private MediaView loopingVideo;
+  private File file;
+  private Media media;
+  private MediaPlayer mediaPlayer;
   public static TimeCounter timer;
 
   MissionInitialise missionInitialise = new MissionInitialise();
