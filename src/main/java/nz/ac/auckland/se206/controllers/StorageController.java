@@ -32,6 +32,10 @@ public class StorageController {
   @FXML private ImageView rootThree;
   @FXML private Label counter;
 
+  @FXML private ImageView windowController;
+  @FXML private ImageView windowThruster1;
+  @FXML private ImageView windowThruster2;
+
   @FXML private Polygon processMachine;
   @FXML private Polygon bridgeDoor;
   // @FXML private Polygon chest;
@@ -102,9 +106,9 @@ public class StorageController {
     if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-      GameState.inventory.add(3); // add glass to inventory
       processMachine.setVisible(false);
       processMachine.setDisable(true);
+      showGlass();
       SceneManager.showDialog("Info", "Glass collected", "A well-made window");
     } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
       // inventory
@@ -117,6 +121,32 @@ public class StorageController {
       SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace yet!");
     } else {
       SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace!");
+    }
+  }
+
+  /** Show the glass image according to the mission selected */
+  private void showGlass() {
+    if (GameState.missionList.contains(3)) {
+      // If the second mission is controller mission
+      windowController.setVisible(true);
+    } else {
+      // If the second mission is thruster mission
+      windowThruster2.setVisible(true);
+    }
+    // Activate the collision box for glass
+    glass.setVisible(true);
+  }
+
+  public void collectGlass() {
+    GameState.inventory.add(3);
+    glass.setVisible(false);
+    // Show the glass collected image
+    if (GameState.missionList.contains(3)) {
+      // If the second mission is controller mission
+      windowController.setVisible(false);
+    } else {
+      // If the second mission is thruster mission
+      windowThruster2.setVisible(false);
     }
   }
 
