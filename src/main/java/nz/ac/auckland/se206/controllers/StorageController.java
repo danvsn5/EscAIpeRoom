@@ -23,7 +23,7 @@ public class StorageController {
   @FXML private ImageView progressButton;
   @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
-  @FXML private ImageView chest;
+  // @FXML private ImageView chest;
   @FXML private ImageView blueprint;
   @FXML private ImageView miniTree;
   @FXML private ImageView rootInitial;
@@ -40,11 +40,11 @@ public class StorageController {
 
   @FXML private Polygon processMachine;
   @FXML private Polygon bridgeDoor;
-  // @FXML private Polygon chest;
+  @FXML private Polygon chest;
   @FXML private Polygon glass;
 
   private ChatMessage gptMessage;
-  private int passwordGenerate = 0;
+  private boolean passwordGenerate = false;
 
   public void goInside() {
     App.setUi(AppPanel.MAIN_ROOM);
@@ -56,42 +56,40 @@ public class StorageController {
   }
 
   public void goToChest() {
-    if (passwordGenerate == 0) {
-      GameState.generatePassWord();
-      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#firstNumber")).setText("");
-      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber")).setText("");
-      System.out.println(GameState.passWord);
-      // SceneManager.showDialog("Info", "+", "What does this mean?");
-      // when the user goes to the chest for the first time, the user sees the tree begin flashing
-      // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the
-      // user
-      // will be prompted with intro text while they wait for the tree to stop flashing.
-
-      Task<Void> riddleSecondCall =
-          new Task<Void>() {
-
-            @Override
-            protected Void call() throws Exception {
-
-              System.out.println("this code is working");
-              gptMessage =
-                  runGpt(
-                      new ChatMessage(
-                          "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
-              System.out.println(gptMessage.getContent());
-
-              return null;
-            }
-          };
-
-      Thread secondRiddleThread = new Thread(riddleSecondCall);
-      secondRiddleThread.start();
-      passwordGenerate = 1;
-      TreeAvatar.treeFlash.play();
+    if (passwordGenerate || !GameState.firstRiddleSolved) {
       App.setUi(AppPanel.CHEST);
-    } else {
-      App.setUi(AppPanel.CHEST);
+      return;
     }
+    GameState.generatePassWord();
+    System.out.println(GameState.passWord);
+    // SceneManager.showDialog("Info", "+", "What does this mean?");
+    // when the user goes to the chest for the first time, the user sees the tree begin flashing
+    // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the
+    // user
+    // will be prompted with intro text while they wait for the tree to stop flashing.
+
+    Task<Void> riddleSecondCall =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            System.out.println("this code is working");
+            gptMessage =
+                runGpt(
+                    new ChatMessage(
+                        "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
+            System.out.println(gptMessage.getContent());
+
+            return null;
+          }
+        };
+
+    Thread secondRiddleThread = new Thread(riddleSecondCall);
+    secondRiddleThread.start();
+    passwordGenerate = true;
+    TreeAvatar.treeFlash.play();
+    App.setUi(AppPanel.CHEST);
   }
 
   public void collectBlueprint() {
@@ -183,11 +181,11 @@ public class StorageController {
   }
 
   public void activateChestGlow() {
-    chest.setEffect(GameState.glowBright);
+    chest.setOpacity(1);
   }
 
   public void deactivateChestGlow() {
-    chest.setEffect(GameState.glowDim);
+    chest.setOpacity(0);
   }
 
   public void activateProcessMachineGlow() {

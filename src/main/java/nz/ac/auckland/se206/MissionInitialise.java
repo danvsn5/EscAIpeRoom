@@ -29,7 +29,8 @@ public class MissionInitialise {
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#controllerBroken2").setDisable(false);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller").setVisible(true);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller").setDisable(false);
-
+      SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
+      SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
     } else {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setVisible(true);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setDisable(false);
