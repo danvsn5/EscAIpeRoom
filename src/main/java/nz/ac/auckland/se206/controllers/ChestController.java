@@ -20,6 +20,8 @@ public class ChestController {
   @FXML private Label secondDigit;
   @FXML private Label thirdDigit;
   @FXML private Label counter;
+  @FXML private Label firstNumebr;
+  @FXML private Label secondNumber;
   @FXML private Rectangle firstDigitHighlight;
   @FXML private Rectangle secondDigitHighlight;
   @FXML private Rectangle thirdDigitHighlight;
@@ -106,6 +108,9 @@ public class ChestController {
     firstDigitHighlight.setDisable(true);
     secondDigitHighlight.setDisable(true);
     thirdDigitHighlight.setDisable(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller2").setVisible(true);
   }
 
   public void activateProgressGlow() {
