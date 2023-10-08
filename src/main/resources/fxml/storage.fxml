@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StorageController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="controller" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Storage/Storage-ChestClose.png" />
          </image>
@@ -21,19 +21,19 @@
             <Image url="@../images/Storage/Storage-WindowController.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="controller2" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Storage/Storage-ChestOpen.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="windowThruster1" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="thruster" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/Storage/Storage-WindowThruster-1.png" />
+            <Image url="@../images/Storage/Storage-Thruster.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="windowThruster2" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="windowThruster" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/Storage/Storage-WindowThruster-2.png" />
+            <Image url="@../images/Storage/Storage-WindowThruster.png" />
          </image>
       </ImageView>
       <ImageView fx:id="chest" disable="true" fitHeight="204.0" fitWidth="269.0" layoutX="900.0" layoutY="300.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -104,8 +104,8 @@
          </image>
       </ImageView>
       <Polygon fx:id="bridgeDoor" fill="#1f93ff00" layoutX="886.0" layoutY="231.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" opacity="0.0" points="155.6666259765625, 21.5, 138.6666259765625, -13.5, 35.33331298828125, -45.0, 19.0, -41.0, -0.83331298828125, -13.5, -4.66668701171875, 144.83334350585938, 8.83331298828125, 173.83334350585938, 113.5, 212.66665649414062, 129.6666259765625, 205.0, 150.6666259765625, 183.0" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
-      <Polygon fx:id="processMachine" fill="#1f93ff00" layoutX="599.0" layoutY="217.0" onMouseClicked="#meltSand" onMouseEntered="#activateProcessMachineGlow" onMouseExited="#deactivateProcessMachineGlow" opacity="0.0" points="139.5, -39.0, 129.16668701171875, -58.5, 54.83331298828125, -82.5, -15.1666259765625, -58.5, -34.0, -44.83332824707031, -54.66668701171875, -11.833328247070312, -54.66668701171875, 27.833328247070312, -205.83334350585938, 79.66665649414062, -205.83334350585938, 88.0, -224.16665649414062, 103.0, -224.16665649414062, 186.33331298828125, -112.33334350585938, 234.33334350585938, 38.66668701171875, 176.16665649414062, 87.5, 196.0, 126.0, 196.0, 207.83331298828125, 163.16665649414062, 207.83331298828125, 111.33334350585938, 203.66668701171875, 88.0, 194.16668701171875, 76.66665649414062, 139.5, 34.33332824707031" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
+      <Polygon fx:id="processMachine" disable="true" fill="#1f93ff00" layoutX="599.0" layoutY="217.0" onMouseClicked="#meltSand" onMouseEntered="#activateProcessMachineGlow" onMouseExited="#deactivateProcessMachineGlow" opacity="0.0" points="139.5, -39.0, 129.16668701171875, -58.5, 54.83331298828125, -82.5, -15.1666259765625, -58.5, -34.0, -44.83332824707031, -54.66668701171875, -11.833328247070312, -54.66668701171875, 27.833328247070312, -205.83334350585938, 79.66665649414062, -205.83334350585938, 88.0, -224.16665649414062, 103.0, -224.16665649414062, 186.33331298828125, -112.33334350585938, 234.33334350585938, 38.66668701171875, 176.16665649414062, 87.5, 196.0, 126.0, 196.0, 207.83331298828125, 163.16665649414062, 207.83331298828125, 111.33334350585938, 203.66668701171875, 88.0, 194.16668701171875, 76.66665649414062, 139.5, 34.33332824707031" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
       <Polygon fill="#1f93ff00" layoutX="258.0" layoutY="318.0" points="173.0, 45.666656494140625, 106.16665649414062, 18.5, 77.66665649414062, 18.5, 3.333343505859375, 45.666656494140625, -0.83331298828125, 57.666656494140625, 3.333343505859375, 142.83334350585938, 68.0, 170.33334350585938, 101.0, 170.33334350585938, 173.0, 142.83334350585938" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
-      <Polygon fx:id="glass" fill="#1f93ff00" layoutX="445.0" layoutY="200.0" onMouseClicked="#collectGlass" onMouseEntered="#activateGlassGlow" onMouseExited="#deactivateGlassGlow" opacity="0.0" points="171.5, 64.66668701171875, 111.66668701171875, 43.0, 89.33331298828125, 43.0, -9.166656494140625, 75.5, -10.833343505859375, 85.33331298828125, -10.833343505859375, 97.83331298828125, 49.16668701171875, 119.66668701171875, 76.0, 119.66668701171875, 171.5, 85.33331298828125" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
+      <Polygon fx:id="glass" disable="true" fill="#1f93ff00" layoutX="445.0" layoutY="200.0" onMouseClicked="#collectGlass" onMouseEntered="#activateGlassGlow" onMouseExited="#deactivateGlassGlow" opacity="0.0" points="171.5, 64.66668701171875, 111.66668701171875, 43.0, 89.33331298828125, 43.0, -9.166656494140625, 75.5, -10.833343505859375, 85.33331298828125, -10.833343505859375, 97.83331298828125, 49.16668701171875, 119.66668701171875, 76.0, 119.66668701171875, 171.5, 85.33331298828125" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
    </children>
 </Pane>

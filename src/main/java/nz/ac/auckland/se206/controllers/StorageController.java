@@ -32,9 +32,11 @@ public class StorageController {
   @FXML private ImageView rootThree;
   @FXML private Label counter;
 
+  @FXML private ImageView controller;
   @FXML private ImageView windowController;
-  @FXML private ImageView windowThruster1;
-  @FXML private ImageView windowThruster2;
+  @FXML private ImageView controller2;
+  @FXML private ImageView thruster;
+  @FXML private ImageView windowThruster;
 
   @FXML private Polygon processMachine;
   @FXML private Polygon bridgeDoor;
@@ -131,22 +133,24 @@ public class StorageController {
       windowController.setVisible(true);
     } else {
       // If the second mission is thruster mission
-      windowThruster2.setVisible(true);
+      windowThruster.setVisible(true);
     }
     // Activate the collision box for glass
     glass.setVisible(true);
+    glass.setDisable(false);
   }
 
   public void collectGlass() {
     GameState.inventory.add(3);
     glass.setVisible(false);
+    glass.setDisable(true);
     // Show the glass collected image
     if (GameState.missionList.contains(3)) {
       // If the second mission is controller mission
       windowController.setVisible(false);
     } else {
       // If the second mission is thruster mission
-      windowThruster2.setVisible(false);
+      windowThruster.setVisible(false);
     }
   }
 
