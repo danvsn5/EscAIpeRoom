@@ -26,8 +26,6 @@ public class OutsideController {
   @FXML private Polygon wiseTree;
   @FXML private Polygon thruster1;
   @FXML private Polygon thruster2;
-  @FXML private Polygon thruster3;
-  @FXML private Polygon thruster4;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
@@ -186,8 +184,6 @@ public class OutsideController {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(1);
       thruster2.setOpacity(1);
-      thruster3.setOpacity(1);
-      thruster4.setOpacity(1);
     }
   }
 
@@ -195,8 +191,6 @@ public class OutsideController {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(0);
       thruster2.setOpacity(0);
-      thruster3.setOpacity(0);
-      thruster4.setOpacity(0);
     }
   }
 

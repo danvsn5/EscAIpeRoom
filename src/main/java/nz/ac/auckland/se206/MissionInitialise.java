@@ -40,10 +40,6 @@ public class MissionInitialise {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(false);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(true);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(false);
-      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster3").setVisible(true);
-      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster3").setDisable(false);
-      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster4").setVisible(true);
-      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster4").setDisable(false);
     }
     initialiseMainRoom();
   }
