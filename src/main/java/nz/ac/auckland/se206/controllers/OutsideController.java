@@ -19,10 +19,15 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class OutsideController {
+  @FXML private ImageView outsideImage;
+  @FXML private ImageView outsideBrokenImage;
   @FXML private ImageView returnShip;
   @FXML private Label counter;
   @FXML private Polygon wiseTree;
-  @FXML private Polygon thruster;
+  @FXML private Polygon thruster1;
+  @FXML private Polygon thruster2;
+  @FXML private Polygon thruster3;
+  @FXML private Polygon thruster4;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
@@ -180,13 +185,19 @@ public class OutsideController {
 
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
-      thrusterImage.setEffect(GameState.glowBright);
+      thruster1.setOpacity(1);
+      thruster2.setOpacity(1);
+      thruster3.setOpacity(1);
+      thruster4.setOpacity(1);
     }
   }
 
   public void deactivateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
-      thrusterImage.setEffect(GameState.glowDim);
+      thruster1.setOpacity(0);
+      thruster2.setOpacity(0);
+      thruster3.setOpacity(0);
+      thruster4.setOpacity(0);
     }
   }
 

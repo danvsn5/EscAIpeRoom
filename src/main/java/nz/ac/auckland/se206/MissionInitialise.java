@@ -34,6 +34,8 @@ public class MissionInitialise {
     } else {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setVisible(true);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setDisable(false);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setVisible(true);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setDisable(false);
     }
