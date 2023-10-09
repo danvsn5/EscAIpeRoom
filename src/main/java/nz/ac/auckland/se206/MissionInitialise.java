@@ -33,6 +33,7 @@ public class MissionInitialise {
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
     } else {
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setVisible(true);
+      SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setDisable(false);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(true);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setDisable(false);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setVisible(true);

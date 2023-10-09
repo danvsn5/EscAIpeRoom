@@ -196,5 +196,7 @@ public class ThrusterController {
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(true);
+    completeButton.setDisable(true);
+    completeButton.setVisible(false);
   }
 }
