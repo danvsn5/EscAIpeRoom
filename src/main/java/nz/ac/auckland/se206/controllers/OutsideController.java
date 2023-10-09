@@ -35,7 +35,6 @@ public class OutsideController {
   @FXML private ImageView rootThree;
   @FXML private ImageView miniTree;
   @FXML private ImageView ship;
-  @FXML private ImageView thrusterImage;
   @FXML private ImageView thrusterWarning;
 
   private int thrusterPuzzleGenerate = 0;

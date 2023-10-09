@@ -36,8 +36,14 @@ public class MissionInitialise {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thrusterWarning").setDisable(false);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(true);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setDisable(false);
-      SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setVisible(true);
-      SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster3").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster3").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster4").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster4").setDisable(false);
     }
     initialiseMainRoom();
   }
