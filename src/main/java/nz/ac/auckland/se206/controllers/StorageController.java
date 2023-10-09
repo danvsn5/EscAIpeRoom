@@ -20,21 +20,31 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class StorageController {
 
-  @FXML private Polygon furnace;
   @FXML private ImageView progressButton;
   @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
-  @FXML private ImageView chest;
+  // @FXML private ImageView chest;
   @FXML private ImageView blueprint;
-  @FXML private ImageView furnaceImage;
   @FXML private ImageView miniTree;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private Label counter;
+
+  @FXML private ImageView controller;
+  @FXML private ImageView windowController;
+  @FXML private ImageView controller2;
+  @FXML private ImageView thruster;
+  @FXML private ImageView windowThruster;
+
+  @FXML private Polygon processMachine;
+  @FXML private Polygon bridgeDoor;
+  @FXML private Polygon chest;
+  @FXML private Polygon glass;
+
   private ChatMessage gptMessage;
-  private int passwordGenerate = 0;
+  private boolean passwordGenerate = false;
 
   public void goInside() {
     App.setUi(AppPanel.MAIN_ROOM);
@@ -46,42 +56,40 @@ public class StorageController {
   }
 
   public void goToChest() {
-    if (passwordGenerate == 0) {
-      GameState.generatePassWord();
-      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#firstNumber")).setText("");
-      ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#secondNumber")).setText("");
-      System.out.println(GameState.passWord);
-      // SceneManager.showDialog("Info", "+", "What does this mean?");
-      // when the user goes to the chest for the first time, the user sees the tree begin flashing
-      // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the
-      // user
-      // will be prompted with intro text while they wait for the tree to stop flashing.
-
-      Task<Void> riddleSecondCall =
-          new Task<Void>() {
-
-            @Override
-            protected Void call() throws Exception {
-
-              System.out.println("this code is working");
-              gptMessage =
-                  runGpt(
-                      new ChatMessage(
-                          "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
-              System.out.println(gptMessage.getContent());
-
-              return null;
-            }
-          };
-
-      Thread secondRiddleThread = new Thread(riddleSecondCall);
-      secondRiddleThread.start();
-      passwordGenerate = 1;
-      TreeAvatar.treeFlash.play();
+    if (passwordGenerate || !GameState.firstRiddleSolved) {
       App.setUi(AppPanel.CHEST);
-    } else {
-      App.setUi(AppPanel.CHEST);
+      return;
     }
+    GameState.generatePassWord();
+    System.out.println(GameState.passWord);
+    // SceneManager.showDialog("Info", "+", "What does this mean?");
+    // when the user goes to the chest for the first time, the user sees the tree begin flashing
+    // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the
+    // user
+    // will be prompted with intro text while they wait for the tree to stop flashing.
+
+    Task<Void> riddleSecondCall =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+
+            System.out.println("this code is working");
+            gptMessage =
+                runGpt(
+                    new ChatMessage(
+                        "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
+            System.out.println(gptMessage.getContent());
+
+            return null;
+          }
+        };
+
+    Thread secondRiddleThread = new Thread(riddleSecondCall);
+    secondRiddleThread.start();
+    passwordGenerate = true;
+    TreeAvatar.treeFlash.play();
+    App.setUi(AppPanel.CHEST);
   }
 
   public void collectBlueprint() {
@@ -98,8 +106,9 @@ public class StorageController {
     if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-      GameState.inventory.add(3); // add glass to inventory
-      furnace.setDisable(true);
+      processMachine.setVisible(false);
+      processMachine.setDisable(true);
+      showGlass();
       SceneManager.showDialog("Info", "Glass collected", "A well-made window");
     } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
       // inventory
@@ -115,6 +124,36 @@ public class StorageController {
     }
   }
 
+  /** Show the glass image according to the mission selected */
+  private void showGlass() {
+    if (GameState.missionList.contains(3)) {
+      // If the second mission is controller mission
+      windowController.setVisible(true);
+    } else {
+      // If the second mission is thruster mission
+      windowThruster.setVisible(true);
+    }
+    // Activate the collision box for glass
+    glass.setVisible(true);
+    glass.setDisable(false);
+  }
+
+  public void collectGlass() {
+    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+    GameState.inventory.add(3);
+    glass.setVisible(false);
+    glass.setDisable(true);
+    // Show the glass collected image
+    if (GameState.missionList.contains(3)) {
+      // If the second mission is controller mission
+      windowController.setVisible(false);
+    } else {
+      // If the second mission is thruster mission
+      windowThruster.setVisible(false);
+    }
+  }
+
   public void activateProgressGlow() {
     progressButton.setEffect(GameState.glowBright);
   }
@@ -125,10 +164,12 @@ public class StorageController {
 
   public void activateDoorGlow() {
     storageDoor.setEffect(GameState.glowBright);
+    bridgeDoor.setOpacity(1);
   }
 
   public void deactivateDoorGlow() {
     storageDoor.setEffect(GameState.glowDim);
+    bridgeDoor.setOpacity(0);
   }
 
   public void activateHiddenChestGlow() {
@@ -140,19 +181,27 @@ public class StorageController {
   }
 
   public void activateChestGlow() {
-    chest.setEffect(GameState.glowBright);
+    chest.setOpacity(1);
   }
 
   public void deactivateChestGlow() {
-    chest.setEffect(GameState.glowDim);
+    chest.setOpacity(0);
   }
 
-  public void activateFurnaceGlow() {
-    furnaceImage.setEffect(GameState.glowBright);
+  public void activateProcessMachineGlow() {
+    processMachine.setOpacity(1);
   }
 
-  public void deactivateFurnaceGlow() {
-    furnaceImage.setEffect(GameState.glowDim);
+  public void deactivateProcessMachineGlow() {
+    processMachine.setOpacity(0);
+  }
+
+  public void activateGlassGlow() {
+    glass.setOpacity(1);
+  }
+
+  public void deactivateGlassGlow() {
+    glass.setOpacity(0);
   }
 
   public void goChat() {

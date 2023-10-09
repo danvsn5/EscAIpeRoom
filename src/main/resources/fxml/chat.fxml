@@ -20,51 +20,51 @@
             <Image url="@../images/chatBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeListening" fitHeight="655.0" fitWidth="786.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="treeListening" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/treeListening.png" />
+            <Image url="@../images/Chat/TreeListening.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeTalking" fitHeight="655.0" fitWidth="786.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="treeTalking" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/treeTalking.png" />
+            <Image url="@../images/Chat/TreeTalking.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="treeThinking" fitHeight="655.0" fitWidth="786.0" layoutX="-235.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="treeThinking" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/treeThinking.png" />
+            <Image url="@../images/Chat/TreeThinking.png" />
          </image>
       </ImageView>
-    <Button fx:id="sendButton" contentDisplay="CENTER" layoutX="1051.0" layoutY="576.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="52.0" prefWidth="87.0" text="Send">
+    <Button fx:id="sendButton" contentDisplay="CENTER" layoutX="1103.0" layoutY="636.0" mnemonicParsing="false" onAction="#onSendMessage" prefHeight="52.0" prefWidth="87.0" text="Send">
          <font>
-            <Font name="Press Start 2P Regular" size="14.0" />
+            <Font name="Bank Gothic Light BT" size="20.0" />
          </font></Button>
-      <Button fx:id="hintButton" disable="true" layoutX="813.0" layoutY="575.0" mnemonicParsing="false" onAction="#getHint" prefHeight="52.0" prefWidth="87.0" text="Hint" visible="false">
+      <Button fx:id="hintButton" layoutX="959.0" layoutY="636.0" mnemonicParsing="false" onAction="#getHint" prefHeight="52.0" prefWidth="87.0" text="Hint">
          <font>
-            <Font name="Bank Gothic Light BT" size="30.0" />
+            <Font name="Bank Gothic Light BT" size="20.0" />
          </font>
       </Button>
-    <Button layoutX="135.0" layoutY="584.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="44.0" prefWidth="133.0" text="Go Back">
+    <Button layoutX="112.0" layoutY="636.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="44.0" prefWidth="133.0" text="Go Back">
          <font>
-            <Font name="Bank Gothic Light BT" size="30.0" />
+            <Font name="Bank Gothic Light BT" size="20.0" />
          </font></Button>
       <Label fx:id="listeningLabel" alignment="CENTER" layoutX="48.0" layoutY="432.0" prefHeight="44.0" prefWidth="190.0" text="Listening..." textAlignment="CENTER" visible="false">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="139.0" layoutX="492.0" layoutY="420.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="143.0" />
-      <ImageView fx:id="sand" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="489.0" layoutY="415.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="105.0" layoutX="776.0" layoutY="588.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="107.0" />
+      <ImageView fx:id="sand" disable="true" fitHeight="108.0" fitWidth="92.0" layoutX="785.0" layoutY="595.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/sand.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="fuel" disable="true" fitHeight="123.0" fitWidth="123.0" layoutX="502.0" layoutY="428.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="fuel" disable="true" fitHeight="89.0" fitWidth="100.0" layoutX="784.0" layoutY="594.0" onMouseClicked="#collectFuel" onMouseEntered="#fuelLight" onMouseExited="#fuelNeutral" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/fueklTank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
+      <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/initalRoot.png" />
          </image>
@@ -90,12 +90,20 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-    <TextArea fx:id="chatTextArea" editable="false" layoutX="681.0" layoutY="46.0" opacity="0.85" prefHeight="473.0" prefWidth="542.0" wrapText="true">
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="718.0" layoutY="46.0" opacity="0.85" prefHeight="472.0" prefWidth="505.0" wrapText="true">
          <font>
             <Font name="Bank Gothic Light BT" size="20.0" />
          </font></TextArea>
-    <TextField fx:id="inputText" layoutX="684.0" layoutY="528.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" opacity="0.85" prefHeight="29.0" prefWidth="537.0" />
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+    <TextField fx:id="inputText" layoutX="722.0" layoutY="528.0" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" opacity="0.85" prefHeight="29.0" prefWidth="499.0" />
+      <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
+      <ProgressIndicator fx:id="loading" layoutX="80.0" layoutY="121.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
+      <Rectangle fx:id="hintRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="WHITE" height="52.0" layoutX="929.0" layoutY="589.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="101.0" />
+      <Label fx:id="hintNumber" disable="true" layoutX="967.0" layoutY="599.0" text="5" visible="false">
+         <font>
+            <Font name="Bank Gothic Light BT" size="33.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
@@ -103,17 +111,9 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="progressLabel" layoutX="530.0" layoutY="618.0" mouseTransparent="true" prefHeight="42.0" prefWidth="221.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
          <font>
-            <Font size="34.0" />
-         </font>
-      </Label>
-      <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
-      <ProgressIndicator fx:id="loading" layoutX="80.0" layoutY="121.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
-      <Rectangle fx:id="hintRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="WHITE" height="52.0" layoutX="929.0" layoutY="589.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="101.0" />
-      <Label fx:id="hintNumber" disable="true" layoutX="967.0" layoutY="599.0" text="5" visible="false">
-         <font>
-            <Font name="Bank Gothic Light BT" size="33.0" />
+            <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
   </children>

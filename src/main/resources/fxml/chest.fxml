@@ -13,35 +13,40 @@
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/chestPanel.png" />
+            <Image url="@../images/Chest/ChestClose.png" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="323.0" layoutY="569.0" mnemonicParsing="false" onAction="#goBack" prefHeight="76.0" prefWidth="138.0" text="Back">
+      <ImageView fx:id="chestOpenImage" fitHeight="720.0" fitWidth="1280.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Chest/ChestOpen.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="290.0" layoutY="590.0" mnemonicParsing="false" onAction="#goBack" prefHeight="50.0" prefWidth="180.0" text="Back">
          <font>
-            <Font name="Bank Gothic Light BT" size="40.0" />
+            <Font name="Bank Gothic Light BT" size="30.0" />
          </font></Button>
-      <Label fx:id="firstDigit" layoutX="481.0" layoutY="385.0" text="0">
+      <Label fx:id="firstDigit" layoutX="519.0" layoutY="386.0" text="0" textFill="#fff600">
          <font>
-            <Font name="Bank Gothic Light BT" size="93.0" />
+            <Font name="Bank Gothic Light BT" size="70.0" />
          </font>
       </Label>
-      <Button fx:id="enterButton" layoutX="794.0" layoutY="569.0" mnemonicParsing="false" onAction="#check" prefHeight="76.0" prefWidth="186.0" text="Confirm">
+      <Button fx:id="enterButton" layoutX="820.0" layoutY="590.0" mnemonicParsing="false" onAction="#check" prefHeight="50.0" prefWidth="180.0" text="Confirm">
          <font>
-            <Font name="Bank Gothic Light BT" size="40.0" />
+            <Font name="Bank Gothic Light BT" size="30.0" />
          </font></Button>
-      <Label fx:id="secondDigit" layoutX="611.0" layoutY="387.0" text="0">
+      <Label fx:id="secondDigit" layoutX="620.0" layoutY="386.0" text="0" textFill="#fff600">
          <font>
-            <Font name="Bank Gothic Light BT" size="93.0" />
+            <Font name="Bank Gothic Light BT" size="70.0" />
          </font>
       </Label>
-      <Label fx:id="thirdDigit" layoutX="736.0" layoutY="387.0" text="0">
+      <Label fx:id="thirdDigit" layoutX="720.0" layoutY="386.0" text="0" textFill="#fff600">
          <font>
-            <Font name="Bank Gothic Light BT" size="93.0" />
+            <Font name="Bank Gothic Light BT" size="70.0" />
          </font>
       </Label>
-      <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="456.0" layoutY="381.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#firstDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
-      <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="585.0" layoutY="381.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
-      <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="115.0" layoutX="712.0" layoutY="381.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#thirdDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="2.0" width="119.0" />
+      <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="502.0" layoutY="468.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#firstDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="88.0" />
+      <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="601.0" layoutY="468.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
+      <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="701.0" layoutY="468.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#thirdDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
       <ImageView fx:id="rootInitial" fitHeight="720.0" fitWidth="1327.0" layoutX="-43.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true">
          <image>
             <Image url="@../images/initalRoot.png" />
@@ -70,12 +75,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
       </ImageView>
-      <Label fx:id="progressLabel" layoutX="532.0" layoutY="618.0" mouseTransparent="true" prefHeight="42.0" prefWidth="215.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="215.0" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
@@ -84,16 +89,6 @@
       <Label fx:id="counter" alignment="CENTER" layoutX="24.0" layoutY="31.0" prefHeight="72.0" prefWidth="250.0" text="2:00">
          <font>
             <Font name="Bank Gothic Light BT" size="79.0" />
-         </font>
-      </Label>
-      <Label fx:id="firstNumber" layoutX="53.0" layoutY="163.0" rotate="-19.3" text="200">
-         <font>
-            <Font size="53.0" />
-         </font>
-      </Label>
-      <Label fx:id="secondNumber" layoutX="1101.0" layoutY="508.0" rotate="45.0" text="200">
-         <font>
-            <Font size="53.0" />
          </font>
       </Label>
    </children>

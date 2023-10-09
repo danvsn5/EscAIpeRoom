@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,18 +30,12 @@ public class ChestController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private ImageView chestOpenImage;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
   private int thirdDigitNum = 0;
-  private Random rand;
   public static int correctPassword;
-
-  public ChestController() {
-    rand = new Random();
-    correctPassword = rand.nextInt(1000);
-    System.out.println(getCorrectPassword());
-  }
 
   public void goBack() {
     App.setUi(AppPanel.STORAGE);
@@ -77,9 +70,15 @@ public class ChestController {
     thirdDigit.setText(Integer.toString(thirdDigitNum));
   }
 
+  /**
+   * This method checks if the player's input number is correct or not, it is invoked when confirm
+   * button is clicked
+   */
   public void check() {
+    // Get the user's input password
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == GameState.passWord) {
+      // If the player is correct, update the progress and disable the lock
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       SceneManager.showDialog(
@@ -90,24 +89,20 @@ public class ChestController {
     }
   }
 
-  public String getCorrectPassword() {
-    String result;
-    if (correctPassword < 10) {
-      result = "00" + Integer.toString(correctPassword);
-    } else if (correctPassword >= 10 && correctPassword < 100) {
-      result = "0" + Integer.toString(correctPassword);
-    } else {
-      result = Integer.toString(correctPassword);
-    }
-    return result;
-  }
-
+  /** Disable the lock, enter button and number input, activate the images of open chest */
   public void disableLock() {
+    // Disable the enter button and highlight of three digits
     enterButton.setOpacity(0);
     enterButton.setDisable(true);
     firstDigitHighlight.setDisable(true);
     secondDigitHighlight.setDisable(true);
     thirdDigitHighlight.setDisable(true);
+    // Disable the chest collision box and activate the chest image in storage panel
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller2").setVisible(true);
+    // Activate the chest open image
+    chestOpenImage.setOpacity(1);
   }
 
   public void activateProgressGlow() {
@@ -142,6 +137,7 @@ public class ChestController {
     thirdDigitHighlight.setOpacity(0);
   }
 
+  /** This method is invoked when the player clicks the mini tree and goes to chat room */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();

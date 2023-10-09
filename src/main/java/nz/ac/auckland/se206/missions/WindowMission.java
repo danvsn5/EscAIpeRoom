@@ -1,11 +1,11 @@
 package nz.ac.auckland.se206.missions;
 
-/** This is a mission class, contains of 4 total steps */
+/** This is a mission class, contains of 5 total steps */
 public class WindowMission extends Mission {
 
   public WindowMission() {
     currentStage = 0;
-    totalStage = 4;
+    totalStage = 5;
   }
 
   /**
