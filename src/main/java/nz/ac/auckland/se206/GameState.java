@@ -26,7 +26,7 @@ public class GameState {
 
   public static int hintNumer = 1000;
   public static int currentHint = 0;
-  public static int passWord;
+  public static int passWord = -1;
   public static int firstDigit;
   public static int secondDigit;
 
@@ -128,6 +128,7 @@ public class GameState {
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
     ChatController.seenFirstMessage = 0;
+    passWord = -1;
   }
 
   public static void generatePassWord() {
