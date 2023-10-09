@@ -5,21 +5,35 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StorageController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="controller" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/storage.png" />
+            <Image url="@../images/Storage/Storage-ChestClose.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="chest" disable="true" fitHeight="204.0" fitWidth="269.0" layoutX="900.0" layoutY="300.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="windowController" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/chest.png" />
+            <Image url="@../images/Storage/Storage-WindowController.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="controller2" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/Storage/Storage-ChestOpen.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="thruster" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/Storage/Storage-Thruster.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="windowThruster" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/Storage/Storage-WindowThruster.png" />
          </image>
       </ImageView>
       <ImageView fx:id="blueprint" disable="true" fitHeight="87.0" fitWidth="99.0" layoutX="936.0" layoutY="491.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -30,13 +44,6 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Ellipse fill="#00000097" layoutX="632.0" layoutY="552.0" radiusX="100.0" radiusY="44.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <ImageView fx:id="furnaceImage" fitHeight="266.0" fitWidth="409.0" layoutX="427.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" scaleX="-1.0">
-         <image>
-            <Image url="@../images/furnace.png" />
-         </image>
-      </ImageView>
-      <Polygon fx:id="furnace" fill="DODGERBLUE" layoutX="582.0" layoutY="502.0" onMouseClicked="#meltSand" onMouseEntered="#activateFurnaceGlow" onMouseExited="#deactivateFurnaceGlow" opacity="0.0" points="18.66668701171875, 78.35833740234375, 167.99993896484375, 24.0, 167.99993896484375, -58.666656494140625, 159.99993896484375, -94.66665649414062, 135.33331298828125, -127.33334350585938, 86.66668701171875, -143.99996948242188, -35.3333740234375, -111.99996948242188, -80.66665649414062, -38.666656494140625, -69.3333740234375, 58.6666259765625" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="rootThree" fitHeight="770.0" fitWidth="1366.0" layoutX="-52.0" layoutY="-24.0" mouseTransparent="true" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/threeRoot.png" />
@@ -73,7 +80,7 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="521.0" layoutY="617.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
@@ -81,15 +88,19 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="progressLabel" layoutX="530.0" layoutY="618.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
       </Label>
-      <ImageView fx:id="storageDoor" fitHeight="150.0" fitWidth="200.0" layoutX="1180.0" layoutY="560.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="storageDoor" fitHeight="65.0" fitWidth="65.0" layoutX="1216.0" layoutY="631.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
+      <Polygon fx:id="bridgeDoor" fill="#1f93ff00" layoutX="886.0" layoutY="231.0" onMouseClicked="#goInside" onMouseEntered="#activateDoorGlow" onMouseExited="#deactivateDoorGlow" opacity="0.0" points="155.6666259765625, 21.5, 138.6666259765625, -13.5, 35.33331298828125, -45.0, 19.0, -41.0, -0.83331298828125, -13.5, -4.66668701171875, 144.83334350585938, 8.83331298828125, 173.83334350585938, 113.5, 212.66665649414062, 129.6666259765625, 205.0, 150.6666259765625, 183.0" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
+      <Polygon fx:id="processMachine" disable="true" fill="#1f93ff00" layoutX="599.0" layoutY="217.0" onMouseClicked="#meltSand" onMouseEntered="#activateProcessMachineGlow" onMouseExited="#deactivateProcessMachineGlow" opacity="0.0" points="139.5, -39.0, 129.16668701171875, -58.5, 54.83331298828125, -82.5, -15.1666259765625, -58.5, -34.0, -44.83332824707031, -54.66668701171875, -11.833328247070312, -54.66668701171875, 27.833328247070312, -205.83334350585938, 79.66665649414062, -205.83334350585938, 88.0, -224.16665649414062, 103.0, -224.16665649414062, 186.33331298828125, -112.33334350585938, 234.33334350585938, 38.66668701171875, 176.16665649414062, 87.5, 196.0, 126.0, 196.0, 207.83331298828125, 163.16665649414062, 207.83331298828125, 111.33334350585938, 203.66668701171875, 88.0, 194.16668701171875, 76.66665649414062, 139.5, 34.33332824707031" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
+      <Polygon fx:id="chest" disable="true" fill="#1f93ff00" layoutX="258.0" layoutY="318.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" opacity="0.0" points="173.0, 45.666656494140625, 106.16665649414062, 18.5, 77.66665649414062, 18.5, 3.333343505859375, 45.666656494140625, -0.83331298828125, 57.666656494140625, 3.333343505859375, 142.83334350585938, 68.0, 170.33334350585938, 101.0, 170.33334350585938, 173.0, 142.83334350585938" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
+      <Polygon fx:id="glass" disable="true" fill="#1f93ff00" layoutX="445.0" layoutY="200.0" onMouseClicked="#collectGlass" onMouseEntered="#activateGlassGlow" onMouseExited="#deactivateGlassGlow" opacity="0.0" points="171.5, 64.66668701171875, 111.66668701171875, 43.0, 89.33331298828125, 43.0, -9.166656494140625, 75.5, -10.833343505859375, 85.33331298828125, -10.833343505859375, 97.83331298828125, 49.16668701171875, 119.66668701171875, 76.0, 119.66668701171875, 171.5, 85.33331298828125" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
    </children>
 </Pane>

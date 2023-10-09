@@ -108,6 +108,9 @@ public class ChestController {
     firstDigitHighlight.setDisable(true);
     secondDigitHighlight.setDisable(true);
     thirdDigitHighlight.setDisable(true);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller2").setVisible(true);
   }
 
   public void activateProgressGlow() {

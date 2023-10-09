@@ -84,7 +84,7 @@ public class CentralController {
       window.setDisable(true);
       // Initialise the second mission
       activateBlueprint();
-      activateChest();
+      // activateChest();
       activateSecondMissionImage();
       // Show the fix window message
       SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
@@ -111,7 +111,7 @@ public class CentralController {
       fuelTank.setDisable(true);
       // Initialise the second mission
       activateBlueprint();
-      activateChest();
+      // activateChest();
       activateSecondMissionImage();
       // Show success message
       SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
@@ -158,13 +158,13 @@ public class CentralController {
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
   }
 
-  private void activateChest() {
-    if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
-      return;
-    }
-    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-    SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
-  }
+  // private void activateChest() {
+  //   if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
+  //     return;
+  //   }
+  //   SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
+  //   SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+  // }
 
   /** Activate the background image for second mission */
   private void activateSecondMissionImage() {
