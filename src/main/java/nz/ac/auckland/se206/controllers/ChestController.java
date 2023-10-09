@@ -70,9 +70,15 @@ public class ChestController {
     thirdDigit.setText(Integer.toString(thirdDigitNum));
   }
 
+  /**
+   * This method checks if the player's input number is correct or not, it is invoked when confirm
+   * button is clicked
+   */
   public void check() {
+    // Get the user's input password
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == GameState.passWord) {
+      // If the player is correct, update the progress and disable the lock
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       SceneManager.showDialog(
@@ -131,6 +137,7 @@ public class ChestController {
     thirdDigitHighlight.setOpacity(0);
   }
 
+  /** This method is invoked when the player clicks the mini tree and goes to chat room */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
