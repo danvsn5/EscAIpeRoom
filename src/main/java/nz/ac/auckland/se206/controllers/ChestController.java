@@ -31,6 +31,7 @@ public class ChestController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
+  @FXML private ImageView chestOpenImage;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
@@ -111,6 +112,7 @@ public class ChestController {
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(false);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller2").setVisible(true);
+    chestOpenImage.setOpacity(1);
   }
 
   public void activateProgressGlow() {
