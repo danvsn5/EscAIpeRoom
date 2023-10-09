@@ -29,14 +29,12 @@ public class OutsideController {
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
   @FXML private ImageView miniTree;
-  @FXML private ImageView treeImage;
   @FXML private ImageView ship;
   @FXML private ImageView thrusterImage;
   @FXML private ImageView thrusterWarning;
+
   private int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
-
-  public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
   // solved correctly, and sand is currently NOT in the inventory, then the sand appears inside the
@@ -173,11 +171,11 @@ public class OutsideController {
   }
 
   public void activateTreeGlow() {
-    treeImage.setEffect(GameState.glowBright);
+    wiseTree.setOpacity(1);
   }
 
   public void deactivateTreeGlow() {
-    treeImage.setEffect(GameState.glowDim);
+    wiseTree.setOpacity(0);
   }
 
   public void activateThrusterGlow() {
