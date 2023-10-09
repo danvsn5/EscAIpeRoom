@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,14 +35,7 @@ public class ChestController {
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
   private int thirdDigitNum = 0;
-  private Random rand;
   public static int correctPassword;
-
-  public ChestController() {
-    rand = new Random();
-    correctPassword = rand.nextInt(1000);
-    System.out.println(getCorrectPassword());
-  }
 
   public void goBack() {
     App.setUi(AppPanel.STORAGE);
@@ -91,27 +83,19 @@ public class ChestController {
     }
   }
 
-  public String getCorrectPassword() {
-    String result;
-    if (correctPassword < 10) {
-      result = "00" + Integer.toString(correctPassword);
-    } else if (correctPassword >= 10 && correctPassword < 100) {
-      result = "0" + Integer.toString(correctPassword);
-    } else {
-      result = Integer.toString(correctPassword);
-    }
-    return result;
-  }
-
+  /** Disable the lock, enter button and number input, activate the images of open chest */
   public void disableLock() {
+    // Disable the enter button and highlight of three digits
     enterButton.setOpacity(0);
     enterButton.setDisable(true);
     firstDigitHighlight.setDisable(true);
     secondDigitHighlight.setDisable(true);
     thirdDigitHighlight.setDisable(true);
+    // Disable the chest collision box and activate the chest image in storage panel
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(false);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller2").setVisible(true);
+    // Activate the chest open image
     chestOpenImage.setOpacity(1);
   }
 
