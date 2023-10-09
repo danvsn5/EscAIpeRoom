@@ -44,10 +44,6 @@
             <Image url="@../images/threeRoot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thrusterWarning" disable="true" fitHeight="126.0" fitWidth="151.0" layoutX="75.0" layoutY="186.0" onMouseClicked="#thrusterError" onMouseEntered="#activateThrusterErrorGlow" onMouseExited="#deactivateThrusterErrorGlow" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/warning.png" />
-         </image></ImageView>
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
 
          <image>
