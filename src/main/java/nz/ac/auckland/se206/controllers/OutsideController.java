@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+// import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -33,7 +33,6 @@ public class OutsideController {
   @FXML private ImageView rootThree;
   @FXML private ImageView miniTree;
   @FXML private ImageView ship;
-  @FXML private ImageView thrusterWarning;
 
   private int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
@@ -109,18 +108,19 @@ public class OutsideController {
     }
   }
 
-  public void thrusterError() {
-    if (ThrusterController.buttonActivationCounter != 4) {
-      SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
-    } else {
-      SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
-      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
-      System.out.println("Thruster Mission Complete");
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
-      thrusterWarning.setVisible(false);
-    }
-  }
+  // public void thrusterError() {
+  //   if (ThrusterController.buttonActivationCounter != 4) {
+  //     SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
+  //   } else {
+  //     SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the
+  // ship!");
+  //     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+  //     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+  //     System.out.println("Thruster Mission Complete");
+  //     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
+  //     thrusterWarning.setVisible(false);
+  //   }
+  // }
 
   // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
   // method is invoked: the color of the selected object becomes lighter and a label becomes
@@ -192,14 +192,6 @@ public class OutsideController {
       thruster1.setOpacity(0);
       thruster2.setOpacity(0);
     }
-  }
-
-  public void activateThrusterErrorGlow() {
-    thrusterWarning.setEffect(GameState.glowBright);
-  }
-
-  public void deactivateThrusterErrorGlow() {
-    thrusterWarning.setEffect(GameState.glowDim);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
