@@ -49,6 +49,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     SceneManager.addPanel(AppPanel.LAUNCH, loadFxml("startRoom"));
+
     scene = new Scene(SceneManager.getPanel(AppPanel.LAUNCH), 1280, 720);
     stage.setScene(scene);
     // Make sure all thread closes

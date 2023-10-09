@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionInitialise;
@@ -47,29 +50,25 @@ public class LaunchController {
   MissionInitialise missionInitialise = new MissionInitialise();
 
   public void initialize() throws Exception {
-    Task<Void> videoTask =
+
+    Task<Void> timelineTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
-            mediaOne =
-                new Media(App.class.getResource("/videos/launch/0000-0180.mp4").toURI().toString());
-            mediaPlayerOne = new MediaPlayer(mediaOne);
-            loopingVideo.setMediaPlayer(mediaPlayerOne);
-            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayerOne.setAutoPlay(true);
-
-            mediaTwo =
-                new Media(App.class.getResource("/videos/launch/0180-0330.mp4").toURI().toString());
-            mediaPlayerTwo = new MediaPlayer(mediaTwo);
-            launchVideo.setMediaPlayer(mediaPlayerTwo);
-
+            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(100)));
+            videoBuffer.setCycleCount(1);
+            videoBuffer.setOnFinished(
+                event -> {
+                  initialiseVideo();
+                });
+            videoBuffer.play();
             return null;
           }
         };
 
-    Thread videoInitialisationThread = new Thread(videoTask);
-    videoInitialisationThread.start();
+    Thread timelineThread = new Thread(timelineTask);
+    timelineThread.start();
   }
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
@@ -300,5 +299,31 @@ public class LaunchController {
     ((Label) SceneManager.getPanel(AppPanel.STORAGE).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.THRUSTER).lookup("#counter")).setText(time);
+  }
+
+  public void initialiseVideo() {
+    Task<Void> videoTask =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            mediaOne =
+                new Media(App.class.getResource("/videos/launch/0000-0180.mp4").toURI().toString());
+            mediaPlayerOne = new MediaPlayer(mediaOne);
+            loopingVideo.setMediaPlayer(mediaPlayerOne);
+            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayerOne.play();
+
+            mediaTwo =
+                new Media(App.class.getResource("/videos/launch/0180-0330.mp4").toURI().toString());
+            mediaPlayerTwo = new MediaPlayer(mediaTwo);
+            launchVideo.setMediaPlayer(mediaPlayerTwo);
+
+            return null;
+          }
+        };
+
+    Thread videoInitialisationThread = new Thread(videoTask);
+    videoInitialisationThread.start();
   }
 }
