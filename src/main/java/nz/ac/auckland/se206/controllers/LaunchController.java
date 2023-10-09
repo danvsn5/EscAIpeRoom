@@ -56,7 +56,7 @@ public class LaunchController {
 
           @Override
           protected Void call() throws Exception {
-            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(100)));
+            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200)));
             videoBuffer.setCycleCount(1);
             videoBuffer.setOnFinished(
                 event -> {
@@ -308,7 +308,7 @@ public class LaunchController {
           @Override
           protected Void call() throws Exception {
             mediaOne =
-                new Media(App.class.getResource("/videos/launch/0000-0180.mp4").toURI().toString());
+                new Media(App.class.getResource("/videos/launch/0001-0180.mp4").toURI().toString());
             mediaPlayerOne = new MediaPlayer(mediaOne);
             loopingVideo.setMediaPlayer(mediaPlayerOne);
             mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
