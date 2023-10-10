@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -87,10 +88,10 @@ public class CentralController {
       // activateChest();
       activateSecondMissionImage();
       // Show the fix window message
-      SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
+      // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else {
       // If the inventory does not contain a window, show broken message
-      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
+      // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
 
