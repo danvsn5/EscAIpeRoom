@@ -6,11 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CentralController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -144,5 +145,18 @@
             <Font name="Impact" size="36.0" />
          </font>
       </Button>
+      <Rectangle fx:id="infoPopup" arcHeight="5.0" arcWidth="5.0" fill="#004683" height="562.0" layoutX="169.0" layoutY="100.0" opacity="0.9" stroke="BLACK" strokeType="INSIDE" width="937.0" />
+      <Label fx:id="infoLabel" alignment="TOP_LEFT" layoutX="194.0" layoutY="192.0" prefHeight="425.0" prefWidth="553.0" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="infoTitle" alignment="CENTER" layoutX="359.0" layoutY="114.0" prefHeight="92.0" prefWidth="207.0" text="Window" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="infoImage" fitHeight="408.0" fitWidth="303.0" layoutX="779.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
+      <Circle fx:id="infoExit" fill="#8d0000" layoutX="1067.0" layoutY="132.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </Pane>
