@@ -22,10 +22,10 @@ public class CentralController {
   @FXML private ImageView outside;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
-  @FXML private ImageView rootInitial;
-  @FXML private ImageView rootOne;
-  @FXML private ImageView rootTwo;
-  @FXML private ImageView rootThree;
+  @FXML private ImageView root1;
+  @FXML private ImageView root2;
+  @FXML private ImageView root3;
+  @FXML private ImageView root4;
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
   @FXML private ImageView completeGame;
