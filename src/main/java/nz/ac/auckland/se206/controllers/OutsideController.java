@@ -57,60 +57,54 @@ public class OutsideController {
   }
 
   public void goThruster() {
-    if (!GameState.isFirstMissionCompleted) {
-      return;
-    }
-    if (GameState.missionList.contains(4)) {
-      if (thrusterPuzzleGenerate == 0) {
+    if (GameState.missionList.contains(4)
+        && GameState.isFirstMissionCompleted
+        && thrusterPuzzleGenerate == 0) {
+      Task<Void> riddleSecondCall =
+          new Task<Void>() {
 
-        Task<Void> riddleSecondCall =
-            new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
 
-              @Override
-              protected Void call() throws Exception {
+              System.out.println("this code is working");
 
-                System.out.println("this code is working");
-
-                // switch case from 1 to 4 based on the variable GameState.randomColourNumber
-                // 1: purple    2: blue     3: red    4: green
-                switch (GameState.randomColorNumber) {
-                  case 1:
-                    gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("purple")));
-                    break;
-                  case 2:
-                    gptMessage =
-                        runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                    break;
-                  case 3:
-                    gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("blue")));
-                    break;
-                  case 4:
-                    gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("green")));
-                    break;
-                }
-
-                System.out.println(gptMessage.getContent());
-
-                return null;
+              // switch case from 1 to 4 based on the variable GameState.randomColourNumber
+              // 1: purple    2: blue     3: red    4: green
+              switch (GameState.randomColorNumber) {
+                case 1:
+                  gptMessage =
+                      runGpt(
+                          new ChatMessage(
+                              "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                  break;
+                case 2:
+                  gptMessage =
+                      runGpt(
+                          new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                  break;
+                case 3:
+                  gptMessage =
+                      runGpt(
+                          new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                  break;
+                case 4:
+                  gptMessage =
+                      runGpt(
+                          new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
+                  break;
               }
-            };
 
-        Thread secondRiddleThread = new Thread(riddleSecondCall);
-        secondRiddleThread.start();
-        TreeAvatar.treeFlash.play();
-      }
-      App.setUi(AppPanel.THRUSTER);
+              System.out.println(gptMessage.getContent());
+
+              return null;
+            }
+          };
+
+      Thread secondRiddleThread = new Thread(riddleSecondCall);
+      secondRiddleThread.start();
+      TreeAvatar.treeFlash.play();
     }
+    App.setUi(AppPanel.THRUSTER);
   }
 
   // public void thrusterError() {
