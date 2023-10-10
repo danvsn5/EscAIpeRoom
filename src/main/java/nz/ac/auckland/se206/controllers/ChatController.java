@@ -64,7 +64,7 @@ public class ChatController {
   @FXML private Button closeBookButton;
   @FXML private Polygon notebookCollisionBox;
   private int bubbleVariable = 0;
-
+  private int bookVariable = 0;
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatMessage activationMessage =
@@ -795,7 +795,8 @@ public class ChatController {
 
   public void openBook() {
     zoomBook.setVisible(true);
-
+    bookVariable = 1;
+    notebookCollisionBox.setOpacity(0);
     chatTextArea.setVisible(true);
     closeBookButton.setVisible(true);
   }
@@ -804,13 +805,18 @@ public class ChatController {
     zoomBook.setVisible(false);
     chatTextArea.setVisible(false);
     closeBookButton.setVisible(false);
+    bookVariable = 0;
   }
 
   public void activateNotebookGlow() {
-    notebookCollisionBox.setOpacity(1);
+    if (bookVariable == 0) {
+      notebookCollisionBox.setOpacity(1);
+    }
   }
 
   public void deactivateNotebookGlow() {
-    notebookCollisionBox.setOpacity(0);
+    if (bookVariable == 0) {
+      notebookCollisionBox.setOpacity(0);
+    }
   }
 }
