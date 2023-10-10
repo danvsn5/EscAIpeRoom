@@ -134,6 +134,12 @@ public class ChatController {
     introCall.setOnSucceeded(
         e -> {
           isGenerating = false;
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
           // End thinking, start talking
           loading.progressProperty().unbind();
           loading.setVisible(false);
@@ -484,6 +490,12 @@ public class ChatController {
     firstRiddleTask.setOnSucceeded(
         e2 -> {
           isGenerating = false;
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
           loading.progressProperty().unbind();
           startTalk();
           loading.setVisible(false);
@@ -704,6 +716,12 @@ public class ChatController {
     hintTask.setOnSucceeded(
         e -> {
           isGenerating = false;
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
           // End thinking, start talking
           loading.progressProperty().unbind();
           loading.setVisible(false);
