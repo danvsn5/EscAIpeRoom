@@ -31,6 +31,8 @@ public class MissionInitialise {
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#controller").setDisable(false);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#shipDoor1").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#shipDoor1").setDisable(false);
     } else {
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setVisible(true);
       SceneManager.getPanel(AppPanel.STORAGE).lookup("#thruster").setDisable(false);
@@ -40,6 +42,8 @@ public class MissionInitialise {
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(false);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(true);
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(false);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#shipDoor2").setVisible(true);
+      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#shipDoor2").setDisable(false);
     }
     initialiseMainRoom();
   }

@@ -26,7 +26,8 @@ public class OutsideController {
   @FXML private Polygon wiseTree;
   @FXML private Polygon thruster1;
   @FXML private Polygon thruster2;
-  @FXML private Polygon shipDoor;
+  @FXML private Polygon shipDoor1;
+  @FXML private Polygon shipDoor2;
   @FXML private ImageView progressButton;
   @FXML private ImageView rootInitial;
   @FXML private ImageView rootOne;
@@ -167,12 +168,14 @@ public class OutsideController {
 
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
-    shipDoor.setOpacity(1);
+    shipDoor1.setOpacity(1);
+    shipDoor2.setOpacity(1);
   }
 
   public void deactivateShipGlow() {
     ship.setEffect(GameState.glowDim);
-    shipDoor.setOpacity(0);
+    shipDoor1.setOpacity(0);
+    shipDoor2.setOpacity(0);
   }
 
   public void activateTreeGlow() {
