@@ -1,11 +1,15 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -241,6 +245,13 @@ public class StorageController {
     collectedLabel.setVisible(true);
     collectedImgWindow.setVisible(true);
     collectedRectangle.setVisible(true);
+  }
+
+  public void exitInfo() {
+    collectedRectangle.setVisible(false);
+      collectedLabel.setVisible(false);
+      collectedImgBluePrint.setVisible(false);
+      collectedImgWindow.setVisible(false);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
