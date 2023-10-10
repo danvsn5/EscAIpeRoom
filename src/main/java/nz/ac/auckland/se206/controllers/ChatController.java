@@ -14,7 +14,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -80,7 +79,7 @@ public class ChatController {
   private int secondMission;
 
   /**
-   * Initializes the chat view, loading the riddle.
+   * Initializes the chat view, // loading the riddle.
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
@@ -95,8 +94,10 @@ public class ChatController {
     // Start thinking
     startThink();
 
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
+    loading.setVisible(false);
+    loadingCircle.setVisible(false);
 
     String mission1;
 
@@ -140,7 +141,7 @@ public class ChatController {
             return null;
           }
         };
-    loading.progressProperty().bind(introCall.progressProperty());
+    // loading.progressProperty().bind(introCall.progressProperty());
 
     introCall.setOnSucceeded(
         e -> {
@@ -152,9 +153,9 @@ public class ChatController {
           System.out.println("timeline should have stopped");
           bubbleVariable = 0;
           // End thinking, start talking
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.progressProperty().unbind();
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
         });
@@ -237,10 +238,12 @@ public class ChatController {
     }
     startThink();
     bubbleTimeline.play();
+
     inputText.setDisable(true);
-    loading.setProgress(0);
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+
+    // loading.setProgress(0);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     String message = inputText.getText();
     System.out.println(message);
@@ -251,9 +254,9 @@ public class ChatController {
     inputText.clear();
 
     // Start listen
-    loadingCircle.setFill(Color.LIGHTGRAY);
-    loading.setProgress(0);
-    loading.setVisible(true);
+    // // loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setProgress(0);
+    // loading.setVisible(true);
     // startListen();
 
     if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
@@ -353,7 +356,7 @@ public class ChatController {
           }
         };
 
-    loading.progressProperty().bind(typeCall.progressProperty());
+    // loading.progressProperty().bind(typeCall.progressProperty());
 
     typeCall.setOnSucceeded(
         e -> {
@@ -365,9 +368,9 @@ public class ChatController {
           bubbleTimeline.pause();
           System.out.println("timeline should have stopped");
           bubbleVariable = 0;
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.progressProperty().unbind();
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
         });
@@ -440,8 +443,8 @@ public class ChatController {
 
     inputText.setDisable(true);
     startThink();
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     System.out.println("generate riddle");
 
@@ -506,7 +509,7 @@ public class ChatController {
           }
         };
 
-    loading.progressProperty().bind(firstRiddleTask.progressProperty());
+    // loading.progressProperty().bind(firstRiddleTask.progressProperty());
 
     firstRiddleTask.setOnSucceeded(
         e2 -> {
@@ -517,10 +520,10 @@ public class ChatController {
           bubbleTimeline.pause();
           System.out.println("timeline should have stopped");
           bubbleVariable = 0;
-          loading.progressProperty().unbind();
+          // loading.progressProperty().unbind();
           startTalk();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           treeThinking.setVisible(false);
           treeTalking.setVisible(true);
@@ -590,8 +593,8 @@ public class ChatController {
 
     startThink();
 
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     System.out.println("generate puzzle");
 
@@ -657,13 +660,13 @@ public class ChatController {
     //         }
     //       };
 
-    //   loading.progressProperty().bind(secondPuzzleTask.progressProperty());
+    //   // loading.progressProperty().bind(secondPuzzleTask.progressProperty());
 
     //   secondPuzzleTask.setOnSucceeded(
     //       e2 -> {
-    //         loading.progressProperty().unbind();
-    //         loading.setVisible(false);
-    //         loadingCircle.setFill(Color.valueOf("264f31"));
+    //         // loading.progressProperty().unbind();
+    //         // loading.setVisible(false);
+    //         // loadingCircle.setFill(Color.valueOf("264f31"));
     //         inputText.setDisable(false);
     //         startTalk();
     //       });
@@ -706,8 +709,8 @@ public class ChatController {
     // Start thinking
     inputText.setDisable(true);
     startThink();
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     Task<Void> hintTask =
         new Task<Void>() {
@@ -745,9 +748,9 @@ public class ChatController {
           System.out.println("timeline should have stopped");
           bubbleVariable = 0;
           // End thinking, start talking
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.progressProperty().unbind();
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
         });
