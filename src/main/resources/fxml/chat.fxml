@@ -86,10 +86,6 @@
             <Font name="Bank Gothic Light BT" size="79.0" />
          </font>
       </Label>
-    <TextArea fx:id="chatTextArea" editable="false" layoutX="17.0" layoutY="688.0" opacity="0.85" prefHeight="472.0" prefWidth="505.0" visible="false" wrapText="true">
-         <font>
-            <Font name="Bank Gothic Light BT" size="20.0" />
-         </font></TextArea>
     <TextField fx:id="inputText" alignment="CENTER" layoutX="967.0" layoutY="485.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" opacity="0.99" prefHeight="64.0" prefWidth="262.0" promptText="Talk to Tree!">
          <font>
             <Font name="Ink Free" size="20.0" />
@@ -138,5 +134,19 @@
             <Image url="@../images/Chat/bubble.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="notebook" fitHeight="146.0" fitWidth="250.0" layoutX="1005.0" layoutY="299.0" onMouseClicked="#openBook" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Chat/NoteBook.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="zoomBook" fitHeight="1255.0" fitWidth="2151.0" layoutX="-436.0" layoutY="-243.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/Chat/OpenBookFront.png" />
+         </image>
+      </ImageView>
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="134.0" layoutY="66.0" prefHeight="598.0" prefWidth="487.0" visible="false" wrapText="true">
+         <font>
+            <Font name="Ink Free" size="24.0" />
+         </font></TextArea>
   </children>
 </AnchorPane>

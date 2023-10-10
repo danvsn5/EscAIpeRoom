@@ -14,7 +14,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -58,6 +60,8 @@ public class ChatController {
   @FXML private ImageView smallBubble;
   @FXML private ImageView largeBubble;
   @FXML private ImageView medBubble;
+  @FXML private ImageView notebook;
+  @FXML private ImageView zoomBook;
   private int bubbleVariable = 0;
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -770,5 +774,12 @@ public class ChatController {
         bubbleVariable = 0;
         break;
     }
+  }
+
+  public void openBook() {
+    zoomBook.setVisible(true);
+    chatTextArea.lookup(".content").setStyle("-fx-background-color: transparent;");
+    chatTextArea.setBackground(Background.fill(Paint.valueOf("000000")));
+    chatTextArea.setVisible(true);
   }
 }
