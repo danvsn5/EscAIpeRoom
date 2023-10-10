@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -57,7 +58,7 @@ public class OutsideController {
 
   public void goThruster() {
     if (GameState.missionList.contains(4)) {
-      if (thrusterPuzzleGenerate == 0) {
+      if (thrusterPuzzleGenerate == 0 && GameState.isFirstMissionCompleted == true) {
 
         Task<Void> riddleSecondCall =
             new Task<Void>() {
@@ -94,6 +95,7 @@ public class OutsideController {
                                 "user", GptPromptEngineering.getThrusterPuzzle("green")));
                     break;
                 }
+                Platform.runLater(() -> appendChatMessage(gptMessage));
 
                 System.out.println(gptMessage.getContent());
 
@@ -208,7 +210,6 @@ public class OutsideController {
       Choice result = chatCompletionResult.getChoices().iterator().next();
       ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
       result.getChatMessage().setRole("Wise Mystical Tree");
-      appendChatMessage(result.getChatMessage());
       result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {

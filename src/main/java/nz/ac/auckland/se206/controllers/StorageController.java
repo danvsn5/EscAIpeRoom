@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -56,40 +57,44 @@ public class StorageController {
   }
 
   public void goToChest() {
-    if (passwordGenerate || !GameState.firstRiddleSolved) {
+    // if (passwordGenerate || !GameState.firstRiddleSolved) {
+    //   App.setUi(AppPanel.CHEST);
+    //   return;
+    // }
+    if (GameState.isFirstMissionCompleted == true) {
+      GameState.generatePassWord();
+      System.out.println(GameState.passWord);
+      // SceneManager.showDialog("Info", "+", "What does this mean?");
+      // when the user goes to the chest for the first time, the user sees the tree begin flashing
+      // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the
+      // user
+      // will be prompted with intro text while they wait for the tree to stop flashing.
+
+      Task<Void> riddleSecondCall =
+          new Task<Void>() {
+
+            @Override
+            protected Void call() throws Exception {
+
+              System.out.println("this code is working");
+              gptMessage =
+                  runGpt(
+                      new ChatMessage(
+                          "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
+              Platform.runLater(() -> appendChatMessage(gptMessage));
+
+              System.out.println(gptMessage.getContent());
+
+              return null;
+            }
+          };
+
+      Thread secondRiddleThread = new Thread(riddleSecondCall);
+      secondRiddleThread.start();
+      passwordGenerate = true;
+      TreeAvatar.treeFlash.play();
       App.setUi(AppPanel.CHEST);
-      return;
     }
-    GameState.generatePassWord();
-    System.out.println(GameState.passWord);
-    // SceneManager.showDialog("Info", "+", "What does this mean?");
-    // when the user goes to the chest for the first time, the user sees the tree begin flashing
-    // BRIGHTLY. At this time, a new gpt prompt will be created with a numerical puzzle and the
-    // user
-    // will be prompted with intro text while they wait for the tree to stop flashing.
-
-    Task<Void> riddleSecondCall =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-
-            System.out.println("this code is working");
-            gptMessage =
-                runGpt(
-                    new ChatMessage(
-                        "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
-            System.out.println(gptMessage.getContent());
-
-            return null;
-          }
-        };
-
-    Thread secondRiddleThread = new Thread(riddleSecondCall);
-    secondRiddleThread.start();
-    passwordGenerate = true;
-    TreeAvatar.treeFlash.play();
-    App.setUi(AppPanel.CHEST);
   }
 
   public void collectBlueprint() {
@@ -228,7 +233,6 @@ public class StorageController {
       Choice result = chatCompletionResult.getChoices().iterator().next();
       ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
       result.getChatMessage().setRole("Wise Mystical Tree");
-      appendChatMessage(result.getChatMessage());
       result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
