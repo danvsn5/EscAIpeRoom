@@ -123,5 +123,20 @@
             <Font name="Ink Free" size="20.0" />
          </font>
       </Label>
+      <ImageView fx:id="smallBubble" fitHeight="72.0" fitWidth="222.0" layoutX="269.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/Chat/bubble.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="medBubble" fitHeight="113.0" fitWidth="210.0" layoutX="132.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" rotate="179.7" visible="false">
+         <image>
+            <Image url="@../images/Chat/bubble.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="largeBubble" fitHeight="272.0" fitWidth="336.0" layoutX="-36.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" visible="false">
+         <image>
+            <Image url="@../images/Chat/bubble.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

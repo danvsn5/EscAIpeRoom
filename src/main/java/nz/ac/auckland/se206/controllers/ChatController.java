@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.time.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -53,6 +56,9 @@ public class ChatController {
   @FXML private Rectangle hintRectangle;
   @FXML private Label hintNumber;
   @FXML private Label chatLabel;
+  @FXML private ImageView smallBubble;
+  @FXML private ImageView largeBubble;
+  @FXML private ImageView medBubble;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -75,6 +81,7 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
 
+    Timeline bubbleTimeline = new Timeline(new KeyFrame(Duration.millis(10)));
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
 
     inputText.setDisable(true);
