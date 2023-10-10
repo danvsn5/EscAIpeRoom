@@ -44,22 +44,22 @@ public class RootBorder {
     switch (currentRootState) {
       case 0:
         // If the current state is 0, hide the initial image and show image one
-        rootRemoveHelper("#rootInitial");
-        rootGrowHelper("#rootOne");
+        rootRemoveHelper("#root1");
+        rootGrowHelper("#root2");
         // Increase the current state
         incrementRootState();
         break;
       case 1:
         // If the current state is 1, hide image one and show image two
-        rootRemoveHelper("#rootOne");
-        rootGrowHelper("#rootTwo");
+        rootRemoveHelper("#root2");
+        rootGrowHelper("#root3");
         // Increase the current state
         incrementRootState();
         break;
       case 2:
         // If the current state is 2, hide the image two and show image three
-        rootRemoveHelper("#rootTwo");
-        rootGrowHelper("#rootThree");
+        rootRemoveHelper("#root3");
+        rootGrowHelper("#root4");
         break;
     }
   }
@@ -74,10 +74,10 @@ public class RootBorder {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup(rootId).setVisible(true);
-    SceneManager.getPanel(AppPanel.THRUSTER).lookup(rootId).setVisible(true);
-    SceneManager.getPanel(AppPanel.CHEST).lookup(rootId).setVisible(true);
-    SceneManager.getPanel(AppPanel.PROGRESS).lookup(rootId).setVisible(true);
-    SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(true);
+    // SceneManager.getPanel(AppPanel.THRUSTER).lookup(rootId).setVisible(true);
+    // SceneManager.getPanel(AppPanel.CHEST).lookup(rootId).setVisible(true);
+    // SceneManager.getPanel(AppPanel.PROGRESS).lookup(rootId).setVisible(true);
+    // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(true);
   }
 
   /**
@@ -90,9 +90,9 @@ public class RootBorder {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.STORAGE).lookup(rootId).setVisible(false);
-    SceneManager.getPanel(AppPanel.THRUSTER).lookup(rootId).setVisible(false);
-    SceneManager.getPanel(AppPanel.CHEST).lookup(rootId).setVisible(false);
-    SceneManager.getPanel(AppPanel.PROGRESS).lookup(rootId).setVisible(false);
-    SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(false);
+    // SceneManager.getPanel(AppPanel.THRUSTER).lookup(rootId).setVisible(false);
+    // SceneManager.getPanel(AppPanel.CHEST).lookup(rootId).setVisible(false);
+    // SceneManager.getPanel(AppPanel.PROGRESS).lookup(rootId).setVisible(false);
+    // SceneManager.getPanel(AppPanel.CHAT).lookup(rootId).setVisible(false);
   }
 }

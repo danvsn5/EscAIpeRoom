@@ -26,10 +26,6 @@ public class ChestController {
   @FXML private Rectangle thirdDigitHighlight;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
-  @FXML private ImageView rootInitial;
-  @FXML private ImageView rootOne;
-  @FXML private ImageView rootTwo;
-  @FXML private ImageView rootThree;
   @FXML private ImageView chestOpenImage;
 
   private int firstDigitNum = 0;

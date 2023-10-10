@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+// import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -20,24 +20,25 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class OutsideController {
+  @FXML private ImageView outsideImage;
+  @FXML private ImageView outsideBrokenImage;
   @FXML private ImageView returnShip;
   @FXML private Label counter;
   @FXML private Polygon wiseTree;
-  @FXML private Polygon thruster;
+  @FXML private Polygon thruster1;
+  @FXML private Polygon thruster2;
+  @FXML private Polygon shipDoor1;
+  @FXML private Polygon shipDoor2;
   @FXML private ImageView progressButton;
-  @FXML private ImageView rootInitial;
-  @FXML private ImageView rootOne;
-  @FXML private ImageView rootTwo;
-  @FXML private ImageView rootThree;
+  @FXML private ImageView root1;
+  @FXML private ImageView root2;
+  @FXML private ImageView root3;
+  @FXML private ImageView root4;
   @FXML private ImageView miniTree;
-  @FXML private ImageView treeImage;
   @FXML private ImageView ship;
-  @FXML private ImageView thrusterImage;
-  @FXML private ImageView thrusterWarning;
+
   private int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
-
-  public void initialize() {}
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
   // solved correctly, and sand is currently NOT in the inventory, then the sand appears inside the
@@ -111,18 +112,19 @@ public class OutsideController {
     }
   }
 
-  public void thrusterError() {
-    if (ThrusterController.buttonActivationCounter != 4) {
-      SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
-    } else {
-      SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
-      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
-      System.out.println("Thruster Mission Complete");
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
-      thrusterWarning.setVisible(false);
-    }
-  }
+  // public void thrusterError() {
+  //   if (ThrusterController.buttonActivationCounter != 4) {
+  //     SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
+  //   } else {
+  //     SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the
+  // ship!");
+  //     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+  //     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+  //     System.out.println("Thruster Mission Complete");
+  //     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
+  //     thrusterWarning.setVisible(false);
+  //   }
+  // }
 
   // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
   // method is invoked: the color of the selected object becomes lighter and a label becomes
@@ -168,38 +170,36 @@ public class OutsideController {
 
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
+    shipDoor1.setOpacity(1);
+    shipDoor2.setOpacity(1);
   }
 
   public void deactivateShipGlow() {
     ship.setEffect(GameState.glowDim);
+    shipDoor1.setOpacity(0);
+    shipDoor2.setOpacity(0);
   }
 
   public void activateTreeGlow() {
-    treeImage.setEffect(GameState.glowBright);
+    wiseTree.setOpacity(1);
   }
 
   public void deactivateTreeGlow() {
-    treeImage.setEffect(GameState.glowDim);
+    wiseTree.setOpacity(0);
   }
 
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
-      thrusterImage.setEffect(GameState.glowBright);
+      thruster1.setOpacity(1);
+      thruster2.setOpacity(1);
     }
   }
 
   public void deactivateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
-      thrusterImage.setEffect(GameState.glowDim);
+      thruster1.setOpacity(0);
+      thruster2.setOpacity(0);
     }
-  }
-
-  public void activateThrusterErrorGlow() {
-    thrusterWarning.setEffect(GameState.glowBright);
-  }
-
-  public void deactivateThrusterErrorGlow() {
-    thrusterWarning.setEffect(GameState.glowDim);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */

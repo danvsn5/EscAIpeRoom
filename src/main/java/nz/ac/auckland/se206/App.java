@@ -62,7 +62,7 @@ public class App extends Application {
           }
         });
 
-    // scene.getStylesheets().add("/css/style.css");
+    scene.getStylesheets().add("/css/style.css");
     stage.show();
   }
 }

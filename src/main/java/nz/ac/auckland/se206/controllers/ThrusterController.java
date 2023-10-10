@@ -27,13 +27,11 @@ public class ThrusterController {
   @FXML private ImageView topLeftClicked;
   @FXML private ImageView topRightUnclicked;
   @FXML private ImageView topRightClicked;
-  @FXML private ImageView rootInitial;
-  @FXML private ImageView rootOne;
-  @FXML private ImageView rootTwo;
-  @FXML private ImageView rootThree;
   @FXML private Button returnOutside;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
+
+  @FXML private Button completeButton;
 
   public void initialize() {}
 
@@ -47,6 +45,7 @@ public class ThrusterController {
         buttonActivationCounter++; // increments the button activation counter
       }
     }
+    checkCompletion();
   }
 
   public void goProgress() {
@@ -78,6 +77,7 @@ public class ThrusterController {
         buttonActivationCounter++; // increments the button activation counter
       }
     }
+    checkCompletion();
   }
 
   public void setTopLeftInvisible() {
@@ -97,6 +97,7 @@ public class ThrusterController {
         buttonActivationCounter++; // increments the button activation counter
       }
     }
+    checkCompletion();
   }
 
   public void setTopRightInvisible() {
@@ -116,6 +117,7 @@ public class ThrusterController {
         buttonActivationCounter++; // increments the button activation counter
       }
     }
+    checkCompletion();
   }
 
   public void beginRepairs() {
@@ -171,5 +173,26 @@ public class ThrusterController {
 
   public void deactivateProgressGlow() {
     progressButton.setEffect(GameState.glowDim);
+  }
+
+  public void checkCompletion() {
+    if (buttonActivationCounter == 4) {
+      completeButton.setDisable(false);
+      completeButton.setVisible(true);
+    }
+  }
+
+  public void completeRepair() {
+    SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
+    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+    System.out.println("Thruster Mission Complete");
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setVisible(false);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(true);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(false);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(true);
+    completeButton.setDisable(true);
+    completeButton.setVisible(false);
   }
 }
