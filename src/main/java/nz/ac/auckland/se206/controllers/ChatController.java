@@ -78,7 +78,7 @@ public class ChatController {
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
 
     inputText.setDisable(true);
-
+    inputText.setStyle("-fx-background-color: transparent;");
     // Start thinking
     startThink();
 
@@ -364,11 +364,14 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
+    inputText.setStyle("-fx-background-color: transparent;");
+
     startListen();
     treeThinking.setVisible(true);
     if (event.getCode().toString().equals("ENTER")) {
       onSendMessage(new ActionEvent());
     }
+    inputText.setStyle("-fx-background-color: transparent;");
   }
 
   /**
@@ -378,11 +381,14 @@ public class ChatController {
    */
   @FXML
   public void onKeyReleased(KeyEvent event) {
+    inputText.setStyle("-fx-background-color: transparent;");
+
     System.out.println("key " + event.getCode() + " released");
     if (inputText.getText().trim().isEmpty()) {
       startTalk();
       listeningLabel.setVisible(false);
     }
+    inputText.setStyle("-fx-background-color: transparent;");
   }
 
   public void activateProgressGlow() {
