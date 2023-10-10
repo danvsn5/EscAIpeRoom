@@ -235,6 +235,7 @@ public class ChatController {
     } else if (inputText.getText().trim().isEmpty()) {
       return;
     }
+    startThink();
     bubbleTimeline.play();
     inputText.setDisable(true);
     loading.setProgress(0);
@@ -253,7 +254,7 @@ public class ChatController {
     loadingCircle.setFill(Color.LIGHTGRAY);
     loading.setProgress(0);
     loading.setVisible(true);
-    startListen();
+    // startListen();
 
     if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
       generateFirstRiddle(message);
