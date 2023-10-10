@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -86,7 +87,7 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     bubbleTimeline.setCycleCount(Timeline.INDEFINITE);
-
+    notebookCollisionBox.setCursor(Cursor.OPEN_HAND);
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
 
     inputText.setDisable(true);
