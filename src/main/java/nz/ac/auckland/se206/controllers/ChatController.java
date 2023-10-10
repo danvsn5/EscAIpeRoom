@@ -105,7 +105,7 @@ public class ChatController {
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
               + " to the next step. Are you ready? \n\n";
-      chatTextArea.appendText(mission1);
+      chatTextArea.appendText("Wise Ancient Tree: " + mission1);
       chatLabel.setText(mission1);
       System.out.println("chatLineCode");
 
@@ -113,7 +113,7 @@ public class ChatController {
       mission1 =
           "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
               + " you to the next step. Are you ready? \n\n";
-      chatTextArea.appendText(mission1);
+      chatTextArea.appendText("Wise Ancient Tree: " + mission1);
       System.out.println("chatLineCode");
       chatLabel.setText(mission1);
     }

@@ -251,7 +251,7 @@ public class CentralController {
                 + " thrusters are still damaged. In amongst your ship, I have hidden a"
                 + " blueprint that should help you fix the thrusters";
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(appendString);
+            .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
 
       } else if (GameState.missionList.contains(1) && GameState.missionList.contains(3)) {
@@ -262,7 +262,7 @@ public class CentralController {
                 + " chest containing spare parts that should help you fix the control panel";
 
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(appendString);
+            .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
         // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
         //  SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
@@ -274,7 +274,7 @@ public class CentralController {
                 + " blueprint that should help you fix the thrusters";
 
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(appendString);
+            .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
       } else {
 
@@ -284,7 +284,7 @@ public class CentralController {
                 + " chest containing spare parts that should help you fix the control panel";
 
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            .appendText(appendString);
+            .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
         //  SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
         // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
