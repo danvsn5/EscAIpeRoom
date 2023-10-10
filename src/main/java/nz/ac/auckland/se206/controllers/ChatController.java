@@ -98,16 +98,21 @@ public class ChatController {
 
     String mission1;
 
-    if (GameState.missionList.contains(1)) {
+    if (GameState.missionListA.contains(1)) {
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
-              + " to the next step.";
+              + " to the next step. Are you ready? \n\n";
       chatTextArea.appendText(mission1);
-    } else if (GameState.missionList.contains(2)) {
+      chatLabel.setText(mission1);
+      System.out.println("chatLineCode");
+
+    } else if (GameState.missionListA.contains(2)) {
       mission1 =
           "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
-              + " you to the next step.";
+              + " you to the next step. Are you ready? \n\n";
       chatTextArea.appendText(mission1);
+      System.out.println("chatLineCode");
+      chatLabel.setText(mission1);
     }
 
     Task<Void> introCall =
@@ -175,8 +180,12 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    //   chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
     chatLabel.setText(msg.getContent());
+  }
+
+  private void appendChatMessageArea(ChatMessage msg) {
+    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
   }
 
   /**
@@ -272,14 +281,16 @@ public class ChatController {
             isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
-            msg.setRole("You");
-            // appendChatMessage(msg);
+            msg.setRole("Me");
+            appendChatMessageArea(msg);
             System.out.println(msg.getContent());
             msg.setRole("user");
-            // appendChatMessage(thinkingMessage);
+            // appendChatMessageArea(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
             lastMsg.setRole("Wise Ancient Tree");
             Platform.runLater(() -> appendChatMessage(lastMsg));
+            appendChatMessageArea(lastMsg);
+
             lastMsg.setRole("assistant");
             System.out.println("lastMsg");
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
@@ -453,10 +464,10 @@ public class ChatController {
 
             ChatMessage msg = new ChatMessage("user", message);
 
-            msg.setRole("You");
-            // appendChatMessage(msg);
+            msg.setRole("Me");
+            appendChatMessageArea(msg);
             msg.setRole("user");
-            // appendChatMessage(activationMessage);
+            // appendChatMessageArea(activationMessage);
 
             setChatCompletionRequest(
                 new ChatCompletionRequest()
@@ -473,6 +484,8 @@ public class ChatController {
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
+              appendChatMessageArea(gptMessage);
+
               gptMessage.setRole("assistant");
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
@@ -481,6 +494,7 @@ public class ChatController {
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
+              appendChatMessageArea(gptMessage);
               gptMessage.setRole("assistant");
             }
 
@@ -710,6 +724,7 @@ public class ChatController {
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
             gptMessage.setRole("Wise Ancient Tree");
             appendChatMessage(gptMessage);
+            appendChatMessageArea(gptMessage);
             gptMessage.setRole("assistant");
 
             updateProgress(1, 1);
