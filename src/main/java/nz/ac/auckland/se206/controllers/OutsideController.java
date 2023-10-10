@@ -60,6 +60,9 @@ public class OutsideController {
     if (GameState.missionList.contains(4)
         && GameState.isFirstMissionCompleted
         && thrusterPuzzleGenerate == 0) {
+
+          System.out.println(thrusterPuzzleGenerate);
+          
       Task<Void> riddleSecondCall =
           new Task<Void>() {
 
@@ -76,21 +79,25 @@ public class OutsideController {
                       runGpt(
                           new ChatMessage(
                               "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                              thrusterPuzzleGenerate = 1;
                   break;
                 case 2:
                   gptMessage =
                       runGpt(
                           new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                          thrusterPuzzleGenerate = 1;
                   break;
                 case 3:
                   gptMessage =
                       runGpt(
                           new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                          thrusterPuzzleGenerate = 1;
                   break;
                 case 4:
                   gptMessage =
                       runGpt(
                           new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
+                          thrusterPuzzleGenerate = 1;
                   break;
               }
 
