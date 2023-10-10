@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -61,6 +62,7 @@ public class ChatController {
   @FXML private ImageView notebook;
   @FXML private ImageView zoomBook;
   @FXML private Button closeBookButton;
+  @FXML private Polygon notebookCollisionBox;
   private int bubbleVariable = 0;
 
   private ChatMessage thinkingMessage =
@@ -802,5 +804,13 @@ public class ChatController {
     zoomBook.setVisible(false);
     chatTextArea.setVisible(false);
     closeBookButton.setVisible(false);
+  }
+
+  public void activateNotebookGlow() {
+    notebookCollisionBox.setOpacity(1);
+  }
+
+  public void deactivateNotebookGlow() {
+    notebookCollisionBox.setOpacity(0);
   }
 }

@@ -11,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -153,5 +154,6 @@
             <Font name="Ink Free" size="40.0" />
          </font>
       </Button>
+      <Polygon fx:id="notebookCollisionBox" fill="#1f93ff00" layoutX="931.0" layoutY="477.0" onMouseClicked="#openBook" onMouseEntered="#activateNotebookGlow" onMouseExited="#deactivateNotebookGlow" opacity="0.0" points="277.3333740234375, -108.9375, 221.6666259765625, -143.9375, 189.3333740234375, -138.60415649414062, 181.3333740234375, -133.27081298828125, 177.6666259765625, -129.27081298828125, 173.0, -129.27081298828125, 165.6666259765625, -129.27081298828125, 139.6666259765625, -112.60415649414062, 125.0, -105.60415649414062, 119.0, -98.9375, 165.6666259765625, -49.604156494140625, 221.6666259765625, -78.60415649414062, 232.3333740234375, -83.9375" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
   </children>
 </AnchorPane>
