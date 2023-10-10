@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.time.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -59,7 +58,7 @@ public class ChatController {
   @FXML private ImageView smallBubble;
   @FXML private ImageView largeBubble;
   @FXML private ImageView medBubble;
-
+  private int bubbleVariable = 0;
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatMessage activationMessage =
@@ -69,7 +68,8 @@ public class ChatController {
   public static ChatMessage firstMesage;
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
-
+  Timeline bubbleTimeline =
+      new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
   private int firstMission;
   private int secondMission;
 
@@ -80,8 +80,8 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    bubbleTimeline.setCycleCount(Timeline.INDEFINITE);
 
-    Timeline bubbleTimeline = new Timeline(new KeyFrame(Duration.millis(10)));
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
 
     inputText.setDisable(true);
@@ -214,7 +214,7 @@ public class ChatController {
     } else if (inputText.getText().trim().isEmpty()) {
       return;
     }
-
+    bubbleTimeline.play();
     inputText.setDisable(true);
     loading.setProgress(0);
     loading.setVisible(true);
@@ -335,6 +335,12 @@ public class ChatController {
         e -> {
           isGenerating = false;
           // Start talk
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
           loading.progressProperty().unbind();
           loading.setVisible(false);
           loadingCircle.setFill(Color.valueOf("264f31"));
@@ -708,5 +714,43 @@ public class ChatController {
 
     Thread hintThread = new Thread(hintTask);
     hintThread.start();
+  }
+
+  public void thinkBubble() {
+
+    // create switch case for bubble variable given 7 different states
+    // 0 = no bubble
+    // 1 = small bubble
+    // 2 = medium bubble
+    // 3 = large bubble
+    // 4 = medium bubble
+    // 5 = small bubble
+    // 6 = no bubble
+    switch (bubbleVariable) {
+      case 0:
+        smallBubble.setVisible(true);
+        bubbleVariable = 1;
+        break;
+      case 1:
+        medBubble.setVisible(true);
+        bubbleVariable = 2;
+        break;
+      case 2:
+        largeBubble.setVisible(true);
+        bubbleVariable = 3;
+        break;
+      case 3:
+        largeBubble.setVisible(false);
+        bubbleVariable = 4;
+        break;
+      case 4:
+        medBubble.setVisible(false);
+        bubbleVariable = 5;
+        break;
+      case 5:
+        smallBubble.setVisible(false);
+        bubbleVariable = 0;
+        break;
+    }
   }
 }
