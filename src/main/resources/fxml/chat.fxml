@@ -148,5 +148,10 @@
          <font>
             <Font name="Ink Free" size="24.0" />
          </font></TextArea>
+      <Button fx:id="closeBookButton" alignment="CENTER" layoutX="1059.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#closeBook" prefHeight="64.0" prefWidth="79.0" text="X" visible="false">
+         <font>
+            <Font name="Ink Free" size="40.0" />
+         </font>
+      </Button>
   </children>
 </AnchorPane>
