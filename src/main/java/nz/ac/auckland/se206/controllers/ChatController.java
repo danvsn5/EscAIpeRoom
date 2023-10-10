@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,6 +52,7 @@ public class ChatController {
   @FXML private ImageView rootThree;
   @FXML private Rectangle hintRectangle;
   @FXML private Label hintNumber;
+  @FXML private Label chatLabel;
 
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
@@ -156,7 +158,8 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    chatLabel.setText(msg.getContent());
   }
 
   /**
@@ -253,13 +256,13 @@ public class ChatController {
 
             ChatMessage msg = new ChatMessage("user", message);
             msg.setRole("You");
-            appendChatMessage(msg);
+            // appendChatMessage(msg);
             System.out.println(msg.getContent());
             msg.setRole("user");
-            appendChatMessage(thinkingMessage);
+            // appendChatMessage(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
             lastMsg.setRole("Wise Ancient Tree");
-            appendChatMessage(lastMsg);
+            Platform.runLater(() -> appendChatMessage(lastMsg));
             lastMsg.setRole("assistant");
             System.out.println("lastMsg");
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
@@ -422,9 +425,9 @@ public class ChatController {
             ChatMessage msg = new ChatMessage("user", message);
 
             msg.setRole("You");
-            appendChatMessage(msg);
+            // appendChatMessage(msg);
             msg.setRole("user");
-            appendChatMessage(activationMessage);
+            // appendChatMessage(activationMessage);
 
             setChatCompletionRequest(
                 new ChatCompletionRequest()
@@ -440,7 +443,7 @@ public class ChatController {
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
               gptMessage.setRole("Wise Ancient Tree");
-              appendChatMessage(gptMessage);
+              Platform.runLater(() -> appendChatMessage(gptMessage));
               gptMessage.setRole("assistant");
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
@@ -448,7 +451,7 @@ public class ChatController {
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
               gptMessage.setRole("Wise Ancient Tree");
-              appendChatMessage(gptMessage);
+              Platform.runLater(() -> appendChatMessage(gptMessage));
               gptMessage.setRole("assistant");
             }
 
