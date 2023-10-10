@@ -57,6 +57,9 @@ public class OutsideController {
   }
 
   public void goThruster() {
+    if (!GameState.isFirstMissionCompleted) {
+      return;
+    }
     if (GameState.missionList.contains(4)) {
       if (thrusterPuzzleGenerate == 0) {
 
