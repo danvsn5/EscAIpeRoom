@@ -228,6 +228,7 @@ public class OutsideController {
   private void appendChatMessage(ChatMessage msg) {
     // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText("\n\n" + msg.getContent() + "\n\n");
+        .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
+    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
   }
 }
