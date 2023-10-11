@@ -136,3 +136,8 @@
 #counter {
     -fx-font: 65 'Impact';
 }
+
+/* close book button in the chat room */
+#closeBookButton {
+    -fx-font-size: 40;
+}
