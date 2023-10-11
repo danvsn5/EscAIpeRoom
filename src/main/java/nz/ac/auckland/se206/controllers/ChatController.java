@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
@@ -63,6 +64,12 @@ public class ChatController {
   @FXML private ImageView zoomBook;
   @FXML private Button closeBookButton;
   @FXML private Polygon notebookCollisionBox;
+
+  @FXML private Rectangle collectedRectangle;
+  @FXML private ImageView collectedImgSand;
+  @FXML private ImageView collectedImgFuel;
+  @FXML private Label collectedLabel;
+
   private int bubbleVariable = 0;
   private int bookVariable = 0;
   private ChatMessage thinkingMessage =
@@ -561,14 +568,14 @@ public class ChatController {
   }
 
   public void collectSand() {
+    collectedLabel.setText("Sand Collected.\nA pile of sand which can be melted into glass.");
+    activateCollectedInfoSand();
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     System.out.println("Collected sand");
     sand.setVisible(false);
     sand.setDisable(true);
     GameState.inventory.add(2);
-    SceneManager.showDialog(
-        "Info", "Sand Collected", "A pile of sand which can be melted into glass");
   }
 
   private void startListen() {
@@ -825,5 +832,18 @@ public class ChatController {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);
     }
+  }
+
+  private void activateCollectedInfoSand() {
+    collectedRectangle.setVisible(true);
+    collectedLabel.setVisible(true);
+    collectedImgSand.setVisible(true);
+  }
+
+  public void exitInfo() {
+    collectedRectangle.setVisible(false);
+    collectedLabel.setVisible(false);
+    collectedImgSand.setVisible(false);
+    collectedImgFuel.setVisible(false);
   }
 }
