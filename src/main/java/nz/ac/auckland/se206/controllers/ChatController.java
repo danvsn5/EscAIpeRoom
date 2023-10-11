@@ -710,6 +710,7 @@ public class ChatController {
     // Start thinking
     inputText.setDisable(true);
     startThink();
+    bubbleTimeline.play();
     // loading.setVisible(true);
     // loadingCircle.setFill(Color.LIGHTGRAY);
 
@@ -730,7 +731,8 @@ public class ChatController {
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
             gptMessage.setRole("Wise Ancient Tree");
-            appendChatMessage(gptMessage);
+            Platform.runLater(() -> appendChatMessage(gptMessage));
+
             appendChatMessageArea(gptMessage);
             gptMessage.setRole("assistant");
 
