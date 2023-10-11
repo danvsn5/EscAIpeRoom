@@ -1,9 +1,8 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
-
 /* buttons */
 .button {
-    -fx-font-family: 'Press Start 2P';
-    -fx-font-size: 14;
+    -fx-font-family: 'Impact';
+    -fx-font-size: 15;
     -fx-background-color: lightgrey;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
 }
@@ -24,8 +23,8 @@
 
 /* progress button label */
 #progressLabel {
-    -fx-font-family: 'Press Start 2P';
-    -fx-font-size: 13;
+    -fx-font-family: 'Impact';
+    -fx-font-size: 15;
     -fx-text-fill: rgb(29, 29, 29);
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0, 71, 9, 0.3), 8, 0.5, 0.0, 0.0);
@@ -56,28 +55,28 @@
 
 /* buttons in the launch room */
 #launchButton {
-    -fx-font-size: 38;
+    -fx-font-size: 40;
 }
 
 #quitButton {
-    -fx-font-size: 46;
+    -fx-font-size: 50;
 }
 
 #diffButton {
-    -fx-font-size: 12;
+    -fx-font-size: 18;
 }
 
 #timerButton {
-    -fx-font-size: 12;
+    -fx-font-size: 18;
 }
 
 #speechButton {
-    -fx-font-size: 12;
+    -fx-font-size: 18;
 }
 
 /* ok button in the main room */
 #okButton {
-    -fx-font-size: 32;
+    -fx-font-size: 30;
 }
 
 /* guide lable in the main room */
@@ -95,16 +94,16 @@
 
 /* buttons in the thruster mini game room */
 #repairButton {
-    -fx-font-size: 20;
+    -fx-font-size: 25;
 }
 
 #returnOutside {
-    -fx-font-size: 12;
+    -fx-font-size: 15;
 }
 
 /* buttons in the win/lose room */
 #returnMenuButton {
-    -fx-font-size: 22;
+    -fx-font-size: 30;
 }
 
 #quitButton {
@@ -137,4 +136,18 @@
 
 #counter {
     -fx-font: 65 'Impact';
+}
+
+/* close book button in the chat room */
+#closeBookButton {
+    -fx-font-size: 40;
+}
+
+/* chat label in the chat room */
+#chatLabel {
+    -fx-font: 20 'Times New Roman';
+}
+
+#chatTextArea {
+    -fx-font: 20 'Comic Sans MS';
 }
