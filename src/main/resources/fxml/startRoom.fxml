@@ -20,7 +20,7 @@
       </MediaView>
       <Button fx:id="launchButton" layoutX="38.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#launchGame" prefHeight="100.0" prefWidth="282.0" text="Launch">
          <font>
-            <Font name="BM JUA OTF" size="36.0" />
+            <Font size="36.0" />
          </font></Button>
       <Button fx:id="diffButton" layoutX="48.0" layoutY="238.0" mnemonicParsing="false" onMouseClicked="#changeDiff" prefHeight="52.0" prefWidth="263.0" text="Difficulty: Easy">
          <font>

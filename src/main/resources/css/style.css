@@ -146,3 +146,7 @@
 #chatLabel {
     -fx-font: 20 'Times New Roman';
 }
+
+#chatTextArea {
+    -fx-font: 20 'Comic Sans MS';
+}
