@@ -102,12 +102,12 @@
       <Polygon fx:id="chest" disable="true" fill="#1f93ff00" layoutX="258.0" layoutY="318.0" onMouseClicked="#goToChest" onMouseEntered="#activateChestGlow" onMouseExited="#deactivateChestGlow" opacity="0.0" points="173.0, 45.666656494140625, 106.16665649414062, 18.5, 77.66665649414062, 18.5, 3.333343505859375, 45.666656494140625, -0.83331298828125, 57.666656494140625, 3.333343505859375, 142.83334350585938, 68.0, 170.33334350585938, 101.0, 170.33334350585938, 173.0, 142.83334350585938" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
       <Polygon fx:id="glass" disable="true" fill="#1f93ff00" layoutX="445.0" layoutY="200.0" onMouseClicked="#collectGlass" onMouseEntered="#activateGlassGlow" onMouseExited="#deactivateGlassGlow" opacity="0.0" points="171.5, 64.66668701171875, 111.66668701171875, 43.0, 89.33331298828125, 43.0, -9.166656494140625, 75.5, -10.833343505859375, 85.33331298828125, -10.833343505859375, 97.83331298828125, 49.16668701171875, 119.66668701171875, 76.0, 119.66668701171875, 171.5, 85.33331298828125" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" visible="false" />
       <Rectangle fx:id="collectedRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" height="735.0" layoutX="1.0" layoutY="-4.0" onMouseClicked="#exitInfo" opacity="0.7" stroke="BLACK" strokeType="INSIDE" visible="false" width="1289.0" />
-      <ImageView fx:id="collectedImgBluePrint" fitHeight="431.0" fitWidth="593.0" layoutX="708.0" layoutY="101.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="collectedImgBluePrint" fitHeight="341.0" fitWidth="426.0" layoutX="759.0" layoutY="145.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/blueprint.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="collectedImgWindow" fitHeight="421.0" fitWidth="505.0" layoutX="733.0" layoutY="129.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="collectedImgWindow" fitHeight="343.0" fitWidth="465.0" layoutX="725.0" layoutY="159.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/screen-38074_1280.png" />
          </image>
