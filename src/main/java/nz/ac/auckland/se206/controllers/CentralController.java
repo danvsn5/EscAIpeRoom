@@ -64,6 +64,8 @@ public class CentralController {
 
   public void goWin() {
     LaunchController.timer.setFinish();
+    WinController.playMedia();
+
     App.setUi(AppPanel.WIN);
   }
 
