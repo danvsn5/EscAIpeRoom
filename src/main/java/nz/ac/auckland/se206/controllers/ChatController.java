@@ -1,9 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -11,8 +15,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -51,7 +55,16 @@ public class ChatController {
   @FXML private ImageView rootThree;
   @FXML private Rectangle hintRectangle;
   @FXML private Label hintNumber;
-
+  @FXML private Label chatLabel;
+  @FXML private ImageView smallBubble;
+  @FXML private ImageView largeBubble;
+  @FXML private ImageView medBubble;
+  @FXML private ImageView notebook;
+  @FXML private ImageView zoomBook;
+  @FXML private Button closeBookButton;
+  @FXML private Polygon notebookCollisionBox;
+  private int bubbleVariable = 0;
+  private int bookVariable = 0;
   private ChatMessage thinkingMessage =
       new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
   private ChatMessage activationMessage =
@@ -61,40 +74,49 @@ public class ChatController {
   public static ChatMessage firstMesage;
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
-
+  Timeline bubbleTimeline =
+      new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
   private int firstMission;
   private int secondMission;
 
   /**
-   * Initializes the chat view, loading the riddle.
+   * Initializes the chat view, // loading the riddle.
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   @FXML
   public void initialize() throws ApiProxyException {
-
+    bubbleTimeline.setCycleCount(Timeline.INDEFINITE);
+    notebookCollisionBox.setCursor(Cursor.OPEN_HAND);
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
 
     inputText.setDisable(true);
-
+    inputText.setStyle("-fx-background-color: transparent;");
     // Start thinking
     startThink();
 
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
+    loading.setVisible(false);
+    loadingCircle.setVisible(false);
 
     String mission1;
 
-    if (GameState.missionList.contains(1)) {
+    if (GameState.missionListA.contains(1)) {
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
-              + " to the next step.";
-      chatTextArea.appendText(mission1);
-    } else if (GameState.missionList.contains(2)) {
+              + " to the next step. Are you ready? \n\n";
+      chatTextArea.appendText("Wise Ancient Tree: " + mission1);
+      chatLabel.setText(mission1);
+      System.out.println("chatLineCode");
+
+    } else if (GameState.missionListA.contains(2)) {
       mission1 =
           "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
-              + " you to the next step.";
-      chatTextArea.appendText(mission1);
+              + " you to the next step. Are you ready? \n\n";
+      chatTextArea.appendText("Wise Ancient Tree: " + mission1);
+      System.out.println("chatLineCode");
+      chatLabel.setText(mission1);
     }
 
     Task<Void> introCall =
@@ -120,15 +142,21 @@ public class ChatController {
             return null;
           }
         };
-    loading.progressProperty().bind(introCall.progressProperty());
+    // loading.progressProperty().bind(introCall.progressProperty());
 
     introCall.setOnSucceeded(
         e -> {
           isGenerating = false;
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
           // End thinking, start talking
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.progressProperty().unbind();
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
         });
@@ -156,6 +184,11 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
+    //   chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    chatLabel.setText(msg.getContent());
+  }
+
+  private void appendChatMessageArea(ChatMessage msg) {
     chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
   }
 
@@ -204,11 +237,14 @@ public class ChatController {
     } else if (inputText.getText().trim().isEmpty()) {
       return;
     }
+    startThink();
+    bubbleTimeline.play();
 
     inputText.setDisable(true);
-    loading.setProgress(0);
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+
+    // loading.setProgress(0);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     String message = inputText.getText();
     System.out.println(message);
@@ -219,10 +255,10 @@ public class ChatController {
     inputText.clear();
 
     // Start listen
-    loadingCircle.setFill(Color.LIGHTGRAY);
-    loading.setProgress(0);
-    loading.setVisible(true);
-    startListen();
+    // // loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setProgress(0);
+    // loading.setVisible(true);
+    // startListen();
 
     if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
       generateFirstRiddle(message);
@@ -252,14 +288,16 @@ public class ChatController {
             isGenerating = true;
 
             ChatMessage msg = new ChatMessage("user", message);
-            msg.setRole("You");
-            appendChatMessage(msg);
+            msg.setRole("Me");
+            appendChatMessageArea(msg);
             System.out.println(msg.getContent());
             msg.setRole("user");
-            appendChatMessage(thinkingMessage);
+            // appendChatMessageArea(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
             lastMsg.setRole("Wise Ancient Tree");
-            appendChatMessage(lastMsg);
+            Platform.runLater(() -> appendChatMessage(lastMsg));
+            appendChatMessageArea(lastMsg);
+
             lastMsg.setRole("assistant");
             System.out.println("lastMsg");
             // if riddle was solved correctly, then -1 is added to the inventory; -2 is determined
@@ -319,15 +357,21 @@ public class ChatController {
           }
         };
 
-    loading.progressProperty().bind(typeCall.progressProperty());
+    // loading.progressProperty().bind(typeCall.progressProperty());
 
     typeCall.setOnSucceeded(
         e -> {
           isGenerating = false;
           // Start talk
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
+          // loading.progressProperty().unbind();
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
         });
@@ -361,11 +405,14 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
+    inputText.setStyle("-fx-background-color: transparent;");
+
     startListen();
     treeThinking.setVisible(true);
     if (event.getCode().toString().equals("ENTER")) {
       onSendMessage(new ActionEvent());
     }
+    inputText.setStyle("-fx-background-color: transparent;");
   }
 
   /**
@@ -375,11 +422,14 @@ public class ChatController {
    */
   @FXML
   public void onKeyReleased(KeyEvent event) {
+    inputText.setStyle("-fx-background-color: transparent;");
+
     System.out.println("key " + event.getCode() + " released");
     if (inputText.getText().trim().isEmpty()) {
       startTalk();
       listeningLabel.setVisible(false);
     }
+    inputText.setStyle("-fx-background-color: transparent;");
   }
 
   public void activateProgressGlow() {
@@ -394,8 +444,8 @@ public class ChatController {
 
     inputText.setDisable(true);
     startThink();
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     System.out.println("generate riddle");
 
@@ -421,10 +471,10 @@ public class ChatController {
 
             ChatMessage msg = new ChatMessage("user", message);
 
-            msg.setRole("You");
-            appendChatMessage(msg);
+            msg.setRole("Me");
+            appendChatMessageArea(msg);
             msg.setRole("user");
-            appendChatMessage(activationMessage);
+            // appendChatMessageArea(activationMessage);
 
             setChatCompletionRequest(
                 new ChatCompletionRequest()
@@ -440,7 +490,9 @@ public class ChatController {
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
               gptMessage.setRole("Wise Ancient Tree");
-              appendChatMessage(gptMessage);
+              Platform.runLater(() -> appendChatMessage(gptMessage));
+              appendChatMessageArea(gptMessage);
+
               gptMessage.setRole("assistant");
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
@@ -448,7 +500,8 @@ public class ChatController {
                       new ChatMessage(
                           "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
               gptMessage.setRole("Wise Ancient Tree");
-              appendChatMessage(gptMessage);
+              Platform.runLater(() -> appendChatMessage(gptMessage));
+              appendChatMessageArea(gptMessage);
               gptMessage.setRole("assistant");
             }
 
@@ -457,15 +510,21 @@ public class ChatController {
           }
         };
 
-    loading.progressProperty().bind(firstRiddleTask.progressProperty());
+    // loading.progressProperty().bind(firstRiddleTask.progressProperty());
 
     firstRiddleTask.setOnSucceeded(
         e2 -> {
           isGenerating = false;
-          loading.progressProperty().unbind();
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
+          // loading.progressProperty().unbind();
           startTalk();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           treeThinking.setVisible(false);
           treeTalking.setVisible(true);
@@ -535,8 +594,8 @@ public class ChatController {
 
     startThink();
 
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     System.out.println("generate puzzle");
 
@@ -602,13 +661,13 @@ public class ChatController {
     //         }
     //       };
 
-    //   loading.progressProperty().bind(secondPuzzleTask.progressProperty());
+    //   // loading.progressProperty().bind(secondPuzzleTask.progressProperty());
 
     //   secondPuzzleTask.setOnSucceeded(
     //       e2 -> {
-    //         loading.progressProperty().unbind();
-    //         loading.setVisible(false);
-    //         loadingCircle.setFill(Color.valueOf("264f31"));
+    //         // loading.progressProperty().unbind();
+    //         // loading.setVisible(false);
+    //         // loadingCircle.setFill(Color.valueOf("264f31"));
     //         inputText.setDisable(false);
     //         startTalk();
     //       });
@@ -651,8 +710,9 @@ public class ChatController {
     // Start thinking
     inputText.setDisable(true);
     startThink();
-    loading.setVisible(true);
-    loadingCircle.setFill(Color.LIGHTGRAY);
+    bubbleTimeline.play();
+    // loading.setVisible(true);
+    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     Task<Void> hintTask =
         new Task<Void>() {
@@ -671,7 +731,9 @@ public class ChatController {
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
             gptMessage.setRole("Wise Ancient Tree");
-            appendChatMessage(gptMessage);
+            Platform.runLater(() -> appendChatMessage(gptMessage));
+
+            appendChatMessageArea(gptMessage);
             gptMessage.setRole("assistant");
 
             updateProgress(1, 1);
@@ -682,15 +744,86 @@ public class ChatController {
     hintTask.setOnSucceeded(
         e -> {
           isGenerating = false;
+          smallBubble.setVisible(false);
+          medBubble.setVisible(false);
+          largeBubble.setVisible(false);
+          bubbleTimeline.pause();
+          System.out.println("timeline should have stopped");
+          bubbleVariable = 0;
           // End thinking, start talking
-          loading.progressProperty().unbind();
-          loading.setVisible(false);
-          loadingCircle.setFill(Color.valueOf("264f31"));
+          // loading.progressProperty().unbind();
+          // loading.setVisible(false);
+          // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
         });
 
     Thread hintThread = new Thread(hintTask);
     hintThread.start();
+  }
+
+  public void thinkBubble() {
+
+    // create switch case for bubble variable given 7 different states
+    // 0 = no bubble
+    // 1 = small bubble
+    // 2 = medium bubble
+    // 3 = large bubble
+    // 4 = medium bubble
+    // 5 = small bubble
+    // 6 = no bubble
+    switch (bubbleVariable) {
+      case 0:
+        smallBubble.setVisible(true);
+        bubbleVariable = 1;
+        break;
+      case 1:
+        medBubble.setVisible(true);
+        bubbleVariable = 2;
+        break;
+      case 2:
+        largeBubble.setVisible(true);
+        bubbleVariable = 3;
+        break;
+      case 3:
+        largeBubble.setVisible(false);
+        bubbleVariable = 4;
+        break;
+      case 4:
+        medBubble.setVisible(false);
+        bubbleVariable = 5;
+        break;
+      case 5:
+        smallBubble.setVisible(false);
+        bubbleVariable = 0;
+        break;
+    }
+  }
+
+  public void openBook() {
+    zoomBook.setVisible(true);
+    bookVariable = 1;
+    notebookCollisionBox.setOpacity(0);
+    chatTextArea.setVisible(true);
+    closeBookButton.setVisible(true);
+  }
+
+  public void closeBook() {
+    zoomBook.setVisible(false);
+    chatTextArea.setVisible(false);
+    closeBookButton.setVisible(false);
+    bookVariable = 0;
+  }
+
+  public void activateNotebookGlow() {
+    if (bookVariable == 0) {
+      notebookCollisionBox.setOpacity(1);
+    }
+  }
+
+  public void deactivateNotebookGlow() {
+    if (bookVariable == 0) {
+      notebookCollisionBox.setOpacity(0);
+    }
   }
 }
