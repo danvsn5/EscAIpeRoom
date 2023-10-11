@@ -69,6 +69,7 @@ public class ChatController {
   @FXML private ImageView collectedImgSand;
   @FXML private ImageView collectedImgFuel;
   @FXML private Label collectedLabel;
+  @FXML private Label collectedTitle;
 
   private int bubbleVariable = 0;
   private int bookVariable = 0;
@@ -556,7 +557,8 @@ public class ChatController {
     System.out.println("Fuel Mission 2 Complete");
     fuel.setVisible(false);
     fuel.setDisable(true);
-    collectedLabel.setText("Fuel Collected.\nA heavy fuel tank");
+    collectedTitle.setText("Fuel Collected");
+    collectedLabel.setText("A heavy fuel tank");
     activateCollectedInfoFuel();
   }
 
@@ -575,7 +577,8 @@ public class ChatController {
     System.out.println("Collected sand");
     sand.setVisible(false);
     sand.setDisable(true);
-     collectedLabel.setText("Sand Collected.\nA pile of sand which can be melted into glass.");
+    collectedTitle.setText("Sand Collected");;
+     collectedLabel.setText("A pile of sand which can be melted into glass");
     activateCollectedInfoSand();
   }
 
@@ -839,12 +842,14 @@ public class ChatController {
     collectedRectangle.setVisible(true);
     collectedLabel.setVisible(true);
     collectedImgSand.setVisible(true);
+    collectedTitle.setVisible(true);
   }
 
   private void activateCollectedInfoFuel() {
     collectedRectangle.setVisible(true);
     collectedLabel.setVisible(true);
     collectedImgFuel.setVisible(true);
+    collectedTitle.setVisible(true);
   }
 
   public void exitInfo() {
@@ -852,5 +857,6 @@ public class ChatController {
     collectedLabel.setVisible(false);
     collectedImgSand.setVisible(false);
     collectedImgFuel.setVisible(false);
+    collectedTitle.setVisible(false);
   }
 }
