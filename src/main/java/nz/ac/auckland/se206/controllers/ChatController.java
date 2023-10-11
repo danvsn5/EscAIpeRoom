@@ -569,14 +569,14 @@ public class ChatController {
   }
 
   public void collectSand() {
-    collectedLabel.setText("Sand Collected.\nA pile of sand which can be melted into glass.");
-    activateCollectedInfoSand();
+    GameState.inventory.add(2);
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     System.out.println("Collected sand");
     sand.setVisible(false);
     sand.setDisable(true);
-    GameState.inventory.add(2);
+     collectedLabel.setText("Sand Collected.\nA pile of sand which can be melted into glass.");
+    activateCollectedInfoSand();
   }
 
   private void startListen() {

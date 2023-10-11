@@ -166,7 +166,7 @@
             <Image url="@../images/fueklTank.png" />
          </image>
       </ImageView>
-      <Label fx:id="collectedLabel" alignment="CENTER" layoutX="113.0" layoutY="208.0" onMouseClicked="#exitInfo" prefHeight="300.0" prefWidth="601.0" textFill="WHITE" visible="false">
+      <Label fx:id="collectedLabel" alignment="CENTER" layoutX="113.0" layoutY="208.0" onMouseClicked="#exitInfo" prefHeight="300.0" prefWidth="601.0" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
             <Font size="48.0" />
          </font>
