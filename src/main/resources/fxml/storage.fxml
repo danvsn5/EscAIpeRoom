@@ -109,7 +109,7 @@
       </ImageView>
       <ImageView fx:id="collectedImgWindow" fitHeight="343.0" fitWidth="465.0" layoutX="725.0" layoutY="159.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/screen-38074_1280.png" />
+            <Image url="@../images/window-1427966_1280.png" />
          </image>
       </ImageView>
       <Label fx:id="collectedLabel" alignment="CENTER" layoutX="103.0" layoutY="198.0" onMouseClicked="#exitInfo" prefHeight="300.0" prefWidth="601.0" textFill="WHITE" visible="false">
