@@ -93,16 +93,16 @@
 
 /* buttons in the thruster mini game room */
 #repairButton {
-    -fx-font-size: 20;
+    -fx-font-size: 25;
 }
 
 #returnOutside {
-    -fx-font-size: 12;
+    -fx-font-size: 15;
 }
 
 /* buttons in the win/lose room */
 #returnMenuButton {
-    -fx-font-size: 22;
+    -fx-font-size: 30;
 }
 
 #quitButton {
