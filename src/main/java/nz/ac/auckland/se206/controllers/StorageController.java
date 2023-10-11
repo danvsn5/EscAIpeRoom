@@ -1,6 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
-
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -105,7 +105,7 @@ public class StorageController {
   }
 
   public void collectBlueprint() {
-    collectedLabel.setText("BluePint Collected!");
+    collectedLabel.setText("BluePint Collected");
     activateCollectedInfoBluePrint();
     blueprint.setVisible(false);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
@@ -153,7 +153,7 @@ public class StorageController {
   }
 
   public void collectGlass() {
-    collectedLabel.setText("Glass Collected!");
+    collectedLabel.setText("Glass Collected");
     activateCollectedInfoWindow();
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
