@@ -1,12 +1,21 @@
 package nz.ac.auckland.se206.controllers;
 
+ feature/popups
+import java.io.IOException;
+
+
 import javafx.application.Platform;
+
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -43,6 +52,11 @@ public class StorageController {
   @FXML private Polygon bridgeDoor;
   @FXML private Polygon chest;
   @FXML private Polygon glass;
+
+  @FXML private Rectangle collectedRectangle;
+  @FXML private Label collectedLabel;
+  @FXML private ImageView collectedImgBluePrint;
+  @FXML private ImageView collectedImgWindow;
 
   private ChatMessage gptMessage;
   private boolean passwordGenerate = false;
@@ -98,6 +112,8 @@ public class StorageController {
   }
 
   public void collectBlueprint() {
+    collectedLabel.setText("BluePint Collected!");
+    activateCollectedInfoBluePrint();
     blueprint.setVisible(false);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
     // 1: purple    2: blue     3: red    4: green
@@ -144,6 +160,8 @@ public class StorageController {
   }
 
   public void collectGlass() {
+    collectedLabel.setText("Glass Collected!");
+    activateCollectedInfoWindow();
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     GameState.inventory.add(3);
@@ -223,6 +241,25 @@ public class StorageController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+  
+  private void activateCollectedInfoBluePrint() {
+    collectedLabel.setVisible(true);
+    collectedImgBluePrint.setVisible(true);
+    collectedRectangle.setVisible(true);
+  }
+
+  private void activateCollectedInfoWindow() {
+    collectedLabel.setVisible(true);
+    collectedImgWindow.setVisible(true);
+    collectedRectangle.setVisible(true);
+  }
+
+  public void exitInfo() {
+    collectedRectangle.setVisible(false);
+      collectedLabel.setVisible(false);
+      collectedImgBluePrint.setVisible(false);
+      collectedImgWindow.setVisible(false);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
