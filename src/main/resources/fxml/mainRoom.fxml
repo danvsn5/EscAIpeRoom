@@ -139,7 +139,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" layoutX="568.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#okBtnPressed" prefHeight="81.0" prefWidth="146.0" text="OK">
+      <Button fx:id="okButton" layoutX="568.0" layoutY="518.0" mnemonicParsing="false" onKeyPressed="#okKeyPressed" onMouseClicked="#okBtnPressed" prefHeight="81.0" prefWidth="146.0" text="OK">
          <font>
             <Font name="Impact" size="36.0" />
          </font>

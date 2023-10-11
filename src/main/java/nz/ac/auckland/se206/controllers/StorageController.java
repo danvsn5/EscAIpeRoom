@@ -1,11 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
- feature/popups
 import java.io.IOException;
-
-
 import javafx.application.Platform;
-
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
