@@ -556,7 +556,8 @@ public class ChatController {
     System.out.println("Fuel Mission 2 Complete");
     fuel.setVisible(false);
     fuel.setDisable(true);
-    SceneManager.showDialog("Info", "Fuel Collected", "A heavy fuel tank");
+    collectedLabel.setText("Fuel Collected.\nA heavy fuel tank");
+    activateCollectedInfoFuel();
   }
 
   public void activateSandGlow() {
@@ -838,6 +839,12 @@ public class ChatController {
     collectedRectangle.setVisible(true);
     collectedLabel.setVisible(true);
     collectedImgSand.setVisible(true);
+  }
+
+  private void activateCollectedInfoFuel() {
+    collectedRectangle.setVisible(true);
+    collectedLabel.setVisible(true);
+    collectedImgFuel.setVisible(true);
   }
 
   public void exitInfo() {

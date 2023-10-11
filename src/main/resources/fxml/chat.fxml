@@ -161,9 +161,9 @@
             <Image url="@../images/sand.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="collectedImgFuel" fitHeight="343.0" fitWidth="465.0" layoutX="735.0" layoutY="169.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="collectedImgFuel" fitHeight="372.0" fitWidth="374.0" layoutX="735.0" layoutY="140.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/screen-38074_1280.png" />
+            <Image url="@../images/fueklTank.png" />
          </image>
       </ImageView>
       <Label fx:id="collectedLabel" alignment="CENTER" layoutX="113.0" layoutY="208.0" onMouseClicked="#exitInfo" prefHeight="300.0" prefWidth="601.0" textFill="WHITE" visible="false">
