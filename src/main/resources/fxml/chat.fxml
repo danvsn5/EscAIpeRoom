@@ -173,7 +173,7 @@
       </Label>
       <Label fx:id="collectedTitle" alignment="CENTER" layoutX="116.0" layoutY="225.0" onMouseClicked="#exitInfo" prefHeight="213.0" prefWidth="599.0" textAlignment="CENTER" textFill="WHITE" visible="false">
          <font>
-            <Font size="79.0" />
+            <Font size="80.0" />
          </font>
       </Label>
   </children>
