@@ -147,6 +147,8 @@ public class CentralController {
   public void goHome() {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
+
+      WinController.mediaPlayerTwo.play();
     }
   }
 
