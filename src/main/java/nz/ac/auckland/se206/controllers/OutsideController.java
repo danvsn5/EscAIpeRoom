@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -57,61 +58,58 @@ public class OutsideController {
   }
 
   public void goThruster() {
-    if (GameState.missionList.contains(4)
-        && GameState.isFirstMissionCompleted
-        && thrusterPuzzleGenerate == 0) {
+    if (GameState.missionList.contains(4)) {
+      if (thrusterPuzzleGenerate == 0 && GameState.isFirstMissionCompleted == true) {
 
-          System.out.println(thrusterPuzzleGenerate);
-          
-      Task<Void> riddleSecondCall =
-          new Task<Void>() {
+        Task<Void> riddleSecondCall =
+            new Task<Void>() {
 
-            @Override
-            protected Void call() throws Exception {
+              @Override
+              protected Void call() throws Exception {
 
-              System.out.println("this code is working");
+                System.out.println("this code is working");
 
-              // switch case from 1 to 4 based on the variable GameState.randomColourNumber
-              // 1: purple    2: blue     3: red    4: green
-              switch (GameState.randomColorNumber) {
-                case 1:
-                  gptMessage =
-                      runGpt(
-                          new ChatMessage(
-                              "user", GptPromptEngineering.getThrusterPuzzle("purple")));
-                              thrusterPuzzleGenerate = 1;
-                  break;
-                case 2:
-                  gptMessage =
-                      runGpt(
-                          new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                          thrusterPuzzleGenerate = 1;
-                  break;
-                case 3:
-                  gptMessage =
-                      runGpt(
-                          new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("blue")));
-                          thrusterPuzzleGenerate = 1;
-                  break;
-                case 4:
-                  gptMessage =
-                      runGpt(
-                          new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("green")));
-                          thrusterPuzzleGenerate = 1;
-                  break;
+                // switch case from 1 to 4 based on the variable GameState.randomColourNumber
+                // 1: purple    2: blue     3: red    4: green
+                switch (GameState.randomColorNumber) {
+                  case 1:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage(
+                                "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                    break;
+                  case 2:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                    break;
+                  case 3:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage(
+                                "user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                    break;
+                  case 4:
+                    gptMessage =
+                        runGpt(
+                            new ChatMessage(
+                                "user", GptPromptEngineering.getThrusterPuzzle("green")));
+                    break;
+                }
+                Platform.runLater(() -> appendChatMessage(gptMessage));
+
+                System.out.println(gptMessage.getContent());
+
+                return null;
               }
+            };
 
-              System.out.println(gptMessage.getContent());
-
-              return null;
-            }
-          };
-
-      Thread secondRiddleThread = new Thread(riddleSecondCall);
-      secondRiddleThread.start();
-      TreeAvatar.treeFlash.play();
+        Thread secondRiddleThread = new Thread(riddleSecondCall);
+        secondRiddleThread.start();
+        TreeAvatar.treeFlash.play();
+      }
+      App.setUi(AppPanel.THRUSTER);
     }
-    App.setUi(AppPanel.THRUSTER);
   }
 
   // public void thrusterError() {
@@ -212,7 +210,6 @@ public class OutsideController {
       Choice result = chatCompletionResult.getChoices().iterator().next();
       ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
       result.getChatMessage().setRole("Wise Mystical Tree");
-      appendChatMessage(result.getChatMessage());
       result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
@@ -232,6 +229,7 @@ public class OutsideController {
   private void appendChatMessage(ChatMessage msg) {
     // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText("\n\n" + msg.getContent() + "\n\n");
+        .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
+    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
   }
 }
