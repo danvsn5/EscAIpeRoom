@@ -1,6 +1,6 @@
 /* buttons */
 .button {
-    -fx-font-family: 'BM JUA OTF';
+    -fx-font-family: 'Impact';
     -fx-font-size: 14;
     -fx-background-color: lightgrey;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
