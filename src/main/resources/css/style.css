@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
 /* buttons */
 .button {
-    -fx-font-family: 'Press Start 2P';
+    -fx-font-family: 'Copperplate';
     -fx-font-size: 14;
     -fx-background-color: lightgrey;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
@@ -24,7 +22,7 @@
 
 /* progress button label */
 #progressLabel {
-    -fx-font-family: 'Press Start 2P';
+    -fx-font-family: 'Mali SemiBold';
     -fx-font-size: 13;
     -fx-text-fill: rgb(29, 29, 29);
     -fx-alignment: center;
