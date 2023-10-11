@@ -1,6 +1,6 @@
 /* buttons */
 .button {
-    -fx-font-family: 'Impact';
+    -fx-font-family: 'BM JUA OTF';
     -fx-font-size: 14;
     -fx-background-color: lightgrey;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
@@ -140,4 +140,9 @@
 /* close book button in the chat room */
 #closeBookButton {
     -fx-font-size: 40;
+}
+
+/* chat label in the chat room */
+#chatLabel {
+    -fx-font: 20 'Times New Roman';
 }
