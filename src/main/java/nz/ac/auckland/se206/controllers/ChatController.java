@@ -787,6 +787,7 @@ public class ChatController {
     }
   }
 
+  /* Open the notebook */
   public void openBook() {
     zoomBook.setVisible(true);
     bookVariable = 1;
@@ -795,6 +796,7 @@ public class ChatController {
     closeBookButton.setVisible(true);
   }
 
+  /* Close the notebook */
   public void closeBook() {
     zoomBook.setVisible(false);
     chatTextArea.setVisible(false);
@@ -802,18 +804,21 @@ public class ChatController {
     bookVariable = 0;
   }
 
+  /* Activate the yellow collision box of notebook */
   public void activateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(1);
     }
   }
 
+  /* Deactivate the yellow collision box of notebook */
   public void deactivateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);
     }
   }
 
+  /* This method closes all info panel in this page */
   public void exitInfo() {
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
@@ -821,6 +826,7 @@ public class ChatController {
     collectedTitle.setVisible(false);
   }
 
+  /* This method shows the sand info panel */
   public void showSand() {
     // Set the title and context of the info panel
     collectedTitle.setText("Sand");
@@ -831,6 +837,7 @@ public class ChatController {
     collectedLabel.setVisible(true);
   }
 
+  /* This method shows the fuel info panel */
   public void showFuel() {
     // Set the title and context of the info panel
     collectedTitle.setText("Fuel");
