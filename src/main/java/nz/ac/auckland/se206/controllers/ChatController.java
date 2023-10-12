@@ -66,7 +66,7 @@ public class ChatController {
 
   @FXML private Rectangle collectedRectangle;
   @FXML private ImageView sandInfo;
-  @FXML private ImageView collectedImgFuel;
+  @FXML private ImageView fuelInfo;
   @FXML private Label collectedLabel;
   @FXML private Label collectedTitle;
 
@@ -321,8 +321,10 @@ public class ChatController {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
-                  fuel.setDisable(false);
-                  fuel.setVisible(true);
+                  Platform.runLater(
+                      () -> {
+                        showFuel();
+                      });
                 } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
                   // If the player guesses correctly and its window mission, show the sand and
                   // increase stage
@@ -556,11 +558,7 @@ public class ChatController {
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
     System.out.println("Fuel Mission 2 Complete");
-    fuel.setVisible(false);
-    fuel.setDisable(true);
-    collectedTitle.setText("Fuel Collected");
-    collectedLabel.setText("A heavy fuel tank");
-    activateCollectedInfoFuel();
+    exitInfo();
   }
 
   public void activateSandGlow() {
@@ -845,7 +843,7 @@ public class ChatController {
   private void activateCollectedInfoFuel() {
     collectedRectangle.setVisible(true);
     collectedLabel.setVisible(true);
-    collectedImgFuel.setVisible(true);
+    fuelInfo.setVisible(true);
     collectedTitle.setVisible(true);
   }
 
@@ -853,7 +851,7 @@ public class ChatController {
     collectedRectangle.setVisible(false);
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
-    collectedImgFuel.setVisible(false);
+    fuelInfo.setVisible(false);
     collectedTitle.setVisible(false);
   }
 
@@ -863,6 +861,16 @@ public class ChatController {
     collectedLabel.setText("A pile of sand which can be melted into glass");
     // Show the sand info panel
     sandInfo.setVisible(true);
+    collectedTitle.setVisible(true);
+    collectedLabel.setVisible(true);
+  }
+
+  public void showFuel() {
+    // Set the title and context of the info panel
+    collectedTitle.setText("Fuel Collected");
+    collectedLabel.setText("A heavy fuel tank");
+    // Show the fuel info panel
+    fuelInfo.setVisible(true);
     collectedTitle.setVisible(true);
     collectedLabel.setVisible(true);
   }
