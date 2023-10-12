@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
       <ImageView fx:id="treeThinking" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -156,17 +156,17 @@
       </Button>
       <Polygon fx:id="notebookCollisionBox" fill="#1f93ff00" layoutX="931.0" layoutY="477.0" onMouseClicked="#openBook" onMouseEntered="#activateNotebookGlow" onMouseExited="#deactivateNotebookGlow" opacity="0.0" points="277.3333740234375, -108.9375, 221.6666259765625, -143.9375, 189.3333740234375, -138.60415649414062, 181.3333740234375, -133.27081298828125, 177.6666259765625, -129.27081298828125, 173.0, -129.27081298828125, 165.6666259765625, -129.27081298828125, 139.6666259765625, -112.60415649414062, 125.0, -105.60415649414062, 119.0, -98.9375, 165.6666259765625, -49.604156494140625, 221.6666259765625, -78.60415649414062, 232.3333740234375, -83.9375" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
       <Rectangle fx:id="collectedRectangle" arcHeight="5.0" arcWidth="5.0" height="751.0" layoutX="-18.0" layoutY="-19.0" onMouseClicked="#exitInfo" opacity="0.7" stroke="BLACK" strokeType="INSIDE" visible="false" width="1311.0" />
-      <ImageView fx:id="collectedImgSand" fitHeight="370.0" fitWidth="379.0" layoutX="769.0" layoutY="155.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="sandInfo" fitHeight="720.0" fitWidth="1280.0" onMouseClicked="#collectSand" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/sand.png" />
+            <Image url="@../images/Chat/Bucket.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="collectedImgFuel" fitHeight="372.0" fitWidth="374.0" layoutX="735.0" layoutY="140.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="collectedImgFuel" fitHeight="720.0" fitWidth="1280.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../images/fueklTank.png" />
+            <Image url="@../images/Chat/Fuel.png" />
          </image>
       </ImageView>
-      <Label fx:id="collectedLabel" alignment="CENTER" layoutX="73.0" layoutY="303.0" onMouseClicked="#exitInfo" prefHeight="205.0" prefWidth="686.0" textAlignment="CENTER" textFill="WHITE" visible="false">
+      <Label fx:id="collectedLabel" alignment="CENTER" layoutX="73.0" layoutY="400.0" onMouseClicked="#exitInfo" prefWidth="686.0" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">
          <font>
             <Font size="33.0" />
          </font>

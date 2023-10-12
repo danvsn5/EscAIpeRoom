@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
@@ -66,7 +65,7 @@ public class ChatController {
   @FXML private Polygon notebookCollisionBox;
 
   @FXML private Rectangle collectedRectangle;
-  @FXML private ImageView collectedImgSand;
+  @FXML private ImageView sandInfo;
   @FXML private ImageView collectedImgFuel;
   @FXML private Label collectedLabel;
   @FXML private Label collectedTitle;
@@ -330,8 +329,10 @@ public class ChatController {
                   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
                   System.out.println("Window riddle solved");
-                  sand.setDisable(false);
-                  sand.setVisible(true);
+                  Platform.runLater(
+                      () -> {
+                        showSand();
+                      });
                 }
                 GameState.firstRiddleSolved = true;
 
@@ -575,11 +576,7 @@ public class ChatController {
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     System.out.println("Collected sand");
-    sand.setVisible(false);
-    sand.setDisable(true);
-    collectedTitle.setText("Sand Collected");;
-     collectedLabel.setText("A pile of sand which can be melted into glass");
-    activateCollectedInfoSand();
+    exitInfo();
   }
 
   private void startListen() {
@@ -841,7 +838,7 @@ public class ChatController {
   private void activateCollectedInfoSand() {
     collectedRectangle.setVisible(true);
     collectedLabel.setVisible(true);
-    collectedImgSand.setVisible(true);
+    sandInfo.setVisible(true);
     collectedTitle.setVisible(true);
   }
 
@@ -855,8 +852,18 @@ public class ChatController {
   public void exitInfo() {
     collectedRectangle.setVisible(false);
     collectedLabel.setVisible(false);
-    collectedImgSand.setVisible(false);
+    sandInfo.setVisible(false);
     collectedImgFuel.setVisible(false);
     collectedTitle.setVisible(false);
+  }
+
+  public void showSand() {
+    // Set the title and context of the info panel
+    collectedTitle.setText("Sand Collected");
+    collectedLabel.setText("A pile of sand which can be melted into glass");
+    // Show the sand info panel
+    sandInfo.setVisible(true);
+    collectedTitle.setVisible(true);
+    collectedLabel.setVisible(true);
   }
 }
