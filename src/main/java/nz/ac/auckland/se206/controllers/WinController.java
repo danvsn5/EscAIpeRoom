@@ -38,12 +38,12 @@ public class WinController {
 
   public void iniVideos() throws Exception {
 
-    mediaOne = new Media(App.class.getResource("/videos/launch/winStart.mp4").toURI().toString());
+    mediaOne = new Media(App.class.getResource("/videos/launch/0000-0190.mp4").toURI().toString());
     mediaPlayerOne = new MediaPlayer(mediaOne);
     launchingVideo.setMediaPlayer(mediaPlayerOne);
     mediaPlayerOne.setCycleCount(1);
 
-    mediaTwo = new Media(App.class.getResource("/videos/launch/flyShip.mp4").toURI().toString());
+    mediaTwo = new Media(App.class.getResource("/videos/launch/0000-0480.mp4").toURI().toString());
     mediaPlayerTwo = new MediaPlayer(mediaTwo);
     flyingVideo.setMediaPlayer(mediaPlayerTwo);
     mediaPlayerTwo.setCycleCount(MediaPlayer.INDEFINITE);
