@@ -1,10 +1,15 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -13,6 +18,7 @@ import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class CentralController {
 
@@ -89,10 +95,10 @@ public class CentralController {
       // activateChest();
       activateSecondMissionImage();
       // Show the fix window message
-      SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
+      // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
     } else {
       // If the inventory does not contain a window, show broken message
-      SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
+      // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
     }
   }
 
@@ -313,6 +319,23 @@ public class CentralController {
     guideLabel.setVisible(false);
     okButton.setVisible(false);
     okButton.setDisable(true);
+  }
+
+   /**
+   * Handles the key pressed event.
+   *
+   * @param event the key event
+   * @throws IOException
+   * @throws ApiProxyException
+   */
+  @FXML
+  public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
+    if (event.getCode().toString().equals("ENTER") || event.getCode().toString().equals("ESCAPE")) {
+      guideWindow.setVisible(false);
+    guideLabel.setVisible(false);
+    okButton.setVisible(false);
+    okButton.setDisable(true);
+    }
   }
 
   public void activateWinGlow() {

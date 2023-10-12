@@ -44,8 +44,6 @@ public class ChatController {
   @FXML private Label listeningLabel;
   @FXML private ProgressIndicator loading;
   @FXML private ImageView progressButton;
-  @FXML private ImageView fuel;
-  @FXML private ImageView sand;
   @FXML private ImageView treeListening;
   @FXML private ImageView treeTalking;
   @FXML private ImageView treeThinking;
@@ -63,6 +61,12 @@ public class ChatController {
   @FXML private ImageView zoomBook;
   @FXML private Button closeBookButton;
   @FXML private Polygon notebookCollisionBox;
+
+  @FXML private ImageView sandInfo;
+  @FXML private ImageView fuelInfo;
+  @FXML private Label collectedLabel;
+  @FXML private Label collectedTitle;
+
   private int bubbleVariable = 0;
   private int bookVariable = 0;
   private ChatMessage thinkingMessage =
@@ -314,16 +318,20 @@ public class ChatController {
                   GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
                   System.out.println("Fuel Mission 1 Complete");
-                  fuel.setDisable(false);
-                  fuel.setVisible(true);
+                  Platform.runLater(
+                      () -> {
+                        showFuel();
+                      });
                 } else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
                   // If the player guesses correctly and its window mission, show the sand and
                   // increase stage
                   GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
                   GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
                   System.out.println("Window riddle solved");
-                  sand.setDisable(false);
-                  sand.setVisible(true);
+                  Platform.runLater(
+                      () -> {
+                        showSand();
+                      });
                 }
                 GameState.firstRiddleSolved = true;
 
@@ -534,41 +542,20 @@ public class ChatController {
     firstRiddleThread.start();
   }
 
-  public void fuelLight() {
-    fuel.setEffect(GameState.glowBright);
-  }
-
-  public void fuelNeutral() {
-    fuel.setEffect(GameState.glowDim);
-  }
-
   public void collectFuel() {
     GameState.inventory.add(8); // fuel collected
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
     System.out.println("Fuel Mission 2 Complete");
-    fuel.setVisible(false);
-    fuel.setDisable(true);
-    SceneManager.showDialog("Info", "Fuel Collected", "A heavy fuel tank");
-  }
-
-  public void activateSandGlow() {
-    sand.setEffect(GameState.glowBright);
-  }
-
-  public void deactivateSandGlow() {
-    sand.setEffect(GameState.glowDim);
+    exitInfo();
   }
 
   public void collectSand() {
+    GameState.inventory.add(2);
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     System.out.println("Collected sand");
-    sand.setVisible(false);
-    sand.setDisable(true);
-    GameState.inventory.add(2);
-    SceneManager.showDialog(
-        "Info", "Sand Collected", "A pile of sand which can be melted into glass");
+    exitInfo();
   }
 
   private void startListen() {
@@ -800,6 +787,7 @@ public class ChatController {
     }
   }
 
+  /* Open the notebook */
   public void openBook() {
     zoomBook.setVisible(true);
     bookVariable = 1;
@@ -808,6 +796,7 @@ public class ChatController {
     closeBookButton.setVisible(true);
   }
 
+  /* Close the notebook */
   public void closeBook() {
     zoomBook.setVisible(false);
     chatTextArea.setVisible(false);
@@ -815,15 +804,47 @@ public class ChatController {
     bookVariable = 0;
   }
 
+  /* Activate the yellow collision box of notebook */
   public void activateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(1);
     }
   }
 
+  /* Deactivate the yellow collision box of notebook */
   public void deactivateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);
     }
+  }
+
+  /* This method closes all info panel in this page */
+  public void exitInfo() {
+    collectedLabel.setVisible(false);
+    sandInfo.setVisible(false);
+    fuelInfo.setVisible(false);
+    collectedTitle.setVisible(false);
+  }
+
+  /* This method shows the sand info panel */
+  public void showSand() {
+    // Set the title and context of the info panel
+    collectedTitle.setText("Sand");
+    collectedLabel.setText("A pile of sand which can be melted into glass");
+    // Show the sand info panel
+    sandInfo.setVisible(true);
+    collectedTitle.setVisible(true);
+    collectedLabel.setVisible(true);
+  }
+
+  /* This method shows the fuel info panel */
+  public void showFuel() {
+    // Set the title and context of the info panel
+    collectedTitle.setText("Fuel");
+    collectedLabel.setText("A heavy fuel tank");
+    // Show the fuel info panel
+    fuelInfo.setVisible(true);
+    collectedTitle.setVisible(true);
+    collectedLabel.setVisible(true);
   }
 }
