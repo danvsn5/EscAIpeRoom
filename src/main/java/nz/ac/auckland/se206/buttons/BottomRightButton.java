@@ -12,11 +12,11 @@ public class BottomRightButton {
 
   public static Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> cycle()));
   private static int cycleNumber = 4;
-  private static ColorAdjust purpleColor = new ColorAdjust(0, 0, 0, 0);
-  private static ColorAdjust greenColor = new ColorAdjust(1, 0, 0, 0);
-  private static ColorAdjust redColor = new ColorAdjust(0.5, 0, 0, 0);
+  private static ColorAdjust purpleColor = new ColorAdjust(-0.46, 0, 0, 0);
+  private static ColorAdjust greenColor = new ColorAdjust(0.56, 0, 0, 0);
+  private static ColorAdjust redColor = new ColorAdjust(0.0, 0, 0, 0);
 
-  private static ColorAdjust blueColor = new ColorAdjust(-0.39, 0, 0, 0);
+  private static ColorAdjust blueColor = new ColorAdjust(-0.9, 0, 0, 0);
 
   public static void cycle() {
     // 1: purple    2: blue     3: red    4: green
