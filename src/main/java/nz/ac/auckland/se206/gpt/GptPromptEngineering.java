@@ -87,7 +87,7 @@ public class GptPromptEngineering {
         return prompt + "Tell the player to find the chest and solve the puzzle. " + furtherHint;
       }
     } else {
-      return prompt + "Tell the player to fix the control panel. " + furtherHint;
+      return prompt + "Tell the player to fix the control panel and fix the space shuttle. " + furtherHint;
     }
   }
 
@@ -104,7 +104,7 @@ public class GptPromptEngineering {
         return prompt + "Tell the player to go to the thruster and solve the puzzle. " + furtherHint;
       }
     } else {
-      return prompt + "Tell the player to click on the button with correct color. " + furtherHint;
+      return prompt + "Tell the player to click on the button with correct color to fix the thruster and then fix the space shuttle. " + furtherHint;
     }
   }
 
