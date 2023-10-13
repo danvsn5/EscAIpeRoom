@@ -27,21 +27,39 @@ public class TreeAvatar {
     // If the tree state is 0, indicating the tree is dim, set them to bright
     if (treeState == 0) {
 
-      rootOneActivate();
-      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowBright);
-      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowBright);
-      SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowBright);
-      SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setEffect(glowBright);
+      switch (RootBorder.rootState) {
+        case 1:
+          rootOneActivate();
+          break;
+        case 2:
+          rootTwoActivate();
+          break;
+        case 3:
+          rootThreeActivate();
+          break;
+        case 4:
+          rootFourActivate();
+          break;
+      }
+
       // Set the tree state to 1
       treeState = 1;
     } else {
       // If the tree state is 1, indicating the tree is bright, set them to dim
-      rootOneDeactivate();
-      SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowDim);
-      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
-      SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
-      SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setEffect(glowDim);
-      // Set the tree state to 0
+      switch (RootBorder.rootState) {
+        case 1:
+          rootOneDeactivate();
+          break;
+        case 2:
+          rootTwoDeactivate();
+          break;
+        case 3:
+          rootThreeDeactivate();
+          break;
+        case 4:
+          rootFourDeactivate();
+          break;
+      }
       treeState = 0;
     }
   }
@@ -90,5 +108,89 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox2").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox3").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox4").setOpacity(0);
+  }
+
+  public static void rootTwoActivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox4").setOpacity(1);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox4").setOpacity(1);
+  }
+
+  public static void rootTwoDeactivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox4").setOpacity(0);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootTwoCollisionBox4").setOpacity(0);
+  }
+
+  public static void rootThreeActivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox4").setOpacity(1);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox4").setOpacity(1);
+  }
+
+  public static void rootThreeDeactivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox4").setOpacity(0);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox4").setOpacity(0);
+  }
+
+  public static void rootFourActivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox4").setOpacity(1);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox4").setOpacity(1);
+  }
+
+  public static void rootFourDeactivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox4").setOpacity(0);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox4").setOpacity(0);
   }
 }
