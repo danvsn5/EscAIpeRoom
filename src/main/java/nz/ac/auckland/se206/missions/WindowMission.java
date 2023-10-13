@@ -5,7 +5,7 @@ public class WindowMission extends Mission {
 
   public WindowMission() {
     currentStage = 0;
-    totalStage = 5;
+    totalStage = 4;
   }
 
   /**
