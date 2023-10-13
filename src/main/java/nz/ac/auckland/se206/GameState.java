@@ -32,6 +32,9 @@ public class GameState {
 
   public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
 
+  public static boolean isBucketCollected = false;
+  public static boolean isSandCollected = false;
+
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
   // 0: hammer

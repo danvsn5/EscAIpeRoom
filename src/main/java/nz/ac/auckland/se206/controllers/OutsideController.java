@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
 // import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -205,11 +206,23 @@ public class OutsideController {
   }
 
   public void activateSandGlow() {
-    sand.setOpacity(1);
+    if (GameState.isBucketCollected && !GameState.isSandCollected) {
+      sand.setVisible(true);
+      sand.setDisable(false);
+      sand.setOpacity(1);
+    }
   }
 
   public void deactivateSandGlow() {
     sand.setOpacity(0);
+  }
+
+  public void collectSand() {
+    GameState.inventory.add(2);
+    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+    sand.setDisable(true);
+    sand.setVisible(false);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
