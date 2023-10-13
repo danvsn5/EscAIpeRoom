@@ -52,6 +52,15 @@ public class CentralController {
   @FXML private Polygon rootThreeCollisionBox2;
   @FXML private Polygon rootThreeCollisionBox3;
   @FXML private Polygon rootThreeCollisionBox4;
+  @FXML private Polygon rootFourCollisionBox1;
+  @FXML private Polygon rootFourCollisionBox2;
+  @FXML private Polygon rootFourCollisionBox3;
+  @FXML private Polygon rootFourCollisionBox4;
+  @FXML private Polygon rootFourCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox6;
+  @FXML private Polygon rootFourCollisionBox7;
+  @FXML private Polygon rootFourCollisionBox8;
+  @FXML private Polygon rootFourCollisionBox9;
 
   @FXML private ImageView windowController1;
   @FXML private ImageView windowController2;
@@ -391,5 +400,29 @@ public class CentralController {
     rootThreeCollisionBox2.setOpacity(0);
     rootThreeCollisionBox3.setOpacity(0);
     rootThreeCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox2.setOpacity(1);
+    rootFourCollisionBox3.setOpacity(1);
+    rootFourCollisionBox4.setOpacity(1);
+    rootFourCollisionBox5.setOpacity(1);
+    rootFourCollisionBox6.setOpacity(1);
+    rootFourCollisionBox7.setOpacity(1);
+    rootFourCollisionBox8.setOpacity(1);
+    rootFourCollisionBox9.setOpacity(1);
+  }
+
+  public void deactivateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(0);
+    rootFourCollisionBox2.setOpacity(0);
+    rootFourCollisionBox3.setOpacity(0);
+    rootFourCollisionBox4.setOpacity(0);
+    rootFourCollisionBox5.setOpacity(0);
+    rootFourCollisionBox6.setOpacity(0);
+    rootFourCollisionBox7.setOpacity(0);
+    rootFourCollisionBox8.setOpacity(0);
+    rootFourCollisionBox9.setOpacity(0);
   }
 }
