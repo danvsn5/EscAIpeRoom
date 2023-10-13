@@ -115,6 +115,8 @@ public class CentralController {
       activateSecondMissionImage();
       // Show the fix window message
       // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
+       outsideDoor.setDisable(true);
+      storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain a window, show broken message
       // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
@@ -142,6 +144,8 @@ public class CentralController {
       activateSecondMissionImage();
       // Show success message
       SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
+      outsideDoor.setDisable(true);
+      storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain fuel, show error message
       SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
@@ -318,6 +322,8 @@ public class CentralController {
         //  SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
         // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       }
+      outsideDoor.setDisable(false);
+      storageDoor.setDisable(false);
     }
     GameState.isSecondGuideShown = true;
 
