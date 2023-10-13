@@ -82,11 +82,11 @@ public class StorageController {
   }
 
   public void goToChest() {
-    // if (passwordGenerate || !GameState.firstRiddleSolved) {
-    //   App.setUi(AppPanel.CHEST);
-    //   return;
-    // }
-    if (GameState.isFirstMissionCompleted == true && !GameState.isPuzzleShowed) {
+    if (passwordGenerate || !GameState.firstRiddleSolved) {
+      App.setUi(AppPanel.CHEST);
+      return;
+    }
+    if (!GameState.isPuzzleShowed) {
       GameState.generatePassWord();
       System.out.println(GameState.passWord);
       // SceneManager.showDialog("Info", "+", "What does this mean?");
@@ -119,6 +119,8 @@ public class StorageController {
       passwordGenerate = true;
       // TreeAvatar.treeFlash.play();
       GameState.isPuzzleShowed = true;
+      App.setUi(AppPanel.CHEST);
+    } else {
       App.setUi(AppPanel.CHEST);
     }
   }
