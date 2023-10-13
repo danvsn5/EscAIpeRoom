@@ -91,7 +91,7 @@
             <Font name="Bank Gothic Light BT" size="33.0" />
          </font>
       </Label>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
@@ -99,7 +99,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="222.0" text="Progress" visible="false">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>

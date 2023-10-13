@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -55,12 +55,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
       </ImageView>
-      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="215.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="215.0" text="Progress" visible="false">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
