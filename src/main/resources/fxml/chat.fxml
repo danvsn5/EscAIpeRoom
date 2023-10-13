@@ -85,8 +85,8 @@
          </opaqueInsets></TextField>
       <Circle fx:id="loadingCircle" fill="#264f31" layoutX="112.0" layoutY="145.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
       <ProgressIndicator fx:id="loading" layoutX="80.0" layoutY="121.0" prefHeight="42.0" prefWidth="64.0" progress="0.0" />
-      <Rectangle fx:id="hintRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="WHITE" height="52.0" layoutX="929.0" layoutY="589.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="101.0" />
-      <Label fx:id="hintNumber" disable="true" layoutX="967.0" layoutY="599.0" text="5" visible="false">
+      <Rectangle fx:id="hintRectangle" arcHeight="5.0" arcWidth="5.0" disable="true" fill="WHITE" height="58.0" layoutX="906.0" layoutY="595.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="64.0" />
+      <Label fx:id="hintNumber" alignment="CENTER" disable="true" layoutX="904.0" layoutY="593.0" prefHeight="58.0" prefWidth="64.0" text="5" visible="false">
          <font>
             <Font name="Bank Gothic Light BT" size="33.0" />
          </font>
