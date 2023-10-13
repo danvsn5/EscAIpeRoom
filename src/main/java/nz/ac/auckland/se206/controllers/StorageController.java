@@ -121,18 +121,6 @@ public class StorageController {
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
-      SceneManager.showDialog("Info", "Glass collected", "A well-made window");
-    } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
-      // inventory
-      // does not
-      // contain
-      // sand and
-      // the mission
-      // is the
-      // window
-      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace yet!");
-    } else {
-      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace!");
     }
   }
 
