@@ -254,7 +254,7 @@ public class CentralController {
     TreeAvatar.deactivateTreeGlow();
 
     // If the first mission is completed, show the second guide message
-    if (GameState.isFirstMissionCompleted) {
+    if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
       if (GameState.missionList.contains(1) && GameState.missionList.contains(4)) {
         String appendString =
             "You have repaired the window... Well done. You still cannot leave however, as the"
@@ -300,6 +300,7 @@ public class CentralController {
         // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       }
     }
+    GameState.isSecondGuideShown = true;
 
     // Set the previous panel to Main room then go to chat room
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);

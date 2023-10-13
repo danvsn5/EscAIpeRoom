@@ -30,6 +30,7 @@ public class GameState {
   public static int firstDigit;
   public static int secondDigit;
 
+  public static boolean isSecondGuideShown;
   public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
 
   public static boolean isBucketCollected = false;

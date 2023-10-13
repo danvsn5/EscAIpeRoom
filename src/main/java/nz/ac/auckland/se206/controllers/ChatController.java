@@ -503,7 +503,7 @@ public class ChatController {
               gptMessage =
                   runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
+                          "user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
               appendChatMessageArea(gptMessage);
@@ -513,7 +513,7 @@ public class ChatController {
               gptMessage =
                   runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
+                          "user", GptPromptEngineering.getRiddleWithGivenWord("sky")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
               appendChatMessageArea(gptMessage);
