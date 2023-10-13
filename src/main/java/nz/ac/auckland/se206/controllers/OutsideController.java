@@ -224,7 +224,8 @@ public class OutsideController {
   }
 
   public void collectSand() {
-    GameState.inventory.add(2);
+    if (GameState.isBucketCollected && !GameState.isSandCollected) {
+      GameState.inventory.add(2);
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     collectedTitle.setText("Sand Collected");
@@ -235,6 +236,8 @@ public class OutsideController {
     sand.setDisable(true);
     sand.setVisible(false);
     System.out.println("Sand collected");
+    GameState.isSandCollected = true;
+    }
   }
 
   /* This method closes all info panel in this page */
