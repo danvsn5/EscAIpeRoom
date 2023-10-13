@@ -70,6 +70,8 @@ public class CentralController {
 
   public void goWin() {
     LaunchController.timer.setFinish();
+    WinController.playMedia();
+
     App.setUi(AppPanel.WIN);
   }
 
@@ -153,6 +155,8 @@ public class CentralController {
   public void goHome() {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
+
+      WinController.playMedia();
     }
   }
 
