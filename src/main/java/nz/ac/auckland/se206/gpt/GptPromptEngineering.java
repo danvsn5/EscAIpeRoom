@@ -95,11 +95,11 @@ public class GptPromptEngineering {
   }
 
   public static String getControllerPuzzle(int password) {
-    return "Now that the user has successfully found the chest; give the user a simple addition or"
-        + " subtraction maths puzzle with the answer being: "
+    return prompt + "Give the user a simple addition or"
+        + " subtraction math puzzle with the answer being: "
         + password
-        + " . Never reveal the answer.  If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
-        + " 'correct'. tell the user they may now unlock the chest";
+        + " . NEVER reveal the answer. If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
+        + " 'Correct'. tell the user they may now unlock the chest.";
   }
 
   public static String getThrusterPuzzle(String colour) {
