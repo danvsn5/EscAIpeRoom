@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutsideController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutsideController">
    <children>
       <ImageView fx:id="outsideImage" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -52,7 +52,7 @@
             <Image url="@../images/miniTree.png" />
          </image>
        </ImageView>
-      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="progressButton" fitHeight="72.0" fitWidth="238.0" layoutX="518.0" layoutY="648.0" onMouseClicked="#goProgress" onMouseEntered="#activateProgressGlow" onMouseExited="#deactivateProgressGlow" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/ProgressButton.png" />
          </image>
@@ -60,7 +60,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="220.0" text="Progress">
+      <Label fx:id="progressLabel" alignment="CENTER" layoutX="527.0" layoutY="649.0" mouseTransparent="true" prefHeight="42.0" prefWidth="220.0" text="Progress" visible="false">
          <font>
             <Font name="Bank Gothic Light BT" size="34.0" />
          </font>
@@ -76,5 +76,21 @@
             <Image url="@../images/pointer.png" />
          </image>
       </ImageView>
+      <Polygon fx:id="sand" fill="#008cff00" layoutX="603.0" layoutY="615.0" onMouseClicked="#collectSand" onMouseEntered="#activateSandGlow" onMouseExited="#deactivateSandGlow" opacity="0.0" points="158.29583740234375, 10.74993896484375, 215.8001708984375, -19.17578125, 242.7919921875, -51.51995849609375, 273.304443359375, -63.77093505859375, 242.7919921875, -77.90264892578125, 215.8001708984375, -63.77093505859375, 183.52734375, -51.51995849609375, 151.84124755859375, -88.14361572265625, 124.84942626953125, -99.564453125, 95.510498046875, -74.7730712890625, 66.17156982421875, -96.04376220703125, 37.41943359375, -99.564453125, 6.90692138671875, -77.90264892578125, -20.67169189453125, -99.564453125, -35.34112548828125, -99.564453125, -53.53125, -82.91162109375, -91.08511352539062, -92.5230712890625, -104.58102416992188, -88.14361572265625, -104.58102416992188, -51.51995849609375, -131.57321166992188, -58.48992919921875, -157.97787475585938, -70.66668701171875, -183.796142578125, -88.14361572265625, -183.796142578125, -106.01901245117188, -221.95367431640625, -121.35061645507812, -249.69644165039062, -115.63888549804688, -179.76315307617188, -77.90264892578125, -131.57321166992188, -48.6107177734375, -85.21734619140625, -39.126220703125, -53.53125, -8.61376953125, -85.21734619140625, -15.06829833984375, -53.53125, 6.05572509765625, -24.77911376953125, 20.138427734375, 6.90692138671875, 24.8326416015625, 11.014404296875, 35.01300048828125, 117.2213134765625, 35.01300048828125, 133.651123046875, 35.01300048828125" stroke="#eeff00" strokeType="INSIDE" strokeWidth="2.0" />
+      <ImageView fx:id="sandInfo" fitHeight="720.0" fitWidth="1280.0" layoutX="-17.0" layoutY="5.0" onMouseClicked="#exitInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/Outside/BucketSand.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="collectedLabel" alignment="CENTER" layoutX="83.0" layoutY="410.0" onMouseClicked="#exitInfo" prefWidth="686.0" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="collectedTitle" alignment="CENTER" layoutX="126.0" layoutY="235.0" onMouseClicked="#exitInfo" prefHeight="213.0" prefWidth="599.0" textAlignment="CENTER" textFill="WHITE" visible="false">
+         <font>
+            <Font size="80.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

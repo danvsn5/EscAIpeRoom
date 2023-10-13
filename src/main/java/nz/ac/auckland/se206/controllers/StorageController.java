@@ -32,6 +32,28 @@ public class StorageController {
   @FXML private ImageView root2;
   @FXML private ImageView root3;
   @FXML private ImageView root4;
+  @FXML private Polygon rootOneCollisionBox1;
+  @FXML private Polygon rootOneCollisionBox2;
+  @FXML private Polygon rootOneCollisionBox3;
+  @FXML private Polygon rootOneCollisionBox4;
+  @FXML private Polygon rootTwoCollisionBox1;
+  @FXML private Polygon rootTwoCollisionBox2;
+  @FXML private Polygon rootTwoCollisionBox3;
+  @FXML private Polygon rootTwoCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox1;
+  @FXML private Polygon rootThreeCollisionBox2;
+  @FXML private Polygon rootThreeCollisionBox3;
+  @FXML private Polygon rootThreeCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox1;
+  @FXML private Polygon rootFourCollisionBox2;
+  @FXML private Polygon rootFourCollisionBox3;
+  @FXML private Polygon rootFourCollisionBox4;
+  @FXML private Polygon rootFourCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox6;
+  @FXML private Polygon rootFourCollisionBox7;
+  @FXML private Polygon rootFourCollisionBox8;
+  @FXML private Polygon rootFourCollisionBox9;
   @FXML private Label counter;
 
   @FXML private ImageView controller;
@@ -45,10 +67,9 @@ public class StorageController {
   @FXML private Polygon chest;
   @FXML private Polygon glass;
 
-  @FXML private Rectangle collectedRectangle;
   @FXML private Label collectedLabel;
-  @FXML private ImageView collectedImgBluePrint;
-  @FXML private ImageView collectedImgWindow;
+  @FXML private ImageView blueprintInfo;
+  @FXML private ImageView windowInfo;
 
   private ChatMessage gptMessage;
   private boolean passwordGenerate = false;
@@ -104,12 +125,10 @@ public class StorageController {
   }
 
   public void collectBlueprint() {
-    collectedLabel.setText("BluePint Collected");
     activateCollectedInfoBluePrint();
     blueprint.setVisible(false);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprintBackground").setVisible(true);
     // 1: purple    2: blue     3: red    4: green
-    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     System.out.println(GameState.missionManager.getMission(MISSION.THRUSTER).getStage());
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
@@ -122,18 +141,6 @@ public class StorageController {
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
-      SceneManager.showDialog("Info", "Glass collected", "A well-made window");
-    } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
-      // inventory
-      // does not
-      // contain
-      // sand and
-      // the mission
-      // is the
-      // window
-      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace yet!");
-    } else {
-      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace!");
     }
   }
 
@@ -152,10 +159,7 @@ public class StorageController {
   }
 
   public void collectGlass() {
-    collectedLabel.setText("Glass Collected");
     activateCollectedInfoWindow();
-    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     GameState.inventory.add(3);
     glass.setVisible(false);
     glass.setDisable(true);
@@ -236,22 +240,89 @@ public class StorageController {
   }
 
   private void activateCollectedInfoBluePrint() {
+     collectedLabel.setText("BluePint Collected");
     collectedLabel.setVisible(true);
-    collectedImgBluePrint.setVisible(true);
-    collectedRectangle.setVisible(true);
+    blueprintInfo.setVisible(true);
   }
 
   private void activateCollectedInfoWindow() {
+    collectedLabel.setText("Window Collected");
     collectedLabel.setVisible(true);
-    collectedImgWindow.setVisible(true);
-    collectedRectangle.setVisible(true);
+    windowInfo.setVisible(true);
   }
 
   public void exitInfo() {
-    collectedRectangle.setVisible(false);
     collectedLabel.setVisible(false);
-    collectedImgBluePrint.setVisible(false);
-    collectedImgWindow.setVisible(false);
+    blueprintInfo.setVisible(false);
+    windowInfo.setVisible(false);
+  }
+
+  public void activateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(1);
+    rootOneCollisionBox2.setOpacity(1);
+    rootOneCollisionBox3.setOpacity(1);
+    rootOneCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(0);
+    rootOneCollisionBox2.setOpacity(0);
+    rootOneCollisionBox3.setOpacity(0);
+    rootOneCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(1);
+    rootTwoCollisionBox2.setOpacity(1);
+    rootTwoCollisionBox3.setOpacity(1);
+    rootTwoCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(0);
+    rootTwoCollisionBox2.setOpacity(0);
+    rootTwoCollisionBox3.setOpacity(0);
+    rootTwoCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootThreeGlow() {
+    rootThreeCollisionBox1.setOpacity(1);
+    rootThreeCollisionBox2.setOpacity(1);
+    rootThreeCollisionBox3.setOpacity(1);
+    rootThreeCollisionBox4.setOpacity(1);
+    rootThreeCollisionBox5.setOpacity(1);
+  }
+
+  public void deactivateRootThreeGlow() {
+    rootThreeCollisionBox1.setOpacity(0);
+    rootThreeCollisionBox2.setOpacity(0);
+    rootThreeCollisionBox3.setOpacity(0);
+    rootThreeCollisionBox4.setOpacity(0);
+    rootThreeCollisionBox5.setOpacity(0);
+  }
+
+  public void activateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox2.setOpacity(1);
+    rootFourCollisionBox3.setOpacity(1);
+    rootFourCollisionBox4.setOpacity(1);
+    rootFourCollisionBox5.setOpacity(1);
+    rootFourCollisionBox6.setOpacity(1);
+    rootFourCollisionBox7.setOpacity(1);
+    rootFourCollisionBox8.setOpacity(1);
+    rootFourCollisionBox9.setOpacity(1);
+  }
+
+  public void deactivateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(0);
+    rootFourCollisionBox2.setOpacity(0);
+    rootFourCollisionBox3.setOpacity(0);
+    rootFourCollisionBox4.setOpacity(0);
+    rootFourCollisionBox5.setOpacity(0);
+    rootFourCollisionBox6.setOpacity(0);
+    rootFourCollisionBox7.setOpacity(0);
+    rootFourCollisionBox8.setOpacity(0);
+    rootFourCollisionBox9.setOpacity(0);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */

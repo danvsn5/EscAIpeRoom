@@ -339,6 +339,13 @@ public class ChatController {
                 GameState.speak(lastMsg.getContent());
                 System.out.println("first riddle solved");
               }
+            } else if (GameState.isFirstMissionCompleted && GameState.missionList.contains(4)) {
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Correct")) {
+                GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+                GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+                System.out.println("Thruster riddle solved");
+              }
             }
 
             //     else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
@@ -496,7 +503,7 @@ public class ChatController {
               gptMessage =
                   runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sand")));
+                          "user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
               appendChatMessageArea(gptMessage);
@@ -506,7 +513,7 @@ public class ChatController {
               gptMessage =
                   runGpt(
                       new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWordWindow("sky")));
+                          "user", GptPromptEngineering.getRiddleWithGivenWord("sky")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
               appendChatMessageArea(gptMessage);
@@ -542,19 +549,15 @@ public class ChatController {
     firstRiddleThread.start();
   }
 
-  public void collectFuel() {
-    GameState.inventory.add(8); // fuel collected
+  public void collect() {
+    if (GameState.missionList.contains(2)) {
+      GameState.inventory.add(8); // fuel collected
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
     System.out.println("Fuel Mission 2 Complete");
-    exitInfo();
-  }
-
-  public void collectSand() {
-    GameState.inventory.add(2);
-    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-    System.out.println("Collected sand");
+    } else if (GameState.missionList.contains(1)) {
+      GameState.isBucketCollected = true;
+    }
     exitInfo();
   }
 
@@ -829,8 +832,8 @@ public class ChatController {
   /* This method shows the sand info panel */
   public void showSand() {
     // Set the title and context of the info panel
-    collectedTitle.setText("Sand");
-    collectedLabel.setText("A pile of sand which can be melted into glass");
+    collectedTitle.setText("Bucket");
+    collectedLabel.setText("An empty bucket.\nCan be used to collect the sand.");
     // Show the sand info panel
     sandInfo.setVisible(true);
     collectedTitle.setVisible(true);

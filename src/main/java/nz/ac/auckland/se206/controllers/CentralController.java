@@ -1,15 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -43,6 +40,28 @@ public class CentralController {
   @FXML private Polygon fuelTank;
   @FXML private Polygon controllerBroken1;
   @FXML private Polygon controllerBroken2;
+  @FXML private Polygon rootOneCollisionBox1;
+  @FXML private Polygon rootOneCollisionBox2;
+  @FXML private Polygon rootOneCollisionBox3;
+  @FXML private Polygon rootOneCollisionBox4;
+  @FXML private Polygon rootTwoCollisionBox1;
+  @FXML private Polygon rootTwoCollisionBox2;
+  @FXML private Polygon rootTwoCollisionBox3;
+  @FXML private Polygon rootTwoCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox1;
+  @FXML private Polygon rootThreeCollisionBox2;
+  @FXML private Polygon rootThreeCollisionBox3;
+  @FXML private Polygon rootThreeCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox1;
+  @FXML private Polygon rootFourCollisionBox2;
+  @FXML private Polygon rootFourCollisionBox3;
+  @FXML private Polygon rootFourCollisionBox4;
+  @FXML private Polygon rootFourCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox6;
+  @FXML private Polygon rootFourCollisionBox7;
+  @FXML private Polygon rootFourCollisionBox8;
+  @FXML private Polygon rootFourCollisionBox9;
 
   @FXML private ImageView windowController1;
   @FXML private ImageView windowController2;
@@ -70,6 +89,8 @@ public class CentralController {
 
   public void goWin() {
     LaunchController.timer.setFinish();
+    WinController.playMedia();
+
     App.setUi(AppPanel.WIN);
   }
 
@@ -153,6 +174,8 @@ public class CentralController {
   public void goHome() {
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
+
+      WinController.playMedia();
     }
   }
 
@@ -250,7 +273,7 @@ public class CentralController {
     TreeAvatar.deactivateTreeGlow();
 
     // If the first mission is completed, show the second guide message
-    if (GameState.isFirstMissionCompleted) {
+    if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {
       if (GameState.missionList.contains(1) && GameState.missionList.contains(4)) {
         String appendString =
             "You have repaired the window... Well done. You still cannot leave however, as the"
@@ -296,6 +319,7 @@ public class CentralController {
         // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       }
     }
+    GameState.isSecondGuideShown = true;
 
     // Set the previous panel to Main room then go to chat room
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -317,7 +341,7 @@ public class CentralController {
     okButton.setDisable(true);
   }
 
-   /**
+  /**
    * Handles the key pressed event.
    *
    * @param event the key event
@@ -328,9 +352,9 @@ public class CentralController {
   public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
     if (event.getCode().toString().equals("ENTER") || event.getCode().toString().equals("ESCAPE")) {
       guideWindow.setVisible(false);
-    guideLabel.setVisible(false);
-    okButton.setVisible(false);
-    okButton.setDisable(true);
+      guideLabel.setVisible(false);
+      okButton.setVisible(false);
+      okButton.setDisable(true);
     }
   }
 
@@ -340,5 +364,73 @@ public class CentralController {
 
   public void deactivateWinGlow() {
     completeGame.setEffect(GameState.glowDim);
+  }
+
+  public void activateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(1);
+    rootOneCollisionBox2.setOpacity(1);
+    rootOneCollisionBox3.setOpacity(1);
+    rootOneCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(0);
+    rootOneCollisionBox2.setOpacity(0);
+    rootOneCollisionBox3.setOpacity(0);
+    rootOneCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(1);
+    rootTwoCollisionBox2.setOpacity(1);
+    rootTwoCollisionBox3.setOpacity(1);
+    rootTwoCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(0);
+    rootTwoCollisionBox2.setOpacity(0);
+    rootTwoCollisionBox3.setOpacity(0);
+    rootTwoCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootThreeGlow() {
+    rootThreeCollisionBox1.setOpacity(1);
+    rootThreeCollisionBox2.setOpacity(1);
+    rootThreeCollisionBox3.setOpacity(1);
+    rootThreeCollisionBox4.setOpacity(1);
+    rootThreeCollisionBox5.setOpacity(1);
+  }
+
+  public void deactivateRootThreeGlow() {
+    rootThreeCollisionBox1.setOpacity(0);
+    rootThreeCollisionBox2.setOpacity(0);
+    rootThreeCollisionBox3.setOpacity(0);
+    rootThreeCollisionBox4.setOpacity(0);
+    rootThreeCollisionBox5.setOpacity(0);
+  }
+
+  public void activateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox2.setOpacity(1);
+    rootFourCollisionBox3.setOpacity(1);
+    rootFourCollisionBox4.setOpacity(1);
+    rootFourCollisionBox5.setOpacity(1);
+    rootFourCollisionBox6.setOpacity(1);
+    rootFourCollisionBox7.setOpacity(1);
+    rootFourCollisionBox8.setOpacity(1);
+    rootFourCollisionBox9.setOpacity(1);
+  }
+
+  public void deactivateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(0);
+    rootFourCollisionBox2.setOpacity(0);
+    rootFourCollisionBox3.setOpacity(0);
+    rootFourCollisionBox4.setOpacity(0);
+    rootFourCollisionBox5.setOpacity(0);
+    rootFourCollisionBox6.setOpacity(0);
+    rootFourCollisionBox7.setOpacity(0);
+    rootFourCollisionBox8.setOpacity(0);
+    rootFourCollisionBox9.setOpacity(0);
   }
 }

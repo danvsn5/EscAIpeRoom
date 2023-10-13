@@ -9,7 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-// import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -36,6 +37,11 @@ public class OutsideController {
   @FXML private ImageView root4;
   @FXML private ImageView miniTree;
   @FXML private ImageView ship;
+
+  @FXML private Polygon sand;
+  @FXML private ImageView sandInfo;
+  @FXML private Label collectedLabel;
+  @FXML private Label collectedTitle;
 
   private int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
@@ -77,23 +83,27 @@ public class OutsideController {
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                    thrusterPuzzleGenerate = 1;
                     break;
                   case 2:
                     gptMessage =
                         runGpt(
                             new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                    thrusterPuzzleGenerate = 1;
                     break;
                   case 3:
                     gptMessage =
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                    thrusterPuzzleGenerate = 1;
                     break;
                   case 4:
                     gptMessage =
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("green")));
+                    thrusterPuzzleGenerate = 1;
                     break;
                 }
                 Platform.runLater(() -> appendChatMessage(gptMessage));
@@ -139,6 +149,8 @@ public class OutsideController {
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
     if (ChatController.seenFirstMessage == 0) {
+      RootBorder.deactivateAllCollisionBox();
+      RootBorder.activateAllCollisionBox();
       ChatController.seenFirstMessage = 1;
     }
 
@@ -200,6 +212,41 @@ public class OutsideController {
       thruster1.setOpacity(0);
       thruster2.setOpacity(0);
     }
+  }
+
+  public void activateSandGlow() {
+    if (GameState.isBucketCollected && !GameState.isSandCollected) {
+      sand.setDisable(false);
+      sand.setOpacity(1);
+    }
+  }
+
+  public void deactivateSandGlow() {
+    sand.setOpacity(0);
+  }
+
+  public void collectSand() {
+    if (GameState.isBucketCollected && !GameState.isSandCollected) {
+      GameState.inventory.add(2);
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      collectedTitle.setText("Sand Collected");
+      collectedLabel.setText("A pile of sand, can be melted into glass.");
+      collectedLabel.setVisible(true);
+      collectedTitle.setVisible(true);
+      sandInfo.setVisible(true);
+      sand.setDisable(true);
+      sand.setVisible(false);
+      System.out.println("Sand collected");
+      GameState.isSandCollected = true;
+    }
+  }
+
+  /* This method closes all info panel in this page */
+  public void exitInfo() {
+    collectedLabel.setVisible(false);
+    sandInfo.setVisible(false);
+    collectedTitle.setVisible(false);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
