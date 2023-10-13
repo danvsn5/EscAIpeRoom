@@ -33,6 +33,28 @@ public class StorageController {
   @FXML private ImageView root2;
   @FXML private ImageView root3;
   @FXML private ImageView root4;
+  @FXML private Polygon rootOneCollisionBox1;
+  @FXML private Polygon rootOneCollisionBox2;
+  @FXML private Polygon rootOneCollisionBox3;
+  @FXML private Polygon rootOneCollisionBox4;
+  @FXML private Polygon rootTwoCollisionBox1;
+  @FXML private Polygon rootTwoCollisionBox2;
+  @FXML private Polygon rootTwoCollisionBox3;
+  @FXML private Polygon rootTwoCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox1;
+  @FXML private Polygon rootThreeCollisionBox2;
+  @FXML private Polygon rootThreeCollisionBox3;
+  @FXML private Polygon rootThreeCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox1;
+  @FXML private Polygon rootFourCollisionBox2;
+  @FXML private Polygon rootFourCollisionBox3;
+  @FXML private Polygon rootFourCollisionBox4;
+  @FXML private Polygon rootFourCollisionBox5;
+  @FXML private Polygon rootFourCollisionBox6;
+  @FXML private Polygon rootFourCollisionBox7;
+  @FXML private Polygon rootFourCollisionBox8;
+  @FXML private Polygon rootFourCollisionBox9;
   @FXML private Label counter;
 
   @FXML private ImageView controller;
@@ -234,6 +256,74 @@ public class StorageController {
     collectedLabel.setVisible(false);
     blueprintInfo.setVisible(false);
     windowInfo.setVisible(false);
+  }
+
+  public void activateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(1);
+    rootOneCollisionBox2.setOpacity(1);
+    rootOneCollisionBox3.setOpacity(1);
+    rootOneCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(0);
+    rootOneCollisionBox2.setOpacity(0);
+    rootOneCollisionBox3.setOpacity(0);
+    rootOneCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(1);
+    rootTwoCollisionBox2.setOpacity(1);
+    rootTwoCollisionBox3.setOpacity(1);
+    rootTwoCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(0);
+    rootTwoCollisionBox2.setOpacity(0);
+    rootTwoCollisionBox3.setOpacity(0);
+    rootTwoCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootThreeGlow() {
+    rootThreeCollisionBox1.setOpacity(1);
+    rootThreeCollisionBox2.setOpacity(1);
+    rootThreeCollisionBox3.setOpacity(1);
+    rootThreeCollisionBox4.setOpacity(1);
+    rootThreeCollisionBox5.setOpacity(1);
+  }
+
+  public void deactivateRootThreeGlow() {
+    rootThreeCollisionBox1.setOpacity(0);
+    rootThreeCollisionBox2.setOpacity(0);
+    rootThreeCollisionBox3.setOpacity(0);
+    rootThreeCollisionBox4.setOpacity(0);
+    rootThreeCollisionBox5.setOpacity(0);
+  }
+
+  public void activateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox2.setOpacity(1);
+    rootFourCollisionBox3.setOpacity(1);
+    rootFourCollisionBox4.setOpacity(1);
+    rootFourCollisionBox5.setOpacity(1);
+    rootFourCollisionBox6.setOpacity(1);
+    rootFourCollisionBox7.setOpacity(1);
+    rootFourCollisionBox8.setOpacity(1);
+    rootFourCollisionBox9.setOpacity(1);
+  }
+
+  public void deactivateRootFourGlow() {
+    rootFourCollisionBox1.setOpacity(0);
+    rootFourCollisionBox2.setOpacity(0);
+    rootFourCollisionBox3.setOpacity(0);
+    rootFourCollisionBox4.setOpacity(0);
+    rootFourCollisionBox5.setOpacity(0);
+    rootFourCollisionBox6.setOpacity(0);
+    rootFourCollisionBox7.setOpacity(0);
+    rootFourCollisionBox8.setOpacity(0);
+    rootFourCollisionBox9.setOpacity(0);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
