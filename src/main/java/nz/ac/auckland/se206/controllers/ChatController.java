@@ -339,6 +339,13 @@ public class ChatController {
                 GameState.speak(lastMsg.getContent());
                 System.out.println("first riddle solved");
               }
+            } else if (GameState.isFirstMissionCompleted && GameState.missionList.contains(4)) {
+              if (lastMsg.getRole().equals("assistant")
+                  && lastMsg.getContent().startsWith("Correct")) {
+                GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
+                GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+                System.out.println("Thruster riddle solved");
+              }
             }
 
             //     else if (!GameState.firstRiddleSolved && GameState.missionList.contains(1)) {
