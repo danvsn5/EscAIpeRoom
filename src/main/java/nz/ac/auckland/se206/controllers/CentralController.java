@@ -119,11 +119,6 @@ public class CentralController {
       activateBlueprint();
       // activateChest();
       activateSecondMissionImage();
-      // Show success message
-      SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
-    } else {
-      // If the inventory does not contain fuel, show error message
-      SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
     }
   }
 
