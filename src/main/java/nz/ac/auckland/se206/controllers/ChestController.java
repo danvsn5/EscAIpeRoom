@@ -25,6 +25,7 @@ public class ChestController {
   @FXML private Rectangle thirdDigitHighlight;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
+  @FXML private ImageView chestWrongImage;
   @FXML private ImageView chestOpenImage;
   @FXML private ImageView controlPanelInfo;
   @FXML private Label collectedLabel;
@@ -45,6 +46,7 @@ public class ChestController {
   }
 
   public void firstDigitUp() {
+    chestWrongImage.setVisible(false);
     firstDigitNum++;
     if (firstDigitNum >= 10) {
       firstDigitNum = 0;
@@ -53,6 +55,7 @@ public class ChestController {
   }
 
   public void secondDigitUp() {
+    chestWrongImage.setVisible(false);
     secondDigitNum++;
     if (secondDigitNum >= 10) {
       secondDigitNum = 0;
@@ -61,6 +64,7 @@ public class ChestController {
   }
 
   public void thirdDigitUp() {
+    chestWrongImage.setVisible(false);
     thirdDigitNum++;
     if (thirdDigitNum >= 10) {
       thirdDigitNum = 0;
@@ -89,7 +93,8 @@ public class ChestController {
       controlPanelInfo.setVisible(true);
       disableLock();
     } else {
-      SceneManager.showDialog("Info", "Wrong password", "Access denied");
+      // SceneManager.showDialog("Info", "Wrong password", "Access denied");
+      chestWrongImage.setVisible(true);
     }
   }
 
