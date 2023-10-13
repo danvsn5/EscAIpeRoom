@@ -543,10 +543,10 @@ public class ChatController {
   }
 
   public void collectFuel() {
-    // GameState.inventory.add(8); // fuel collected
-    // GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-    // GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
-    // System.out.println("Fuel Mission 2 Complete");
+    GameState.inventory.add(8); // fuel collected
+    GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+    GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+    System.out.println("Fuel Mission 2 Complete");
     exitInfo();
   }
 
