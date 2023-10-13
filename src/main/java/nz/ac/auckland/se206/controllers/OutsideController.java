@@ -207,7 +207,6 @@ public class OutsideController {
 
   public void activateSandGlow() {
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
-      sand.setVisible(true);
       sand.setDisable(false);
       sand.setOpacity(1);
     }
@@ -223,6 +222,7 @@ public class OutsideController {
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     sand.setDisable(true);
     sand.setVisible(false);
+    System.out.println("Sand collected");
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
