@@ -7,7 +7,7 @@ import nz.ac.auckland.se206.MissionManager.MISSION;
 public class GptPromptEngineering {
 
   private static String prompt = "You are a mean wise mystical tree of a forest. Do not need to greet the user. ";
-  private static String furtherHint = "DO NOT give any other hint from now on.";
+  private static String furtherHint = "You sohuld NEVER give any other hint from now on.";
 
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
@@ -37,14 +37,23 @@ public class GptPromptEngineering {
       case CONTROLLER: // controller
         return controllerHint();
       default: // thruster by default
-        return thrusterHint();
+      if (GameState.randomColorNumber == 1) {
+        return thrusterHint("purple");
+      } else if (GameState.randomColorNumber == 2) {
+        return thrusterHint("blue");
+      } else if (GameState.randomColorNumber == 3) {
+        return thrusterHint("red");
+      } else {
+        return thrusterHint("green");
+      }
     }
   }
 
   private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return prompt + "The answer to the riddle is: sand. NEVER reveal the answer. Give the hint. Keep it simple."
-      + "You should begin your answer with: 'Correct' only when user guesses the answer correctly." + furtherHint;
+      return prompt + "The answer to the riddle is: sand. NEVER reveal the answer. Give the hint, not the riddle. Keep it short."
+      + "You should begin your answer with the word Correct when user guesses the answer correctly. " 
+      + "DO NOT say correct until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the sand with the bucket from the outside." + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -57,28 +66,35 @@ public class GptPromptEngineering {
 
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-      return prompt + "The answer to the riddle is: sky. NEVER reveal the answer. Give the hint. Keep it simple."
-      + "You should begin your answer with: 'Correct' only when user guesses the answer correctly." + furtherHint;
+      return prompt + "The answer to the riddle is: sky. NEVER reveal the answer. Give the hint, not the riddle. Keep it short."
+      + "You should begin your answer with the word Correct when user guesses the answer correctly. "
+      + "DO NOT say correct until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
-      return "Tell the player to collect the fuel.";
+      return "Tell the player to collect the fuel." + furtherHint;
     } else {
-      return "Tell the player that the player needs to refuel the space shuttle.";
+      return "Tell the player that the player needs to refuel the space shuttle." + furtherHint;
     }
   }
 
   private static String controllerHint() {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
-      return "Tell the player to find a chest, and focus on numbers";
+      if (GameState.isPuzzleShowed) {
+        return  "Tell the player to focus on the numbers. " + furtherHint;
+      } else {
+        return "Tell the player to find the chest and solve the puzzle. " + furtherHint;
+      }
     } else {
-      return "Tell the player to fix the controller in the bridge";
+      return "Tell the player to fix the control panel. " + furtherHint;
     }
   }
 
-  private static String thrusterHint() {
+  private static String thrusterHint(String color) {
     if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
-      return "Tell the player to find the blueprint in order to fix the thruster";
+      return "Tell the player to find the blueprint in order to fix the thruster. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
-      return "Give the player a hint about the riddle";
+      return prompt + "The answer to the puzzle is: " + color 
+      + "NEVER reveal the answer. Give the hint. You should begin your answer with: 'Correct' only when user guesses the answer correctly. " 
+      + furtherHint;
     } else {
       return "Tell the player to click on the button with correct color";
     }
