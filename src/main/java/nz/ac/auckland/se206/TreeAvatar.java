@@ -27,15 +27,7 @@ public class TreeAvatar {
     // If the tree state is 0, indicating the tree is dim, set them to bright
     if (treeState == 0) {
 
-      /* =================================== Central Controller Root One ================================== */
-
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox1").setOpacity(1);
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox2").setOpacity(1);
-
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox3").setOpacity(1);
-
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox4").setOpacity(1);
-
+      rootOneActivate();
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowBright);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowBright);
@@ -44,13 +36,7 @@ public class TreeAvatar {
       treeState = 1;
     } else {
       // If the tree state is 1, indicating the tree is bright, set them to dim
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox1").setOpacity(0);
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox2").setOpacity(0);
-
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox3").setOpacity(0);
-
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox4").setOpacity(0);
-
+      rootOneDeactivate();
       SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
@@ -76,5 +62,33 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setVisible(true);
+  }
+
+  public static void rootOneActivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox4").setOpacity(1);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox1").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox2").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox3").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox4").setOpacity(1);
+  }
+
+  public static void rootOneDeactivate() {
+    /* ========================================== Central Room ========================================== */
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox4").setOpacity(0);
+
+    /* ========================================== Storage Room ========================================== */
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootOneCollisionBox4").setOpacity(0);
   }
 }
