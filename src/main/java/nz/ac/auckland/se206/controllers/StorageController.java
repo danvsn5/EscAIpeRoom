@@ -88,7 +88,7 @@ public class StorageController {
       App.setUi(AppPanel.CHEST);
       return;
     }
-    if (GameState.isFirstMissionCompleted == true) {
+    if (GameState.isFirstMissionCompleted == true && !GameState.isPuzzleShowed) {
       GameState.generatePassWord();
       System.out.println(GameState.passWord);
       // SceneManager.showDialog("Info", "+", "What does this mean?");
@@ -120,6 +120,7 @@ public class StorageController {
       secondRiddleThread.start();
       passwordGenerate = true;
       // TreeAvatar.treeFlash.play();
+      GameState.isPuzzleShowed = true;
       App.setUi(AppPanel.CHEST);
     }
   }
