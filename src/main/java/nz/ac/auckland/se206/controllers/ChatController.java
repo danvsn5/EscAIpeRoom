@@ -133,8 +133,8 @@ public class ChatController {
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.7)
+                    .setTemperature(0.5)
+                    .setTopP(0.5)
                     .setMaxTokens(100);
             // runs the initial gpt compulsory message for working. message does not get appended to
             // the chat box and TTS is NOT applied to this message.
@@ -713,9 +713,9 @@ public class ChatController {
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.7)
-                    .setMaxTokens(150);
+                    .setTemperature(0.5)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
             gptMessage.setRole("Wise Ancient Tree");
