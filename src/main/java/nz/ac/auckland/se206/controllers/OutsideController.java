@@ -39,6 +39,9 @@ public class OutsideController {
   @FXML private ImageView ship;
 
   @FXML private Polygon sand;
+  @FXML private ImageView sandInfo;
+  @FXML private Label collectedLabel;
+  @FXML private Label collectedTitle;
 
   private int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
@@ -220,9 +223,21 @@ public class OutsideController {
     GameState.inventory.add(2);
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+    collectedTitle.setText("Sand Collected");
+    collectedLabel.setText("A pile of sand, can be melted into glass.");
+    collectedLabel.setVisible(true);
+    collectedTitle.setVisible(true);
+    sandInfo.setVisible(true);
     sand.setDisable(true);
     sand.setVisible(false);
     System.out.println("Sand collected");
+  }
+
+  /* This method closes all info panel in this page */
+  public void exitInfo() {
+    collectedLabel.setVisible(false);
+    sandInfo.setVisible(false);
+    collectedTitle.setVisible(false);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
