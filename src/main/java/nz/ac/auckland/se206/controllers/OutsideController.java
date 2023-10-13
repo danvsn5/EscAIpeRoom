@@ -83,23 +83,27 @@ public class OutsideController {
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                                thrusterPuzzleGenerate = 1;
                     break;
                   case 2:
                     gptMessage =
                         runGpt(
                             new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
+                            thrusterPuzzleGenerate = 1;
                     break;
                   case 3:
                     gptMessage =
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                                thrusterPuzzleGenerate = 1;
                     break;
                   case 4:
                     gptMessage =
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("green")));
+                                thrusterPuzzleGenerate = 1;
                     break;
                 }
                 Platform.runLater(() -> appendChatMessage(gptMessage));
@@ -220,7 +224,8 @@ public class OutsideController {
   }
 
   public void collectSand() {
-    GameState.inventory.add(2);
+    if (GameState.isBucketCollected && !GameState.isSandCollected) {
+      GameState.inventory.add(2);
     GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     collectedTitle.setText("Sand Collected");
@@ -231,6 +236,8 @@ public class OutsideController {
     sand.setDisable(true);
     sand.setVisible(false);
     System.out.println("Sand collected");
+    GameState.isSandCollected = true;
+    }
   }
 
   /* This method closes all info panel in this page */

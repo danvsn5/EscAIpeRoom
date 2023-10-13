@@ -109,7 +109,6 @@ public class StorageController {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
     // 1: purple    2: blue     3: red    4: green
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     System.out.println(GameState.missionManager.getMission(MISSION.THRUSTER).getStage());
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
