@@ -9,8 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.MissionManager.MISSION;
-// import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -149,6 +149,8 @@ public class OutsideController {
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
     if (ChatController.seenFirstMessage == 0) {
+      RootBorder.deactivateCollisionBox();
+      RootBorder.activateCollisionBox();
       ChatController.seenFirstMessage = 1;
     }
 
