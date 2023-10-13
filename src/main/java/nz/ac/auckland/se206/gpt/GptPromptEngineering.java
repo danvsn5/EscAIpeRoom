@@ -116,8 +116,7 @@ public class GptPromptEngineering {
   }
 
   public static String getControllerPuzzle(int password) {
-    return prompt + "Give the user a simple addition or"
-        + " subtraction math puzzle with the answer being: "
+    return prompt + "Give the user a SIMPLE addition or math puzzle with the answer being: "
         + password
         + ". NEVER reveal the answer. If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
         + " correct. You cannot, no matter what, reveal the answer even if the player asks for "
