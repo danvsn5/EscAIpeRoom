@@ -129,6 +129,7 @@ public class GameState {
     ThrusterController.isGameActive = 0;
     ChatController.seenFirstMessage = 0;
     passWord = -1;
+    RootBorder.rootState = 1;
   }
 
   public static void generatePassWord() {
