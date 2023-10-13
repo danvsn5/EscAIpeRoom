@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -8,13 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
-import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -120,7 +117,7 @@ public class StorageController {
       Thread secondRiddleThread = new Thread(riddleSecondCall);
       secondRiddleThread.start();
       passwordGenerate = true;
-      TreeAvatar.treeFlash.play();
+      // TreeAvatar.treeFlash.play();
       App.setUi(AppPanel.CHEST);
     }
   }
@@ -225,8 +222,8 @@ public class StorageController {
   }
 
   public void goChat() {
-    TreeAvatar.treeFlash.pause();
-    TreeAvatar.deactivateTreeGlow();
+    // TreeAvatar.treeFlash.pause();
+    // TreeAvatar.deactivateTreeGlow();
     SceneManager.setPrevious(AppPanel.STORAGE);
 
     App.setUi(AppPanel.CHAT);
@@ -241,7 +238,7 @@ public class StorageController {
   }
 
   private void activateCollectedInfoBluePrint() {
-     collectedLabel.setText("BluePint Collected");
+    collectedLabel.setText("BluePint Collected");
     collectedLabel.setVisible(true);
     blueprintInfo.setVisible(true);
   }
