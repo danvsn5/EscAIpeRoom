@@ -154,7 +154,7 @@ public class CentralController {
       // activateChest();
       activateSecondMissionImage();
       // Show success message
-      SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
+      // SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
       outsideDoor.setDisable(true);
       storageDoor.setDisable(true);
     } else {
@@ -182,7 +182,7 @@ public class CentralController {
       controllerInfo.setVisible(true);
     } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
       // If the controller mission is at stage 2, indicating panel can be fixed, show message
-      SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      // SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
       // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
