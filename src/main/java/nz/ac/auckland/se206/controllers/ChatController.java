@@ -502,8 +502,7 @@ public class ChatController {
             if (firstMission == 1) { // if the first mission is the window
               gptMessage =
                   runGpt(
-                      new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
               appendChatMessageArea(gptMessage);
@@ -512,8 +511,7 @@ public class ChatController {
             } else if (firstMission == 2) { // if it is the fuel
               gptMessage =
                   runGpt(
-                      new ChatMessage(
-                          "user", GptPromptEngineering.getRiddleWithGivenWord("sky")));
+                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sky")));
               gptMessage.setRole("Wise Ancient Tree");
               Platform.runLater(() -> appendChatMessage(gptMessage));
               appendChatMessageArea(gptMessage);
@@ -552,9 +550,9 @@ public class ChatController {
   public void collect() {
     if (GameState.missionList.contains(2)) {
       GameState.inventory.add(8); // fuel collected
-    GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-    GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
-    System.out.println("Fuel Mission 2 Complete");
+      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      System.out.println("Fuel Mission 2 Complete");
     } else if (GameState.missionList.contains(1)) {
       GameState.isBucketCollected = true;
     }
