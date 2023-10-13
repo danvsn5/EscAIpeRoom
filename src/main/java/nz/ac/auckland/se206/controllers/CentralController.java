@@ -1,15 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -43,6 +40,10 @@ public class CentralController {
   @FXML private Polygon fuelTank;
   @FXML private Polygon controllerBroken1;
   @FXML private Polygon controllerBroken2;
+  @FXML private Polygon rootOneCollisionBox1;
+  @FXML private Polygon rootOneCollisionBox2;
+  @FXML private Polygon rootOneCollisionBox3;
+  @FXML private Polygon rootOneCollisionBox4;
 
   @FXML private ImageView windowController1;
   @FXML private ImageView windowController2;
@@ -317,7 +318,7 @@ public class CentralController {
     okButton.setDisable(true);
   }
 
-   /**
+  /**
    * Handles the key pressed event.
    *
    * @param event the key event
@@ -328,9 +329,9 @@ public class CentralController {
   public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
     if (event.getCode().toString().equals("ENTER") || event.getCode().toString().equals("ESCAPE")) {
       guideWindow.setVisible(false);
-    guideLabel.setVisible(false);
-    okButton.setVisible(false);
-    okButton.setDisable(true);
+      guideLabel.setVisible(false);
+      okButton.setVisible(false);
+      okButton.setDisable(true);
     }
   }
 
@@ -340,5 +341,19 @@ public class CentralController {
 
   public void deactivateWinGlow() {
     completeGame.setEffect(GameState.glowDim);
+  }
+
+  public void activateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(1);
+    rootOneCollisionBox2.setOpacity(1);
+    rootOneCollisionBox3.setOpacity(1);
+    rootOneCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootOneGlow() {
+    rootOneCollisionBox1.setOpacity(0);
+    rootOneCollisionBox2.setOpacity(0);
+    rootOneCollisionBox3.setOpacity(0);
+    rootOneCollisionBox4.setOpacity(0);
   }
 }
