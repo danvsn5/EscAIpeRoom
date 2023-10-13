@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -108,7 +107,7 @@ public class StorageController {
     collectedLabel.setText("BluePint Collected");
     activateCollectedInfoBluePrint();
     blueprint.setVisible(false);
-    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprintBackground").setVisible(true);
     // 1: purple    2: blue     3: red    4: green
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
