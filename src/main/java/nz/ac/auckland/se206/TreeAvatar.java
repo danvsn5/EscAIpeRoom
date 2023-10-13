@@ -144,12 +144,14 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox2").setOpacity(1);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox3").setOpacity(1);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox4").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox5").setOpacity(1);
 
     /* ========================================== Storage Room ========================================== */
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox1").setOpacity(1);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox2").setOpacity(1);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox3").setOpacity(1);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox4").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox5").setOpacity(1);
   }
 
   public static void rootThreeDeactivate() {
@@ -158,12 +160,14 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox2").setOpacity(0);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox3").setOpacity(0);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox4").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootThreeCollisionBox5").setOpacity(0);
 
     /* ========================================== Storage Room ========================================== */
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox1").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox2").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox3").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox4").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootThreeCollisionBox5").setOpacity(0);
   }
 
   public static void rootFourActivate() {
@@ -172,12 +176,22 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox2").setOpacity(1);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox3").setOpacity(1);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox4").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox5").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox6").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox7").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox8").setOpacity(1);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox9").setOpacity(1);
 
     /* ========================================== Storage Room ========================================== */
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox1").setOpacity(1);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox2").setOpacity(1);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox3").setOpacity(1);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox4").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox5").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox6").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox7").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox8").setOpacity(1);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox9").setOpacity(1);
   }
 
   public static void rootFourDeactivate() {
@@ -186,11 +200,21 @@ public class TreeAvatar {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox2").setOpacity(0);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox3").setOpacity(0);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox4").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox5").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox6").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox7").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox8").setOpacity(0);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox9").setOpacity(0);
 
     /* ========================================== Storage Room ========================================== */
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox1").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox2").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox3").setOpacity(0);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox4").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox5").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox6").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox7").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox8").setOpacity(0);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#rootFourCollisionBox9").setOpacity(0);
   }
 }
