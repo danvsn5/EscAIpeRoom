@@ -75,6 +75,7 @@ public class CentralController {
 
   @FXML private ImageView windowInfo;
   @FXML private ImageView fuelInfo;
+  @FXML private ImageView controllerInfo;
   @FXML private Label infoLabel;
   @FXML private Label infoTitle;
 
@@ -126,7 +127,7 @@ public class CentralController {
       // If the inventory does not contain a window, show broken message
       // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
       infoTitle.setText("Broken Window");
-      infoLabel.setText("A large crack is inside the window!");
+      infoLabel.setText("A large crack is inside the window");
       infoTitle.setVisible(true);
       infoLabel.setVisible(true);
       windowInfo.setVisible(true);
@@ -160,7 +161,7 @@ public class CentralController {
       // If the inventory does not contain fuel, show error message
       // SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
       infoTitle.setText("No Fuel");
-      infoLabel.setText("Internal fuel tank is empty!");
+      infoLabel.setText("Internal fuel tank is empty");
       infoTitle.setVisible(true);
       infoLabel.setVisible(true);
       fuelInfo.setVisible(true);
@@ -172,8 +173,13 @@ public class CentralController {
     // If the controller mission less than stage 0 (not having spare part on hand), show broken
     // controller message
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
-      SceneManager.showDialog(
-          "Info", "Broken Control Panel", "The control panel for the ship is broken!");
+      // SceneManager.showDialog(
+      //     "Info", "Broken Control Panel", "The control panel for the ship is broken!");
+      infoTitle.setText("Broken Control Panel");
+      infoLabel.setText("The control panel for the ship is broken");
+      infoTitle.setVisible(true);
+      infoLabel.setVisible(true);
+      controllerInfo.setVisible(true);
     } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
       // If the controller mission is at stage 2, indicating panel can be fixed, show message
       SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
@@ -393,6 +399,7 @@ public class CentralController {
     infoTitle.setVisible(false);
     windowInfo.setVisible(false);
     fuelInfo.setVisible(false);
+    controllerInfo.setVisible(false);
   }
 
   public void activateRootOneGlow() {
