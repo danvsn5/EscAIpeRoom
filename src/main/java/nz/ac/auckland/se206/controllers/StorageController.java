@@ -84,10 +84,10 @@ public class StorageController {
   }
 
   public void goToChest() {
-    // if (passwordGenerate || !GameState.firstRiddleSolved) {
-    //   App.setUi(AppPanel.CHEST);
-    //   return;
-    // }
+    if (passwordGenerate || !GameState.firstRiddleSolved) {
+      App.setUi(AppPanel.CHEST);
+      return;
+    }
     if (GameState.isFirstMissionCompleted == true) {
       GameState.generatePassWord();
       System.out.println(GameState.passWord);
