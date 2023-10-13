@@ -65,9 +65,11 @@ public class StorageController {
   @FXML private Polygon chest;
   @FXML private Polygon glass;
 
+  @FXML private Label collectedTitle;
   @FXML private Label collectedLabel;
   @FXML private ImageView blueprintInfo;
   @FXML private ImageView windowInfo;
+  @FXML private ImageView processMachineInfo;
 
   private ChatMessage gptMessage;
   private boolean passwordGenerate = false;
@@ -139,6 +141,12 @@ public class StorageController {
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
+    } else {
+      collectedTitle.setText("Process Machine");
+      collectedLabel.setText("High tech process machine, can make ingredients into product");
+      collectedTitle.setVisible(true);
+      collectedLabel.setVisible(true);
+      processMachineInfo.setVisible(true);
     }
   }
 
@@ -238,21 +246,23 @@ public class StorageController {
   }
 
   private void activateCollectedInfoBluePrint() {
-    collectedLabel.setText("BluePint Collected");
-    collectedLabel.setVisible(true);
+    collectedTitle.setText("BluePint Collected");
+    collectedTitle.setVisible(true);
     blueprintInfo.setVisible(true);
   }
 
   private void activateCollectedInfoWindow() {
-    collectedLabel.setText("Window Collected");
-    collectedLabel.setVisible(true);
+    collectedTitle.setText("Window Collected");
+    collectedTitle.setVisible(true);
     windowInfo.setVisible(true);
   }
 
   public void exitInfo() {
+    collectedTitle.setVisible(false);
     collectedLabel.setVisible(false);
     blueprintInfo.setVisible(false);
     windowInfo.setVisible(false);
+    processMachineInfo.setVisible(false);
   }
 
   public void activateRootOneGlow() {
