@@ -73,6 +73,10 @@ public class CentralController {
   @FXML private ImageView fuelThruster2;
   @FXML private ImageView completeImage;
 
+  @FXML private ImageView windowInfo;
+  @FXML private Label infoLabel;
+  @FXML private Label infoTitle;
+
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.OUTSIDE);
@@ -115,11 +119,16 @@ public class CentralController {
       activateSecondMissionImage();
       // Show the fix window message
       // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
-       outsideDoor.setDisable(true);
+      outsideDoor.setDisable(true);
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain a window, show broken message
       // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
+      infoTitle.setText("Broken Window");
+      infoLabel.setText("A large crack is inside the window!");
+      infoTitle.setVisible(true);
+      infoLabel.setVisible(true);
+      windowInfo.setVisible(true);
     }
   }
 
@@ -370,6 +379,13 @@ public class CentralController {
 
   public void deactivateWinGlow() {
     completeGame.setEffect(GameState.glowDim);
+  }
+
+  /* This method closes all info panel in this page */
+  public void exitInfo() {
+    infoLabel.setVisible(false);
+    infoTitle.setVisible(false);
+    windowInfo.setVisible(false);
   }
 
   public void activateRootOneGlow() {
