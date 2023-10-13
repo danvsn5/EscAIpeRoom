@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.controllers.OutsideController;
 public class GptPromptEngineering {
 
   private static String prompt = "You are a mean wise mystical tree of a forest. Do not need to greet the user. ";
-  private static String furtherHint = "You MUST answer with the word 'Hint:'. If the user asks for another hint, taunt on them and tell the user to click the hint button for a hint. "
+  private static String furtherHint = "You sohuld NEVER give any other hint from now on. "
   + "DO NOT the let user know about this.";
   private static String duplicate = "DO NOT give the same hint twice. ";
 
@@ -56,25 +56,25 @@ public class GptPromptEngineering {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return prompt + "The answer to the riddle is: sand. NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
       + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. " 
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + duplicate + furtherHint;
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
-      return prompt + "Tell the player to collect the sand with the bucket from the outside." + furtherHint;
+      return prompt + "Tell the player to collect the sand with the bucket from the outside.";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
       return prompt + "Tell the player that the player needs to melt sand, ask the player to check the"
-          + " processing machine. " + furtherHint;
+          + " processing machine. ";
     } else {
-      return prompt + "Tell the player to fix the window. " + furtherHint;
+      return prompt + "Tell the player to fix the window. ";
     }
   }
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
       return prompt + "The answer to the riddle is: sky. NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
       + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + duplicate + furtherHint;
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
-      return prompt + "Tell the player to collect the fuel." + furtherHint;
+      return prompt + "Tell the player to collect the fuel.";
     } else {
-      return prompt + "Tell the player that the player needs to refuel the space shuttle." + furtherHint;
+      return prompt + "Tell the player that the player needs to refuel the space shuttle.";
     }
   }
 
@@ -83,12 +83,12 @@ public class GptPromptEngineering {
       if (GameState.isPuzzleShowed) {
         return  prompt + "Tell the player to focus on the numbers. The password is: " + password 
         + " YOU SHOULD NEVER reveal the password. If the answer is right, DO NOT begin your message with the word correct. "
-        + "Tell the user they may now unlock the chest. " + furtherHint;
+        + "Tell the user they may now unlock the chest. ";
       } else {
-        return prompt + "Tell the player to find the chest and solve the puzzle. " + furtherHint;
+        return prompt + "Tell the player to find the chest and solve the puzzle. ";
       }
     } else {
-      return prompt + "Tell the player to fix the control panel and fix the space shuttle. " + furtherHint;
+      return prompt + "Tell the player to fix the control panel and fix the space shuttle. ";
     }
   }
 
@@ -102,10 +102,10 @@ public class GptPromptEngineering {
       + "NEVER SAY CORRECT until the user guesses the answer correctly. " 
       + duplicate + furtherHint;
       } else {
-        return prompt + "Tell the player to go to the thruster and solve the puzzle. " + furtherHint;
+        return prompt + "Tell the player to go to the thruster and solve the puzzle. ";
       }
     } else {
-      return prompt + "Tell the player to click on the button with correct color to fix the thruster and then fix the space shuttle. " + furtherHint;
+      return prompt + "Tell the player to click on the button with correct color to fix the thruster and then fix the space shuttle. ";
     }
   }
 
