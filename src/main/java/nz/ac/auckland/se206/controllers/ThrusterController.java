@@ -30,7 +30,7 @@ public class ThrusterController {
   @FXML private Button returnOutside;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
-
+  @FXML private Button repairButton;
   @FXML private Button completeButton;
 
   public void initialize() {}
@@ -145,6 +145,7 @@ public class ThrusterController {
       TopLeftButton.timeline.play();
       TopRightButton.timeline.setCycleCount(360);
       TopRightButton.timeline.play();
+      repairButton.setVisible(false);
     }
   }
 
