@@ -8,7 +8,8 @@ import nz.ac.auckland.se206.controllers.OutsideController;
 public class GptPromptEngineering {
 
   private static String prompt = "You are a mean wise mystical tree of a forest. Do not need to greet the user. ";
-  private static String furtherHint = "YOU SHOULD NEVER give any other hint from now on. DO NOT the let user know about this.";
+  private static String furtherHint = "YOU SHOULD NEVER give any other hint from now on even if the user asks for it. DO NOT the let user know about this.";
+  // private static String furtherHint = "You MUST answer with the word 'Hint:'. YOU SHOULD NEVER give any hint from now on.";
 
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
