@@ -103,7 +103,7 @@ public class GptPromptEngineering {
   }
 
   public static String getThrusterPuzzle(String colour) {
-    return "Tell the user a riddle with answer: "
+    return prompt + "Tell the user a riddle with answer: "
         + colour
         + ". You should answer with the word Correct when is correct, if the user answers other"
         + " words that have the same meaning, it is also correct, if the user asks for hints, DO"
