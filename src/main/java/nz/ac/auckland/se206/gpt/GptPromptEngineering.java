@@ -8,8 +8,9 @@ import nz.ac.auckland.se206.controllers.OutsideController;
 public class GptPromptEngineering {
 
   private static String prompt = "You are a mean wise mystical tree of a forest. Do not need to greet the user. ";
-  private static String furtherHint = "YOU SHOULD NEVER give any other hint from now on even if the user asks for it. DO NOT the let user know about this.";
-  // private static String furtherHint = "You MUST answer with the word 'Hint:'. YOU SHOULD NEVER give any hint from now on.";
+  private static String furtherHint = "You MUST answer with the word 'Hint:'. If the user asks for another hint, taunt on them and tell the user to click the hint button for a hint. "
+  + "DO NOT the let user know about this.";
+  private static String duplicate = "DO NOT give the same hint twice. ";
 
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
@@ -53,9 +54,9 @@ public class GptPromptEngineering {
 
   private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return prompt + "The answer to the riddle is: sand. NEVER reveal the answer. Give the hint, not the riddle. Keep it short."
+      return prompt + "The answer to the riddle is: sand. NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
       + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. " 
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + duplicate + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return prompt + "Tell the player to collect the sand with the bucket from the outside." + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -67,9 +68,9 @@ public class GptPromptEngineering {
   }
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-      return prompt + "The answer to the riddle is: sky. NEVER reveal the answer. Give the hint, not the riddle. Keep it short."
+      return prompt + "The answer to the riddle is: sky. NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
       + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + duplicate + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return prompt + "Tell the player to collect the fuel." + furtherHint;
     } else {
@@ -97,9 +98,9 @@ public class GptPromptEngineering {
     } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
       if (OutsideController.thrusterPuzzleGenerate == 1) {
         return prompt + "The answer to the puzzle is: " + color 
-      + "NEVER reveal the answer. Give the hint. You should begin your message with the word Correct when user guesses the answer to the riddle correctly. "
+      + "NEVER REVEAL THE ANSWER. Give the hint. You should begin your message with the word Correct when user guesses the answer to the riddle correctly. "
       + "NEVER SAY CORRECT until the user guesses the answer correctly. " 
-      + furtherHint;
+      + duplicate + furtherHint;
       } else {
         return prompt + "Tell the player to go to the thruster and solve the puzzle. " + furtherHint;
       }
