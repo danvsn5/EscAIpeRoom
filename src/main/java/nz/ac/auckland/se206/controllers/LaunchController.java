@@ -273,11 +273,17 @@ public class LaunchController {
                     });
               } else if (timer.getRemainingPercentage() == 50) {
                 System.out.println("50% passed");
-                RootBorder.rootGrow();
+                Platform.runLater(
+                    () -> {
+                      RootBorder.rootGrow();
+                    });
 
               } else if (timer.getRemainingPercentage() == 25) {
                 System.out.println("75% passed");
-                RootBorder.rootGrow();
+                Platform.runLater(
+                    () -> {
+                      RootBorder.rootGrow();
+                    });
               }
 
               // Decrease the counter by 1 unit every 1 second
