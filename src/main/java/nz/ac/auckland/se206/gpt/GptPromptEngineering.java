@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.gpt;
 
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.controllers.OutsideController;
 
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
@@ -35,7 +36,7 @@ public class GptPromptEngineering {
       case FUEL: // fuel
         return fuelHint();
       case CONTROLLER: // controller
-        return controllerHint();
+        return controllerHint(GameState.passWord);
       default: // thruster by default
       if (GameState.randomColorNumber == 1) {
         return thrusterHint("purple");
@@ -52,8 +53,8 @@ public class GptPromptEngineering {
   private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return prompt + "The answer to the riddle is: sand. NEVER reveal the answer. Give the hint, not the riddle. Keep it short."
-      + "You should begin your answer with the word Correct when user guesses the answer correctly. " 
-      + "DO NOT say correct until the user guesses the answer correctly. " + furtherHint;
+      + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. " 
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return "Tell the player to collect the sand with the bucket from the outside." + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -67,8 +68,8 @@ public class GptPromptEngineering {
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
       return prompt + "The answer to the riddle is: sky. NEVER reveal the answer. Give the hint, not the riddle. Keep it short."
-      + "You should begin your answer with the word Correct when user guesses the answer correctly. "
-      + "DO NOT say correct until the user guesses the answer correctly. " + furtherHint;
+      + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
+      + "\"NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return "Tell the player to collect the fuel." + furtherHint;
     } else {
@@ -76,10 +77,12 @@ public class GptPromptEngineering {
     }
   }
 
-  private static String controllerHint() {
+  private static String controllerHint(int password) {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
       if (GameState.isPuzzleShowed) {
-        return  "Tell the player to focus on the numbers. " + furtherHint;
+        return  "Tell the player to focus on the numbers. The password is: " + password 
+        + " NEVER reveal the password. If the answer is right, DO NOT begin your message with the word correct. "
+        + "Tell the user they may now unlock the chest. " + furtherHint;
       } else {
         return "Tell the player to find the chest and solve the puzzle. " + furtherHint;
       }
@@ -92,11 +95,16 @@ public class GptPromptEngineering {
     if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
       return "Tell the player to find the blueprint in order to fix the thruster. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
-      return prompt + "The answer to the puzzle is: " + color 
-      + "NEVER reveal the answer. Give the hint. You should begin your answer with: 'Correct' only when user guesses the answer correctly. " 
+      if (OutsideController.thrusterPuzzleGenerate == 1) {
+        return prompt + "The answer to the puzzle is: " + color 
+      + "NEVER reveal the answer. Give the hint. You should begin your message with the word Correct when user guesses the answer to the riddle correctly. "
+      + "NEVER say correct until the user guesses the answer correctly. " 
       + furtherHint;
+      } else {
+        return "Tell the player to go to the thruster and solve the puzzle. " + furtherHint;
+      }
     } else {
-      return "Tell the player to click on the button with correct color";
+      return "Tell the player to click on the button with correct color. " + furtherHint;
     }
   }
 
@@ -112,7 +120,7 @@ public class GptPromptEngineering {
         + " subtraction math puzzle with the answer being: "
         + password
         + ". NEVER reveal the answer. If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
-        + " correct. tell the user they may now unlock the chest.";
+        + " correct. Tell the user they may now unlock the chest.";
   }
 
   public static String getThrusterPuzzle(String colour) {
