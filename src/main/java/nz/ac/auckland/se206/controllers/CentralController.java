@@ -44,6 +44,10 @@ public class CentralController {
   @FXML private Polygon rootOneCollisionBox2;
   @FXML private Polygon rootOneCollisionBox3;
   @FXML private Polygon rootOneCollisionBox4;
+  @FXML private Polygon rootTwoCollisionBox1;
+  @FXML private Polygon rootTwoCollisionBox2;
+  @FXML private Polygon rootTwoCollisionBox3;
+  @FXML private Polygon rootTwoCollisionBox4;
 
   @FXML private ImageView windowController1;
   @FXML private ImageView windowController2;
@@ -355,5 +359,19 @@ public class CentralController {
     rootOneCollisionBox2.setOpacity(0);
     rootOneCollisionBox3.setOpacity(0);
     rootOneCollisionBox4.setOpacity(0);
+  }
+
+  public void activateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(1);
+    rootTwoCollisionBox2.setOpacity(1);
+    rootTwoCollisionBox3.setOpacity(1);
+    rootTwoCollisionBox4.setOpacity(1);
+  }
+
+  public void deactivateRootTwoGlow() {
+    rootTwoCollisionBox1.setOpacity(0);
+    rootTwoCollisionBox2.setOpacity(0);
+    rootTwoCollisionBox3.setOpacity(0);
+    rootTwoCollisionBox4.setOpacity(0);
   }
 }
