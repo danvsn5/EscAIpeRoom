@@ -52,6 +52,7 @@ public class CentralController {
   @FXML private Polygon rootThreeCollisionBox2;
   @FXML private Polygon rootThreeCollisionBox3;
   @FXML private Polygon rootThreeCollisionBox4;
+  @FXML private Polygon rootThreeCollisionBox5;
   @FXML private Polygon rootFourCollisionBox1;
   @FXML private Polygon rootFourCollisionBox2;
   @FXML private Polygon rootFourCollisionBox3;
@@ -393,6 +394,7 @@ public class CentralController {
     rootThreeCollisionBox2.setOpacity(1);
     rootThreeCollisionBox3.setOpacity(1);
     rootThreeCollisionBox4.setOpacity(1);
+    rootThreeCollisionBox5.setOpacity(1);
   }
 
   public void deactivateRootThreeGlow() {
@@ -400,6 +402,7 @@ public class CentralController {
     rootThreeCollisionBox2.setOpacity(0);
     rootThreeCollisionBox3.setOpacity(0);
     rootThreeCollisionBox4.setOpacity(0);
+    rootThreeCollisionBox5.setOpacity(0);
   }
 
   public void activateRootFourGlow() {

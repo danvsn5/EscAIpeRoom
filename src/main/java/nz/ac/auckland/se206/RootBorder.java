@@ -97,6 +97,9 @@ public class RootBorder {
         SceneManager.getPanel(AppPanel.MAIN_ROOM)
             .lookup("#rootThreeCollisionBox4")
             .setVisible(true);
+        SceneManager.getPanel(AppPanel.MAIN_ROOM)
+            .lookup("#rootThreeCollisionBox5")
+            .setVisible(true);
         break;
       case 4:
         SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox1").setVisible(true);
@@ -139,6 +142,9 @@ public class RootBorder {
             .setVisible(false);
         SceneManager.getPanel(AppPanel.MAIN_ROOM)
             .lookup("#rootThreeCollisionBox4")
+            .setVisible(false);
+        SceneManager.getPanel(AppPanel.MAIN_ROOM)
+            .lookup("#rootThreeCollisionBox5")
             .setVisible(false);
         break;
     }
