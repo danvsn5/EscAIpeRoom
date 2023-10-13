@@ -37,6 +37,8 @@ public class OutsideController {
   @FXML private ImageView miniTree;
   @FXML private ImageView ship;
 
+  @FXML private Polygon sand;
+
   private int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
 
@@ -200,6 +202,14 @@ public class OutsideController {
       thruster1.setOpacity(0);
       thruster2.setOpacity(0);
     }
+  }
+
+  public void activateSandGlow() {
+    sand.setOpacity(1);
+  }
+
+  public void deactivateSandGlow() {
+    sand.setOpacity(0);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */
