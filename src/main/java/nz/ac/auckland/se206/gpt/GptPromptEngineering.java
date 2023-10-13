@@ -99,7 +99,7 @@ public class GptPromptEngineering {
         + " subtraction math puzzle with the answer being: "
         + password
         + " . NEVER reveal the answer. If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
-        + " 'Correct'. tell the user they may now unlock the chest.";
+        + " correct. tell the user they may now unlock the chest.";
   }
 
   public static String getThrusterPuzzle(String colour) {
