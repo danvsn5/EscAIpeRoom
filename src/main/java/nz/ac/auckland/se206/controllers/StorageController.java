@@ -46,10 +46,9 @@ public class StorageController {
   @FXML private Polygon chest;
   @FXML private Polygon glass;
 
-  @FXML private Rectangle collectedRectangle;
   @FXML private Label collectedLabel;
-  @FXML private ImageView collectedImgBluePrint;
-  @FXML private ImageView collectedImgWindow;
+  @FXML private ImageView blueprintInfo;
+  @FXML private ImageView windowInfo;
 
   private ChatMessage gptMessage;
   private boolean passwordGenerate = false;
@@ -105,7 +104,6 @@ public class StorageController {
   }
 
   public void collectBlueprint() {
-    collectedLabel.setText("BluePint Collected");
     activateCollectedInfoBluePrint();
     blueprint.setVisible(false);
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprint").setVisible(true);
@@ -123,18 +121,6 @@ public class StorageController {
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
-      SceneManager.showDialog("Info", "Glass collected", "A well-made window");
-    } else if (!GameState.inventory.contains(2) && GameState.missionList.contains(1)) { // if the
-      // inventory
-      // does not
-      // contain
-      // sand and
-      // the mission
-      // is the
-      // window
-      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace yet!");
-    } else {
-      SceneManager.showDialog("Info", "Furnace", "You do not need to use the furnace!");
     }
   }
 
@@ -153,10 +139,7 @@ public class StorageController {
   }
 
   public void collectGlass() {
-    collectedLabel.setText("Glass Collected");
     activateCollectedInfoWindow();
-    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
     GameState.inventory.add(3);
     glass.setVisible(false);
     glass.setDisable(true);
@@ -237,22 +220,21 @@ public class StorageController {
   }
 
   private void activateCollectedInfoBluePrint() {
+     collectedLabel.setText("BluePint Collected");
     collectedLabel.setVisible(true);
-    collectedImgBluePrint.setVisible(true);
-    collectedRectangle.setVisible(true);
+    blueprintInfo.setVisible(true);
   }
 
   private void activateCollectedInfoWindow() {
+    collectedLabel.setText("Window Collected");
     collectedLabel.setVisible(true);
-    collectedImgWindow.setVisible(true);
-    collectedRectangle.setVisible(true);
+    windowInfo.setVisible(true);
   }
 
   public void exitInfo() {
-    collectedRectangle.setVisible(false);
     collectedLabel.setVisible(false);
-    collectedImgBluePrint.setVisible(false);
-    collectedImgWindow.setVisible(false);
+    blueprintInfo.setVisible(false);
+    windowInfo.setVisible(false);
   }
 
   /* ======================================= GPT Helper Methods ======================================= */

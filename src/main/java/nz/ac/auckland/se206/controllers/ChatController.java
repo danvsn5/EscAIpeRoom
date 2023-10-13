@@ -542,19 +542,15 @@ public class ChatController {
     firstRiddleThread.start();
   }
 
-  public void collectFuel() {
-    GameState.inventory.add(8); // fuel collected
+  public void collect() {
+    if (GameState.missionList.contains(2)) {
+      GameState.inventory.add(8); // fuel collected
     GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
     GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
     System.out.println("Fuel Mission 2 Complete");
-    exitInfo();
-  }
-
-  public void collectSand() {
-    GameState.inventory.add(2);
-    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-    System.out.println("Collected sand");
+    } else if (GameState.missionList.contains(1)) {
+      GameState.isBucketCollected = true;
+    }
     exitInfo();
   }
 
@@ -829,8 +825,8 @@ public class ChatController {
   /* This method shows the sand info panel */
   public void showSand() {
     // Set the title and context of the info panel
-    collectedTitle.setText("Sand");
-    collectedLabel.setText("A pile of sand which can be melted into glass");
+    collectedTitle.setText("Bucket");
+    collectedLabel.setText("An empty bucket.\nCan be used to collect the sand.");
     // Show the sand info panel
     sandInfo.setVisible(true);
     collectedTitle.setVisible(true);
