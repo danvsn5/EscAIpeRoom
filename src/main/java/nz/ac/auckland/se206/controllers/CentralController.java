@@ -73,6 +73,12 @@ public class CentralController {
   @FXML private ImageView fuelThruster2;
   @FXML private ImageView completeImage;
 
+  @FXML private ImageView windowInfo;
+  @FXML private ImageView fuelInfo;
+  @FXML private ImageView controllerInfo;
+  @FXML private Label infoLabel;
+  @FXML private Label infoTitle;
+
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.OUTSIDE);
@@ -115,11 +121,16 @@ public class CentralController {
       activateSecondMissionImage();
       // Show the fix window message
       // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
-       outsideDoor.setDisable(true);
+      outsideDoor.setDisable(true);
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain a window, show broken message
       // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
+      infoTitle.setText("Broken Window");
+      infoLabel.setText("A large crack is inside the window");
+      infoTitle.setVisible(true);
+      infoLabel.setVisible(true);
+      windowInfo.setVisible(true);
     }
   }
 
@@ -143,12 +154,17 @@ public class CentralController {
       // activateChest();
       activateSecondMissionImage();
       // Show success message
-      SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
+      // SceneManager.showDialog("Info", "Fuel added", "Mission accomplished");
       outsideDoor.setDisable(true);
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain fuel, show error message
-      SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
+      // SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
+      infoTitle.setText("No Fuel");
+      infoLabel.setText("Internal fuel tank is empty");
+      infoTitle.setVisible(true);
+      infoLabel.setVisible(true);
+      fuelInfo.setVisible(true);
     }
   }
 
@@ -157,11 +173,16 @@ public class CentralController {
     // If the controller mission less than stage 0 (not having spare part on hand), show broken
     // controller message
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
-      SceneManager.showDialog(
-          "Info", "Broken Control Panel", "The control panel for the ship is broken!");
+      // SceneManager.showDialog(
+      //     "Info", "Broken Control Panel", "The control panel for the ship is broken!");
+      infoTitle.setText("Broken Control Panel");
+      infoLabel.setText("The control panel for the ship is broken");
+      infoTitle.setVisible(true);
+      infoLabel.setVisible(true);
+      controllerInfo.setVisible(true);
     } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
       // If the controller mission is at stage 2, indicating panel can be fixed, show message
-      SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      // SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
       // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
@@ -370,6 +391,15 @@ public class CentralController {
 
   public void deactivateWinGlow() {
     completeGame.setEffect(GameState.glowDim);
+  }
+
+  /* This method closes all info panel in this page */
+  public void exitInfo() {
+    infoLabel.setVisible(false);
+    infoTitle.setVisible(false);
+    windowInfo.setVisible(false);
+    fuelInfo.setVisible(false);
+    controllerInfo.setVisible(false);
   }
 
   public void activateRootOneGlow() {
