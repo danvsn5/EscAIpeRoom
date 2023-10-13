@@ -1,8 +1,5 @@
 package nz.ac.auckland.se206;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 /** This class controls all the root image in game */
@@ -10,24 +7,9 @@ public class RootBorder {
   // Record the current rootState
   public static int rootState = 1;
 
-  // Record the time passed to invoke method
-  public static Timeline treeTimelineTwo =
-      new Timeline(new KeyFrame(Duration.seconds(30), e -> rootGrow()));
-
-  public static Timeline treeTimelineFour =
-      new Timeline(new KeyFrame(Duration.seconds(60), e -> rootGrow()));
-
-  public static Timeline treeTimelineSix =
-      new Timeline(new KeyFrame(Duration.seconds(90), e -> rootGrow()));
-
-  /** Increase the Root state by 1 */
-  public static void incrementRootState() {
-    RootBorder.rootState++;
-  }
-
   /** Change the image of the root according to the current state */
   public static void rootGrow() {
-    incrementRootState();
+    rootState++;
     // Switch through different states
     switch (rootState) {
       case 2:
@@ -75,9 +57,15 @@ public class RootBorder {
     deactivateCollisionBox();
   }
 
-  private static void activateCollisionBox() {
+  public static void activateCollisionBox() {
     // Activate the collision box
     switch (rootState) {
+      case 1:
+        SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox1").setVisible(true);
+        SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox2").setVisible(true);
+        SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox3").setVisible(true);
+        SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootOneCollisionBox4").setVisible(true);
+        break;
       case 2:
         SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox1").setVisible(true);
         SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootTwoCollisionBox2").setVisible(true);
@@ -112,10 +100,12 @@ public class RootBorder {
         SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox8").setVisible(true);
         SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#rootFourCollisionBox9").setVisible(true);
         break;
+      default:
+        break;
     }
   }
 
-  private static void deactivateCollisionBox() {
+  public static void deactivateCollisionBox() {
     // Deactivate the collision box
     switch (rootState) {
       case 2:
@@ -146,6 +136,8 @@ public class RootBorder {
         SceneManager.getPanel(AppPanel.MAIN_ROOM)
             .lookup("#rootThreeCollisionBox5")
             .setVisible(false);
+        break;
+      default:
         break;
     }
   }
