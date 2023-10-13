@@ -9,8 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -83,27 +83,27 @@ public class OutsideController {
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("purple")));
-                                thrusterPuzzleGenerate = 1;
+                    thrusterPuzzleGenerate = 1;
                     break;
                   case 2:
                     gptMessage =
                         runGpt(
                             new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                            thrusterPuzzleGenerate = 1;
+                    thrusterPuzzleGenerate = 1;
                     break;
                   case 3:
                     gptMessage =
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("blue")));
-                                thrusterPuzzleGenerate = 1;
+                    thrusterPuzzleGenerate = 1;
                     break;
                   case 4:
                     gptMessage =
                         runGpt(
                             new ChatMessage(
                                 "user", GptPromptEngineering.getThrusterPuzzle("green")));
-                                thrusterPuzzleGenerate = 1;
+                    thrusterPuzzleGenerate = 1;
                     break;
                 }
                 Platform.runLater(() -> appendChatMessage(gptMessage));
@@ -149,8 +149,8 @@ public class OutsideController {
     TreeAvatar.deactivateTreeGlow();
     TreeAvatar.setTreeVisible();
     if (ChatController.seenFirstMessage == 0) {
-      RootBorder.deactivateCollisionBox();
-      RootBorder.activateCollisionBox();
+      RootBorder.deactivateAllCollisionBox();
+      RootBorder.activateAllCollisionBox();
       ChatController.seenFirstMessage = 1;
     }
 
@@ -228,17 +228,17 @@ public class OutsideController {
   public void collectSand() {
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
       GameState.inventory.add(2);
-    GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-    GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
-    collectedTitle.setText("Sand Collected");
-    collectedLabel.setText("A pile of sand, can be melted into glass.");
-    collectedLabel.setVisible(true);
-    collectedTitle.setVisible(true);
-    sandInfo.setVisible(true);
-    sand.setDisable(true);
-    sand.setVisible(false);
-    System.out.println("Sand collected");
-    GameState.isSandCollected = true;
+      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      collectedTitle.setText("Sand Collected");
+      collectedLabel.setText("A pile of sand, can be melted into glass.");
+      collectedLabel.setVisible(true);
+      collectedTitle.setVisible(true);
+      sandInfo.setVisible(true);
+      sand.setDisable(true);
+      sand.setVisible(false);
+      System.out.println("Sand collected");
+      GameState.isSandCollected = true;
     }
   }
 
