@@ -74,6 +74,7 @@ public class CentralController {
   @FXML private ImageView completeImage;
 
   @FXML private ImageView windowInfo;
+  @FXML private ImageView fuelInfo;
   @FXML private Label infoLabel;
   @FXML private Label infoTitle;
 
@@ -157,7 +158,12 @@ public class CentralController {
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain fuel, show error message
-      SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
+      // SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
+      infoTitle.setText("No Fuel");
+      infoLabel.setText("Internal fuel tank is empty!");
+      infoTitle.setVisible(true);
+      infoLabel.setVisible(true);
+      fuelInfo.setVisible(true);
     }
   }
 
@@ -386,6 +392,7 @@ public class CentralController {
     infoLabel.setVisible(false);
     infoTitle.setVisible(false);
     windowInfo.setVisible(false);
+    fuelInfo.setVisible(false);
   }
 
   public void activateRootOneGlow() {
