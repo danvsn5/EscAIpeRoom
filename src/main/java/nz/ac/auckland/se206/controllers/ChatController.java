@@ -93,7 +93,7 @@ public class ChatController {
     bubbleTimeline.setCycleCount(Timeline.INDEFINITE);
     notebookCollisionBox.setCursor(Cursor.OPEN_HAND);
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
-
+    hintButton.setDisable(true);
     inputText.setDisable(true);
     inputText.setStyle("-fx-background-color: transparent;");
     // Start thinking
@@ -163,6 +163,7 @@ public class ChatController {
           // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
+          hintButton.setDisable(false);
         });
 
     Thread mainRiddleThread = new Thread(introCall);
@@ -243,8 +244,8 @@ public class ChatController {
     }
     startThink();
     bubbleTimeline.play();
-
     inputText.setDisable(true);
+    hintButton.setDisable(true);
 
     // loading.setProgress(0);
     // loading.setVisible(true);
@@ -270,7 +271,6 @@ public class ChatController {
       listeningLabel.setVisible(false);
       if (GameState.getDifficulty() != 2) {
         hintButton.setVisible(true);
-        hintButton.setDisable(false);
         System.out.println("1");
         if (GameState.getDifficulty() == 1) {
           hintNumber.setVisible(true);
@@ -389,6 +389,7 @@ public class ChatController {
           // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
+          hintButton.setDisable(false);
         });
 
     Thread typeInThread = new Thread(typeCall);
@@ -494,7 +495,7 @@ public class ChatController {
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
-                    .setTemperature(0.5)
+                    .setTemperature(0.7)
                     .setTopP(0.2)
                     .setMaxTokens(150));
 
@@ -541,6 +542,7 @@ public class ChatController {
           inputText.setDisable(false);
           treeThinking.setVisible(false);
           treeTalking.setVisible(true);
+          hintButton.setDisable(false);
         });
 
     Thread firstRiddleThread = new Thread(firstRiddleTask);
@@ -667,11 +669,11 @@ public class ChatController {
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
     if (GameState.hintUsedUp()) {
-      SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
+      // SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
       return;
     }
     if (isGenerating) {
-      SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
+      // SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
       return;
     }
     if (!GameState.isFirstMissionCompleted) {
@@ -692,6 +694,11 @@ public class ChatController {
       }
     }
     GameState.useHint();
+    if (GameState.hintUsedUp()) {
+      hintNumber.setVisible(false);
+      hintRectangle.setVisible(false);
+      hintButton.setVisible(false);
+    }
   }
 
   private void askByStage(MISSION missionType) {
@@ -699,6 +706,7 @@ public class ChatController {
     inputText.setDisable(true);
     startThink();
     bubbleTimeline.play();
+    hintButton.setDisable(true);
     // loading.setVisible(true);
     // loadingCircle.setFill(Color.LIGHTGRAY);
 
@@ -714,8 +722,8 @@ public class ChatController {
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
-                    .setTopP(0.7)
-                    .setMaxTokens(150);
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
             gptMessage.setRole("Wise Ancient Tree");
@@ -744,6 +752,7 @@ public class ChatController {
           // loadingCircle.setFill(Color.valueOf("264f31"));
           inputText.setDisable(false);
           startTalk();
+          hintButton.setDisable(false);
         });
 
     Thread hintThread = new Thread(hintTask);

@@ -43,7 +43,7 @@ public class OutsideController {
   @FXML private Label collectedLabel;
   @FXML private Label collectedTitle;
 
-  private int thrusterPuzzleGenerate = 0;
+  public static int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was

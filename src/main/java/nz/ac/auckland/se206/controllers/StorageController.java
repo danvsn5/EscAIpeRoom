@@ -65,6 +65,7 @@ public class StorageController {
   @FXML private Polygon bridgeDoor;
   @FXML private Polygon chest;
   @FXML private Polygon glass;
+  @FXML private Polygon blueprintCollisionBox;
 
   @FXML private Label collectedTitle;
   @FXML private Label collectedLabel;
@@ -131,7 +132,10 @@ public class StorageController {
 
   public void collectBlueprint() {
     activateCollectedInfoBluePrint();
+    // Hide the blueprint image and collision box
     blueprint.setVisible(false);
+    blueprintCollisionBox.setVisible(false);
+    // Set the blueprint image in thruster room to visible
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprintBackground").setVisible(true);
     // 1: purple    2: blue     3: red    4: green
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
@@ -232,6 +236,14 @@ public class StorageController {
 
   public void deactivateGlassGlow() {
     glass.setOpacity(0);
+  }
+
+  public void activateBlueprintGlow() {
+    blueprintCollisionBox.setOpacity(1);
+  }
+
+  public void deactivateBlueprintGlow() {
+    blueprintCollisionBox.setOpacity(0);
   }
 
   public void goChat() {
