@@ -36,6 +36,8 @@ public class GameState {
   public static boolean isBucketCollected = false;
   public static boolean isSandCollected = false;
 
+  public static boolean isPuzzleShowed = false;
+
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
   // 0: hammer

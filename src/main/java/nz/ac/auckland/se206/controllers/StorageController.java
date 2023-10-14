@@ -7,13 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
-import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -67,9 +65,11 @@ public class StorageController {
   @FXML private Polygon chest;
   @FXML private Polygon glass;
 
+  @FXML private Label collectedTitle;
   @FXML private Label collectedLabel;
   @FXML private ImageView blueprintInfo;
   @FXML private ImageView windowInfo;
+  @FXML private ImageView processMachineInfo;
 
   private ChatMessage gptMessage;
   private boolean passwordGenerate = false;
@@ -84,11 +84,12 @@ public class StorageController {
   }
 
   public void goToChest() {
-    // if (passwordGenerate || !GameState.firstRiddleSolved) {
-    //   App.setUi(AppPanel.CHEST);
-    //   return;
-    // }
-    if (GameState.isFirstMissionCompleted == true) {
+    if (passwordGenerate || !GameState.isFirstMissionCompleted) {
+      App.setUi(AppPanel.CHEST);
+      return;
+    }
+    if (!GameState.isPuzzleShowed) {
+
       GameState.generatePassWord();
       System.out.println(GameState.passWord);
       // SceneManager.showDialog("Info", "+", "What does this mean?");
@@ -119,7 +120,10 @@ public class StorageController {
       Thread secondRiddleThread = new Thread(riddleSecondCall);
       secondRiddleThread.start();
       passwordGenerate = true;
-      TreeAvatar.treeFlash.play();
+      // TreeAvatar.treeFlash.play();
+      GameState.isPuzzleShowed = true;
+      App.setUi(AppPanel.CHEST);
+    } else {
       App.setUi(AppPanel.CHEST);
     }
   }
@@ -141,6 +145,12 @@ public class StorageController {
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
+    } else {
+      collectedTitle.setText("Process Machine");
+      collectedLabel.setText("High tech process machine, can make ingredients into product");
+      collectedTitle.setVisible(true);
+      collectedLabel.setVisible(true);
+      processMachineInfo.setVisible(true);
     }
   }
 
@@ -224,8 +234,8 @@ public class StorageController {
   }
 
   public void goChat() {
-    TreeAvatar.treeFlash.pause();
-    TreeAvatar.deactivateTreeGlow();
+    // TreeAvatar.treeFlash.pause();
+    // TreeAvatar.deactivateTreeGlow();
     SceneManager.setPrevious(AppPanel.STORAGE);
 
     App.setUi(AppPanel.CHAT);
@@ -240,21 +250,23 @@ public class StorageController {
   }
 
   private void activateCollectedInfoBluePrint() {
-     collectedLabel.setText("BluePint Collected");
-    collectedLabel.setVisible(true);
+    collectedTitle.setText("BluePint Collected");
+    collectedTitle.setVisible(true);
     blueprintInfo.setVisible(true);
   }
 
   private void activateCollectedInfoWindow() {
-    collectedLabel.setText("Window Collected");
-    collectedLabel.setVisible(true);
+    collectedTitle.setText("Window Collected");
+    collectedTitle.setVisible(true);
     windowInfo.setVisible(true);
   }
 
   public void exitInfo() {
+    collectedTitle.setVisible(false);
     collectedLabel.setVisible(false);
     blueprintInfo.setVisible(false);
     windowInfo.setVisible(false);
+    processMachineInfo.setVisible(false);
   }
 
   public void activateRootOneGlow() {
