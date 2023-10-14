@@ -165,7 +165,7 @@ public class OutsideController {
   }
 
   public void goChat() {
-    // TreeAvatar.treeFlash.pause();
+    TreeAvatar.treeFlash.pause();
     // TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.OUTSIDE);
