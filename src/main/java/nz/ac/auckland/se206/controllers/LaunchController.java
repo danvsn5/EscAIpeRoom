@@ -147,8 +147,11 @@ public class LaunchController {
                     + " and then "
                     + mission2
                     + ".\nFind me outside for the clue to the first step!";
-
-            ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#guideLabel")).setText(text);
+            Platform.runLater(
+                () -> {
+                  ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#guideLabel"))
+                      .setText(text);
+                });
 
             // String mission1;
 
