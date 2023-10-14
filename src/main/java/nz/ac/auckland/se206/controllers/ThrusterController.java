@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -30,8 +31,13 @@ public class ThrusterController {
   @FXML private Button returnOutside;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
-
+  @FXML private Button repairButton;
   @FXML private Button completeButton;
+
+  @FXML private ImageView thrusterRoot;
+  @FXML private Polygon rootCollisionBox1;
+  @FXML private Polygon rootCollisionBox2;
+  @FXML private Polygon rootCollisionBox3;
 
   public void initialize() {}
 
@@ -145,6 +151,7 @@ public class ThrusterController {
       TopLeftButton.timeline.play();
       TopRightButton.timeline.setCycleCount(360);
       TopRightButton.timeline.play();
+      repairButton.setVisible(false);
     }
   }
 
@@ -175,6 +182,18 @@ public class ThrusterController {
     progressButton.setEffect(GameState.glowDim);
   }
 
+  public void activateRootGlow() {
+    rootCollisionBox1.setOpacity(1);
+    rootCollisionBox2.setOpacity(1);
+    rootCollisionBox3.setOpacity(1);
+  }
+
+  public void deactivateRootGlow() {
+    rootCollisionBox1.setOpacity(0);
+    rootCollisionBox2.setOpacity(0);
+    rootCollisionBox3.setOpacity(0);
+  }
+
   public void checkCompletion() {
     if (buttonActivationCounter == 4) {
       completeButton.setDisable(false);
@@ -194,5 +213,8 @@ public class ThrusterController {
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(true);
     completeButton.setDisable(true);
     completeButton.setVisible(false);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideImage").setVisible(true);
+    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(false);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeImage").setVisible(true);
   }
 }
