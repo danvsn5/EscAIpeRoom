@@ -494,7 +494,7 @@ public class ChatController {
             setChatCompletionRequest(
                 new ChatCompletionRequest()
                     .setN(1)
-                    .setTemperature(0.5)
+                    .setTemperature(0.7)
                     .setTopP(0.2)
                     .setMaxTokens(150));
 
@@ -714,8 +714,8 @@ public class ChatController {
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
-                    .setTopP(0.7)
-                    .setMaxTokens(150);
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
             gptMessage.setRole("Wise Ancient Tree");
