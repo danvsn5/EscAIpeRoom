@@ -27,6 +27,10 @@ public class TreeAvatar {
     // If the tree state is 0, indicating the tree is dim, set them to bright
     if (treeState == 0) {
 
+      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setOpacity(1);
+      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setOpacity(1);
+      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setOpacity(1);
+
       switch (RootBorder.rootState) {
         case 1:
           rootOneActivate();
@@ -46,6 +50,9 @@ public class TreeAvatar {
       treeState = 1;
     } else {
       // If the tree state is 1, indicating the tree is bright, set them to dim
+      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setOpacity(0);
+      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setOpacity(0);
+      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setOpacity(0);
       switch (RootBorder.rootState) {
         case 1:
           rootOneDeactivate();

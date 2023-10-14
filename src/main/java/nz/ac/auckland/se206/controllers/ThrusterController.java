@@ -8,6 +8,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.buttons.BottomLeftButton;
 import nz.ac.auckland.se206.buttons.BottomRightButton;
 import nz.ac.auckland.se206.buttons.TopLeftButton;
@@ -152,7 +153,7 @@ public class ThrusterController {
   }
 
   public void goChat() {
-    // TreeAvatar.treeFlash.pause();
+    TreeAvatar.treeFlash.pause();
     // TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.THRUSTER);

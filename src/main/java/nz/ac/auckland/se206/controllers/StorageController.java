@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -120,7 +121,7 @@ public class StorageController {
       Thread secondRiddleThread = new Thread(riddleSecondCall);
       secondRiddleThread.start();
       passwordGenerate = true;
-      // TreeAvatar.treeFlash.play();
+      TreeAvatar.treeFlash.play();
       GameState.isPuzzleShowed = true;
       App.setUi(AppPanel.CHEST);
     } else {
@@ -234,7 +235,7 @@ public class StorageController {
   }
 
   public void goChat() {
-    // TreeAvatar.treeFlash.pause();
+    TreeAvatar.treeFlash.pause();
     // TreeAvatar.deactivateTreeGlow();
     SceneManager.setPrevious(AppPanel.STORAGE);
 
