@@ -75,6 +75,7 @@ public class ChatController {
       new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
 
   public static ChatCompletionRequest chatCompletionRequest;
+  public static ChatCompletionRequest hintChatCompletionRequest;
   public static ChatMessage firstMesage;
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
@@ -856,5 +857,22 @@ public class ChatController {
     fuelInfo.setVisible(true);
     collectedTitle.setVisible(true);
     collectedLabel.setVisible(true);
+  }
+
+  private void initializeCompletionRequest() {
+    chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
+    hintChatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
+  }
+
+  private ChatMessage getResponse(
+      String message, ChatCompletionRequest currentChatCompletionRequest) throws ApiProxyException {
+    ChatMessage msg = new ChatMessage("Me", message);
+    currentChatCompletionRequest.addMessage(msg);
+    ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+    Choice result = chatCompletionResult.getChoices().iterator().next();
+    currentChatCompletionRequest.addMessage(result.getChatMessage());
+    return new ChatMessage("Wise ancient tree", result.getChatMessage().getContent());
   }
 }
