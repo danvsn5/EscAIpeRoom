@@ -146,7 +146,7 @@ public class OutsideController {
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
     TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.deactivateTreeGlow();
     if (ChatController.seenFirstMessage == 0) {
       RootBorder.deactivateAllCollisionBox();
       RootBorder.activateAllCollisionBox();
@@ -166,7 +166,7 @@ public class OutsideController {
 
   public void goChat() {
     TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.OUTSIDE);
   }

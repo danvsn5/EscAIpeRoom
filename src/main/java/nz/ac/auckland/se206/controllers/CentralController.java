@@ -295,7 +295,7 @@ public class CentralController {
     // This method set the panel to chat
     // Stop the tree flashing
     TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.deactivateTreeGlow();
 
     // If the first mission is completed, show the second guide message
     if (GameState.isFirstMissionCompleted && !GameState.isSecondGuideShown) {

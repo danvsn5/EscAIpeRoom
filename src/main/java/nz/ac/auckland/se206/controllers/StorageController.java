@@ -248,7 +248,7 @@ public class StorageController {
 
   public void goChat() {
     TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.deactivateTreeGlow();
     SceneManager.setPrevious(AppPanel.STORAGE);
 
     App.setUi(AppPanel.CHAT);

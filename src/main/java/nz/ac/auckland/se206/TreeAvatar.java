@@ -80,11 +80,16 @@ public class TreeAvatar {
 
   /** Deactivate the minitree icon glow in each panel */
   public static void deactivateTreeGlow() {
-    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#miniTree").setEffect(glowDim);
-    SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#miniTree").setEffect(glowDim);
-    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#miniTree").setEffect(glowDim);
-    SceneManager.getPanel(AppPanel.CHEST).lookup("#miniTree").setEffect(glowDim);
-    SceneManager.getPanel(AppPanel.STORAGE).lookup("#miniTree").setEffect(glowDim);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setOpacity(0);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox1").setOpacity(0);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox2").setOpacity(0);
+    SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox3").setOpacity(0);
+    rootFourDeactivate();
+    rootOneDeactivate();
+    rootThreeDeactivate();
+    rootTwoDeactivate();
   }
 
   /** Set the minitree icon in each panel to visible */

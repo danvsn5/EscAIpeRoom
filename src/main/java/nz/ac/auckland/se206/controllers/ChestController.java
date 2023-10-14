@@ -168,7 +168,7 @@ public class ChestController {
   /** This method is invoked when the player clicks the mini tree and goes to chat room */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.CHEST);
   }

@@ -161,7 +161,7 @@ public class ThrusterController {
 
   public void goChat() {
     TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.THRUSTER);
   }
