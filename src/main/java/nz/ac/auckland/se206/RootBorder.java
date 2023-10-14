@@ -105,6 +105,9 @@ public class RootBorder {
       default:
         break;
     }
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setVisible(true);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setVisible(true);
+    SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setVisible(true);
   }
 
   public static void deactivateShipRootCollisionBox(AppPanel panel) {

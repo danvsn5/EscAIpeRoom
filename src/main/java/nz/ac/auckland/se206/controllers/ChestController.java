@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -30,6 +31,11 @@ public class ChestController {
   @FXML private ImageView controlPanelInfo;
   @FXML private Label collectedLabel;
   @FXML private Label collectedTitle;
+
+  @FXML private ImageView chestRoot;
+  @FXML private Polygon rootCollisionBox1;
+  @FXML private Polygon rootCollisionBox2;
+  @FXML private Polygon rootCollisionBox3;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
@@ -144,6 +150,18 @@ public class ChestController {
 
   public void thirdDigitDark() {
     thirdDigitHighlight.setOpacity(0);
+  }
+
+  public void activateRootGlow() {
+    rootCollisionBox1.setOpacity(1);
+    rootCollisionBox2.setOpacity(1);
+    rootCollisionBox3.setOpacity(1);
+  }
+
+  public void deactivateRootGlow() {
+    rootCollisionBox1.setOpacity(0);
+    rootCollisionBox2.setOpacity(0);
+    rootCollisionBox3.setOpacity(0);
   }
 
   /** This method is invoked when the player clicks the mini tree and goes to chat room */
