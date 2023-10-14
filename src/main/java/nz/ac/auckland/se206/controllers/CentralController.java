@@ -2,13 +2,11 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
@@ -19,9 +17,9 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class CentralController {
 
-  @FXML private Button okButton;
   @FXML private Label counter;
   @FXML private Label guideLabel;
+  @FXML private ImageView guideImage;
   @FXML private ImageView outside;
   @FXML private ImageView storage;
   @FXML private ImageView progressButton;
@@ -32,7 +30,6 @@ public class CentralController {
   @FXML private ImageView chest;
   @FXML private ImageView miniTree;
   @FXML private ImageView completeGame;
-  @FXML private Rectangle guideWindow;
 
   @FXML private Polygon outsideDoor;
   @FXML private Polygon storageDoor;
@@ -364,11 +361,9 @@ public class CentralController {
     miniTree.setEffect(GameState.glowDim);
   }
 
-  public void okBtnPressed() {
-    guideWindow.setVisible(false);
+  public void hideGuide() {
+    guideImage.setVisible(false);
     guideLabel.setVisible(false);
-    okButton.setVisible(false);
-    okButton.setDisable(true);
   }
 
   /**
@@ -381,10 +376,7 @@ public class CentralController {
   @FXML
   public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
     if (event.getCode().toString().equals("ENTER") || event.getCode().toString().equals("ESCAPE")) {
-      guideWindow.setVisible(false);
-      guideLabel.setVisible(false);
-      okButton.setVisible(false);
-      okButton.setDisable(true);
+      hideGuide();
     }
   }
 
