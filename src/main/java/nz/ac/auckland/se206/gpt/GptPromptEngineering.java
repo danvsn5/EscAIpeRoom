@@ -9,8 +9,9 @@ public class GptPromptEngineering {
 
   private static String prompt = "You are a mean wise mystical tree of a forest. Do not need to greet the user. ";
   private static String furtherHint = "You sohuld NEVER give any other hint from now on. "
-  + "DO NOT the let user know about this.";
+  + "DO NOT the let user know about this. ";
   private static String duplicate = "DO NOT give the same hint twice. ";
+  private static String oneSentence = "Say this in one sentence.";
 
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
@@ -58,12 +59,12 @@ public class GptPromptEngineering {
       + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. " 
       + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
-      return prompt + "Tell the player to collect the sand with the bucket from the outside.";
+      return prompt + "Tell the player to collect the sand with the bucket from the outside. " + oneSentence;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
       return prompt + "Tell the player that the player needs to melt sand, ask the player to check the"
-          + " processing machine. ";
+          + " processing machine. " + oneSentence;
     } else {
-      return prompt + "Tell the player to fix the window. ";
+      return prompt + "Tell the player to fix the window. " + oneSentence;
     }
   }
   private static String fuelHint() { // comment
@@ -72,9 +73,9 @@ public class GptPromptEngineering {
       + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
       + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
-      return prompt + "Tell the player to collect the fuel.";
+      return prompt + "Tell the player to collect the fuel. " + oneSentence;
     } else {
-      return prompt + "Tell the player that the player needs to refuel the space shuttle.";
+      return prompt + "Tell the player that the player needs to refuel the space shuttle. " + oneSentence;
     }
   }
 
@@ -85,10 +86,10 @@ public class GptPromptEngineering {
         + " YOU SHOULD NEVER reveal the password. If the answer is right, DO NOT begin your message with the word correct. "
         + "Tell the user they may now unlock the chest. ";
       } else {
-        return prompt + "Tell the player to find the chest and solve the puzzle. ";
+        return prompt + "Tell the player to find the chest and solve the puzzle. " + oneSentence;
       }
     } else {
-      return prompt + "Tell the player to fix the control panel and fix the space shuttle. ";
+      return prompt + "Tell the player to fix the control panel and fix the space shuttle. " + oneSentence;
     }
   }
 
@@ -102,10 +103,10 @@ public class GptPromptEngineering {
       + "NEVER SAY CORRECT until the user guesses the answer correctly. " 
       + duplicate + furtherHint;
       } else {
-        return prompt + "Tell the player to go to the thruster and solve the puzzle. ";
+        return prompt + "Tell the player to go to the thruster and solve the puzzle. " + oneSentence;
       }
     } else {
-      return prompt + "Tell the player to click on the button with correct color to fix the thruster and then fix the space shuttle. ";
+      return prompt + "Tell the player to click on the button with correct color to fix the thruster and then fix the space shuttle. " + oneSentence;
     }
   }
 
