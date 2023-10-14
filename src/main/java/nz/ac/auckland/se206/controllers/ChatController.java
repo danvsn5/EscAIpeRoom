@@ -85,28 +85,30 @@ public class ChatController {
   private int secondMission;
 
   /**
-   * Initializes the chat view, // loading the riddle.
+   * Initializes settings for images in chat room, greets the gpt
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    // Set up thinking bubble, notebook, chat area, hint button, input text field
     bubbleTimeline.setCycleCount(Timeline.INDEFINITE);
     notebookCollisionBox.setCursor(Cursor.OPEN_HAND);
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
     hintButton.setDisable(true);
     inputText.setDisable(true);
     inputText.setStyle("-fx-background-color: transparent;");
-    // Start thinking
-    startThink();
 
-    // loading.setVisible(true);
-    // loadingCircle.setFill(Color.LIGHTGRAY);
+    // Disable the old loading effect
     loading.setVisible(false);
     loadingCircle.setVisible(false);
 
-    String mission1;
+    // Start thinking
+    startThink();
+    initializeCompletionRequest();
 
+    // Get the intro message for mission 1
+    String mission1;
     if (GameState.missionListA.contains(1)) {
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
@@ -124,49 +126,37 @@ public class ChatController {
       chatLabel.setText(mission1);
     }
 
+    // This task greets gpt, the message generated is not shown
     Task<Void> introCall =
         new Task<Void>() {
-
           @Override
           protected Void call() throws Exception {
-
+            // Start generating
             isGenerating = true;
-            chatCompletionRequest =
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.7)
-                    .setMaxTokens(100);
-            // runs the initial gpt compulsory message for working. message does not get appended to
-            // the chat box and TTS is NOT applied to this message.
-            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.introCall()));
-
-            /* ================================== MESSAGE DOES NOT GET APPENDED ================================= */
-            // appendChatMessage(gptMessage);
-
+            // Greets gpt, this message is not shown or use TTS
+            gptMessage = getResponse(GptPromptEngineering.introCall(), chatCompletionRequest);
             return null;
           }
         };
-    // loading.progressProperty().bind(introCall.progressProperty());
 
+    // When the intro thread is finished
     introCall.setOnSucceeded(
         e -> {
+          // Stop generating
           isGenerating = false;
+          // Stop the thinking animation
           smallBubble.setVisible(false);
           medBubble.setVisible(false);
           largeBubble.setVisible(false);
           bubbleTimeline.pause();
-          System.out.println("timeline should have stopped");
           bubbleVariable = 0;
-          // End thinking, start talking
-          // loading.progressProperty().unbind();
-          // loading.setVisible(false);
-          // loadingCircle.setFill(Color.valueOf("264f31"));
-          inputText.setDisable(false);
           startTalk();
+          // Activate hint and input text field
+          inputText.setDisable(false);
           hintButton.setDisable(false);
         });
 
+    // Start the thread
     Thread mainRiddleThread = new Thread(introCall);
     mainRiddleThread.start();
   }
@@ -866,13 +856,17 @@ public class ChatController {
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
   }
 
-  private ChatMessage getResponse(
-      String message, ChatCompletionRequest currentChatCompletionRequest) throws ApiProxyException {
-    ChatMessage msg = new ChatMessage("Me", message);
-    currentChatCompletionRequest.addMessage(msg);
-    ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+  private ChatMessage getResponse(String message, ChatCompletionRequest currentCompletionRequest)
+      throws ApiProxyException {
+    // Turn string message into chatmessage form
+    ChatMessage msg = new ChatMessage("user", message);
+    getChatCompletionRequest().addMessage(msg);
+    // Generate result from gpt
+    ChatCompletionResult chatCompletionResult = currentCompletionRequest.execute();
     Choice result = chatCompletionResult.getChoices().iterator().next();
-    currentChatCompletionRequest.addMessage(result.getChatMessage());
-    return new ChatMessage("Wise ancient tree", result.getChatMessage().getContent());
+    // Set the result's role to Wise tree
+    currentCompletionRequest.addMessage(result.getChatMessage());
+    result.getChatMessage().setRole("assistant");
+    return result.getChatMessage();
   }
 }
