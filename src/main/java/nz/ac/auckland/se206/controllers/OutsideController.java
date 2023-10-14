@@ -116,7 +116,7 @@ public class OutsideController {
 
         Thread secondRiddleThread = new Thread(riddleSecondCall);
         secondRiddleThread.start();
-        // TreeAvatar.treeFlash.play();
+        TreeAvatar.treeFlash.play();
       }
       App.setUi(AppPanel.THRUSTER);
     }

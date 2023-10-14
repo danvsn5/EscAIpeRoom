@@ -30,6 +30,9 @@ public class TreeAvatar {
       SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setOpacity(1);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setOpacity(1);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setOpacity(1);
+      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox1").setOpacity(1);
+      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox2").setOpacity(1);
+      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox3").setOpacity(1);
 
       switch (RootBorder.rootState) {
         case 1:
@@ -53,6 +56,10 @@ public class TreeAvatar {
       SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setOpacity(0);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setOpacity(0);
       SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setOpacity(0);
+      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox1").setOpacity(0);
+      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox2").setOpacity(0);
+      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox3").setOpacity(0);
+
       switch (RootBorder.rootState) {
         case 1:
           rootOneDeactivate();
