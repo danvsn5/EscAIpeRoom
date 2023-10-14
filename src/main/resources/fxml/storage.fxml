@@ -21,7 +21,7 @@
             <Image url="@../images/Storage/Storage-WindowController.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="controller2" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="controller2" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Storage/Storage-ChestOpen.png" />
          </image>
@@ -36,7 +36,7 @@
             <Image url="@../images/Storage/Storage-WindowThruster.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blueprint" disable="true" fitHeight="87.0" fitWidth="99.0" layoutX="936.0" layoutY="491.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="blueprint" fitHeight="720.0" fitWidth="1280.0" layoutX="-28.0" layoutY="-1.0" onMouseClicked="#collectBlueprint" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blueprint.png" />
          </image>
