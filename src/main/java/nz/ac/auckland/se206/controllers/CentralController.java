@@ -192,6 +192,9 @@ public class CentralController {
       GameState.isSecondMissionCompleted = true;
       // Show the complete image
       completeImage.setVisible(true);
+      // Hide the controller
+      controllerBroken1.setVisible(false);
+      controllerBroken2.setVisible(false);
     }
   }
 

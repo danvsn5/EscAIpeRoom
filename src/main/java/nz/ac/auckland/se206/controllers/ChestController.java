@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -25,7 +26,16 @@ public class ChestController {
   @FXML private Rectangle thirdDigitHighlight;
   @FXML private ImageView progressButton;
   @FXML private ImageView miniTree;
+  @FXML private ImageView chestWrongImage;
   @FXML private ImageView chestOpenImage;
+  @FXML private ImageView controlPanelInfo;
+  @FXML private Label collectedLabel;
+  @FXML private Label collectedTitle;
+
+  @FXML private ImageView chestRoot;
+  @FXML private Polygon rootCollisionBox1;
+  @FXML private Polygon rootCollisionBox2;
+  @FXML private Polygon rootCollisionBox3;
 
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
@@ -42,6 +52,7 @@ public class ChestController {
   }
 
   public void firstDigitUp() {
+    chestWrongImage.setVisible(false);
     firstDigitNum++;
     if (firstDigitNum >= 10) {
       firstDigitNum = 0;
@@ -50,6 +61,7 @@ public class ChestController {
   }
 
   public void secondDigitUp() {
+    chestWrongImage.setVisible(false);
     secondDigitNum++;
     if (secondDigitNum >= 10) {
       secondDigitNum = 0;
@@ -58,6 +70,7 @@ public class ChestController {
   }
 
   public void thirdDigitUp() {
+    chestWrongImage.setVisible(false);
     thirdDigitNum++;
     if (thirdDigitNum >= 10) {
       thirdDigitNum = 0;
@@ -76,11 +89,18 @@ public class ChestController {
       // If the player is correct, update the progress and disable the lock
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
-      SceneManager.showDialog(
-          "Info", "Control panel collected", "The spare part of the controller");
+      // SceneManager.showDialog(
+      //     "Info", "Control panel collected", "The spare part of the controller");
+
+      collectedTitle.setText("Control panel");
+      collectedLabel.setText("The spare part of the controller");
+      collectedTitle.setVisible(true);
+      collectedLabel.setVisible(true);
+      controlPanelInfo.setVisible(true);
       disableLock();
     } else {
-      SceneManager.showDialog("Info", "Wrong password", "Access denied");
+      // SceneManager.showDialog("Info", "Wrong password", "Access denied");
+      chestWrongImage.setVisible(true);
     }
   }
 
@@ -132,6 +152,18 @@ public class ChestController {
     thirdDigitHighlight.setOpacity(0);
   }
 
+  public void activateRootGlow() {
+    rootCollisionBox1.setOpacity(1);
+    rootCollisionBox2.setOpacity(1);
+    rootCollisionBox3.setOpacity(1);
+  }
+
+  public void deactivateRootGlow() {
+    rootCollisionBox1.setOpacity(0);
+    rootCollisionBox2.setOpacity(0);
+    rootCollisionBox3.setOpacity(0);
+  }
+
   /** This method is invoked when the player clicks the mini tree and goes to chat room */
   public void goChat() {
     // TreeAvatar.treeFlash.pause();
@@ -146,5 +178,11 @@ public class ChestController {
 
   public void miniTreeDim() {
     miniTree.setEffect(GameState.glowDim);
+  }
+
+  public void exitInfo() {
+    collectedTitle.setVisible(false);
+    collectedLabel.setVisible(false);
+    controlPanelInfo.setVisible(false);
   }
 }
