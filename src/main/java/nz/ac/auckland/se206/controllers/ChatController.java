@@ -184,7 +184,7 @@ public class ChatController {
     chatLabel.setText(msg.getContent());
   }
 
-  private void appendChatMessageArea(ChatMessage msg) {
+  private void appendToNotebook(ChatMessage msg) {
     chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
   }
 
@@ -228,49 +228,33 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    // If gpt is generating or the input is empty, return
     if (isGenerating) {
       return;
     } else if (inputText.getText().trim().isEmpty()) {
       return;
     }
+
+    // Start thinking animation, disable input text field and hint button
     startThink();
     bubbleTimeline.play();
     inputText.setDisable(true);
     hintButton.setDisable(true);
 
-    // loading.setProgress(0);
-    // loading.setVisible(true);
-    // loadingCircle.setFill(Color.LIGHTGRAY);
-
+    // Get the input
     String message = inputText.getText();
-    System.out.println(message);
-    if (message.trim().isEmpty()) {
-      inputText.setDisable(false);
-      return;
-    }
     inputText.clear();
 
-    // Start listen
-    // // loadingCircle.setFill(Color.LIGHTGRAY);
-    // loading.setProgress(0);
-    // loading.setVisible(true);
-    // startListen();
+    // Append the input to notebook
+    appendToNotebook(new ChatMessage("Me", message));
 
+    // If this is the first time answering, generate first riddle
     if (!GameState.isGreetingShown && !GameState.isFirstMissionCompleted) {
-      generateFirstRiddle(message);
+      getMissionId();
+      activateHintButton();
+      generateFirstRiddle();
       GameState.isGreetingShown = true;
       listeningLabel.setVisible(false);
-      if (GameState.getDifficulty() != 2) {
-        hintButton.setVisible(true);
-        System.out.println("1");
-        if (GameState.getDifficulty() == 1) {
-          hintNumber.setVisible(true);
-          hintNumber.setDisable(false);
-          hintRectangle.setVisible(true);
-          hintRectangle.setDisable(false);
-          System.out.println("2");
-        }
-      }
       return;
     }
 
@@ -284,14 +268,14 @@ public class ChatController {
 
             ChatMessage msg = new ChatMessage("user", message);
             msg.setRole("Me");
-            appendChatMessageArea(msg);
+            appendToNotebook(msg);
             System.out.println(msg.getContent());
             msg.setRole("user");
             // appendChatMessageArea(thinkingMessage);
             ChatMessage lastMsg = runGpt(msg);
             lastMsg.setRole("Wise Ancient Tree");
             Platform.runLater(() -> appendChatMessage(lastMsg));
-            appendChatMessageArea(lastMsg);
+            appendToNotebook(lastMsg);
 
             lastMsg.setRole("assistant");
             System.out.println("lastMsg");
@@ -387,6 +371,21 @@ public class ChatController {
     typeInThread.start();
   }
 
+  /* Activate hint button according to difficulty */
+  private void activateHintButton() {
+    // Activate hint button if its not hard
+    if (GameState.getDifficulty() != 2) {
+      hintButton.setVisible(true);
+      // Activate hint counter if its medium
+      if (GameState.getDifficulty() == 1) {
+        hintNumber.setVisible(true);
+        hintNumber.setDisable(false);
+        hintRectangle.setVisible(true);
+        hintRectangle.setDisable(false);
+      }
+    }
+  }
+
   /**
    * Navigates back to the previous view.
    *
@@ -447,97 +446,61 @@ public class ChatController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  private void generateFirstRiddle(String message) {
-
-    inputText.setDisable(true);
-    startThink();
-    // loading.setVisible(true);
-    // loadingCircle.setFill(Color.LIGHTGRAY);
-
-    System.out.println("generate riddle");
-
-    for (int i = 0; i < 1; i++) {
-      System.out.println("----");
-      if (GameState.missionList.get(i) == 1 || GameState.missionList.get(i) == 2) {
-        System.out.println("first mission");
-        firstMission = GameState.missionList.get(i);
-        System.out.println(firstMission);
-      } else {
-        System.out.println("second mission");
-        secondMission = GameState.missionList.get(i);
-        System.out.println(secondMission);
-      }
-    }
-
+  /* Generate the first riddle from gpt, append the response to chat field and notebook*/
+  private void generateFirstRiddle() {
     Task<Void> firstRiddleTask =
         new Task<Void>() {
-
           @Override
           protected Void call() throws Exception {
+            // Start generating
             isGenerating = true;
-
-            ChatMessage msg = new ChatMessage("user", message);
-
-            msg.setRole("Me");
-            appendChatMessageArea(msg);
-            msg.setRole("user");
-            // appendChatMessageArea(activationMessage);
-
-            setChatCompletionRequest(
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.2)
-                    .setMaxTokens(150));
-
-            System.out.println("first mission riddle");
+            hintButton.setDisable(true);
+            // Get riddle from gpt
             if (firstMission == 1) { // if the first mission is the window
               gptMessage =
-                  runGpt(
-                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sand")));
+                  getResponse(
+                      GptPromptEngineering.getRiddleWithGivenWord("sand"), chatCompletionRequest);
               gptMessage.setRole("Wise Ancient Tree");
-              Platform.runLater(() -> appendChatMessage(gptMessage));
-              appendChatMessageArea(gptMessage);
-
-              gptMessage.setRole("assistant");
-            } else if (firstMission == 2) { // if it is the fuel
+            } else { // if it is the fuel
               gptMessage =
-                  runGpt(
-                      new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("sky")));
+                  getResponse(
+                      GptPromptEngineering.getRiddleWithGivenWord("sky"), chatCompletionRequest);
               gptMessage.setRole("Wise Ancient Tree");
-              Platform.runLater(() -> appendChatMessage(gptMessage));
-              appendChatMessageArea(gptMessage);
-              gptMessage.setRole("assistant");
             }
+            // Append the response to text field and notebook
+            Platform.runLater(() -> appendChatMessage(gptMessage));
+            Platform.runLater(() -> appendToNotebook(gptMessage));
+            Platform.runLater(() -> gptMessage.setRole("assistant"));
 
             updateProgress(1, 1);
             return null;
           }
         };
 
-    // loading.progressProperty().bind(firstRiddleTask.progressProperty());
-
     firstRiddleTask.setOnSucceeded(
         e2 -> {
+          // Stop generating
           isGenerating = false;
+          // Stop thinking animation
           smallBubble.setVisible(false);
           medBubble.setVisible(false);
           largeBubble.setVisible(false);
           bubbleTimeline.pause();
-          System.out.println("timeline should have stopped");
           bubbleVariable = 0;
-          // loading.progressProperty().unbind();
           startTalk();
-          // loading.setVisible(false);
-          // loadingCircle.setFill(Color.valueOf("264f31"));
+          // Activate input text field and hint button
           inputText.setDisable(false);
-          treeThinking.setVisible(false);
-          treeTalking.setVisible(true);
           hintButton.setDisable(false);
         });
 
+    // Start the thread
     Thread firstRiddleThread = new Thread(firstRiddleTask);
     firstRiddleThread.start();
+  }
+
+  private void getMissionId() {
+    firstMission = GameState.missionList.get(0);
+    secondMission = GameState.missionList.get(1);
   }
 
   public void collect() {
@@ -720,7 +683,7 @@ public class ChatController {
             gptMessage.setRole("Wise Ancient Tree");
             Platform.runLater(() -> appendChatMessage(gptMessage));
 
-            appendChatMessageArea(gptMessage);
+            appendToNotebook(gptMessage);
             gptMessage.setRole("assistant");
 
             updateProgress(1, 1);
