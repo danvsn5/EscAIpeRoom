@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -115,7 +116,7 @@ public class OutsideController {
 
         Thread secondRiddleThread = new Thread(riddleSecondCall);
         secondRiddleThread.start();
-        // TreeAvatar.treeFlash.play();
+        TreeAvatar.treeFlash.play();
       }
       App.setUi(AppPanel.THRUSTER);
     }
@@ -144,8 +145,8 @@ public class OutsideController {
 
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
-    // TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     if (ChatController.seenFirstMessage == 0) {
       RootBorder.deactivateAllCollisionBox();
       RootBorder.activateAllCollisionBox();
@@ -164,8 +165,8 @@ public class OutsideController {
   }
 
   public void goChat() {
-    // TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.OUTSIDE);
   }

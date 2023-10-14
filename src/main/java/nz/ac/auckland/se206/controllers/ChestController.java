@@ -11,6 +11,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
 
 public class ChestController {
   @FXML private Button backButton;
@@ -166,8 +167,8 @@ public class ChestController {
 
   /** This method is invoked when the player clicks the mini tree and goes to chat room */
   public void goChat() {
-    // TreeAvatar.treeFlash.pause();
-    // TreeAvatar.deactivateTreeGlow();
+    TreeAvatar.treeFlash.pause();
+    TreeAvatar.deactivateTreeGlow();
     App.setUi(AppPanel.CHAT);
     SceneManager.setPrevious(AppPanel.CHEST);
   }
