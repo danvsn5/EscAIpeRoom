@@ -272,7 +272,7 @@ public class ChatController {
             response.setRole("Wise Ancient Tree");
             Platform.runLater(() -> appendChatMessage(response));
             Platform.runLater(() -> appendToNotebook(response));
-            response.setRole("assistant");
+            Platform.runLater(() -> response.setRole("assistant"));
 
             // Process the response from gpt, detect if it says correct
             Platform.runLater(() -> processResponse(response.getContent()));
@@ -413,7 +413,7 @@ public class ChatController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  /* Generate the first riddle from gpt, append the response to chat field and notebook*/
+  /** Generate the first riddle from gpt, append the response to chat field and notebook */
   private void generateFirstRiddle() {
     Task<Void> firstRiddleTask =
         new Task<Void>() {
@@ -589,31 +589,29 @@ public class ChatController {
 
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
-    if (GameState.hintUsedUp()) {
-      // SceneManager.showDialog("Info", "Hint number used up", "No more hint allowed");
+    // If the gpt is generating response or hint number used up, return
+    if (GameState.hintUsedUp() || isGenerating) {
       return;
     }
-    if (isGenerating) {
-      // SceneManager.showDialog("Info", "Tree is thinking, don't interrupt him", "Quiet!");
-      return;
-    }
+    // Ask hint based on different mission and stage of the game
     if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
         System.out.println("Window hint");
-        askByStage(MISSION.WINDOW);
+        askHintByStage(MISSION.WINDOW);
       } else {
         System.out.println("Fuel hint");
-        askByStage(MISSION.FUEL);
+        askHintByStage(MISSION.FUEL);
       }
     } else {
       if (GameState.missionList.contains(3)) {
         System.out.println("Controller hint");
-        askByStage(MISSION.CONTROLLER);
+        askHintByStage(MISSION.CONTROLLER);
       } else {
         System.out.println("Thruster hint");
-        askByStage(MISSION.THRUSTER);
+        askHintByStage(MISSION.THRUSTER);
       }
     }
+    // Use a hint, if there is no hint left, hide the hint button
     GameState.useHint();
     if (GameState.hintUsedUp()) {
       hintNumber.setVisible(false);
@@ -622,36 +620,32 @@ public class ChatController {
     }
   }
 
-  private void askByStage(MISSION missionType) {
-    // Start thinking
-    inputText.setDisable(true);
-    startThink();
+  /** Ask hint from gpt based on mission and stage of the game */
+  private void askHintByStage(MISSION missionType) {
+    // Start thinking animation
     bubbleTimeline.play();
+    startThink();
+    // Disable input text field and hint button
+    inputText.setDisable(true);
     hintButton.setDisable(true);
-    // loading.setVisible(true);
-    // loadingCircle.setFill(Color.LIGHTGRAY);
 
     Task<Void> hintTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
-
+            // Start generating
             isGenerating = true;
-
-            chatCompletionRequest =
-                new ChatCompletionRequest()
-                    .setN(1)
-                    .setTemperature(0.7)
-                    .setTopP(0.5)
-                    .setMaxTokens(100);
-
-            gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
+            System.out.println("start generating");
+            // Get the hint from gpt
+            gptMessage =
+                getResponse(GptPromptEngineering.getHint(missionType), hintChatCompletionRequest);
+            System.out.println("end generating");
+            // Append the hint to text field and notebook
             gptMessage.setRole("Wise Ancient Tree");
             Platform.runLater(() -> appendChatMessage(gptMessage));
-
-            appendToNotebook(gptMessage);
-            gptMessage.setRole("assistant");
+            Platform.runLater(() -> appendToNotebook(gptMessage));
+            Platform.runLater(() -> gptMessage.setRole("assistant"));
 
             updateProgress(1, 1);
             return null;
@@ -660,22 +654,21 @@ public class ChatController {
 
     hintTask.setOnSucceeded(
         e -> {
+          // Stop generating
           isGenerating = false;
+          // Stop thinking animation and start talking
           smallBubble.setVisible(false);
           medBubble.setVisible(false);
           largeBubble.setVisible(false);
           bubbleTimeline.pause();
-          System.out.println("timeline should have stopped");
           bubbleVariable = 0;
-          // End thinking, start talking
-          // loading.progressProperty().unbind();
-          // loading.setVisible(false);
-          // loadingCircle.setFill(Color.valueOf("264f31"));
-          inputText.setDisable(false);
           startTalk();
+          // Activate input text field and hint button
+          inputText.setDisable(false);
           hintButton.setDisable(false);
         });
 
+    // Start the thread
     Thread hintThread = new Thread(hintTask);
     hintThread.start();
   }
@@ -790,11 +783,11 @@ public class ChatController {
       throws ApiProxyException {
     // Turn string message into chatmessage form
     ChatMessage msg = new ChatMessage("user", message);
-    getChatCompletionRequest().addMessage(msg);
+    currentCompletionRequest.addMessage(msg);
     // Generate result from gpt
     ChatCompletionResult chatCompletionResult = currentCompletionRequest.execute();
     Choice result = chatCompletionResult.getChoices().iterator().next();
-    // Set the result's role to Wise tree
+    // Set the result's role to assistant
     currentCompletionRequest.addMessage(result.getChatMessage());
     result.getChatMessage().setRole("assistant");
     return result.getChatMessage();
