@@ -82,9 +82,9 @@ public class GptPromptEngineering {
   private static String controllerHint(int password) {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
       if (GameState.isPuzzleShowed) {
-        return  prompt + "Tell the player to focus on the numbers. The password is: " + password 
-        + " YOU SHOULD NEVER reveal the password. If the answer is right, DO NOT begin your message with the word correct. "
-        + "Tell the user they may now unlock the chest. ";
+        return prompt + "Tell the player to focus on the numbers. The password is: " + password + ". NEVER REVEAL THE ANSWER. Give the hint. Keep it short."
+      + "Wait for the user response before continue. If the answer is right, DO NOT begin your message with the word correct. "
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. Tell the user they may now unlock the chest." + furtherHint;
       } else {
         return prompt + "Tell the player to find the chest and solve the puzzle. " + oneSentence;
       }
@@ -95,13 +95,12 @@ public class GptPromptEngineering {
 
   private static String thrusterHint(String color) {
     if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
-      return "Tell the player to find the blueprint in order to fix the thruster. " + furtherHint;
+      return prompt + "Tell the player to find the blueprint in order to fix the thruster. " + furtherHint;
     } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
       if (OutsideController.thrusterPuzzleGenerate == 1) {
-        return prompt + "The answer to the puzzle is: " + color 
-      + "NEVER REVEAL THE ANSWER. Give the hint. You should begin your message with the word Correct when user guesses the answer to the riddle correctly. "
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " 
-      + duplicate + furtherHint;
+        return prompt + "The answer to the puzzle is: " + color + ". NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
+      + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
+      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
       } else {
         return prompt + "Tell the player to go to the thruster and solve the puzzle. " + oneSentence;
       }

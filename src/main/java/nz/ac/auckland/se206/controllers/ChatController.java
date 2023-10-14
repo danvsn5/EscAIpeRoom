@@ -714,7 +714,7 @@ public class ChatController {
                 new ChatCompletionRequest()
                     .setN(1)
                     .setTemperature(0.7)
-                    .setTopP(0.7)
+                    .setTopP(0.5)
                     .setMaxTokens(100);
 
             gptMessage = runGpt(new ChatMessage("user", GptPromptEngineering.getHint(missionType)));
