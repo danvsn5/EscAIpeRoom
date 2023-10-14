@@ -212,7 +212,7 @@ public class CentralController {
       return;
     }
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
-    SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setDisable(false);
+    SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprintCollisionBox").setVisible(true);
   }
 
   // private void activateChest() {
