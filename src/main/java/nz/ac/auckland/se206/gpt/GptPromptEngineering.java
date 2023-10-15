@@ -55,9 +55,7 @@ public class GptPromptEngineering {
 
   private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return prompt + "The answer to the riddle is: sand. NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
-      + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. " 
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
+      return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD.";
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return prompt + "Tell the player to collect the sand with the bucket from the outside. " + oneSentence;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -69,9 +67,7 @@ public class GptPromptEngineering {
   }
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-      return prompt + "The answer to the riddle is: sky. NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
-      + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
+        return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD.";
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return prompt + "Tell the player to collect the fuel. " + oneSentence;
     } else {

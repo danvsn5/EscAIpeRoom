@@ -776,7 +776,7 @@ public class ChatController {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
     hintChatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.7).setMaxTokens(100);
+        new ChatCompletionRequest().setN(1).setTemperature(0.5).setTopP(0.5).setMaxTokens(100);
   }
 
   private ChatMessage getResponse(String message, ChatCompletionRequest currentCompletionRequest)
