@@ -8,6 +8,8 @@ import nz.ac.auckland.se206.controllers.OutsideController;
 public class GptPromptEngineering {
 
   private static String prompt = "Do not need to greet the user. ";
+  private static String riddlePrompt = "You are a wise mystical tree of a forest. Do not need to greet the user or say anything else. ";
+  private static String mzximumWords = "You should not exceed 100 words. ";
   private static String furtherHint = "You sohuld NEVER give any other hint from now on. "
   + "DO NOT the let user know about this. ";
   private static String duplicate = "DO NOT give the same hint twice. ";
@@ -22,7 +24,7 @@ public class GptPromptEngineering {
   }
 
   public static String getRiddleWithGivenWord(String wordToGuess) { // comment
-    return prompt + "Tell the user a riddle with answer: "
+    return riddlePrompt + "Tell the user a riddle with answer: "
         + wordToGuess
         + ". NEVER reveal the answer. You should answer with the word Correct when is correct, if the user answers other"
         + " words that have the same meaning, it is also correct, if the user asks for hints, DO"
@@ -68,7 +70,7 @@ public class GptPromptEngineering {
   }
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-        return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD." + beginWord;
+        return prompt + "Give a hint about the word: sky, in one sentecne. NEVER REVEAL THE WORD." + beginWord;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return prompt + "Tell the player to collect the fuel. " + beginWord + oneSentence;
     } else {
@@ -79,50 +81,47 @@ public class GptPromptEngineering {
   private static String controllerHint(int password) {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
       if (GameState.isPuzzleShowed) {
-        return prompt + "Tell the player to focus on the numbers. The password is: " + password + ". NEVER REVEAL THE PASSWORD. Give the hint. Keep it short."
-      + "Wait for the user response before continue. If the answer is right, DO NOT begin your message with the word correct. "
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. Tell the user they may now unlock the chest." + furtherHint;
+        return prompt + "Tell the user to focus on the numbers. "
+        + beginWord + oneSentence;
+      //   return prompt + "Tell the player to focus on the numbers. The password is: " + password + ". NEVER REVEAL THE PASSWORD. Give the hint. Keep it short."
+      // + "Wait for the user response before continue. If the answer is right, DO NOT begin your message with the word correct. "
+      // + "NEVER SAY CORRECT until the user guesses the answer correctly. Tell the user they may now unlock the chest." + furtherHint;
       } else {
-        return prompt + "Tell the player to find the chest and solve the puzzle. " + oneSentence;
+        return prompt + "Tell the player to find the chest and solve the puzzle. " + beginWord + oneSentence;
       }
     } else {
-      return prompt + "Tell the player to fix the control panel and fix the space shuttle. " + oneSentence;
+      return prompt + "Tell the player to fix the control panel and fix the space shuttle. " + beginWord + oneSentence;
     }
   }
 
   private static String thrusterHint(String color) {
     if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
-      return prompt + "Tell the player to find the blueprint in order to fix the thruster. " + furtherHint;
+      return prompt + "Tell the player to find the blueprint in order to fix the thruster. " + beginWord + oneSentence;
     } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
       if (OutsideController.thrusterPuzzleGenerate == 1) {
-        return prompt + "The answer to the puzzle is: " + color + ". NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
-      + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
-      + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
+        return prompt + "Give a hint about the color: " + color + ", in one sentecne. NEVER REVEAL THE COLOR." + beginWord;
+      //   return prompt + "The answer to the puzzle is: " + color + ". NEVER REVEAL THE ANSWER. Give the hint, not the riddle. Keep it short."
+      // + "Wait for the user response before continue. You should begin your message with the word Correct only when user guesses the answer to the riddle correctly. "
+      // + "NEVER SAY CORRECT until the user guesses the answer correctly. " + furtherHint;
       } else {
-        return prompt + "Tell the player to go to the thruster and solve the puzzle. " + oneSentence;
+        return prompt + "Tell the player to go to the thruster and solve the puzzle. " + beginWord + oneSentence;
       }
     } else {
-      return prompt + "Tell the player to click on the button with correct color to fix the thruster and then fix the space shuttle. " + oneSentence;
+      return prompt + "Tell the player to click on the button with the correct color to fix the thruster and then fix the space shuttle. " 
+      + beginWord + oneSentence;
     }
   }
 
-  public static String getGuideToSecondMission(String mission) {
-    return "Act like a wise mystical tree of a forest. Tell the user to move on to next mission."
-        + " Next mission is: "
-        + mission
-        + ". ";
-  }
-
   public static String getControllerPuzzle(int password) {
-    return prompt + "Give the user a SIMPLE addition or math puzzle with the answer being: "
+    return riddlePrompt + "Give the user a SIMPLE addition math puzzle with the answer being: "
         + password
-        + ". NEVER reveal the answer. If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
-        + " correct. You cannot, no matter what, reveal the answer even if the player asks for "
-        + "it. Tell the user they may now unlock the chest.";
+        + ". NEVER REVEAL THE ANSWER. If they answer is right, DO NOT BEGIN YOUR MESSAGE WITH"
+        + " correct, and tell the user they may now unlock the chest. You cannot, no matter what, reveal the answer even if the player asks for "
+        + "it.";
   }
 
   public static String getThrusterPuzzle(String colour) {
-    return prompt + "Tell me a riddle with answer: "
+    return riddlePrompt + "Tell me a riddle with answer: "
         + colour
         + ". You should answer with the word Correct when is correct. If the user asks for hints, DO"
         + " NOT give a hint no matter how many times they ask and taunt on them, if users guess"
