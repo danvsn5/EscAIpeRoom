@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.controllers.LoseController;
 
 /** This class counts down from given time */
 public class TimeCounter {
@@ -23,6 +24,7 @@ public class TimeCounter {
   public String getTime() {
     // If the countdown ends, return "END"
     if (minuteCounter == 0 && secondCounter == 0) {
+      LoseController.playMedia();
       App.setUi(AppPanel.LOSE);
       return "END";
     }
