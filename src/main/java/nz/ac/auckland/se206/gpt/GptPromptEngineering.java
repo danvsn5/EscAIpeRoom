@@ -7,7 +7,7 @@ import nz.ac.auckland.se206.controllers.OutsideController;
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
-  private static String prompt = "You are a mean wise mystical tree of a forest. Do not need to greet the user. ";
+  private static String prompt = "Do not need to greet the user. ";
   private static String furtherHint = "You sohuld NEVER give any other hint from now on. "
   + "DO NOT the let user know about this. ";
   private static String duplicate = "DO NOT give the same hint twice. ";
@@ -58,21 +58,21 @@ public class GptPromptEngineering {
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
       return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD." + beginWord;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
-      return prompt + "Tell the player to collect the sand with the bucket from the outside. " + oneSentence;
+      return prompt + "Tell the player to collect the sand with the bucket from the outside. " + beginWord + oneSentence;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
       return prompt + "Tell the player that the player needs to melt sand, ask the player to check the"
-          + " processing machine. " + oneSentence;
+          + " processing machine. " + beginWord + oneSentence;
     } else {
-      return prompt + "Tell the player to fix the window. " + oneSentence;
+      return prompt + "Tell the player to fix the window. " + beginWord + oneSentence;
     }
   }
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
         return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD." + beginWord;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
-      return prompt + "Tell the player to collect the fuel. " + oneSentence;
+      return prompt + "Tell the player to collect the fuel. " + beginWord + oneSentence;
     } else {
-      return prompt + "Tell the player that the player needs to refuel the space shuttle. " + oneSentence;
+      return prompt + "Tell the player that the player needs to refuel the space shuttle. " + beginWord + oneSentence;
     }
   }
 
