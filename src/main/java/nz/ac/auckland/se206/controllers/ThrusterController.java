@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
@@ -34,10 +35,17 @@ public class ThrusterController {
   @FXML private Button repairButton;
   @FXML private Button completeButton;
 
+  @FXML private ImageView blueprintBackground;
+  @FXML private ImageView complete;
+
   @FXML private ImageView thrusterRoot;
   @FXML private Polygon rootCollisionBox1;
   @FXML private Polygon rootCollisionBox2;
   @FXML private Polygon rootCollisionBox3;
+
+  @FXML private ImageView missingBlueprint;
+  @FXML private ImageView missingColor;
+  @FXML private Label infoTitle;
 
   public void initialize() {}
 
@@ -133,10 +141,13 @@ public class ThrusterController {
     // mini-game
 
     if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
-      SceneManager.showDialog(
-          "Info", "Thruster Repair", "You are missing the blueprint and the colour key!");
+      infoTitle.setText("Missing blueprint");
+      infoTitle.setVisible(true);
+      missingBlueprint.setVisible(true);
     } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
-      SceneManager.showDialog("Info", "Thruster Repair", "You are missing the colour key!");
+      infoTitle.setText("Missing color key");
+      infoTitle.setVisible(true);
+      missingColor.setVisible(true);
     }
 
     if (buttonActivationCounter == 0
@@ -196,13 +207,12 @@ public class ThrusterController {
 
   public void checkCompletion() {
     if (buttonActivationCounter == 4) {
-      completeButton.setDisable(false);
-      completeButton.setVisible(true);
+      completeRepair();
     }
   }
 
   public void completeRepair() {
-    SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
+    complete.setVisible(true);
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
     System.out.println("Thruster Mission Complete");
@@ -211,10 +221,14 @@ public class ThrusterController {
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(true);
-    completeButton.setDisable(true);
-    completeButton.setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideImage").setVisible(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(false);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeImage").setVisible(true);
+  }
+
+  public void exitInfo() {
+    missingBlueprint.setVisible(false);
+    missingColor.setVisible(false);
+    infoTitle.setVisible(false);
   }
 }
