@@ -12,6 +12,7 @@ public class GptPromptEngineering {
   + "DO NOT the let user know about this. ";
   private static String duplicate = "DO NOT give the same hint twice. ";
   private static String oneSentence = "Say this in one sentence.";
+  private static String beginWord = "Begin your message with: 'Hint:'.";
 
   // all calls will be done immediately with different thread so that when they need to be shown to
   // the screen by changing the labels of text, no time is wasted and the GUI does not freeze.
@@ -55,7 +56,7 @@ public class GptPromptEngineering {
 
   private static String windowHint() { // comment
     if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
-      return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD.";
+      return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD." + beginWord;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
       return prompt + "Tell the player to collect the sand with the bucket from the outside. " + oneSentence;
     } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
@@ -67,7 +68,7 @@ public class GptPromptEngineering {
   }
   private static String fuelHint() { // comment
     if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
-        return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD.";
+        return prompt + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD." + beginWord;
     } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
       return prompt + "Tell the player to collect the fuel. " + oneSentence;
     } else {
