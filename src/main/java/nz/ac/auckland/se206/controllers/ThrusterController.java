@@ -34,6 +34,9 @@ public class ThrusterController {
   @FXML private Button repairButton;
   @FXML private Button completeButton;
 
+  @FXML private ImageView blueprintBackground;
+  @FXML private ImageView complete;
+
   @FXML private ImageView thrusterRoot;
   @FXML private Polygon rootCollisionBox1;
   @FXML private Polygon rootCollisionBox2;
@@ -196,13 +199,13 @@ public class ThrusterController {
 
   public void checkCompletion() {
     if (buttonActivationCounter == 4) {
-      completeButton.setDisable(false);
-      completeButton.setVisible(true);
+
+      completeRepair();
     }
   }
 
   public void completeRepair() {
-    SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the ship!");
+    complete.setVisible(true);
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
     System.out.println("Thruster Mission Complete");
@@ -211,8 +214,6 @@ public class ThrusterController {
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(true);
-    completeButton.setDisable(true);
-    completeButton.setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideImage").setVisible(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(false);
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeImage").setVisible(true);
