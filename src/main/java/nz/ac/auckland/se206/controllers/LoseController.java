@@ -20,7 +20,7 @@ public class LoseController {
   public static MediaPlayer mediaPlayerOne;
 
   public void initialize() throws Exception {
-    // iniVideo();
+    iniVideo();
   }
 
   // upon losing, gamestate is reset and returns to launch menu when return button is pressed
@@ -36,7 +36,7 @@ public class LoseController {
 
   public void iniVideo() throws Exception {
 
-    mediaOne = new Media(App.class.getResource("/videos/launch/loopingEnd.mp4").toURI().toString());
+    mediaOne = new Media(App.class.getResource("/videos/launch/loseVideo.mp4").toURI().toString());
     mediaPlayerOne = new MediaPlayer(mediaOne);
     loopingEnd.setMediaPlayer(mediaPlayerOne);
     mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
