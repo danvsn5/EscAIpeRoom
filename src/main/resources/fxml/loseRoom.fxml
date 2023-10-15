@@ -2,44 +2,18 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/crashLandBack.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="319.0" fitWidth="399.0" layoutX="519.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" rotate="-22.6">
-         <image>
-            <Image url="@../images/spaceShuttle.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/crashLandFront.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="846.0" fitWidth="1460.0" layoutX="-67.0" layoutY="-51.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/threeRoot.png" />
-         </image>
-      </ImageView>
       <Button fx:id="returnMenuButton" layoutX="26.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#returnMenu" prefHeight="81.0" prefWidth="383.0" text="Return to Menu">
          <font>
             <Font name="Bank Gothic Light BT" size="37.0" />
          </font>
       </Button>
-      <ImageView fitHeight="364.0" fitWidth="468.0" layoutX="822.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/treeTalking.png" />
-         </image>
-      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="113.0" layoutX="409.0" layoutY="52.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="463.0" />
       <Label fx:id="lostLabel" layoutX="414.0" layoutY="56.0" prefHeight="113.0" prefWidth="455.0" text="You Lost">
          <font>
@@ -51,5 +25,6 @@
             <Font name="Bank Gothic Light BT" size="37.0" />
          </font>
       </Button>
+      <MediaView fx:id="loopingEnd" fitHeight="720.0" fitWidth="1280.0" />
    </children>
 </Pane>
