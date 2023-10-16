@@ -41,7 +41,6 @@ public class ChestController {
   private int firstDigitNum = 0;
   private int secondDigitNum = 0;
   private int thirdDigitNum = 0;
-  public static int correctPassword;
 
   public void goBack() {
     App.setUi(AppPanel.STORAGE);

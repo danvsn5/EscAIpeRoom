@@ -90,7 +90,7 @@ public class StorageController {
       App.setUi(AppPanel.CHEST);
       return;
     }
-    if (!GameState.isPuzzleShowed) {
+    if (!GameState.isControllerPuzzleShown) {
 
       GameState.generatePassWord();
       System.out.println(GameState.passWord);
@@ -123,7 +123,7 @@ public class StorageController {
       secondRiddleThread.start();
       passwordGenerate = true;
       TreeAvatar.treeFlash.play();
-      GameState.isPuzzleShowed = true;
+      GameState.isControllerPuzzleShown = true;
       App.setUi(AppPanel.CHEST);
     } else {
       App.setUi(AppPanel.CHEST);
