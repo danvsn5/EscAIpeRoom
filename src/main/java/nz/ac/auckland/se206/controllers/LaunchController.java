@@ -72,6 +72,10 @@ public class LaunchController {
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
   public void launchGame(MouseEvent ev) throws IOException {
+    launchButton.setDisable(true);
+    diffButton.setDisable(true);
+    timerButton.setDisable(true);
+    speechButton.setDisable(true);
 
     mediaPlayerOne.setOnEndOfMedia(
         new Runnable() {
