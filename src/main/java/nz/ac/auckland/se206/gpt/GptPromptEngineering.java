@@ -98,7 +98,7 @@ public class GptPromptEngineering {
 
   private static String controllerHint(int password) {
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
-      if (GameState.isPuzzleShowed) {
+      if (GameState.isControllerPuzzleShown) {
         return prompt + "Tell the user to focus on the numbers. " + beginWord + oneSentence;
         //   return prompt + "Tell the player to focus on the numbers. The password is: " + password
         // + ". NEVER REVEAL THE PASSWORD. Give the hint. Keep it short."

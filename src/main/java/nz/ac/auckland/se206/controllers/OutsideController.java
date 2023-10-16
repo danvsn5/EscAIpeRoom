@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -181,8 +182,11 @@ public class OutsideController {
 
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
+    ship.setCursor(Cursor.HAND);
     shipDoor1.setOpacity(1);
+    shipDoor1.setCursor(Cursor.HAND);
     shipDoor2.setOpacity(1);
+    shipDoor2.setCursor(Cursor.HAND);
   }
 
   public void deactivateShipGlow() {
@@ -193,6 +197,7 @@ public class OutsideController {
 
   public void activateTreeGlow() {
     wiseTree.setOpacity(1);
+    wiseTree.setCursor(Cursor.HAND);
   }
 
   public void deactivateTreeGlow() {
@@ -202,7 +207,9 @@ public class OutsideController {
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(1);
+      thruster1.setCursor(Cursor.HAND);
       thruster2.setOpacity(1);
+      thruster2.setCursor(Cursor.HAND);
     }
   }
 
@@ -217,6 +224,7 @@ public class OutsideController {
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
       sand.setDisable(false);
       sand.setOpacity(1);
+      sand.setCursor(Cursor.HAND);
     }
   }
 

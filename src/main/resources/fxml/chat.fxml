@@ -41,7 +41,7 @@
             <Font name="Bank Gothic Light BT" size="20.0" />
          </font>
       </Button>
-    <Button layoutX="112.0" layoutY="636.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="44.0" prefWidth="133.0" text="Go Back">
+    <Button layoutX="89.0" layoutY="599.0" mnemonicParsing="false" onAction="#onGoBack" prefHeight="52.0" prefWidth="120.0" text="Go Back">
          <font>
             <Font name="Bank Gothic Light BT" size="20.0" />
          </font></Button>

@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.winGame;
 
 public class CentralController {
 
@@ -75,6 +77,8 @@ public class CentralController {
   @FXML private ImageView controllerInfo;
   @FXML private Label infoLabel;
   @FXML private Label infoTitle;
+
+  @FXML private Polygon winGameCollisionBox;
 
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
@@ -184,8 +188,8 @@ public class CentralController {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       // Set the end game button visible
-      completeGame.setDisable(false);
-      completeGame.setVisible(true);
+      winGameCollisionBox.setVisible(true);
+      winGame.startFlashWin();
       GameState.isSecondMissionCompleted = true;
       // Show the complete image
       completeImage.setVisible(true);
@@ -247,7 +251,9 @@ public class CentralController {
 
   public void activateDoorGlow() {
     outside.setEffect(GameState.glowBright);
+    outside.setCursor(Cursor.HAND);
     outsideDoor.setOpacity(1);
+    outsideDoor.setCursor(Cursor.HAND);
   }
 
   public void deactivateDoorGlow() {
@@ -257,6 +263,7 @@ public class CentralController {
 
   public void activateFuelTankGlow() {
     fuelTank.setOpacity(1);
+    fuelTank.setCursor(Cursor.HAND);
   }
 
   public void deactivateFuelTankGlow() {
@@ -266,6 +273,8 @@ public class CentralController {
   public void activateStorageGlow() {
     storage.setEffect(GameState.glowBright);
     storageDoor.setOpacity(1);
+    storage.setCursor(Cursor.HAND);
+    storageDoor.setCursor(Cursor.HAND);
   }
 
   public void deactivateStorageGlow() {
@@ -275,6 +284,7 @@ public class CentralController {
 
   public void activateWindowGlow() {
     window.setOpacity(1);
+    window.setCursor(Cursor.HAND);
   }
 
   public void deactivateWindowGlow() {
@@ -283,7 +293,10 @@ public class CentralController {
 
   public void activateControllerGlow() {
     controllerBroken1.setOpacity(1);
+    controllerBroken1.setCursor(Cursor.HAND);
+
     controllerBroken2.setOpacity(1);
+    controllerBroken2.setCursor(Cursor.HAND);
   }
 
   public void deactivateControllerGlow() {
@@ -398,10 +411,16 @@ public class CentralController {
   }
 
   public void activateRootOneGlow() {
+    // uses set effect method to change the cursor visual to an open hand when the mouse is over the
+
     rootOneCollisionBox1.setOpacity(1);
+    rootOneCollisionBox1.setCursor(Cursor.HAND);
     rootOneCollisionBox2.setOpacity(1);
+    rootOneCollisionBox2.setCursor(Cursor.HAND);
     rootOneCollisionBox3.setOpacity(1);
+    rootOneCollisionBox3.setCursor(Cursor.HAND);
     rootOneCollisionBox4.setOpacity(1);
+    rootOneCollisionBox4.setCursor(Cursor.HAND);
   }
 
   public void deactivateRootOneGlow() {
@@ -413,9 +432,13 @@ public class CentralController {
 
   public void activateRootTwoGlow() {
     rootTwoCollisionBox1.setOpacity(1);
+    rootTwoCollisionBox1.setCursor(Cursor.HAND);
     rootTwoCollisionBox2.setOpacity(1);
+    rootTwoCollisionBox2.setCursor(Cursor.HAND);
     rootTwoCollisionBox3.setOpacity(1);
+    rootTwoCollisionBox3.setCursor(Cursor.HAND);
     rootTwoCollisionBox4.setOpacity(1);
+    rootTwoCollisionBox4.setCursor(Cursor.HAND);
   }
 
   public void deactivateRootTwoGlow() {
@@ -427,10 +450,15 @@ public class CentralController {
 
   public void activateRootThreeGlow() {
     rootThreeCollisionBox1.setOpacity(1);
+    rootThreeCollisionBox1.setCursor(Cursor.HAND);
     rootThreeCollisionBox2.setOpacity(1);
+    rootThreeCollisionBox2.setCursor(Cursor.HAND);
     rootThreeCollisionBox3.setOpacity(1);
+    rootThreeCollisionBox3.setCursor(Cursor.HAND);
     rootThreeCollisionBox4.setOpacity(1);
+    rootThreeCollisionBox4.setCursor(Cursor.HAND);
     rootThreeCollisionBox5.setOpacity(1);
+    rootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
   public void deactivateRootThreeGlow() {
@@ -443,14 +471,23 @@ public class CentralController {
 
   public void activateRootFourGlow() {
     rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox1.setCursor(Cursor.HAND);
     rootFourCollisionBox2.setOpacity(1);
+    rootFourCollisionBox2.setCursor(Cursor.HAND);
     rootFourCollisionBox3.setOpacity(1);
+    rootFourCollisionBox3.setCursor(Cursor.HAND);
     rootFourCollisionBox4.setOpacity(1);
+    rootFourCollisionBox4.setCursor(Cursor.HAND);
     rootFourCollisionBox5.setOpacity(1);
+    rootFourCollisionBox5.setCursor(Cursor.HAND);
     rootFourCollisionBox6.setOpacity(1);
+    rootFourCollisionBox6.setCursor(Cursor.HAND);
     rootFourCollisionBox7.setOpacity(1);
+    rootFourCollisionBox7.setCursor(Cursor.HAND);
     rootFourCollisionBox8.setOpacity(1);
+    rootFourCollisionBox8.setCursor(Cursor.HAND);
     rootFourCollisionBox9.setOpacity(1);
+    rootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
   public void deactivateRootFourGlow() {

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.OutsideController;
 import nz.ac.auckland.se206.controllers.ThrusterController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -17,26 +18,26 @@ public class GameState {
   public static int timer = 0;
   public static TextToSpeech textToSpeech = new TextToSpeech();
   public static boolean textToSpeechSetting = false;
+
+  // First mission related variables
   public static boolean isGreetingShown;
   public static boolean firstRiddleSolved; // tracks if the first riddle has been solved.
-  public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
   public static boolean isFirstMissionCompleted; // tracks if the first mission has been completed.
-
-  // public static boolean isSecondGuideShown; // tracks if the second guide has been shown.
-
-  public static int hintNumer = 1000;
-  public static int currentHint = 0;
-  public static int passWord = -1;
-  public static int firstDigit;
-  public static int secondDigit;
-
-  public static boolean isSecondGuideShown;
-  public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
-
   public static boolean isBucketCollected = false;
   public static boolean isSandCollected = false;
 
-  public static boolean isPuzzleShowed = false;
+  // Second mission related variables
+  public static boolean isSecondGuideShown;
+  public static boolean secondRiddleSolved; // tracks if the second riddle has been solved.
+  public static boolean isSecondMissionCompleted; // tracks if the first mission has been completed.
+  public static int firstDigit;
+  public static int secondDigit;
+  public static int passWord = -1;
+  public static boolean isControllerPuzzleShown = false;
+
+  // Hint related setting
+  public static int hintNumer = 1000;
+  public static int currentHint = 0;
 
   // inventory holds integers that correspond to different actions having taken place:
   // -1: riddle has been solved
@@ -121,21 +122,53 @@ public class GameState {
     currentHint = 0;
   }
 
+  /**
+   * This method is used to reset the game
+   *
+   * <p>It will reset all the variables and clear the inventory
+   */
   public static void reset() {
     // Reset the game
-    MissionManager.missionList.clear(); // clear the mission list
-    MissionManager.keyList.clear(); // clear the key list
+    // Clear mission related variables
+    MissionManager.missionList.clear();
+    MissionManager.keyList.clear();
     missionList.clear();
-    inventory.clear(); // clear the inventory
-    isGreetingShown = false; // reset greeting
-    firstRiddleSolved = false; // tracks if the first riddle has been solved.
-    secondRiddleSolved = false; // tracks if the second riddle has been solved.
-    isFirstMissionCompleted = false; // reset first mission
+
+    // Clear the first mission variables
+    ChatController.seenFirstMessage = 0;
+    isGreetingShown = false;
+    firstRiddleSolved = false;
+    isFirstMissionCompleted = false;
+    isBucketCollected = false;
+    isSandCollected = false;
+
+    // Clear the second mission variables
+    isSecondGuideShown = false;
+    secondRiddleSolved = false;
+    isSecondMissionCompleted = false;
+    passWord = -1;
+    isControllerPuzzleShown = false;
+    OutsideController.thrusterPuzzleGenerate = 0;
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
-    ChatController.seenFirstMessage = 0;
-    passWord = -1;
+
+    // Clear the inventory
+    inventory.clear();
+
+    // Clear game setting
+    hintNumer = 0;
+    hintNumer = 1000;
+    difficulty = 0;
+    timer = 0;
+    textToSpeechSetting = false;
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#launchButton").setDisable(false);
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#diffButton").setDisable(false);
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#timerButton").setDisable(false);
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#speechButton").setDisable(false);
+
+    // Reset root
     RootBorder.rootState = 1;
+    TreeAvatar.treeState = 0;
   }
 
   public static void generatePassWord() {

@@ -41,7 +41,9 @@ public class RootBorder {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup(rootId).setVisible(true);
-    activateAllCollisionBox();
+    if (GameState.isGreetingShown) {
+      activateAllCollisionBox();
+    }
     deactivateAllCollisionBox();
   }
 
@@ -55,8 +57,6 @@ public class RootBorder {
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup(rootId).setVisible(false);
     SceneManager.getPanel(AppPanel.STORAGE).lookup(rootId).setVisible(false);
-    deactivateShipRootCollisionBox(AppPanel.MAIN_ROOM);
-    deactivateShipRootCollisionBox(AppPanel.STORAGE);
   }
 
   public static void activateAllCollisionBox() {
