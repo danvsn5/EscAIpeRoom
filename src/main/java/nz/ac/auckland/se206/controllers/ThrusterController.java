@@ -216,7 +216,7 @@ public class ThrusterController {
     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
     System.out.println("Thruster Mission Complete");
-    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
+    SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setVisible(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(false);
