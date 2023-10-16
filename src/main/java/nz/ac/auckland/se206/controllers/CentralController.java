@@ -188,7 +188,7 @@ public class CentralController {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       // Set the end game button visible
-      // winGameCollisionBox.setVisible(true);
+      winGameCollisionBox.setVisible(true);
       winGame.startFlashWin();
       GameState.isSecondMissionCompleted = true;
       // Show the complete image

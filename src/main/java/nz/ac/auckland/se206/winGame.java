@@ -14,16 +14,17 @@ public class winGame {
   public static void flashWin() {
 
     if (winFlashState == 1) {
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setVisible(false);
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setOpacity(1);
       winFlashState = 0;
     } else {
-      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setVisible(true);
+      SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setOpacity(0);
+      ;
       winFlashState = 1;
     }
   }
 
   public static void startFlashWin() {
-    // The tree changes light every 0.75s
+    // The tree changes light every 0.4s
     winFlash.setCycleCount(Timeline.INDEFINITE);
     winFlash.play();
   }
