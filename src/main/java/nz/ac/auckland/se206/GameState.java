@@ -161,6 +161,10 @@ public class GameState {
     difficulty = 0;
     timer = 0;
     textToSpeechSetting = false;
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#launchButton").setDisable(false);
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#diffButton").setDisable(false);
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#timerButton").setDisable(false);
+    SceneManager.getPanel(AppPanel.LAUNCH).lookup("#speechButton").setDisable(false);
 
     // Reset root
     RootBorder.rootState = 1;
