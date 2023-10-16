@@ -132,7 +132,7 @@ public class ChestController {
 
   public void firstDigitGlow() {
     firstDigitHighlight.setOpacity(1);
-    firstDigitHighlight.setCursor(Cursor.OPEN_HAND);
+    firstDigitHighlight.setCursor(Cursor.HAND);
   }
 
   public void firstDigitDark() {
@@ -141,7 +141,7 @@ public class ChestController {
 
   public void secondDigitGlow() {
     secondDigitHighlight.setOpacity(1);
-    secondDigitHighlight.setCursor(Cursor.OPEN_HAND);
+    secondDigitHighlight.setCursor(Cursor.HAND);
   }
 
   public void secondDigitDark() {
@@ -150,7 +150,7 @@ public class ChestController {
 
   public void thirdDigitGlow() {
     thirdDigitHighlight.setOpacity(1);
-    thirdDigitHighlight.setCursor(Cursor.OPEN_HAND);
+    thirdDigitHighlight.setCursor(Cursor.HAND);
   }
 
   public void thirdDigitDark() {
@@ -159,11 +159,11 @@ public class ChestController {
 
   public void activateRootGlow() {
     rootCollisionBox1.setOpacity(1);
-    rootCollisionBox1.setCursor(Cursor.OPEN_HAND);
+    rootCollisionBox1.setCursor(Cursor.HAND);
     rootCollisionBox2.setOpacity(1);
-    rootCollisionBox2.setCursor(Cursor.OPEN_HAND);
+    rootCollisionBox2.setCursor(Cursor.HAND);
     rootCollisionBox3.setOpacity(1);
-    rootCollisionBox3.setCursor(Cursor.OPEN_HAND);
+    rootCollisionBox3.setCursor(Cursor.HAND);
   }
 
   public void deactivateRootGlow() {

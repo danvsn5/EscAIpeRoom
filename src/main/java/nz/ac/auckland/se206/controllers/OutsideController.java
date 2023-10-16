@@ -182,11 +182,11 @@ public class OutsideController {
 
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
-    ship.setCursor(Cursor.OPEN_HAND);
+    ship.setCursor(Cursor.HAND);
     shipDoor1.setOpacity(1);
-    shipDoor1.setCursor(Cursor.OPEN_HAND);
+    shipDoor1.setCursor(Cursor.HAND);
     shipDoor2.setOpacity(1);
-    shipDoor2.setCursor(Cursor.OPEN_HAND);
+    shipDoor2.setCursor(Cursor.HAND);
   }
 
   public void deactivateShipGlow() {
@@ -197,7 +197,7 @@ public class OutsideController {
 
   public void activateTreeGlow() {
     wiseTree.setOpacity(1);
-    wiseTree.setCursor(Cursor.OPEN_HAND);
+    wiseTree.setCursor(Cursor.HAND);
   }
 
   public void deactivateTreeGlow() {
@@ -207,9 +207,9 @@ public class OutsideController {
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(1);
-      thruster1.setCursor(Cursor.OPEN_HAND);
+      thruster1.setCursor(Cursor.HAND);
       thruster2.setOpacity(1);
-      thruster2.setCursor(Cursor.OPEN_HAND);
+      thruster2.setCursor(Cursor.HAND);
     }
   }
 
@@ -224,7 +224,7 @@ public class OutsideController {
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
       sand.setDisable(false);
       sand.setOpacity(1);
-      sand.setCursor(Cursor.OPEN_HAND);
+      sand.setCursor(Cursor.HAND);
     }
   }
 
