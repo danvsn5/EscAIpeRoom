@@ -11,7 +11,7 @@ public class TreeAvatar {
 
   public static Timeline treeFlash =
       new Timeline(new KeyFrame(Duration.millis(750), e -> flashTree()));
-  private static int treeState = 0;
+  public static int treeState = 0;
   private static Glow glowDim = new Glow(0.0);
   private static Glow glowBright = new Glow(0.7);
 

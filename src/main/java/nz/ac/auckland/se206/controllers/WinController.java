@@ -27,7 +27,7 @@ public class WinController {
   }
 
   public void returnMenu() throws IOException {
-    GameState.inventory.clear();
+    GameState.reset();
     App.setUi(AppPanel.LAUNCH);
   }
 
