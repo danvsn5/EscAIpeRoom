@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -131,6 +132,7 @@ public class ChestController {
 
   public void firstDigitGlow() {
     firstDigitHighlight.setOpacity(1);
+    firstDigitHighlight.setCursor(Cursor.OPEN_HAND);
   }
 
   public void firstDigitDark() {
@@ -139,6 +141,7 @@ public class ChestController {
 
   public void secondDigitGlow() {
     secondDigitHighlight.setOpacity(1);
+    secondDigitHighlight.setCursor(Cursor.OPEN_HAND);
   }
 
   public void secondDigitDark() {
@@ -147,6 +150,7 @@ public class ChestController {
 
   public void thirdDigitGlow() {
     thirdDigitHighlight.setOpacity(1);
+    thirdDigitHighlight.setCursor(Cursor.OPEN_HAND);
   }
 
   public void thirdDigitDark() {
@@ -155,8 +159,11 @@ public class ChestController {
 
   public void activateRootGlow() {
     rootCollisionBox1.setOpacity(1);
+    rootCollisionBox1.setCursor(Cursor.OPEN_HAND);
     rootCollisionBox2.setOpacity(1);
+    rootCollisionBox2.setCursor(Cursor.OPEN_HAND);
     rootCollisionBox3.setOpacity(1);
+    rootCollisionBox3.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateRootGlow() {
