@@ -93,7 +93,7 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
     // Set up thinking bubble, notebook, chat area, hint button, input text field
     bubbleTimeline.setCycleCount(Timeline.INDEFINITE);
-    notebookCollisionBox.setCursor(Cursor.OPEN_HAND);
+    notebookCollisionBox.setCursor(Cursor.HAND);
     chatTextArea.setEditable(false); // prevents user from editing the chat text area
     hintButton.setDisable(true);
     inputText.setDisable(true);

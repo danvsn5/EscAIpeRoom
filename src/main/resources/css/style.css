@@ -4,6 +4,7 @@
     -fx-font-family: 'Impact';
     -fx-font-size: 15;
     -fx-background-color: lightgrey;
+    -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 5, 5);
 }
 
