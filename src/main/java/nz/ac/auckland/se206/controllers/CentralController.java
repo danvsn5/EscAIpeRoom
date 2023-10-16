@@ -420,9 +420,13 @@ public class CentralController {
 
   public void activateRootTwoGlow() {
     rootTwoCollisionBox1.setOpacity(1);
+    rootTwoCollisionBox1.setCursor(Cursor.OPEN_HAND);
     rootTwoCollisionBox2.setOpacity(1);
+    rootTwoCollisionBox2.setCursor(Cursor.OPEN_HAND);
     rootTwoCollisionBox3.setOpacity(1);
+    rootTwoCollisionBox3.setCursor(Cursor.OPEN_HAND);
     rootTwoCollisionBox4.setOpacity(1);
+    rootTwoCollisionBox4.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateRootTwoGlow() {
@@ -434,10 +438,15 @@ public class CentralController {
 
   public void activateRootThreeGlow() {
     rootThreeCollisionBox1.setOpacity(1);
+    rootThreeCollisionBox1.setCursor(Cursor.OPEN_HAND);
     rootThreeCollisionBox2.setOpacity(1);
+    rootThreeCollisionBox2.setCursor(Cursor.OPEN_HAND);
     rootThreeCollisionBox3.setOpacity(1);
+    rootThreeCollisionBox3.setCursor(Cursor.OPEN_HAND);
     rootThreeCollisionBox4.setOpacity(1);
+    rootThreeCollisionBox4.setCursor(Cursor.OPEN_HAND);
     rootThreeCollisionBox5.setOpacity(1);
+    rootThreeCollisionBox5.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateRootThreeGlow() {
@@ -450,14 +459,23 @@ public class CentralController {
 
   public void activateRootFourGlow() {
     rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox1.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox2.setOpacity(1);
+    rootFourCollisionBox2.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox3.setOpacity(1);
+    rootFourCollisionBox3.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox4.setOpacity(1);
+    rootFourCollisionBox4.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox5.setOpacity(1);
+    rootFourCollisionBox5.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox6.setOpacity(1);
+    rootFourCollisionBox6.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox7.setOpacity(1);
+    rootFourCollisionBox7.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox8.setOpacity(1);
+    rootFourCollisionBox8.setCursor(Cursor.OPEN_HAND);
     rootFourCollisionBox9.setOpacity(1);
+    rootFourCollisionBox9.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateRootFourGlow() {
