@@ -77,6 +77,8 @@ public class CentralController {
   @FXML private Label infoLabel;
   @FXML private Label infoTitle;
 
+  @FXML private Polygon winGameCollisionBox;
+
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.OUTSIDE);
@@ -185,8 +187,7 @@ public class CentralController {
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       // Set the end game button visible
-      completeGame.setDisable(false);
-      completeGame.setVisible(true);
+      winGameCollisionBox.setVisible(true);
       GameState.isSecondMissionCompleted = true;
       // Show the complete image
       completeImage.setVisible(true);
