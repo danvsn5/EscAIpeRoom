@@ -123,18 +123,27 @@ public class GameState {
 
   public static void reset() {
     // Reset the game
-    MissionManager.missionList.clear(); // clear the mission list
-    MissionManager.keyList.clear(); // clear the key list
+    // Clear mission related variables
+    MissionManager.missionList.clear();
+    MissionManager.keyList.clear();
     missionList.clear();
-    inventory.clear(); // clear the inventory
-    isGreetingShown = false; // reset greeting
-    firstRiddleSolved = false; // tracks if the first riddle has been solved.
-    secondRiddleSolved = false; // tracks if the second riddle has been solved.
-    isFirstMissionCompleted = false; // reset first mission
+    isFirstMissionCompleted = false;
+    isSecondMissionCompleted = false;
+    // Clear the inventory
+    inventory.clear();
+    isBucketCollected = false;
+    isSandCollected = false;
+    // Clear gpt related variables
+    isGreetingShown = false;
+    firstRiddleSolved = false;
+    secondRiddleSolved = false;
+    ChatController.seenFirstMessage = 0;
+    // Reset thruster mission
     ThrusterController.buttonActivationCounter = 0;
     ThrusterController.isGameActive = 0;
-    ChatController.seenFirstMessage = 0;
+    // Reset controller mission
     passWord = -1;
+    // Reset root
     RootBorder.rootState = 1;
   }
 
