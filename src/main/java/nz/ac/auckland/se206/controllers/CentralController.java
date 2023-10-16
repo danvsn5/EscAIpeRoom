@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -398,10 +399,16 @@ public class CentralController {
   }
 
   public void activateRootOneGlow() {
+    // uses set effect method to change the cursor visual to an open hand when the mouse is over the
+
     rootOneCollisionBox1.setOpacity(1);
+    rootOneCollisionBox1.setCursor(Cursor.OPEN_HAND);
     rootOneCollisionBox2.setOpacity(1);
+    rootOneCollisionBox2.setCursor(Cursor.OPEN_HAND);
     rootOneCollisionBox3.setOpacity(1);
+    rootOneCollisionBox3.setCursor(Cursor.OPEN_HAND);
     rootOneCollisionBox4.setOpacity(1);
+    rootOneCollisionBox4.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateRootOneGlow() {
