@@ -173,22 +173,22 @@ public class GameState {
 
   public static void generatePassWord() {
     Random rand = new Random();
-    firstDigit = rand.nextInt(500);
+    firstDigit = rand.nextInt(500); // first digit between 0 and 500.
     System.out.println(firstDigit);
-    secondDigit = rand.nextInt(500);
+    secondDigit = rand.nextInt(500); // second digit between 0 and 500.
     System.out.println(secondDigit);
-    passWord = firstDigit + secondDigit;
+    passWord = firstDigit + secondDigit; // add the two digits together.
     System.out.println(passWord);
   }
 
-  public static void speak(String message) {
-    if (textToSpeechSetting) {
+  public static void speak(String message) { // text to speech method.
+    if (textToSpeechSetting) { // if text to speech is enabled, speak the message.
       Thread speakThread =
           new Thread(
               () -> {
                 textToSpeech.speak(message);
               });
-      speakThread.start();
+      speakThread.start(); // start the thread.
     }
   }
 }
