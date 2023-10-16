@@ -1,18 +1,18 @@
 package nz.ac.auckland.se206.missions;
 
-/** This is an abstract class, every Mission class extends this class */
+/** This is an abstract class, every Mission class extends this class. */
 public abstract class Mission {
   protected int currentStage;
   protected int totalStage;
 
   /**
-   * Get the name of this mission
+   * Get the name of this mission.
    *
    * @return the name of this mission.
    */
   public abstract String getName();
 
-  /** Increase the current stage of this mission by 1 */
+  /** Increase the current stage of this mission by 1. */
   public void increaseStage() {
     // Increase the currentStage
     currentStage++;
@@ -25,7 +25,7 @@ public abstract class Mission {
   }
 
   /**
-   * Get the current stage of this mission
+   * Get the current stage of this mission.
    *
    * @return the currentStage of this mission.
    */
@@ -34,7 +34,7 @@ public abstract class Mission {
   }
 
   /**
-   * Get the progress of this mission
+   * Get the progress of this mission.
    *
    * @return the progress of this mission.
    */
@@ -43,9 +43,9 @@ public abstract class Mission {
   }
 
   /**
-   * Check if this mission ends
+   * Check if this mission ends.
    *
-   * @return if this mission ends
+   * @return if this mission ends.
    */
   public boolean isEnd() {
     return currentStage == totalStage;
