@@ -187,7 +187,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
-      <Label fx:id="guideLabel" alignment="TOP_LEFT" layoutX="241.0" layoutY="84.0" onMouseClicked="#hideGuide" prefHeight="404.0" prefWidth="800.0" text="Welcome! &#10;Wonder who I am? &#10;I am the mysterious tree of the forest.&#10;If you want to escape, you should have to &#10;fix this ship first!&#10;You have two missions to be completed.&#10;Wonder what are they?&#10;Check the progress bar first then find me on outside!&#10;&#10;&#10;" textFill="WHITE" wrapText="true">
+      <Label fx:id="guideLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="241.0" layoutY="84.0" onMouseClicked="#hideGuide" prefHeight="404.0" prefWidth="800.0" text="Hmmmm... Outsider... It appears you've crash-landed on MY planet. Wish to escape? You must ready your ship by first and then. But... I will not make your venture easy. Find me outside should you wish to be challenged.&#10;&#10;&#10;" textFill="WHITE" wrapText="true">
          <font>
             <Font size="26.0" />
          </font>
