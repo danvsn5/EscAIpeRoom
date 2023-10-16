@@ -312,7 +312,7 @@ public class CentralController {
 
         String appendString =
             "You have repaired the window... Well done. You still cannot leave however, as the"
-                + " control panel is still damaged. In amongst your ship, I have hidden a"
+                + " control panel is still damaged. In amongst your ship, I have placed a"
                 + " chest containing spare parts that should help you fix the control panel";
 
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
