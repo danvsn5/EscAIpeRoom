@@ -271,7 +271,7 @@ public class StorageController {
   }
 
   private void activateCollectedInfoBluePrint() {
-    collectedTitle.setText("BluePint Collected");
+    collectedTitle.setText("Blueprint Collected");
     collectedTitle.setVisible(true);
     blueprintInfo.setVisible(true);
   }
