@@ -111,16 +111,18 @@ public class ChatController {
     String mission1;
     if (GameState.missionListA.contains(1)) {
       mission1 =
-          "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
-              + " to the next step. Are you ready? \n\n";
+          "So you have found me and wish to escape MY planet? I wish to make your attempts as"
+              + " challenging as possible. To repair your window, I shall offer you a riddle. \n\n"
+              + " Are you ready? \n\n";
       chatTextArea.appendText("Wise Ancient Tree: " + mission1);
       chatLabel.setText(mission1);
       System.out.println("chatLineCode");
 
     } else if (GameState.missionListA.contains(2)) {
       mission1 =
-          "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
-              + " you to the next step. Are you ready? \n\n";
+          "So you have found me and wish to escape MY planet? I wish to make your attempts as"
+              + " challenging as possible. To refuel you ship, I shall offer you a riddle. \n\n"
+              + " Are you ready? \n\n";
       chatTextArea.appendText("Wise Ancient Tree: " + mission1);
       System.out.println("chatLineCode");
       chatLabel.setText(mission1);
@@ -754,7 +756,7 @@ public class ChatController {
   public void showSand() {
     // Set the title and context of the info panel
     collectedTitle.setText("Bucket");
-    collectedLabel.setText("An empty bucket.\nCan be used to collect the sand.");
+    collectedLabel.setText("An empty bucket.\nIt may be used to collect sand");
     // Show the sand info panel
     sandInfo.setVisible(true);
     collectedTitle.setVisible(true);
