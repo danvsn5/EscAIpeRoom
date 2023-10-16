@@ -94,7 +94,7 @@ public class ChestController {
       //     "Info", "Control panel collected", "The spare part of the controller");
 
       collectedTitle.setText("Control panel");
-      collectedLabel.setText("The spare part of the controller");
+      collectedLabel.setText("Spare conroller parts");
       collectedTitle.setVisible(true);
       collectedLabel.setVisible(true);
       controlPanelInfo.setVisible(true);

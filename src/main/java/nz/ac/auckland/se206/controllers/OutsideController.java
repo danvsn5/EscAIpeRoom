@@ -238,7 +238,7 @@ public class OutsideController {
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
       collectedTitle.setText("Sand Collected");
-      collectedLabel.setText("A pile of sand, can be melted into glass.");
+      collectedLabel.setText("A bucket full of sand which may be processed into glass");
       collectedLabel.setVisible(true);
       collectedTitle.setVisible(true);
       sandInfo.setVisible(true);

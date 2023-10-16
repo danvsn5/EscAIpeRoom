@@ -153,7 +153,7 @@ public class StorageController {
       showGlass();
     } else {
       collectedTitle.setText("Process Machine");
-      collectedLabel.setText("High tech process machine, can make ingredients into product");
+      collectedLabel.setText("High temperature processing machine");
       collectedTitle.setVisible(true);
       collectedLabel.setVisible(true);
       processMachineInfo.setVisible(true);
