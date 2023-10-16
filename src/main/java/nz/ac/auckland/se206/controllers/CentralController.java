@@ -248,7 +248,9 @@ public class CentralController {
 
   public void activateDoorGlow() {
     outside.setEffect(GameState.glowBright);
+    outside.setCursor(Cursor.OPEN_HAND);
     outsideDoor.setOpacity(1);
+    outsideDoor.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateDoorGlow() {
@@ -258,6 +260,7 @@ public class CentralController {
 
   public void activateFuelTankGlow() {
     fuelTank.setOpacity(1);
+    fuelTank.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateFuelTankGlow() {
@@ -267,6 +270,8 @@ public class CentralController {
   public void activateStorageGlow() {
     storage.setEffect(GameState.glowBright);
     storageDoor.setOpacity(1);
+    storage.setCursor(Cursor.OPEN_HAND);
+    storageDoor.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateStorageGlow() {
@@ -276,6 +281,7 @@ public class CentralController {
 
   public void activateWindowGlow() {
     window.setOpacity(1);
+    window.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateWindowGlow() {
@@ -284,7 +290,10 @@ public class CentralController {
 
   public void activateControllerGlow() {
     controllerBroken1.setOpacity(1);
+    controllerBroken1.setCursor(Cursor.OPEN_HAND);
+
     controllerBroken2.setOpacity(1);
+    controllerBroken2.setCursor(Cursor.OPEN_HAND);
   }
 
   public void deactivateControllerGlow() {
