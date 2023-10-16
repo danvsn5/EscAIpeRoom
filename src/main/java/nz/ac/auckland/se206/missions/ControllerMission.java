@@ -9,7 +9,7 @@ public class ControllerMission extends Mission {
   }
 
   /**
-   * Get the name of this mission
+   * Get the name of this mission.
    *
    * @return the name of this mission.
    */
