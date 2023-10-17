@@ -70,8 +70,18 @@ public class LaunchController {
     timelineThread.start(); // starts the thread
   }
 
-  // clears all instances of existing rooms, wipes out the inventory and resets the timeline
-  public void launchGame(MouseEvent ev) throws IOException { // javadoc
+  /**
+   * Launches the game and initializes the necessary components such as media players, tasks, and panels.
+   * Disables launchButton, diffButton, timerButton, and speechButton.
+   * Sets loopingVideo to invisible and plays mediaPlayerTwo once mediaPlayerOne ends.
+   * Adds panels to SceneManager and initializes missions and progress bars.
+   * Sets guideLabel text to a message containing the first mission and a clue to find the mysterious tree.
+   * Sets previous panel to MAIN_ROOM.
+   * @param ev MouseEvent that triggers the launchGame method.
+   * @throws IOException if an I/O error occurs.
+   */
+  public void launchGame(MouseEvent ev) throws IOException {
+    // clears all instances of existing rooms, wipes out the inventory and resets the timeline
     launchButton.setDisable(true);
     diffButton.setDisable(true);
     timerButton.setDisable(true);
@@ -186,7 +196,14 @@ public class LaunchController {
     // App.setUi(AppPanel.MAIN_ROOM);
   }
 
-  public void changeDiff() { // javadoc
+  /**
+   * Changes the difficulty level of the game and updates the hint number and difficulty button text accordingly.
+   * The difficulty level is determined by the current value of GameState.getDifficulty().
+   * If the current difficulty is 0, sets the difficulty to 1 (medium), sets the hint number to 5, and updates the button text to "Difficulty: Medium".
+   * If the current difficulty is 1, sets the difficulty to 2 (hard), sets the hint number to 0, and updates the button text to "Difficulty: Hard".
+   * If the current difficulty is 2, sets the difficulty to 0 (easy), sets the hint number to 1000, and updates the button text to "Difficulty: Easy".
+   */
+  public void changeDiff() {
     // switch case for difficulty in Gamestate class for numbers between 0-2
     int difficulty = GameState.getDifficulty();
 
@@ -209,7 +226,10 @@ public class LaunchController {
     }
   }
 
-  public void changeTimer() { // javadoc
+  /**
+   * Changes the timer value and updates the text of the timer button accordingly.
+   */
+  public void changeTimer() {
 
     int timer = GameState.getTimer(); // gets the current timer
 
@@ -320,7 +340,11 @@ public class LaunchController {
     ((Label) SceneManager.getPanel(AppPanel.THRUSTER).lookup("#counter")).setText(time);
   }
 
-  public void initialiseVideo() { // javadoc
+  /**
+   * Initializes the video by creating two media players and setting them to the looping and launch videos respectively.
+   * The videos are played indefinitely and run on a separate thread.
+   */
+  public void initialiseVideo() {
     // initialise the video
     Task<Void> videoTask =
         new Task<Void>() {
