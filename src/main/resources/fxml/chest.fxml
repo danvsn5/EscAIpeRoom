@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChestController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -58,9 +58,9 @@
             <Font name="Bank Gothic Light BT" size="70.0" />
          </font>
       </Label>
-      <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="502.0" layoutY="468.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#firstDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="88.0" />
+      <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="502.0" layoutY="468.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#DarkeningFirstDigit" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="88.0" />
       <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="601.0" layoutY="468.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
-      <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="701.0" layoutY="468.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#thirdDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
+      <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="701.0" layoutY="468.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#DarkeningThirdDigit" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/miniTree.png" />
