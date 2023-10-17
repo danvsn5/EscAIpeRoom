@@ -135,7 +135,7 @@ public class OutsideController {
   }
 
   /**
-   * When the first message is not shown, this method record that first message is shown and set
+   * When the first message is not shown, this method record that first message is shown and set.
    * panel to Chat.
    *
    * @throws ApiProxyException If there is an api error.
@@ -253,7 +253,7 @@ public class OutsideController {
     }
   }
 
-  /* This method closes all info panel in this page */
+  /* This method closes all info panel in this page. */
   public void exitInfo() {
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
