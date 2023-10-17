@@ -121,10 +121,10 @@ public class GameState {
   }
 
   /**
-  * Sets the maximum hint number.
-  *
-  * @param max the maximum hint number to be set.
-  */
+   * Sets the maximum hint number.
+   *
+   * @param max the maximum hint number to be set.
+   */
   public static void setHintNumber(int max) {
     // Set the maximum hint number
     hintNumer = max;
@@ -144,18 +144,16 @@ public class GameState {
   }
 
   /**
-  * Checks if the hint has been used up.
-  *
-  * @return true if the hint has been used up, false otherwise.
-  */
+   * Checks if the hint has been used up.
+   *
+   * @return true if the hint has been used up, false otherwise.
+   */
   public static boolean hintUsedUp() {
     // Check if the hint used up
     return currentHint >= hintNumer;
   }
 
-  /**
-   * Resets the current hint to 0.
-   */
+  /** Resets the current hint to 0. */
   public static void clearHint() {
     // Reset the used hint
     currentHint = 0;
@@ -221,11 +219,9 @@ public class GameState {
     System.out.println(passWord);
   }
 
-
   /**
-   * Speaks the given message using text-to-speech 
-   * if the text-to-speech setting is enabled.
-   * 
+   * Speaks the given message using text-to-speech if the text-to-speech setting is enabled.
+   *
    * @param message the message to be spoken
    */
   public static void speak(String message) { // text to speech method.
