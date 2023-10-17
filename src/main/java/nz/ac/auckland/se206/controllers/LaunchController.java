@@ -24,13 +24,13 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TimeCounter;
 
+/** This class is the controller of launch panel of the game. */
 public class LaunchController {
+  public static TimeCounter timer;
 
   private static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
-
-  public static TimeCounter timer;
 
   @FXML private Button launchButton;
   @FXML private Button diffButton;
@@ -64,11 +64,11 @@ public class LaunchController {
           protected Void call() throws Exception {
             Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200)));
             videoBuffer.setCycleCount(1); // sets the Timeline to run once
-            videoBuffer
-                .setOnFinished( // once the Timeline is finished, it will run the following code
-                    event -> {
-                      initialiseVideo();
-                    });
+            // once the Timeline is finished, it will run the following code
+            videoBuffer.setOnFinished(
+                event -> {
+                  initialiseVideo();
+                });
             videoBuffer.play(); // plays the Timeline
             return null;
           }
@@ -142,7 +142,6 @@ public class LaunchController {
             SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
             SceneManager.addPanel(AppPanel.STORAGE, loadFxml("storage"));
             SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
-            // Create timer
             createTimer();
             // Choose random color
             GameState.createRandomColorNumber();
