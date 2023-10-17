@@ -52,6 +52,10 @@ public class GptPromptEngineering {
    * @return the hint generation request input for GPT.
    */
   public static String getHint(MissionType missionType) { // get hint for the mission
+    if (GameState.isSecondMissionCompleted) {
+      return "Tell the player to go to the space shuttle and leave. Limit your response in two"
+                 + " sentences. Begin your message with: 'Hint:'.";
+    }
     switch (missionType) { // switch case for different mission type
       case WINDOW: // if the mission type is window
         return windowHint();
