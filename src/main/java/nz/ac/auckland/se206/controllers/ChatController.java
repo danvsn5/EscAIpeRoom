@@ -39,16 +39,22 @@ public class ChatController {
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
 
-  @FXML private TextArea chatTextArea;
-  @FXML private Label chatLabel;
-
-  @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Button hintButton;
+  @FXML private Button closeBookButton;
+
+  @FXML private Label chatLabel;
   @FXML private Label counter;
-  @FXML private Circle loadingCircle;
   @FXML private Label listeningLabel;
+  @FXML private Label hintNumber;
+  @FXML private Label collectedLabel;
+  @FXML private Label collectedTitle;
+
   @FXML private ProgressIndicator loading;
+
+  @FXML private TextArea chatTextArea;
+  @FXML private TextField inputText;
+
   @FXML private ImageView progressButton;
   @FXML private ImageView treeListening;
   @FXML private ImageView treeTalking;
@@ -57,20 +63,17 @@ public class ChatController {
   @FXML private ImageView rootOne;
   @FXML private ImageView rootTwo;
   @FXML private ImageView rootThree;
-  @FXML private Rectangle hintRectangle;
-  @FXML private Label hintNumber;
   @FXML private ImageView smallBubble;
   @FXML private ImageView largeBubble;
   @FXML private ImageView medBubble;
   @FXML private ImageView notebook;
   @FXML private ImageView zoomBook;
-  @FXML private Button closeBookButton;
-  @FXML private Polygon notebookCollisionBox;
-
   @FXML private ImageView sandInfo;
   @FXML private ImageView fuelInfo;
-  @FXML private Label collectedLabel;
-  @FXML private Label collectedTitle;
+
+  @FXML private Circle loadingCircle;
+  @FXML private Polygon notebookCollisionBox;
+  @FXML private Rectangle hintRectangle;
 
   private int bubbleVariable = 0;
   private int bookVariable = 0;
