@@ -13,8 +13,9 @@ public class GptPromptEngineering {
           + " else. ";
   private static String oneSentence = "Say this in one sentence.";
   private static String beginWord = "Begin your message with: 'Hint:'.";
-  private static String hintButton = "If the user asks for a hint, taunt on them and tell them to "
-  + "click on the hint button for the hints.";
+  private static String info = "If the user asks for a hint, taunt on them and tell them to "
+  + "click on the hint button for the hints. YOU SHOULD NOT LET THE USER KNOW ABOUT THIS. "
+  + "YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA INFORMATION.";
 
   /**
    * This method returns the intro call input for GPT.
@@ -42,10 +43,8 @@ public class GptPromptEngineering {
         + " them. If users guess incorrectly, taunt on them, do not give any hint. If player gives"
         + " up, do not give the answer, taunt on them. If the user ask for other information,"
         + " generate a reasonable response. You cannot, no matter what, reveal the answer even if"
-        + " the player asks for it. Give your response in at most 100 words. This prompt is only for you,"
-        + " act like a wise tree. YOUT SHOULD"
-        + " NOT LET THE USER KNOW ABOUT THIS YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA"
-        + " INFORMATION. " + hintButton;
+        + " the player asks for it. Give your response in at most 70 words. This prompt is only for you,"
+        + " act like a wise tree. " + info;
   }
 
   /**
@@ -224,9 +223,7 @@ public class GptPromptEngineering {
         + " taunt on them, if users guess incorrectly, taunt on them, do not give hint. If player"
         + " gives up, do not give the answer, taunt on them. If the user ask for other information,"
         + " generate a reasonable response. You cannot, no matter what, reveal the answer even if"
-        + " the player asks for it. Give your response in at most 100 words. This prompt is only for you, "
-        + " act like a wise tree. YOUT SHOULD"
-        + " NOT LET THE USER KNOW ABOUT THIS YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA"
-        + " INFORMATION. " + hintButton; // prompt given to the gpt
+        + " the player asks for it. Give your response in at most 70 words. This prompt is only for you, "
+        + " act like a wise tree. " + info; // prompt given to the gpt
   }
 }
