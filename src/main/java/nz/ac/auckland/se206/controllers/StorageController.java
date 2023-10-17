@@ -16,9 +16,6 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class StorageController {
 
@@ -107,14 +104,22 @@ public class StorageController {
             @Override
             protected Void call() throws Exception {
 
-              System.out.println("this code is working"); // print statement to check if the code is working
+              System.out.println(
+                  "this code is working"); // print statement to check if the code is working
               gptMessage =
-                  runGpt(
-                      new ChatMessage(
-                          "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord))); // gets the gpt message of the controller puzzle
-              Platform.runLater(() -> appendChatMessage(gptMessage));
-
-              System.out.println(gptMessage.getContent()); // print statement on the console to check if the code is working
+                  ChatController.getResponse(
+                      GptPromptEngineering.getControllerPuzzle(GameState.passWord),
+                      ChatController.chatCompletionRequest);
+              // Append the message to the chat text area and notebook
+              Platform.runLater(
+                  () ->
+                      ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel"))
+                          .setText(gptMessage.getContent()));
+              Platform.runLater(
+                  () ->
+                      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+                          .appendText(
+                              "\n\n" + "Wise Ancient Tree: " + gptMessage.getContent() + "\n\n"));
 
               return null;
             }
@@ -145,10 +150,10 @@ public class StorageController {
   }
 
   /**
-   * Melts sand in the furnace when the mission is the window.
-   * If the inventory contains sand, the mission stage is increased, progress bar is updated,
-   * process machine is hidden, and glass is shown.
-   * If the inventory does not contain sand, information about the process machine is displayed.
+   * Melts sand in the furnace when the mission is the window. If the inventory contains sand, the
+   * mission stage is increased, progress bar is updated, process machine is hidden, and glass is
+   * shown. If the inventory does not contain sand, information about the process machine is
+   * displayed.
    */
   public void meltSand() { // furnace button when the mission is the window.
     if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
@@ -299,7 +304,8 @@ public class StorageController {
   public void activateRootOneGlow() { // activate root one glow
     // box 1
     rootOneCollisionBox1.setOpacity(1); // sets the opacity of the root one collision box to 1
-    rootOneCollisionBox1.setCursor(Cursor.HAND); // sets the cursor of the root one collision box to hand
+    rootOneCollisionBox1.setCursor(
+        Cursor.HAND); // sets the cursor of the root one collision box to hand
     // box 2
     rootOneCollisionBox2.setOpacity(1);
     rootOneCollisionBox2.setCursor(Cursor.HAND);
@@ -318,13 +324,12 @@ public class StorageController {
     rootOneCollisionBox4.setOpacity(0);
   }
 
-  /**
-   * Activates the glow effect for the root two collision boxes and sets their cursor to hand.
-   */
+  /** Activates the glow effect for the root two collision boxes and sets their cursor to hand. */
   public void activateRootTwoGlow() { // activate root two glow
     // box 1
     rootTwoCollisionBox1.setOpacity(1); // sets the opacity of the root two collision box to 1
-    rootTwoCollisionBox1.setCursor(Cursor.HAND); // sets the cursor of the root two collision box to hand
+    rootTwoCollisionBox1.setCursor(
+        Cursor.HAND); // sets the cursor of the root two collision box to hand
     // box 2
     rootTwoCollisionBox2.setOpacity(1);
     rootTwoCollisionBox2.setCursor(Cursor.HAND);
@@ -343,13 +348,12 @@ public class StorageController {
     rootTwoCollisionBox4.setOpacity(0);
   }
 
-  /**
-   * Activates the glow effect for the root three collision boxes and sets their cursor to hand.
-   */
+  /** Activates the glow effect for the root three collision boxes and sets their cursor to hand. */
   public void activateRootThreeGlow() { // activate root three glow
     // box 1
     rootThreeCollisionBox1.setOpacity(1); // sets the opacity of the root three collision box to 1
-    rootThreeCollisionBox1.setCursor(Cursor.HAND); // sets the cursor of the root three collision box to hand
+    rootThreeCollisionBox1.setCursor(
+        Cursor.HAND); // sets the cursor of the root three collision box to hand
     // box 2
     rootThreeCollisionBox2.setOpacity(1);
     rootThreeCollisionBox2.setCursor(Cursor.HAND);
@@ -376,7 +380,8 @@ public class StorageController {
     // activate root four glow
     // box 1
     rootFourCollisionBox1.setOpacity(1); // sets the opacity of the root four collision box to 1
-    rootFourCollisionBox1.setCursor(Cursor.HAND); // sets the cursor of the root four collision box to hand
+    rootFourCollisionBox1.setCursor(
+        Cursor.HAND); // sets the cursor of the root four collision box to hand
     // box 2
     rootFourCollisionBox2.setOpacity(1);
     rootFourCollisionBox2.setCursor(Cursor.HAND);
@@ -404,9 +409,8 @@ public class StorageController {
   }
 
   /**
-   * Deactivates the glow effect on the root four collision boxes.
-   * This method sets the opacity of all nine collision boxes to 0, effectively
-   * removing the glow effect.
+   * Deactivates the glow effect on the root four collision boxes. This method sets the opacity of
+   * all nine collision boxes to 0, effectively removing the glow effect.
    */
   public void deactivateRootFourGlow() {
     // deactivate root four glow
@@ -422,36 +426,5 @@ public class StorageController {
     rootFourCollisionBox7.setOpacity(0);
     rootFourCollisionBox8.setOpacity(0);
     rootFourCollisionBox9.setOpacity(0);
-  }
-
-  /*  GPT Helper Methods */ 
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    ChatController.chatCompletionRequest.addMessage(msg); // adds the message to the chat completion request
-    try {
-      ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next(); // gets the result of the chat completion result
-      ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Mystical Tree"); // sets the role of the chat message to Wise Mystical Tree
-      result.getChatMessage().setRole("assistant"); /// sets the role of the chat message to assistant
-      return result.getChatMessage(); // returns the chat message
-    } catch (ApiProxyException e) { // catches the api proxy exception
-      ChatMessage error = new ChatMessage(null, null);
-
-      error.setRole("Wise Mystical Tree");
-
-      error.setContent(
-          "Sorry, there was a problem generating a response. Please try restarting the"
-              + " application.");
-      appendChatMessage(error);
-      e.printStackTrace(); // prints the stack trace
-      return null;
-    }
-  }
-
-  private void appendChatMessage(ChatMessage msg) {
-    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
-    ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
-    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
   }
 }
