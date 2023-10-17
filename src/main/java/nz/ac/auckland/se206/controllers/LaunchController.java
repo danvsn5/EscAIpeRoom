@@ -26,12 +26,11 @@ import nz.ac.auckland.se206.TimeCounter;
 
 public class LaunchController {
 
-  private String mission1;
-  private String mission2;
-
   private static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
+
+  public static TimeCounter timer;
 
   @FXML private Button launchButton;
   @FXML private Button diffButton;
@@ -44,10 +43,18 @@ public class LaunchController {
   private MediaPlayer mediaPlayerOne;
   private Media mediaTwo;
   private MediaPlayer mediaPlayerTwo;
-  public static TimeCounter timer;
 
-  MissionInitialise missionInitialise = new MissionInitialise();
+  private String mission1;
+  private String mission2;
 
+  private MissionInitialise missionInitialise = new MissionInitialise();
+
+  /**
+   * Initializes the launch panel by creating a timeline that runs for 200 milliseconds and start
+   * the animation.
+   *
+   * @throws Exception if an exception occurs.
+   */
   public void initialize() throws Exception {
 
     Task<Void> timelineTask =
@@ -55,28 +62,30 @@ public class LaunchController {
 
           @Override
           protected Void call() throws Exception {
-            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200))); 
+            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200)));
             videoBuffer.setCycleCount(1); // sets the Timeline to run once
-            videoBuffer.setOnFinished( // once the Timeline is finished, it will run the following code
-                event -> {
-                  initialiseVideo();
-                });
+            videoBuffer
+                .setOnFinished( // once the Timeline is finished, it will run the following code
+                    event -> {
+                      initialiseVideo();
+                    });
             videoBuffer.play(); // plays the Timeline
             return null;
           }
         };
 
+    // Start the thread
     Thread timelineThread = new Thread(timelineTask);
     timelineThread.start(); // starts the thread
   }
 
   /**
-   * Launches the game and initializes the necessary components such as media players, tasks, and panels.
-   * Disables launchButton, diffButton, timerButton, and speechButton.
-   * Sets loopingVideo to invisible and plays mediaPlayerTwo once mediaPlayerOne ends.
-   * Adds panels to SceneManager and initializes missions and progress bars.
-   * Sets guideLabel text to a message containing the first mission and a clue to find the mysterious tree.
-   * Sets previous panel to MAIN_ROOM.
+   * Launches the game and initializes the necessary components such as media players, tasks, and
+   * panels. Disables launchButton, diffButton, timerButton, and speechButton. Sets loopingVideo to
+   * invisible and plays mediaPlayerTwo once mediaPlayerOne ends. Adds panels to SceneManager and
+   * initializes missions and progress bars. Sets guideLabel text to a message containing the first
+   * mission and a clue to find the mysterious tree. Sets previous panel to MAIN_ROOM.
+   *
    * @param ev MouseEvent that triggers the launchGame method.
    * @throws IOException if an I/O error occurs.
    */
@@ -87,6 +96,7 @@ public class LaunchController {
     timerButton.setDisable(true);
     speechButton.setDisable(true);
 
+    // When the first video ends, the second video will play
     mediaPlayerOne.setOnEndOfMedia(
         new Runnable() {
           @Override
@@ -97,6 +107,7 @@ public class LaunchController {
           }
         });
 
+    // When the second video ends, the game will start
     mediaPlayerTwo.setOnEndOfMedia(
         new Runnable() {
           @Override
@@ -105,17 +116,22 @@ public class LaunchController {
           }
         });
 
+    // clear all the rooms
     SceneManager.clearMap();
+
+    // Initialise the game
     Task<Void> initialiseTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+            // Choose missions
             Random rand = new Random();
             int task1 = rand.nextInt(2) + 1;
             int task2 = rand.nextInt(2) + 3;
             GameState.missionListA.add(task1);
             GameState.missionListA.add(task2);
+            // Initialize rooms
             SceneManager.addPanel(AppPanel.MAIN_ROOM, loadFxml("mainRoom"));
             SceneManager.addPanel(AppPanel.OUTSIDE, loadFxml("outsideRoom"));
             SceneManager.addPanel(AppPanel.LOSE, loadFxml("loseRoom"));
@@ -126,11 +142,11 @@ public class LaunchController {
             SceneManager.addPanel(AppPanel.PROGRESS, loadFxml("progressBars"));
             SceneManager.addPanel(AppPanel.STORAGE, loadFxml("storage"));
             SceneManager.addPanel(AppPanel.CHAT, loadFxml("chat"));
-
+            // Create timer
             createTimer();
-
+            // Choose random color
             GameState.createRandomColorNumber();
-
+            // Add missions
             GameState.missionManager.addMission(task1);
             GameState.missionManager.addMission(task2);
             GameState.missionList.add(task1);
@@ -140,6 +156,7 @@ public class LaunchController {
             missionInitialise.initialiseFirstMission(task1);
             missionInitialise.initialiseSecondMission(task2);
 
+            // Set the guide label
             if (GameState.missionList.contains(1)) {
               mission1 = "repairing the broken window";
             } else if (GameState.missionList.contains(2)) {
@@ -151,7 +168,7 @@ public class LaunchController {
             } else if (GameState.missionList.contains(4)) {
               mission2 = "recalibrating the thrusters";
             }
-
+            // Set the guide text
             String text =
                 "Hmmmmm... Outsider... It appears you've crash-landed on MY planet. Wish to escape?"
                     + " \n"
@@ -162,48 +179,31 @@ public class LaunchController {
                     + ".\n"
                     + "But... I will not make your venture easy \n"
                     + "Find me outside should you wish to be challenged.";
-
+            // Set the text to the guide label
             Platform.runLater(
                 () -> {
                   ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#guideLabel"))
                       .setText(text);
                 });
 
-            // String mission1;
-
-            // if (GameState.missionList.contains(1)) {
-            //   mission1 =
-            //       "Know how to fix the window? I shall give you a riddle and the answer should"
-            //           + " guide you to the next step. You ready?\n";
-            //   ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            //       .appendText(mission1);
-
-            // } else if (GameState.missionList.contains(2)) {
-            //   mission1 =
-            //       "Know how to charge the fuel? I shall give you a riddle and the answer should"
-            //           + " guide you to the next step. You ready?\n";
-            //   ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-            //       .appendText(mission1);
-            // }
-
             SceneManager.setPrevious(AppPanel.MAIN_ROOM);
 
             return null;
           }
         };
-
+    // Start the thread
     Thread videoInitialisationThread = new Thread(initialiseTask);
     videoInitialisationThread.start();
-
-    // App.setUi(AppPanel.MAIN_ROOM);
   }
 
   /**
-   * Changes the difficulty level of the game and updates the hint number and difficulty button text accordingly.
-   * The difficulty level is determined by the current value of GameState.getDifficulty().
-   * If the current difficulty is 0, sets the difficulty to 1 (medium), sets the hint number to 5, and updates the button text to "Difficulty: Medium".
-   * If the current difficulty is 1, sets the difficulty to 2 (hard), sets the hint number to 0, and updates the button text to "Difficulty: Hard".
-   * If the current difficulty is 2, sets the difficulty to 0 (easy), sets the hint number to 1000, and updates the button text to "Difficulty: Easy".
+   * Changes the difficulty level of the game and updates the hint number and difficulty button text
+   * accordingly. The difficulty level is determined by the current value of
+   * GameState.getDifficulty(). If the current difficulty is 0, sets the difficulty to 1 (medium),
+   * sets the hint number to 5, and updates the button text to "Difficulty: Medium". If the current
+   * difficulty is 1, sets the difficulty to 2 (hard), sets the hint number to 0, and updates the
+   * button text to "Difficulty: Hard". If the current difficulty is 2, sets the difficulty to 0
+   * (easy), sets the hint number to 1000, and updates the button text to "Difficulty: Easy".
    */
   public void changeDiff() {
     // switch case for difficulty in Gamestate class for numbers between 0-2
@@ -228,9 +228,7 @@ public class LaunchController {
     }
   }
 
-  /**
-   * Changes the timer value and updates the text of the timer button accordingly.
-   */
+  /** Changes the timer value and updates the text of the timer button accordingly. */
   public void changeTimer() {
 
     int timer = GameState.getTimer(); // gets the current timer
@@ -343,8 +341,8 @@ public class LaunchController {
   }
 
   /**
-   * Initializes the video by creating two media players and setting them to the looping and launch videos respectively.
-   * The videos are played indefinitely and run on a separate thread.
+   * Initializes the video by creating two media players and setting them to the looping and launch
+   * videos respectively. The videos are played indefinitely and run on a separate thread.
    */
   public void initialiseVideo() {
     // initialise the video
