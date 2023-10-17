@@ -17,6 +17,18 @@ import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * The StorageController class controls the behavior of the storage room in the game. 
+ * It handles the interaction with various objects in the room such as the 
+ * progress button, storage door, hidden chest image, blueprint, mini tree, roots, 
+ * collision boxes, controller, thruster, process machine,
+ * bridge door, chest, glass, blueprint collision box, collected title, 
+ * collected label, blueprint info, window info, and process machine info. 
+ * It also handles the logic for generating a password,
+ * displaying a numerical puzzle, and collecting the blueprint. 
+ * This class is responsible for updating the game state and UI when 
+ * certain actions are performed in the storage room.
+ */
 public class StorageController {
 
   @FXML private ImageView progressButton;
@@ -313,6 +325,7 @@ public class StorageController {
     processMachineInfo.setVisible(false);
   }
 
+  /** This method activates the glow effect of the controller. */
   public void activateRootOneGlow() { // activate root one glow
     // box 1
     storageRootOneCollisionBox1.setOpacity(
