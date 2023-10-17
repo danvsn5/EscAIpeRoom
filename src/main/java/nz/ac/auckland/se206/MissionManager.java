@@ -9,10 +9,10 @@ import nz.ac.auckland.se206.missions.Mission;
 import nz.ac.auckland.se206.missions.ThrusterMission;
 import nz.ac.auckland.se206.missions.WindowMission;
 
-/** This class manages the mission, records the selected mission */
+/** This class manages the mission, records the selected mission. */
 public class MissionManager {
 
-  /** The enum of mission types */
+  /** The enum of mission types. */
   public enum MISSION {
     WINDOW,
     CONTROLLER,
