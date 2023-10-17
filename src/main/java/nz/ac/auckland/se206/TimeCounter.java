@@ -3,13 +3,18 @@ package nz.ac.auckland.se206;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.controllers.LoseController;
 
-/** This class counts down from given time */
+/** This class counts down from given time. */
 public class TimeCounter {
   private int secondCounter;
   private int minuteCounter;
   private double totalSeconds;
 
-  /** The constructor of the class, initialize a time counter */
+  /**
+   * The constructor of the class, initialize a time counter.
+   *
+   * @param minute The minute of the countdown.
+   * @param second The second of the countdown.
+   */
   public TimeCounter(int minute, int second) {
     secondCounter = second;
     minuteCounter = minute;
@@ -17,9 +22,9 @@ public class TimeCounter {
   }
 
   /**
-   * Get current countdown time in format of minutes:seconds
+   * Get current countdown time in format of minutes:seconds.
    *
-   * @return the formated time
+   * @return the formated time.
    */
   public String getTime() {
     // If the countdown ends, return "END"
@@ -35,7 +40,7 @@ public class TimeCounter {
     return (minuteCounter + ":" + secondCounter);
   }
 
-  /** Decrease the counter by 1 */
+  /** Decrease the counter by 1. */
   public void decrease() {
     // Decrease the second counter
     secondCounter--;
@@ -47,36 +52,36 @@ public class TimeCounter {
   }
 
   /**
-   * Return the status of the counter
+   * Return the status of the counter.
    *
-   * @return a boolean indicate if the countdown is finished
+   * @return a boolean indicate if the countdown is finished.
    */
   public boolean isEnd() {
     return minuteCounter < 0;
   }
 
   /**
-   * Return the second counter
+   * Return the second counter, it represents the second left.
    *
-   * @return int value indicates how many seconds left
+   * @return int value indicates how many seconds left.
    */
   public int getSecond() {
     return secondCounter;
   }
 
   /**
-   * Return the minute counter
+   * Return the minute counter, it represents the minute left.
    *
-   * @return int value indicates how many minutes left
+   * @return int value indicates how many minutes left.
    */
   public int getMinute() {
     return minuteCounter;
   }
 
   /**
-   * Return the remaining time in percentage * 100
+   * Return the remaining time in percentage * 100.
    *
-   * @return double value of the remaining time in percentage * 100
+   * @return double value of the remaining time in percentage * 100.
    */
   public double getRemainingPercentage() {
     // Calculates the current time in seconds
@@ -84,7 +89,7 @@ public class TimeCounter {
     return currentSeconds * 100 / totalSeconds;
   }
 
-  /** Set the timer to finish state */
+  /** Set the timer to finish state. */
   public void setFinish() {
     secondCounter = -1;
     minuteCounter = -1;
