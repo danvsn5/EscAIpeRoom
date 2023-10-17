@@ -122,6 +122,7 @@ public class GameState {
 
   /**
   * Sets the maximum hint number.
+  *
   * @param max the maximum hint number to be set.
   */
   public static void setHintNumber(int max) {
@@ -144,6 +145,7 @@ public class GameState {
 
   /**
   * Checks if the hint has been used up.
+  *
   * @return true if the hint has been used up, false otherwise.
   */
   public static boolean hintUsedUp() {
@@ -219,11 +221,13 @@ public class GameState {
     System.out.println(passWord);
   }
 
+
   /**
-  * Speaks the given message using text-to-speech if the setting is enabled.
-  * 
-  * @param message the message to be spoken
-  */
+   * Speaks the given message using text-to-speech 
+   * if the text-to-speech setting is enabled.
+   * 
+   * @param message the message to be spoken
+   */
   public static void speak(String message) { // text to speech method.
     if (textToSpeechSetting) { // if text to speech is enabled, speak the message.
       Thread speakThread =
