@@ -13,7 +13,8 @@ public class GptPromptEngineering {
           + " else. ";
   private static String oneSentence = "Say this in one sentence.";
   private static String beginWord = "Begin your message with: 'Hint:'.";
-  private static String hintButton = "Tell them to click on the hint button for the hints.";
+  private static String hintButton = "If the user asks for a hint, taunt on them and tell them to "
+  + "click on the hint button for the hints.";
 
   /**
    * This method returns the intro call input for GPT.
