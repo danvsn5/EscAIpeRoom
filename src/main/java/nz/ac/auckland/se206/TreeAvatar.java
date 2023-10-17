@@ -50,27 +50,7 @@ public class TreeAvatar {
       treeState = 1;
     } else {
       // If the tree state is 1, indicating the tree is bright, set them to dim
-      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox1").setOpacity(0);
-      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox2").setOpacity(0);
-      SceneManager.getPanel(AppPanel.CHEST).lookup("#rootCollisionBox3").setOpacity(0);
-      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox1").setOpacity(0);
-      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox2").setOpacity(0);
-      SceneManager.getPanel(AppPanel.THRUSTER).lookup("#rootCollisionBox3").setOpacity(0);
-
-      switch (RootBorder.rootState) {
-        case 1:
-          rootOneDeactivate();
-          break;
-        case 2:
-          rootTwoDeactivate();
-          break;
-        case 3:
-          rootThreeDeactivate();
-          break;
-        case 4:
-          rootFourDeactivate();
-          break;
-      }
+      deactivateTreeGlow();
       treeState = 0;
     }
   }
