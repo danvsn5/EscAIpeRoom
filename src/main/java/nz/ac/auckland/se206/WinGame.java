@@ -5,6 +5,11 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
+/**
+ * The WinGame class contains methods and variables related to winning the game.
+ * It includes a method to flash the win game collision box on and off, 
+ * and a method to start the flashing animation for winning the game.
+ */
 public class WinGame {
 
   public static Timeline winFlash =
@@ -26,6 +31,10 @@ public class WinGame {
     }
   }
 
+  /**
+   * Starts the flashing animation for winning the game.
+   * The tree changes light every 0.4 seconds.
+   */
   public static void startFlashWin() {
     // The tree changes light every 0.4s
     winFlash.setCycleCount(Timeline.INDEFINITE);
