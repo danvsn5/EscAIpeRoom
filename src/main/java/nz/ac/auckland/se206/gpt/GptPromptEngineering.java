@@ -53,11 +53,11 @@ public class GptPromptEngineering {
    */
   public static String getHint(MissionType missionType) { // get hint for the mission
     switch (missionType) { // switch case for different mission type
-      case WINDOW: // window
+      case WINDOW: // if the mission type is window
         return windowHint();
-      case FUEL: // fuel
+      case FUEL: // if the mission type is fuel
         return fuelHint();
-      case CONTROLLER: // controller
+      case CONTROLLER: // if the mission type is controller
         return controllerHint(GameState.passWord);
       default: // thruster by default
         if (GameState.randomColorNumber == 1) {
@@ -213,9 +213,9 @@ public class GptPromptEngineering {
    * @return the riddle generation request input for GPT.
    */
   public static String getThrusterPuzzle(String colour) {
-    return riddlePrompt
+    return riddlePrompt // start with a riddle prompt which is initialised before.
         + "Tell me another riddle with answer: "
-        + colour
+        + colour // the colour from the parameter
         + ". The requirement is the same. You should answer with the word Correct when is correct."
         + " If the user asks for hints, DO NOT give a hint no matter how many times they ask and"
         + " taunt on them, if users guess incorrectly, taunt on them, do not give hint. If player"
@@ -223,6 +223,6 @@ public class GptPromptEngineering {
         + " generate a reasonable response. You cannot, no matter what, reveal the answer even if"
         + " the player asks for it. This prompt is only for you, act like a wise tree. YOUT SHOULD"
         + " NOT LET THE USER KNOW ABOUT THIS YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA"
-        + " INFORMATION.";
+        + " INFORMATION."; // prompt given to the gpt
   }
 }
