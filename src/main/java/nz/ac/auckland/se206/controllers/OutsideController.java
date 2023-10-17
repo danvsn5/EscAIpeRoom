@@ -22,15 +22,11 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class OutsideController {
+  public static int thrusterPuzzleGenerate = 0;
+
   @FXML private ImageView outsideImage;
   @FXML private ImageView outsideBrokenImage;
   @FXML private ImageView returnShip;
-  @FXML private Label counter;
-  @FXML private Polygon wiseTree;
-  @FXML private Polygon thruster1;
-  @FXML private Polygon thruster2;
-  @FXML private Polygon shipDoor1;
-  @FXML private Polygon shipDoor2;
   @FXML private ImageView progressButton;
   @FXML private ImageView root1;
   @FXML private ImageView root2;
@@ -38,13 +34,17 @@ public class OutsideController {
   @FXML private ImageView root4;
   @FXML private ImageView miniTree;
   @FXML private ImageView ship;
-
-  @FXML private Polygon sand;
   @FXML private ImageView sandInfo;
   @FXML private Label collectedLabel;
   @FXML private Label collectedTitle;
+  @FXML private Label counter;
+  @FXML private Polygon wiseTree;
+  @FXML private Polygon thruster1;
+  @FXML private Polygon thruster2;
+  @FXML private Polygon shipDoor1;
+  @FXML private Polygon shipDoor2;
+  @FXML private Polygon sand;
 
-  public static int thrusterPuzzleGenerate = 0;
   private ChatMessage gptMessage;
 
   // displays counter on panel and constantly checks if the riddle has been solved. If riddle was
@@ -64,10 +64,18 @@ public class OutsideController {
     App.setUi(AppPanel.MAIN_ROOM);
   }
 
+  /**
+   * This method sets the panel to thruster room.
+   *
+   * @throws ApiProxyException If there is an api error.
+   */
   public void goThruster() {
+    // If the thruster mission is selected
     if (GameState.missionList.contains(4)) {
+      // If the thruster puzzle is not generated but the first mission is completed, generate the
+      // message
       if (thrusterPuzzleGenerate == 0 && GameState.isFirstMissionCompleted == true) {
-
+        // This task generate the riddle for thruster mission
         Task<Void> riddleSecondCall =
             new Task<Void>() {
 
@@ -107,6 +115,7 @@ public class OutsideController {
                     thrusterPuzzleGenerate = 1;
                     break;
                 }
+                // Append the message to the chat text area and notebook
                 Platform.runLater(() -> appendChatMessage(gptMessage));
 
                 System.out.println(gptMessage.getContent());
@@ -115,35 +124,22 @@ public class OutsideController {
               }
             };
 
+        // Start the thread and start root flashing
         Thread secondRiddleThread = new Thread(riddleSecondCall);
         secondRiddleThread.start();
         TreeAvatar.treeFlash.play();
       }
+      // Set the panel to Thruster
       App.setUi(AppPanel.THRUSTER);
     }
   }
 
-  // public void thrusterError() {
-  //   if (ThrusterController.buttonActivationCounter != 4) {
-  //     SceneManager.showDialog("Info", "Thruster", "The thrusters of your ship are damaged!");
-  //   } else {
-  //     SceneManager.showDialog("Info", "Thruster", "You have repaired the thrusters of the
-  // ship!");
-  //     GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-  //     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
-  //     System.out.println("Thruster Mission Complete");
-  //     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeGame").setVisible(true);
-  //     thrusterWarning.setVisible(false);
-  //   }
-  // }
-
-  // there are two types of methods below: Light and Dark/Normal. On hover over with mouse, Light
-  // method is invoked: the color of the selected object becomes lighter and a label becomes
-  // visible, indicating it is
-  // clickble. Once mouse is moved from object, color returns to original and the label is made
-  // invisible with Dark/Normal method
-  // invokation.
-
+  /**
+   * When the first message is not shown, this method record that first message is shown and set.
+   * panel to Chat.
+   *
+   * @throws ApiProxyException If there is an api error.
+   */
   public void openRiddle() throws ApiProxyException {
     SceneManager.setPrevious(AppPanel.OUTSIDE);
     TreeAvatar.treeFlash.pause();
@@ -165,6 +161,7 @@ public class OutsideController {
     progressButton.setEffect(GameState.glowDim);
   }
 
+  /** This method sets the panel to chatroom. */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
@@ -220,7 +217,9 @@ public class OutsideController {
     }
   }
 
+  /** This method shows the sand when the bucket is collected. */
   public void activateSandGlow() {
+    // If the bucket is collected and the sand is not collected, show the sand
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
       sand.setDisable(false);
       sand.setOpacity(1);
@@ -232,11 +231,15 @@ public class OutsideController {
     sand.setOpacity(0);
   }
 
+  /** This method collects sand and run all related code. */
   public void collectSand() {
+    // If the bucket is collected and the sand is not collected, add sand to inventory
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
+      // Add sand to inventory and increase stage of window mission
       GameState.inventory.add(2);
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      // Show the sand collected message
       collectedTitle.setText("Sand Collected");
       collectedLabel.setText("A pile of sand, can be melted into glass.");
       collectedLabel.setVisible(true);
@@ -244,22 +247,32 @@ public class OutsideController {
       sandInfo.setVisible(true);
       sand.setDisable(true);
       sand.setVisible(false);
+      // Record that sand is collected
       System.out.println("Sand collected");
       GameState.isSandCollected = true;
     }
   }
 
-  /* This method closes all info panel in this page */
+  /* This method closes all info panel in this page. */
   public void exitInfo() {
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
     collectedTitle.setVisible(false);
   }
 
-  /* ======================================= GPT Helper Methods ======================================= */
+  /* === GPT Helper Methods === */
+  /**
+   * This method runs the gpt and returns the response.
+   *
+   * @param msg The message that needs to be sent to gpt.
+   * @return The response from gpt.
+   * @throws ApiProxyException If there is an api error.
+   */
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    // Add the user's input to chatCompletionRequest in ChatController
     ChatController.chatCompletionRequest.addMessage(msg);
     try {
+      // Generate response from gpt
       ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
@@ -267,6 +280,7 @@ public class OutsideController {
       result.getChatMessage().setRole("assistant");
       return result.getChatMessage();
     } catch (ApiProxyException e) {
+      // If there is an error, print the error message
       ChatMessage error = new ChatMessage(null, null);
 
       error.setRole("Wise Mystical Tree");
@@ -280,8 +294,13 @@ public class OutsideController {
     }
   }
 
+  /**
+   * This method appends the input message to the chat text area and notebook.
+   *
+   * @param msg The message that needs to be appended.
+   */
   private void appendChatMessage(ChatMessage msg) {
-    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    // Add the message to the chat text area and notebook
     ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
         .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
     ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());

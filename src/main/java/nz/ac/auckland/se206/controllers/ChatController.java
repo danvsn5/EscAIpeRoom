@@ -69,10 +69,6 @@ public class ChatController {
 
   private int bubbleVariable = 0;
   private int bookVariable = 0;
-  private ChatMessage thinkingMessage =
-      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
-  private ChatMessage activationMessage =
-      new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
 
   public static ChatCompletionRequest chatCompletionRequest;
   public static ChatCompletionRequest hintChatCompletionRequest;
@@ -103,13 +99,12 @@ public class ChatController {
     loading.setVisible(false);
     loadingCircle.setVisible(false);
 
-    // Start thinking
     startThink();
     initializeCompletionRequest();
 
     // Get the intro message for mission 1
     String mission1;
-    if (GameState.missionListA.contains(1)) {
+    if (GameState.missionListA.contains(1)) { // if the first mission is the window
       mission1 =
           "Know how to fix the window? I shall give you a riddle and the answer shuold guide you"
               + " to the next step. Are you ready? \n\n";
@@ -117,7 +112,7 @@ public class ChatController {
       chatLabel.setText(mission1);
       System.out.println("chatLineCode");
 
-    } else if (GameState.missionListA.contains(2)) {
+    } else if (GameState.missionListA.contains(2)) { // if it is the fuel
       mission1 =
           "Know how to charge the fuel? I shall give you a riddle and the answer shuold guide"
               + " you to the next step. Are you ready? \n\n";
@@ -318,8 +313,7 @@ public class ChatController {
     }
   }
 
-  /* Process with the gpt's response, if it starts with correct, update the game progress and show relavent message/image */
-  private void processResponse(String response) {
+  private void processResponse(String response) { 
     // If the gpt is not answering with correct, return
     if (!response.startsWith("Correct")) {
       return;
@@ -378,12 +372,12 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
-    inputText.setStyle("-fx-background-color: transparent;");
+    inputText.setStyle("-fx-background-color: transparent;"); // set the input text field to be transparent
 
     startListen();
     treeThinking.setVisible(true);
-    if (event.getCode().toString().equals("ENTER")) {
-      onSendMessage(new ActionEvent());
+    if (event.getCode().toString().equals("ENTER")) { // if the key pressed is enter
+      onSendMessage(new ActionEvent()); // send the message
     }
     inputText.setStyle("-fx-background-color: transparent;");
   }
@@ -395,14 +389,14 @@ public class ChatController {
    */
   @FXML
   public void onKeyReleased(KeyEvent event) {
-    inputText.setStyle("-fx-background-color: transparent;");
+    inputText.setStyle("-fx-background-color: transparent;"); 
 
     System.out.println("key " + event.getCode() + " released");
-    if (inputText.getText().trim().isEmpty()) {
+    if (inputText.getText().trim().isEmpty()) { // if the input text field is empty
       startTalk();
-      listeningLabel.setVisible(false);
+      listeningLabel.setVisible(false); // hide the listening label
     }
-    inputText.setStyle("-fx-background-color: transparent;");
+    inputText.setStyle("-fx-background-color: transparent;"); // set the input text field to be transparent
   }
 
   public void activateProgressGlow() {
@@ -500,93 +494,6 @@ public class ChatController {
     treeThinking.setVisible(true);
   }
 
-  private void generatePuzzle(String message) {
-    inputText.setDisable(true);
-
-    startThink();
-
-    // loading.setVisible(true);
-    // loadingCircle.setFill(Color.LIGHTGRAY);
-
-    System.out.println("generate puzzle");
-
-    //   Task<Void> secondPuzzleTask =
-    //       new Task<Void>() {
-
-    //         @Override
-    //         protected Void call() throws Exception {
-
-    //           ChatMessage msg = new ChatMessage("user", message);
-    //           appendChatMessage(msg);
-
-    //           setChatCompletionRequest(
-    //               new ChatCompletionRequest()
-    //                   .setN(1)
-    //                   .setTemperature(0.5)
-    //                   .setTopP(0.2)
-    //                   .setMaxTokens(100));
-
-    //           System.out.println("first mission riddle");
-    //           if (firstMission == 3) { // if the first mission is the controller
-    //             gptMessage =
-    //                 runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
-    //             gptMessage.setRole("Wise Ancient Tree");
-    //             appendChatMessage(gptMessage);
-    //             gptMessage.setRole("assistant");
-    //           } else if (firstMission == 4) { // if it is the thruster
-    //             if (GameState.randomColorNumber == 1) { // red
-    //               gptMessage =
-    //                   runGpt(new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("red")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             } else if (GameState.randomColorNumber == 2) { // blue
-    //               gptMessage =
-    //                   runGpt(new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("blue")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             } else if (GameState.randomColorNumber == 3) { // green
-    //               gptMessage =
-    //                   runGpt(
-    //                       new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("green")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             } else if (GameState.randomColorNumber == 4) { // purple
-    //               gptMessage =
-    //                   runGpt(
-    //                       new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("purple")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             }
-    //           }
-
-    //           updateProgress(1, 1);
-    //           return null;
-    //         }
-    //       };
-
-    //   // loading.progressProperty().bind(secondPuzzleTask.progressProperty());
-
-    //   secondPuzzleTask.setOnSucceeded(
-    //       e2 -> {
-    //         // loading.progressProperty().unbind();
-    //         // loading.setVisible(false);
-    //         // loadingCircle.setFill(Color.valueOf("264f31"));
-    //         inputText.setDisable(false);
-    //         startTalk();
-    //       });
-
-    //   Thread secondPuzzleThread = new Thread(secondPuzzleTask);
-    //   secondPuzzleThread.start();
-  }
-
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
     // If the gpt is generating response or hint number used up, return
@@ -673,16 +580,18 @@ public class ChatController {
     hintThread.start();
   }
 
+  /**
+   * Changes the size of the chat bubble based on the current state of the bubbleVariable.
+   * There are 7 different states for the bubbleVariable:
+   * 0 = no bubble
+   * 1 = small bubble
+   * 2 = medium bubble
+   * 3 = large bubble
+   * 4 = medium bubble
+   * 5 = small bubble
+   * 6 = no bubble
+   */
   public void thinkBubble() {
-
-    // create switch case for bubble variable given 7 different states
-    // 0 = no bubble
-    // 1 = small bubble
-    // 2 = medium bubble
-    // 3 = large bubble
-    // 4 = medium bubble
-    // 5 = small bubble
-    // 6 = no bubble
     switch (bubbleVariable) {
       case 0:
         smallBubble.setVisible(true);
@@ -728,14 +637,18 @@ public class ChatController {
     bookVariable = 0;
   }
 
-  /* Activate the yellow collision box of notebook */
+  /**
+   * Activates the glow effect for the notebook if the bookVariable is 0.
+   */
   public void activateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(1);
     }
   }
 
-  /* Deactivate the yellow collision box of notebook */
+  /**
+   * Deactivates the glow effect of the notebook if the bookVariable is equal to 0.
+   */
   public void deactivateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);

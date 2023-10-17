@@ -55,23 +55,33 @@ public class LaunchController {
 
           @Override
           protected Void call() throws Exception {
-            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200)));
-            videoBuffer.setCycleCount(1);
-            videoBuffer.setOnFinished(
+            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200))); 
+            videoBuffer.setCycleCount(1); // sets the Timeline to run once
+            videoBuffer.setOnFinished( // once the Timeline is finished, it will run the following code
                 event -> {
                   initialiseVideo();
                 });
-            videoBuffer.play();
+            videoBuffer.play(); // plays the Timeline
             return null;
           }
         };
 
     Thread timelineThread = new Thread(timelineTask);
-    timelineThread.start();
+    timelineThread.start(); // starts the thread
   }
 
-  // clears all instances of existing rooms, wipes out the inventory and resets the timeline
+  /**
+   * Launches the game and initializes the necessary components such as media players, tasks, and panels.
+   * Disables launchButton, diffButton, timerButton, and speechButton.
+   * Sets loopingVideo to invisible and plays mediaPlayerTwo once mediaPlayerOne ends.
+   * Adds panels to SceneManager and initializes missions and progress bars.
+   * Sets guideLabel text to a message containing the first mission and a clue to find the mysterious tree.
+   * Sets previous panel to MAIN_ROOM.
+   * @param ev MouseEvent that triggers the launchGame method.
+   * @throws IOException if an I/O error occurs.
+   */
   public void launchGame(MouseEvent ev) throws IOException {
+    // clears all instances of existing rooms, wipes out the inventory and resets the timeline
     launchButton.setDisable(true);
     diffButton.setDisable(true);
     timerButton.setDisable(true);
@@ -186,6 +196,13 @@ public class LaunchController {
     // App.setUi(AppPanel.MAIN_ROOM);
   }
 
+  /**
+   * Changes the difficulty level of the game and updates the hint number and difficulty button text accordingly.
+   * The difficulty level is determined by the current value of GameState.getDifficulty().
+   * If the current difficulty is 0, sets the difficulty to 1 (medium), sets the hint number to 5, and updates the button text to "Difficulty: Medium".
+   * If the current difficulty is 1, sets the difficulty to 2 (hard), sets the hint number to 0, and updates the button text to "Difficulty: Hard".
+   * If the current difficulty is 2, sets the difficulty to 0 (easy), sets the hint number to 1000, and updates the button text to "Difficulty: Easy".
+   */
   public void changeDiff() {
     // switch case for difficulty in Gamestate class for numbers between 0-2
     int difficulty = GameState.getDifficulty();
@@ -209,20 +226,23 @@ public class LaunchController {
     }
   }
 
+  /**
+   * Changes the timer value and updates the text of the timer button accordingly.
+   */
   public void changeTimer() {
 
-    int timer = GameState.getTimer();
+    int timer = GameState.getTimer(); // gets the current timer
 
     switch (timer) {
-      case 0:
+      case 0: // if it is 0, set the timer to 1 and change the text of the button
         GameState.setTimer(1);
         timerButton.setText("Timer: Four Minutes");
         break;
-      case 1:
+      case 1: // if it is 1, set the timer to 2 and change the text of the button
         GameState.setTimer(2);
         timerButton.setText("Timer: Six Minutes");
         break;
-      case 2:
+      case 2: // if it is 2, set the timer to 0 and change the text of the button
         GameState.setTimer(0);
         timerButton.setText("Timer: Two Minutes");
         break;
@@ -308,38 +328,48 @@ public class LaunchController {
   }
 
   public void updateClock(String time) {
+    // update the clock in every room.
+    // main room, outside room, and chat room.
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
+    // chest room, storage room, progress room, and thruster room.
     ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.STORAGE).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.THRUSTER).lookup("#counter")).setText(time);
   }
 
+  /**
+   * Initializes the video by creating two media players and setting them to the looping and launch videos respectively.
+   * The videos are played indefinitely and run on a separate thread.
+   */
   public void initialiseVideo() {
+    // initialise the video
     Task<Void> videoTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+            // create media one
             mediaOne =
                 new Media(App.class.getResource("/videos/launch/0001-0180.mp4").toURI().toString());
             mediaPlayerOne = new MediaPlayer(mediaOne);
-            loopingVideo.setMediaPlayer(mediaPlayerOne);
-            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
+            loopingVideo.setMediaPlayer(mediaPlayerOne); // sets the video to the media player one
+            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE); // sets the video to loop
             mediaPlayerOne.play();
 
+            // create media two
             mediaTwo =
                 new Media(App.class.getResource("/videos/launch/0180-0330.mp4").toURI().toString());
             mediaPlayerTwo = new MediaPlayer(mediaTwo);
-            launchVideo.setMediaPlayer(mediaPlayerTwo);
+            launchVideo.setMediaPlayer(mediaPlayerTwo); // sets the video to the media player two
 
             return null;
           }
         };
 
     Thread videoInitialisationThread = new Thread(videoTask);
-    videoInitialisationThread.start();
+    videoInitialisationThread.start(); // starts the thread
   }
 }
