@@ -57,11 +57,6 @@ public class GameState {
 
   public static int randomColorNumber;
 
-  // create random number between 1 and 4
-  public static void createRandomColorNumber() {
-    randomColorNumber = (int) (Math.random() * 4 + 1);
-  }
-
   public static MissionManager missionManager = new MissionManager();
   public static ArrayList<Integer> missionList = new ArrayList<Integer>();
   public static ArrayList<Integer> missionListA = new ArrayList<Integer>();
@@ -69,6 +64,11 @@ public class GameState {
 
   public static Glow glowBright = new Glow(0.5);
   public static Glow glowDim = new Glow(0.0);
+
+  // create random number between 1 and 4
+  public static void createRandomColorNumber() {
+    randomColorNumber = (int) (Math.random() * 4 + 1);
+  }
 
   /**
    * This method is used to set the timer.
@@ -121,9 +121,9 @@ public class GameState {
   }
 
   /**
-   * Sets the maximum hint number.
-   * @param max the maximum hint number to be set.
-   */
+  * Sets the maximum hint number.
+  * @param max the maximum hint number to be set.
+  */
   public static void setHintNumber(int max) {
     // Set the maximum hint number
     hintNumer = max;
@@ -143,9 +143,9 @@ public class GameState {
   }
 
   /**
-   * Checks if the hint has been used up.
-   * @return true if the hint has been used up, false otherwise.
-   */
+  * Checks if the hint has been used up.
+  * @return true if the hint has been used up, false otherwise.
+  */
   public static boolean hintUsedUp() {
     // Check if the hint used up
     return currentHint >= hintNumer;
@@ -220,10 +220,10 @@ public class GameState {
   }
 
   /**
-   * Speaks the given message using text-to-speech if the setting is enabled.
-   * 
-   * @param message the message to be spoken.
-   */
+  * Speaks the given message using text-to-speech if the setting is enabled.
+  * 
+  * @param message the message to be spoken
+  */
   public static void speak(String message) { // text to speech method.
     if (textToSpeechSetting) { // if text to speech is enabled, speak the message.
       Thread speakThread =
