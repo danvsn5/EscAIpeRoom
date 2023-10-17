@@ -1,5 +1,13 @@
 package nz.ac.auckland.se206.controllers;
 
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppPanel;
+import nz.ac.auckland.se206.TreeAvatar;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.WinGame;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -8,14 +16,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polygon;
-import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
-import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.SceneManager.AppPanel;
-import nz.ac.auckland.se206.TreeAvatar;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.WinGame; // import (order)
 
 /**
  * The CentralController class is responsible for controlling the main room of
@@ -198,13 +198,10 @@ public class CentralController {
       // activateChest();
       activateSecondMissionImage();
       // Show the fix window message
-      // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
       outsideDoor.setDisable(true);
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain a window, show broken message
-      // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the
-      // window!");
       infoTitle.setText("Broken Window");
       infoLabel.setText("A large crack is inside the window");
       infoTitle.setVisible(true);
@@ -246,7 +243,6 @@ public class CentralController {
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain fuel, show error message
-      // SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
       infoTitle.setText("No Fuel");
       infoLabel.setText("Internal fuel tank is empty");
       infoTitle.setVisible(true);
@@ -271,8 +267,6 @@ public class CentralController {
     // show broken
     // controller message
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
-      // SceneManager.showDialog(
-      // "Info", "Broken Control Panel", "The control panel for the ship is broken!");
       infoTitle.setText("Broken Control Panel");
       infoLabel.setText("The control panel for the ship is broken");
       infoTitle.setVisible(true);
@@ -281,7 +275,7 @@ public class CentralController {
     } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
       // If the controller mission is at stage 2, indicating panel can be fixed, show
       // message
-      // SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+
       // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
@@ -317,14 +311,6 @@ public class CentralController {
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprint").setVisible(true);
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprintCollisionBox").setVisible(true);
   }
-
-  // private void activateChest() {
-  // if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
-  // return;
-  // }
-  // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-  // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
-  // }
 
   /** Activate the background image for second mission. */
   private void activateSecondMissionImage() {
@@ -451,8 +437,6 @@ public class CentralController {
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
             .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
-        // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-        // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       } else if (GameState.missionList.contains(2) && GameState.missionList.contains(4)) {
 
         String appendString = "You have refueled the ship... Well done. You still cannot leave however, as the"
@@ -471,8 +455,6 @@ public class CentralController {
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
             .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
-        // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-        // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       }
       outsideDoor.setDisable(false);
       storageDoor.setDisable(false);
