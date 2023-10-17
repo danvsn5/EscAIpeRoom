@@ -2,13 +2,19 @@ package nz.ac.auckland.se206;
 
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
+/**
+ * The MissionInitialise class initializes the missions based on the given task numbers 
+ * and combines the task codes to initialize the main room.
+ */
 public class MissionInitialise {
   private int combineCode = 0;
 
   /**
    * Initializes the first mission based on the given task number.
-   * If the task number is 1, the window mission is initialized and the window and process machine are made visible and enabled.
-   * If the task number is not 1, the fuel tank mission is initialized and the fuel tank is made visible and enabled.
+   * If the task number is 1, the window mission is initialized and the window 
+   * and process machine are made visible and enabled.
+   * If the task number is not 1, the fuel tank mission is initialized and the fuel tank 
+   * is made visible and enabled.
    *
    * @param taskOne the task number for the first mission
    */
@@ -26,10 +32,12 @@ public class MissionInitialise {
     }
   }
 
-  /**
+  /** 
    * Combines the given taskTwo code with the existing code and initializes the second mission.
-   * If taskTwo is 3, initializes the controller mission by making certain elements visible and enabled in the main room, storage, and outside panels.
-   * Otherwise, initializes the thruster mission by making certain elements visible and enabled in the storage and outside panels.
+   * If taskTwo is 3, initializes the controller mission by making certain elements visible 
+   * and enabled in the main room, storage, and outside panels.
+   * Otherwise, initializes the thruster mission by making certain elements visible and enabled 
+   * in the storage and outside panels.
    * Finally, initializes the main room.
    *
    * @param taskTwo the code for the second task
