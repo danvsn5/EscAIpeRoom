@@ -51,7 +51,7 @@ public class ThrusterController {
 
   public void initialize() {}
 
-  public void setBottomLeftVisible() { // sets the bottom left button to visible
+  public void setBottomLeftVisible() { // sets the bottom left button to visible javadoc
     if (isGameActive == 1) { // checks if the game is active
       if (BottomLeftButton.getCycleNumber() != GameState.getRandomColorNumber()) {
         BottomLeftButton.timeline.play();
@@ -69,21 +69,21 @@ public class ThrusterController {
     App.setUi(AppPanel.PROGRESS);
   }
 
-  public void setBottomLeftInvisible() {
+  public void setBottomLeftInvisible() { // javadoc
     if (isGameActive == 1) {
       BottomLeftButton.timeline.pause();
       bottomLeftUnclicked.setVisible(false);
     }
   }
 
-  public void setBottomRightInvisible() {
+  public void setBottomRightInvisible() { // javadoc
     if (isGameActive == 1) {
       BottomRightButton.timeline.pause();
       bottomRightUnclicked.setVisible(false);
     }
   }
 
-  public void setBottomRightVisible() { // sets the bottom right button to visible
+  public void setBottomRightVisible() { // sets the bottom right button to visible javadoc
     if (isGameActive == 1) { // checks if the game is active
       if (BottomRightButton.getCycleNumber() != GameState.getRandomColorNumber()) {
         BottomRightButton.timeline.play();
@@ -195,7 +195,7 @@ public class ThrusterController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  public void activateRootGlow() {
+  public void activateRootGlow() { // javadoc
     rootCollisionBox1.setOpacity(1);
     rootCollisionBox1.setCursor(Cursor.HAND);
     rootCollisionBox2.setOpacity(1);
@@ -210,25 +210,29 @@ public class ThrusterController {
     rootCollisionBox3.setOpacity(0);
   }
 
-  public void checkCompletion() {
+  public void checkCompletion() { // javadoc
     if (buttonActivationCounter == 4) {
       completeRepair();
     }
   }
 
   public void completeRepair() {
-    complete.setVisible(true);
-    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+    complete.setVisible(true); // sets the complete image to visible
+    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage(); // increases the stage
+    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER); // updates the progress bar
     System.out.println("Thruster Mission Complete");
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setVisible(true);
-    WinGame.startFlashWin();
+    WinGame.startFlashWin(); // starts the win game flash
+    // sets the thruster to visible and disabled
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster1").setDisable(true);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setVisible(false);
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#thruster2").setDisable(true);
+    // sets the outside image to invisible
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideImage").setVisible(true);
+    // sets the outside broken image to invisible
     SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#outsideBrokenImage").setVisible(false);
+    // sets the complete image to visible
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#completeImage").setVisible(true);
   }
 
