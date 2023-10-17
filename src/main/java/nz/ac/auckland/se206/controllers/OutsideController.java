@@ -18,8 +18,6 @@ import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class OutsideController {
   public static int thrusterPuzzleGenerate = 0;
@@ -89,34 +87,40 @@ public class OutsideController {
                 switch (GameState.randomColorNumber) {
                   case 1:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("purple")));
-                    thrusterPuzzleGenerate = 1;
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("purple"),
+                            ChatController.chatCompletionRequest);
                     break;
                   case 2:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                    thrusterPuzzleGenerate = 1;
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("red"),
+                            ChatController.chatCompletionRequest);
                     break;
                   case 3:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("blue")));
-                    thrusterPuzzleGenerate = 1;
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("blue"),
+                            ChatController.chatCompletionRequest);
                     break;
                   case 4:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("green")));
-                    thrusterPuzzleGenerate = 1;
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("green"),
+                            ChatController.chatCompletionRequest);
                     break;
                 }
+                thrusterPuzzleGenerate = 1;
                 // Append the message to the chat text area and notebook
-                Platform.runLater(() -> appendChatMessage(gptMessage));
+                Platform.runLater(
+                    () ->
+                        ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel"))
+                            .setText(gptMessage.getContent()));
+                Platform.runLater(
+                    () ->
+                        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+                            .appendText(
+                                "\n\n" + "Wise Ancient Tree: " + gptMessage.getContent() + "\n\n"));
 
                 System.out.println(gptMessage.getContent());
 
@@ -141,9 +145,12 @@ public class OutsideController {
    * @throws ApiProxyException If there is an api error.
    */
   public void openRiddle() throws ApiProxyException {
+    // Set the previous panel to Outside
     SceneManager.setPrevious(AppPanel.OUTSIDE);
+    // Stop root flashing
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+    // If the first message is not shown, record that first message is shown and set panel to Chat
     if (ChatController.seenFirstMessage == 0) {
       RootBorder.deactivateAllCollisionBox();
       RootBorder.activateAllCollisionBox();
@@ -177,6 +184,7 @@ public class OutsideController {
     miniTree.setEffect(GameState.glowDim);
   }
 
+  /** This method activates the glow of ship's collision box */
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
     ship.setCursor(Cursor.HAND);
@@ -186,6 +194,7 @@ public class OutsideController {
     shipDoor2.setCursor(Cursor.HAND);
   }
 
+  /** This method deactivate the glow of ship door */
   public void deactivateShipGlow() {
     ship.setEffect(GameState.glowDim);
     shipDoor1.setOpacity(0);
@@ -201,6 +210,7 @@ public class OutsideController {
     wiseTree.setOpacity(0);
   }
 
+  /** This method checks for thruster mission and activate the glow of thruster collision box */
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(1);
@@ -210,6 +220,7 @@ public class OutsideController {
     }
   }
 
+  /** This class de activate the glow of thruster's collision box */
   public void deactivateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(0);
@@ -253,56 +264,10 @@ public class OutsideController {
     }
   }
 
-  /* This method closes all info panel in this page. */
+  /** This method closes all info panel in this page. */
   public void exitInfo() {
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
     collectedTitle.setVisible(false);
-  }
-
-  /* === GPT Helper Methods === */
-  /**
-   * This method runs the gpt and returns the response.
-   *
-   * @param msg The message that needs to be sent to gpt.
-   * @return The response from gpt.
-   * @throws ApiProxyException If there is an api error.
-   */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    // Add the user's input to chatCompletionRequest in ChatController
-    ChatController.chatCompletionRequest.addMessage(msg);
-    try {
-      // Generate response from gpt
-      ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Mystical Tree");
-      result.getChatMessage().setRole("assistant");
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      // If there is an error, print the error message
-      ChatMessage error = new ChatMessage(null, null);
-
-      error.setRole("Wise Mystical Tree");
-
-      error.setContent(
-          "Sorry, there was a problem generating a response. Please try restarting the"
-              + " application.");
-      appendChatMessage(error);
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  /**
-   * This method appends the input message to the chat text area and notebook.
-   *
-   * @param msg The message that needs to be appended.
-   */
-  private void appendChatMessage(ChatMessage msg) {
-    // Add the message to the chat text area and notebook
-    ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
-    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
   }
 }
