@@ -584,16 +584,18 @@ public class ChatController {
     hintThread.start();
   }
 
-  public void thinkBubble() { // javadoc
-
-    // create switch case for bubble variable given 7 different states
-    // 0 = no bubble
-    // 1 = small bubble
-    // 2 = medium bubble
-    // 3 = large bubble
-    // 4 = medium bubble
-    // 5 = small bubble
-    // 6 = no bubble
+  /**
+   * Changes the size of the chat bubble based on the current state of the bubbleVariable.
+   * There are 7 different states for the bubbleVariable:
+   * 0 = no bubble
+   * 1 = small bubble
+   * 2 = medium bubble
+   * 3 = large bubble
+   * 4 = medium bubble
+   * 5 = small bubble
+   * 6 = no bubble
+   */
+  public void thinkBubble() {
     switch (bubbleVariable) {
       case 0:
         smallBubble.setVisible(true);
@@ -639,15 +641,19 @@ public class ChatController {
     bookVariable = 0;
   }
 
-  /* Activate the yellow collision box of notebook */
-  public void activateNotebookGlow() { // javadoc
+  /**
+   * Activates the glow effect for the notebook if the bookVariable is 0.
+   */
+  public void activateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(1);
     }
   }
 
-  /* Deactivate the yellow collision box of notebook */
-  public void deactivateNotebookGlow() { // javadoc
+  /**
+   * Deactivates the glow effect of the notebook if the bookVariable is equal to 0.
+   */
+  public void deactivateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);
     }
