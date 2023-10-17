@@ -39,6 +39,28 @@ public class ChatController {
   public static int seenFirstMessage = 0;
   public static ChatMessage secondGuideMessage;
 
+  /**
+   * This method generates response from gpt based on the message and current completion request.
+   *
+   * @param message the message sent to gpt.
+   * @param currentCompletionRequest the current completion request.
+   * @return the response from gpt.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
+   */
+  public static ChatMessage getResponse(
+      String message, ChatCompletionRequest currentCompletionRequest) throws ApiProxyException {
+    // Turn string message into chatmessage form
+    ChatMessage msg = new ChatMessage("user", message);
+    currentCompletionRequest.addMessage(msg);
+    // Generate result from gpt
+    ChatCompletionResult chatCompletionResult = currentCompletionRequest.execute();
+    Choice result = chatCompletionResult.getChoices().iterator().next();
+    // Set the result's role to assistant
+    currentCompletionRequest.addMessage(result.getChatMessage());
+    result.getChatMessage().setRole("assistant");
+    return result.getChatMessage();
+  }
+
   @FXML private Button sendButton;
   @FXML private Button hintButton;
   @FXML private Button closeBookButton;
@@ -675,27 +697,5 @@ public class ChatController {
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
     hintChatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.3).setMaxTokens(100);
-  }
-
-  /**
-   * This method generates response from gpt based on the message and current completion request.
-   *
-   * @param message the message sent to gpt.
-   * @param currentCompletionRequest the current completion request.
-   * @return the response from gpt.
-   * @throws ApiProxyException if there is an error communicating with the API proxy.
-   */
-  public static ChatMessage getResponse(
-      String message, ChatCompletionRequest currentCompletionRequest) throws ApiProxyException {
-    // Turn string message into chatmessage form
-    ChatMessage msg = new ChatMessage("user", message);
-    currentCompletionRequest.addMessage(msg);
-    // Generate result from gpt
-    ChatCompletionResult chatCompletionResult = currentCompletionRequest.execute();
-    Choice result = chatCompletionResult.getChoices().iterator().next();
-    // Set the result's role to assistant
-    currentCompletionRequest.addMessage(result.getChatMessage());
-    result.getChatMessage().setRole("assistant");
-    return result.getChatMessage();
   }
 }
