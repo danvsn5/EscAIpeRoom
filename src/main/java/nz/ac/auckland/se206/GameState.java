@@ -193,7 +193,7 @@ public class GameState {
     inventory.clear();
 
     // Clear game setting
-    hintNumer = 0;
+    currentHint = 0;
     hintNumer = 1000;
     difficulty = 0;
     timer = 0;
