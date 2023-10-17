@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -123,8 +123,8 @@ public class CentralController {
     // If the inventory contains window
     if (GameState.inventory.contains(3)) {
       // Increase the stage of the window mission and update progress bar
-      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      GameState.missionManager.getMission(MissionType.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MissionType.WINDOW);
       // Record that the first mission is completed
       GameState.isFirstMissionCompleted = true;
       // Tree start flashing
@@ -159,8 +159,8 @@ public class CentralController {
     // This method adds fuel to the ship
     if (GameState.inventory.contains(8)) {
       // If the inventory contains fuel, increase missing stage and fill up the ship
-      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      GameState.missionManager.getMission(MissionType.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MissionType.FUEL);
       // Record that the first mission is completed
       GameState.isFirstMissionCompleted = true;
       // Remove fuel from inventory
@@ -201,19 +201,19 @@ public class CentralController {
     // If the controller mission less than stage 0 (not having spare part on hand),
     // show broken
     // controller message
-    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
+    if (GameState.missionManager.getMission(MissionType.CONTROLLER).getStage() != 1) {
       infoTitle.setText("Broken Control Panel");
       infoLabel.setText("The control panel for the ship is broken");
       infoTitle.setVisible(true);
       infoLabel.setVisible(true);
       controllerInfo.setVisible(true);
-    } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
+    } else if (GameState.missionManager.getMission(MissionType.CONTROLLER).getStage() == 1) {
       // If the controller mission is at stage 2, indicating panel can be fixed, show
       // message
 
       // Increase the stage, update progress bar
-      GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
+      GameState.missionManager.getMission(MissionType.CONTROLLER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MissionType.CONTROLLER);
       // Set the end game button visible
       winGameCollisionBox.setVisible(true);
       WinGame.startFlashWin();

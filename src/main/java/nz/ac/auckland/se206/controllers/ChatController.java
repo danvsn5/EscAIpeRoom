@@ -20,7 +20,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -289,15 +289,15 @@ public class ChatController {
       if (GameState.missionList.contains(1)) {
         // If the player guesses correctly and its window mission, show the sand and
         // increase stage
-        GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-        GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+        GameState.missionManager.getMission(MissionType.WINDOW).increaseStage();
+        GameState.progressBarGroup.updateProgressOne(MissionType.WINDOW);
         System.out.println("Window riddle solved");
         showSand();
       } else if (GameState.missionList.contains(2)) {
         // If the player guesses correctly and its fuel mission, show the fuel and
         // increase stage
-        GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-        GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+        GameState.missionManager.getMission(MissionType.FUEL).increaseStage();
+        GameState.progressBarGroup.updateProgressOne(MissionType.FUEL);
         System.out.println("Fuel Mission 1 Complete");
         showFuel();
       }
@@ -306,8 +306,8 @@ public class ChatController {
       GameState.firstRiddleSolved = true;
     } else if (GameState.missionList.contains(4)) {
       // If it is currently second mission and it's thruster mission, increase stage
-      GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+      GameState.missionManager.getMission(MissionType.THRUSTER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MissionType.THRUSTER);
       System.out.println("Thruster riddle solved");
     }
   }
@@ -434,10 +434,9 @@ public class ChatController {
   public void collect() {
     // If the first mission is fuel mission
     if (GameState.missionList.contains(2)) {
-      // Collect the fuel and increase the stage
-      GameState.inventory.add(8);
-      GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
+      GameState.inventory.add(8); // fuel collected
+      GameState.missionManager.getMission(MissionType.FUEL).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MissionType.FUEL);
       System.out.println("Fuel Mission 2 Complete");
     } else if (GameState.missionList.contains(1)) {
       // If the first mission is bucket mission, collect bucket
@@ -484,18 +483,18 @@ public class ChatController {
     if (!GameState.isFirstMissionCompleted) {
       if (GameState.missionList.contains(1)) {
         System.out.println("Window hint");
-        askHintByStage(MISSION.WINDOW);
+        askHintByStage(MissionType.WINDOW);
       } else {
         System.out.println("Fuel hint");
-        askHintByStage(MISSION.FUEL);
+        askHintByStage(MissionType.FUEL);
       }
     } else {
       if (GameState.missionList.contains(3)) {
         System.out.println("Controller hint");
-        askHintByStage(MISSION.CONTROLLER);
+        askHintByStage(MissionType.CONTROLLER);
       } else {
         System.out.println("Thruster hint");
-        askHintByStage(MISSION.THRUSTER);
+        askHintByStage(MissionType.THRUSTER);
       }
     }
     // Use a hint, if there is no hint left, hide the hint button
@@ -512,7 +511,7 @@ public class ChatController {
    *
    * @param missionType the mission type.
    */
-  private void askHintByStage(MISSION missionType) {
+  private void askHintByStage(MissionType missionType) {
     // Start thinking animation
     bubbleTimeline.play();
     startThink();
