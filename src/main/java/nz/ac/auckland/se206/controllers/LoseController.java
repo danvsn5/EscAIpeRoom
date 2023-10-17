@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
-/** style(too many char)
+/**
  * The LoseController class controls the losing screen of the game. 
  * It initializes the video player for the losing screen, 
  * resets the game state and returns to the launch menu when the return button 
@@ -19,11 +19,17 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
  */
 public class LoseController {
 
+  public static MediaPlayer mediaPlayerOne;
+
+   public static void playMedia() {
+    mediaPlayerOne.play();
+  }
+
+  private Media mediaOne;
+
   @FXML private Button returnMenuButton;
   @FXML private Button quitButton;
   @FXML private MediaView loopingEnd;
-  private Media mediaOne; // sytle(20-23 not in order)
-  public static MediaPlayer mediaPlayerOne;
 
   public void initialize() throws Exception {
     iniVideo();
@@ -50,9 +56,5 @@ public class LoseController {
     mediaPlayerOne = new MediaPlayer(mediaOne);
     loopingEnd.setMediaPlayer(mediaPlayerOne);
     mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
-  }
-
-  public static void playMedia() {
-    mediaPlayerOne.play();
   }
 }
