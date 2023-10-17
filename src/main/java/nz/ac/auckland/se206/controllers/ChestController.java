@@ -57,6 +57,7 @@ public class ChestController {
     App.setUi(AppPanel.PROGRESS);
   }
 
+  /** This method increase the first digit by 1. */
   public void firstDigitUp() {
     chestWrongImage.setVisible(false);
     firstDigitNum++;
@@ -66,6 +67,7 @@ public class ChestController {
     firstDigit.setText(Integer.toString(firstDigitNum));
   }
 
+  /** This method increase the second digit by 1. */
   public void secondDigitUp() {
     chestWrongImage.setVisible(false);
     secondDigitNum++;
@@ -75,6 +77,7 @@ public class ChestController {
     secondDigit.setText(Integer.toString(secondDigitNum));
   }
 
+  /** This method increase the third digit by 1. */
   public void thirdDigitUp() {
     chestWrongImage.setVisible(false);
     thirdDigitNum++;
@@ -86,7 +89,7 @@ public class ChestController {
 
   /**
    * This method checks if the player's input number is correct or not, it is invoked when confirm
-   * button is clicked
+   * button is clicked.
    */
   public void check() {
     // Get the user's input password
@@ -95,8 +98,6 @@ public class ChestController {
       // If the player is correct, update the progress and disable the lock
       GameState.missionManager.getMission(MissionType.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MissionType.CONTROLLER);
-      // SceneManager.showDialog(
-      //     "Info", "Control panel collected", "The spare part of the controller");
 
       collectedTitle.setText("Control panel");
       collectedLabel.setText("The spare part of the controller");
@@ -105,15 +106,14 @@ public class ChestController {
       controlPanelInfo.setVisible(true);
       disableLock();
     } else {
-      // SceneManager.showDialog("Info", "Wrong password", "Access denied");
       chestWrongImage.setVisible(true);
     }
   }
 
   /**
-   * Disables the lock of the chest by hiding the enter button and the highlight of the three digits,
-   * disabling the collision box of the chest, and activating the chest image in the storage panel.
-   * Also activates the chest open image.
+   * Disables the lock of the chest by hiding the enter button and the highlight of the three
+   * digits, disabling the collision box of the chest, and activating the chest image in the storage
+   * panel. Also activates the chest open image.
    */
   public void disableLock() {
     // Disable the enter button and highlight of three digits
@@ -165,6 +165,7 @@ public class ChestController {
     thirdDigitHighlight.setOpacity(0);
   }
 
+  /** This method activate the glow effect of roots. */
   public void activateRootGlow() {
     rootCollisionBox1.setOpacity(1);
     rootCollisionBox1.setCursor(Cursor.HAND);
@@ -174,9 +175,7 @@ public class ChestController {
     rootCollisionBox3.setCursor(Cursor.HAND);
   }
 
-  /**
-   * Deactivates the glow effect of the root collision boxes.
-   */
+  /** Deactivates the glow effect of the root collision boxes. */
   public void deactivateRootGlow() {
     rootCollisionBox1.setOpacity(0);
     rootCollisionBox2.setOpacity(0);
@@ -184,7 +183,8 @@ public class ChestController {
   }
 
   /**
-   * Pauses the tree flash animation, deactivates the tree glow, sets the UI to the chat panel, and sets the previous scene to the chest panel.
+   * Pauses the tree flash animation, deactivates the tree glow, sets the UI to the chat panel, and
+   * sets the previous scene to the chest panel.
    */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
@@ -201,6 +201,7 @@ public class ChestController {
     miniTree.setEffect(GameState.glowDim);
   }
 
+  /** This method closes the info panel. */
   public void exitInfo() {
     collectedTitle.setVisible(false);
     collectedLabel.setVisible(false);
