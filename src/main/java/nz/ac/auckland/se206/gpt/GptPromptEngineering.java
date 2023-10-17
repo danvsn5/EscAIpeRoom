@@ -9,7 +9,8 @@ public class GptPromptEngineering {
 
   private static String prompt = "Do not need to greet the user. ";
   private static String riddlePrompt =
-      "You are a wise mystical tree of a forest. Do not need to greet the user or say anything"
+      "You are a wise mystical tree of a forest and the player has crash-landed on your planet. "
+      + "Do not need to greet the user or say anything"
           + " else. ";
   private static String oneSentence = "Say this in one sentence.";
   private static String beginWord = "Begin your message with: 'Hint:'.";
