@@ -142,7 +142,7 @@ public class CentralController {
     } else {
       // If the inventory does not contain a window, show broken message
       infoTitle.setText("Broken Window");
-      infoLabel.setText("A large crack is inside the window");
+      infoLabel.setText("The window of your ship is cracked!");
       infoTitle.setVisible(true);
       infoLabel.setVisible(true);
       windowInfo.setVisible(true);
@@ -360,8 +360,9 @@ public class CentralController {
 
         String appendString =
             "You have repaired the window... Well done. You still cannot leave however, as the"
-                + " control panel is still damaged. In amongst your ship, I have hidden a"
-                + " chest containing spare parts that should help you fix the control panel";
+                + " control panel is still damaged. In amongst your ship, I have changed the code"
+                + " for the chest holding the spare parts for your control panel. Find the chest"
+                + " for a new challenge...";
 
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
             .appendText("Wise Ancient Tree: " + appendString);
@@ -380,8 +381,9 @@ public class CentralController {
 
         String appendString =
             "You have refueled the ship... Well done. You still cannot leave however, as the"
-                + " control panel is still damaged. In amongst your ship, I have hidden a"
-                + " chest containing spare parts that should help you fix the control panel";
+                + " control panel is still damaged. In amongst your ship, I have changed the code"
+                + " for the chest holding the spare parts for your control panel. Find the chest"
+                + " for a new challenge...";
 
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
             .appendText("Wise Ancient Tree: " + appendString);

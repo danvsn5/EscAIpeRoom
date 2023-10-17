@@ -170,7 +170,7 @@ public class StorageController {
     } else {
       // If the sand bucket is not in the inventory, show the information about process machine
       collectedTitle.setText("Process Machine");
-      collectedLabel.setText("High tech process machine, can make ingredients into product");
+      collectedLabel.setText("High temperature processing machine");
       collectedTitle.setVisible(true);
       collectedLabel.setVisible(true);
       processMachineInfo.setVisible(true);
@@ -292,7 +292,7 @@ public class StorageController {
 
   /** This method opens the info panel for blurprint. */
   private void activateCollectedInfoBluePrint() {
-    collectedTitle.setText("BluePint Collected");
+    collectedTitle.setText("Blueprint Collected");
     collectedTitle.setVisible(true);
     blueprintInfo.setVisible(true);
   }

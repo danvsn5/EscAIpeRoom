@@ -141,26 +141,28 @@ public class LaunchController {
             missionInitialise.initialiseSecondMission(task2);
 
             if (GameState.missionList.contains(1)) {
-              mission1 = "Fix the Window";
+              mission1 = "repairing the broken window";
             } else if (GameState.missionList.contains(2)) {
-              mission1 = "Charge the Fuel";
+              mission1 = "refueling the empty tank";
             }
 
             if (GameState.missionList.contains(3)) {
-              mission2 = "Fix the Controller";
+              mission2 = "replacing the broken control panel";
             } else if (GameState.missionList.contains(4)) {
-              mission2 = "Fix the Thruster";
+              mission2 = "recalibrating the thrusters";
             }
 
             String text =
-                "Hey there, Seems like you have crush-landed \non this planet! "
-                    + "\nWonder who I am?\n"
-                    + "I am the mysterious tree of this planet.\n"
-                    + "To leave, you should have to fix this ship.\nFirst, "
+                "Hmmmmm... Outsider... It appears you've crash-landed on MY planet. Wish to escape?"
+                    + " \n"
+                    + "You must ready your ship by first "
                     + mission1
                     + " and then "
                     + mission2
-                    + ".\nFind me outside for the clue to the first step!";
+                    + ".\n"
+                    + "But... I will not make your venture easy \n"
+                    + "Find me outside should you wish to be challenged.";
+
             Platform.runLater(
                 () -> {
                   ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#guideLabel"))
