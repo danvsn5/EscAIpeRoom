@@ -33,9 +33,9 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
-  private boolean isGenerating = false;
-
   @FXML private TextArea chatTextArea;
+  @FXML private Label chatLabel;
+
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Button hintButton;
@@ -53,7 +53,6 @@ public class ChatController {
   @FXML private ImageView rootThree;
   @FXML private Rectangle hintRectangle;
   @FXML private Label hintNumber;
-  @FXML private Label chatLabel;
   @FXML private ImageView smallBubble;
   @FXML private ImageView largeBubble;
   @FXML private ImageView medBubble;
@@ -69,6 +68,7 @@ public class ChatController {
 
   private int bubbleVariable = 0;
   private int bookVariable = 0;
+  private boolean isGenerating = false;
 
   public static ChatCompletionRequest chatCompletionRequest;
   public static ChatCompletionRequest hintChatCompletionRequest;
@@ -174,12 +174,12 @@ public class ChatController {
    *
    * @param msg the chat message to append
    */
-  private void appendChatMessage(ChatMessage msg) {
+  public void appendChatMessage(ChatMessage msg) {
     //   chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
     chatLabel.setText(msg.getContent());
   }
 
-  private void appendToNotebook(ChatMessage msg) {
+  public void appendToNotebook(ChatMessage msg) {
     chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
   }
 
@@ -313,7 +313,7 @@ public class ChatController {
     }
   }
 
-  private void processResponse(String response) { 
+  private void processResponse(String response) {
     // If the gpt is not answering with correct, return
     if (!response.startsWith("Correct")) {
       return;
@@ -372,7 +372,8 @@ public class ChatController {
    */
   @FXML
   public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
-    inputText.setStyle("-fx-background-color: transparent;"); // set the input text field to be transparent
+    inputText.setStyle(
+        "-fx-background-color: transparent;"); // set the input text field to be transparent
 
     startListen();
     treeThinking.setVisible(true);
@@ -389,14 +390,15 @@ public class ChatController {
    */
   @FXML
   public void onKeyReleased(KeyEvent event) {
-    inputText.setStyle("-fx-background-color: transparent;"); 
+    inputText.setStyle("-fx-background-color: transparent;");
 
     System.out.println("key " + event.getCode() + " released");
     if (inputText.getText().trim().isEmpty()) { // if the input text field is empty
       startTalk();
       listeningLabel.setVisible(false); // hide the listening label
     }
-    inputText.setStyle("-fx-background-color: transparent;"); // set the input text field to be transparent
+    inputText.setStyle(
+        "-fx-background-color: transparent;"); // set the input text field to be transparent
   }
 
   public void activateProgressGlow() {
@@ -581,15 +583,9 @@ public class ChatController {
   }
 
   /**
-   * Changes the size of the chat bubble based on the current state of the bubbleVariable.
-   * There are 7 different states for the bubbleVariable:
-   * 0 = no bubble
-   * 1 = small bubble
-   * 2 = medium bubble
-   * 3 = large bubble
-   * 4 = medium bubble
-   * 5 = small bubble
-   * 6 = no bubble
+   * Changes the size of the chat bubble based on the current state of the bubbleVariable. There are
+   * 7 different states for the bubbleVariable: 0 = no bubble 1 = small bubble 2 = medium bubble 3 =
+   * large bubble 4 = medium bubble 5 = small bubble 6 = no bubble
    */
   public void thinkBubble() {
     switch (bubbleVariable) {
@@ -637,18 +633,14 @@ public class ChatController {
     bookVariable = 0;
   }
 
-  /**
-   * Activates the glow effect for the notebook if the bookVariable is 0.
-   */
+  /** Activates the glow effect for the notebook if the bookVariable is 0. */
   public void activateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(1);
     }
   }
 
-  /**
-   * Deactivates the glow effect of the notebook if the bookVariable is equal to 0.
-   */
+  /** Deactivates the glow effect of the notebook if the bookVariable is equal to 0. */
   public void deactivateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);
@@ -692,8 +684,8 @@ public class ChatController {
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.3).setMaxTokens(100);
   }
 
-  private ChatMessage getResponse(String message, ChatCompletionRequest currentCompletionRequest)
-      throws ApiProxyException {
+  public static ChatMessage getResponse(
+      String message, ChatCompletionRequest currentCompletionRequest) throws ApiProxyException {
     // Turn string message into chatmessage form
     ChatMessage msg = new ChatMessage("user", message);
     currentCompletionRequest.addMessage(msg);

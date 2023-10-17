@@ -18,8 +18,6 @@ import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class OutsideController {
   public static int thrusterPuzzleGenerate = 0;
@@ -89,34 +87,42 @@ public class OutsideController {
                 switch (GameState.randomColorNumber) {
                   case 1:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("purple")));
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("purple"),
+                            ChatController.chatCompletionRequest);
                     thrusterPuzzleGenerate = 1;
                     break;
                   case 2:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage("user", GptPromptEngineering.getThrusterPuzzle("red")));
-                    thrusterPuzzleGenerate = 1;
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("red"),
+                            ChatController.chatCompletionRequest);
                     break;
                   case 3:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("blue")));
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("blue"),
+                            ChatController.chatCompletionRequest);
                     thrusterPuzzleGenerate = 1;
                     break;
                   case 4:
                     gptMessage =
-                        runGpt(
-                            new ChatMessage(
-                                "user", GptPromptEngineering.getThrusterPuzzle("green")));
+                        ChatController.getResponse(
+                            GptPromptEngineering.getThrusterPuzzle("green"),
+                            ChatController.chatCompletionRequest);
                     thrusterPuzzleGenerate = 1;
                     break;
                 }
                 // Append the message to the chat text area and notebook
-                Platform.runLater(() -> appendChatMessage(gptMessage));
+                Platform.runLater(
+                    () ->
+                        ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel"))
+                            .setText(gptMessage.getContent()));
+                Platform.runLater(
+                    () ->
+                        ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+                            .appendText(
+                                "\n\n" + "Wise Ancient Tree: " + gptMessage.getContent() + "\n\n"));
 
                 System.out.println(gptMessage.getContent());
 
@@ -275,41 +281,42 @@ public class OutsideController {
    * @return The response from gpt.
    * @throws ApiProxyException If there is an api error.
    */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    // Add the user's input to chatCompletionRequest in ChatController
-    ChatController.chatCompletionRequest.addMessage(msg);
-    try {
-      // Generate response from gpt
-      ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Mystical Tree");
-      result.getChatMessage().setRole("assistant");
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      // If there is an error, print the error message
-      ChatMessage error = new ChatMessage(null, null);
+  // private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+  //   // Add the user's input to chatCompletionRequest in ChatController
+  //   ChatController.chatCompletionRequest.addMessage(msg);
+  //   try {
+  //     // Generate response from gpt
+  //     ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
+  //     Choice result = chatCompletionResult.getChoices().iterator().next();
+  //     ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
+  //     result.getChatMessage().setRole("Wise Mystical Tree");
+  //     result.getChatMessage().setRole("assistant");
+  //     return result.getChatMessage();
+  //   } catch (ApiProxyException e) {
+  //     // If there is an error, print the error message
+  //     ChatMessage error = new ChatMessage(null, null);
 
-      error.setRole("Wise Mystical Tree");
+  //     error.setRole("Wise Mystical Tree");
 
-      error.setContent(
-          "Sorry, there was a problem generating a response. Please try restarting the"
-              + " application.");
-      appendChatMessage(error);
-      e.printStackTrace();
-      return null;
-    }
-  }
+  //     error.setContent(
+  //         "Sorry, there was a problem generating a response. Please try restarting the"
+  //             + " application.");
+  //     appendChatMessage(error);
+  //     e.printStackTrace();
+  //     return null;
+  //   }
+  // }
 
-  /**
-   * This method appends the input message to the chat text area and notebook.
-   *
-   * @param msg The message that needs to be appended.
-   */
-  private void appendChatMessage(ChatMessage msg) {
-    // Add the message to the chat text area and notebook
-    ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
-    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
-  }
+  // /**
+  //  * This method appends the input message to the chat text area and notebook.
+  //  *
+  //  * @param msg The message that needs to be appended.
+  //  */
+  // private void appendChatMessage(ChatMessage msg) {
+  //   // Add the message to the chat text area and notebook
+  //   ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+  //       .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
+  //   ((Label)
+  // SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
+  // }
 }
