@@ -141,9 +141,12 @@ public class OutsideController {
    * @throws ApiProxyException If there is an api error.
    */
   public void openRiddle() throws ApiProxyException {
+    // Set the previous panel to Outside
     SceneManager.setPrevious(AppPanel.OUTSIDE);
+    // Stop root flashing
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
+    // If the first message is not shown, record that first message is shown and set panel to Chat
     if (ChatController.seenFirstMessage == 0) {
       RootBorder.deactivateAllCollisionBox();
       RootBorder.activateAllCollisionBox();
@@ -177,6 +180,7 @@ public class OutsideController {
     miniTree.setEffect(GameState.glowDim);
   }
 
+  /** This method activates the glow of ship's collision box */
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
     ship.setCursor(Cursor.HAND);
@@ -186,6 +190,7 @@ public class OutsideController {
     shipDoor2.setCursor(Cursor.HAND);
   }
 
+  /** This method deactivate the glow of ship door */
   public void deactivateShipGlow() {
     ship.setEffect(GameState.glowDim);
     shipDoor1.setOpacity(0);
@@ -201,6 +206,7 @@ public class OutsideController {
     wiseTree.setOpacity(0);
   }
 
+  /** This method checks for thruster mission and activate the glow of thruster collision box */
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(1);
@@ -210,6 +216,7 @@ public class OutsideController {
     }
   }
 
+  /** This class de activate the glow of thruster's collision box */
   public void deactivateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(0);
@@ -253,7 +260,7 @@ public class OutsideController {
     }
   }
 
-  /* This method closes all info panel in this page. */
+  /** This method closes all info panel in this page. */
   public void exitInfo() {
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
