@@ -19,6 +19,12 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * The OutsideController class is responsible for controlling 
+ * the behavior of the outside panel in the game.
+ * It contains methods for navigating to other panels, generating puzzles, 
+ * and displaying inventory items.
+ */
 public class OutsideController {
   public static int thrusterPuzzleGenerate = 0;
 
