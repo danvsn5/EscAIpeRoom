@@ -75,10 +75,9 @@ public class ChatController {
   private int bubbleVariable = 0;
   private int bookVariable = 0;
   private boolean isGenerating = false;
-
-  Timeline bubbleTimeline =
-      new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
   private int firstMission;
+  private Timeline bubbleTimeline =
+      new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
 
   /**
    * Initializes settings for images in chat room, greets the gpt.
@@ -477,7 +476,7 @@ public class ChatController {
    * @throws IOException if there is an I/O error.
    */
   @FXML
-  private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+  private void onGetHint(ActionEvent event) throws ApiProxyException, IOException {
     // If the gpt is generating response or hint number used up, return
     if (GameState.hintUsedUp() || isGenerating) {
       return;
