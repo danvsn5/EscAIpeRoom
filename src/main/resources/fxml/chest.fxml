@@ -58,9 +58,9 @@
             <Font name="Bank Gothic Light BT" size="70.0" />
          </font>
       </Label>
-      <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="502.0" layoutY="468.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#DarkeningFirstDigit" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="88.0" />
+      <Rectangle fx:id="firstDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="502.0" layoutY="468.0" onMouseClicked="#firstDigitUp" onMouseEntered="#firstDigitGlow" onMouseExited="#darkeningFirstDigit" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="88.0" />
       <Rectangle fx:id="secondDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="601.0" layoutY="468.0" onMouseClicked="#secondDigitUp" onMouseEntered="#secondDigitGlow" onMouseExited="#secondDigitDark" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
-      <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="701.0" layoutY="468.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#DarkeningThirdDigit" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
+      <Rectangle fx:id="thirdDigitHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="99.0" layoutX="701.0" layoutY="468.0" onMouseClicked="#thirdDigitUp" onMouseEntered="#thirdDigitGlow" onMouseExited="#darkeningThirdDigit" opacity="0.0" smooth="false" stroke="#ffe000" strokeType="INSIDE" strokeWidth="5.0" width="87.0" />
       <ImageView fx:id="miniTree" fitHeight="220.0" fitWidth="207.0" layoutX="100.0" layoutY="500.0" onMouseClicked="#goChat" onMouseEntered="#miniTreeGlow" onMouseExited="#miniTreeDim" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/miniTree.png" />

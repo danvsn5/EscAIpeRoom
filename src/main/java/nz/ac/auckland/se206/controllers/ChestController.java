@@ -146,7 +146,7 @@ public class ChestController {
     firstDigitHighlight.setCursor(Cursor.HAND);
   }
 
-  public void DarkeningFirstDigit() {
+  public void darkeningFirstDigit() {
     firstDigitHighlight.setOpacity(0);
   }
 
@@ -164,7 +164,7 @@ public class ChestController {
     thirdDigitHighlight.setCursor(Cursor.HAND);
   }
 
-  public void DarkeningThirdDigit() {
+  public void darkeningThirdDigit() {
     thirdDigitHighlight.setOpacity(0);
   }
 
