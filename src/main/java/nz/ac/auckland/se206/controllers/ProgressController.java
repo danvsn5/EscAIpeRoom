@@ -10,6 +10,10 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * The ProgressController class is responsible for controlling 
+ * the progress UI of the game.
+ */
 public class ProgressController {
 
   @FXML private Rectangle topBarTop;
@@ -36,8 +40,8 @@ public class ProgressController {
    * Handles the key pressed event.
    *
    * @param event the key event
-   * @throws IOException
-   * @throws ApiProxyException
+   * @throws IOException throws an exception if the previous scene cannot be found
+   * @throws ApiProxyException throws an exception if the API cannot be accessed
    */
   @FXML
   public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
