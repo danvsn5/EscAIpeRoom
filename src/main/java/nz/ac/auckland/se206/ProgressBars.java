@@ -12,7 +12,7 @@ public class ProgressBars {
   private MissionType taskTwo;
 
   /**
-   * Set up the first mission in the progress bar
+   * Set up the first mission in the progress bar.
    *
    * @param taskOne The id of the first task
    */
