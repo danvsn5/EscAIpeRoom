@@ -135,7 +135,13 @@ public class CentralController {
     }
   }
 
-  public void addFuel() { // javadoc
+  /**
+   * Adds fuel to the ship. If the inventory contains fuel, increase missing stage and fill up the ship.
+   * Record that the first mission is completed. Remove fuel from inventory. Tree start flashing.
+   * Hide the fuel warning. Initialise the second mission. Show success message.
+   * If the inventory does not contain fuel, show error message.
+   */
+  public void addFuel() {
     // This method adds fuel to the ship
     if (GameState.inventory.contains(8)) {
       // If the inventory contains fuel, increase missing stage and fill up the ship
@@ -199,8 +205,11 @@ public class CentralController {
     }
   }
 
-  // if window and control panel are fixed, then game can be completed by pressing red button
-  public void goHome() { // javadoc
+  /**
+   * Checks if the inventory contains items with ID 6 and 7. If true, sets the UI to the win panel and plays the win media.
+   */
+  public void goHome() {
+    // if window and control panel are fixed, then game can be completed by pressing red button
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
 
@@ -249,7 +258,11 @@ public class CentralController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  public void activateDoorGlow() { // javadoc
+  /**
+   * Activates the glowing effect on the outside of the door and sets the cursor to a hand icon.
+   * Also sets the opacity of the outside door to 1 and sets its cursor to a hand icon.
+   */
+  public void activateDoorGlow() {
     outside.setEffect(GameState.glowBright);
     outside.setCursor(Cursor.HAND);
     outsideDoor.setOpacity(1);
@@ -291,7 +304,10 @@ public class CentralController {
     window.setOpacity(0);
   }
 
-  public void activateControllerGlow() { // javadoc
+  /**
+   * Activates the glow effect for the broken controllers.
+   */
+  public void activateControllerGlow() {
     controllerBroken1.setOpacity(1);
     controllerBroken1.setCursor(Cursor.HAND);
 
@@ -379,14 +395,16 @@ public class CentralController {
     guideLabel.setVisible(false);
   }
 
+  
   /**
-   * Handles the key pressed event.
+   * Handles the key pressed event for the "OK" button.
+   * If the ENTER or ESCAPE key is pressed, the guide is hidden.
    *
-   * @param event the key event
-   * @throws IOException
-   * @throws ApiProxyException
+   * @param event The KeyEvent that triggered the method call.
+   * @throws ApiProxyException If an error occurs while communicating with the API.
+   * @throws IOException If an I/O error occurs.
    */
-  @FXML // javadoc
+  @FXML
   public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
     if (event.getCode().toString().equals("ENTER") || event.getCode().toString().equals("ESCAPE")) {
       hideGuide();
@@ -401,8 +419,10 @@ public class CentralController {
     completeGame.setEffect(GameState.glowDim);
   }
 
-  /* This method closes all info panel in this page */
-  public void exitInfo() { // javadoc
+  /**
+   * Hides the information labels and windows when the user exits the information screen.
+   */
+  public void exitInfo() {
     infoLabel.setVisible(false);
     infoTitle.setVisible(false);
     windowInfo.setVisible(false);
@@ -410,7 +430,10 @@ public class CentralController {
     controllerInfo.setVisible(false);
   }
 
-  public void activateRootOneGlow() { // javadoc
+ /**
+   * Activates the glow effect for the collision boxes in root one, making them visible and clickable.
+   */
+  public void activateRootOneGlow() {
     // uses set effect method to change the cursor visual to an open hand when the mouse is over the
 
     rootOneCollisionBox1.setOpacity(1);
@@ -430,7 +453,10 @@ public class CentralController {
     rootOneCollisionBox4.setOpacity(0);
   }
 
-  public void activateRootTwoGlow() { // javadoc
+  /**
+   * Activates the glow effect for the collision boxes in root two, making them visible and clickable.
+   */
+  public void activateRootTwoGlow() {
     // box 1
     rootTwoCollisionBox1.setOpacity(1); // set opacity to 1
     rootTwoCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
@@ -470,7 +496,10 @@ public class CentralController {
     rootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
-  public void deactivateRootThreeGlow() { // javadoc
+  /**
+   * Deactivates the glow effect on the collision boxes for root three.
+   */
+  public void deactivateRootThreeGlow() {
     rootThreeCollisionBox1.setOpacity(0);
     rootThreeCollisionBox2.setOpacity(0);
     rootThreeCollisionBox3.setOpacity(0);
@@ -508,7 +537,10 @@ public class CentralController {
     rootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
-  public void deactivateRootFourGlow() { // javadoc
+  /**
+   * Deactivates the glow effect on all collision boxes in root four.
+   */
+  public void deactivateRootFourGlow() {
     // deactivate all the glow
     rootFourCollisionBox1.setOpacity(0); // set opacity to 0
     rootFourCollisionBox2.setOpacity(0);
