@@ -135,7 +135,7 @@ public class CentralController {
     }
   }
 
-  public void addFuel() {
+  public void addFuel() { // javadoc
     // This method adds fuel to the ship
     if (GameState.inventory.contains(8)) {
       // If the inventory contains fuel, increase missing stage and fill up the ship
@@ -200,7 +200,7 @@ public class CentralController {
   }
 
   // if window and control panel are fixed, then game can be completed by pressing red button
-  public void goHome() {
+  public void goHome() { // javadoc
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
 
@@ -224,7 +224,7 @@ public class CentralController {
   //   SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
   // }
 
-  /** Activate the background image for second mission */
+  /** Activate the background image for second mission. */ 
   private void activateSecondMissionImage() {
     if (GameState.missionList.contains(1) && GameState.missionList.contains(3)) {
       // Activate background image for window & controller mission
@@ -249,7 +249,7 @@ public class CentralController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  public void activateDoorGlow() {
+  public void activateDoorGlow() { // javadoc
     outside.setEffect(GameState.glowBright);
     outside.setCursor(Cursor.HAND);
     outsideDoor.setOpacity(1);
@@ -291,7 +291,7 @@ public class CentralController {
     window.setOpacity(0);
   }
 
-  public void activateControllerGlow() {
+  public void activateControllerGlow() { // javadoc
     controllerBroken1.setOpacity(1);
     controllerBroken1.setCursor(Cursor.HAND);
 
@@ -386,7 +386,7 @@ public class CentralController {
    * @throws IOException
    * @throws ApiProxyException
    */
-  @FXML
+  @FXML // javadoc
   public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
     if (event.getCode().toString().equals("ENTER") || event.getCode().toString().equals("ESCAPE")) {
       hideGuide();
@@ -402,7 +402,7 @@ public class CentralController {
   }
 
   /* This method closes all info panel in this page */
-  public void exitInfo() {
+  public void exitInfo() { // javadoc
     infoLabel.setVisible(false);
     infoTitle.setVisible(false);
     windowInfo.setVisible(false);
@@ -410,7 +410,7 @@ public class CentralController {
     controllerInfo.setVisible(false);
   }
 
-  public void activateRootOneGlow() {
+  public void activateRootOneGlow() { // javadoc
     // uses set effect method to change the cursor visual to an open hand when the mouse is over the
 
     rootOneCollisionBox1.setOpacity(1);
@@ -430,13 +430,17 @@ public class CentralController {
     rootOneCollisionBox4.setOpacity(0);
   }
 
-  public void activateRootTwoGlow() {
-    rootTwoCollisionBox1.setOpacity(1);
-    rootTwoCollisionBox1.setCursor(Cursor.HAND);
+  public void activateRootTwoGlow() { // javadoc
+    // box 1
+    rootTwoCollisionBox1.setOpacity(1); // set opacity to 1
+    rootTwoCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
+    // box 2
     rootTwoCollisionBox2.setOpacity(1);
     rootTwoCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
     rootTwoCollisionBox3.setOpacity(1);
     rootTwoCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
     rootTwoCollisionBox4.setOpacity(1);
     rootTwoCollisionBox4.setCursor(Cursor.HAND);
   }
@@ -449,19 +453,24 @@ public class CentralController {
   }
 
   public void activateRootThreeGlow() {
-    rootThreeCollisionBox1.setOpacity(1);
-    rootThreeCollisionBox1.setCursor(Cursor.HAND);
+    // box 1
+    rootThreeCollisionBox1.setOpacity(1); // set opacity to 1
+    rootThreeCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
+    // box 2
     rootThreeCollisionBox2.setOpacity(1);
     rootThreeCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
     rootThreeCollisionBox3.setOpacity(1);
     rootThreeCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
     rootThreeCollisionBox4.setOpacity(1);
     rootThreeCollisionBox4.setCursor(Cursor.HAND);
+    // box 5
     rootThreeCollisionBox5.setOpacity(1);
     rootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
-  public void deactivateRootThreeGlow() {
+  public void deactivateRootThreeGlow() { // javadoc
     rootThreeCollisionBox1.setOpacity(0);
     rootThreeCollisionBox2.setOpacity(0);
     rootThreeCollisionBox3.setOpacity(0);
@@ -470,35 +479,45 @@ public class CentralController {
   }
 
   public void activateRootFourGlow() {
-    rootFourCollisionBox1.setOpacity(1);
-    rootFourCollisionBox1.setCursor(Cursor.HAND);
+    // box 1
+    rootFourCollisionBox1.setOpacity(1); // set opacity to 1
+    rootFourCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
+    // box 2
     rootFourCollisionBox2.setOpacity(1);
     rootFourCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
     rootFourCollisionBox3.setOpacity(1);
     rootFourCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
     rootFourCollisionBox4.setOpacity(1);
     rootFourCollisionBox4.setCursor(Cursor.HAND);
+    // box 5
     rootFourCollisionBox5.setOpacity(1);
     rootFourCollisionBox5.setCursor(Cursor.HAND);
+    // box 6
     rootFourCollisionBox6.setOpacity(1);
     rootFourCollisionBox6.setCursor(Cursor.HAND);
+    // box 7
     rootFourCollisionBox7.setOpacity(1);
     rootFourCollisionBox7.setCursor(Cursor.HAND);
+    // box 8
     rootFourCollisionBox8.setOpacity(1);
     rootFourCollisionBox8.setCursor(Cursor.HAND);
+    // box 9
     rootFourCollisionBox9.setOpacity(1);
     rootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
-  public void deactivateRootFourGlow() {
-    rootFourCollisionBox1.setOpacity(0);
+  public void deactivateRootFourGlow() { // javadoc
+    // deactivate all the glow
+    rootFourCollisionBox1.setOpacity(0); // set opacity to 0
     rootFourCollisionBox2.setOpacity(0);
-    rootFourCollisionBox3.setOpacity(0);
+    rootFourCollisionBox3.setOpacity(0);// set opacity to 0
     rootFourCollisionBox4.setOpacity(0);
     rootFourCollisionBox5.setOpacity(0);
-    rootFourCollisionBox6.setOpacity(0);
+    rootFourCollisionBox6.setOpacity(0);// set opacity to 0
     rootFourCollisionBox7.setOpacity(0);
     rootFourCollisionBox8.setOpacity(0);
-    rootFourCollisionBox9.setOpacity(0);
+    rootFourCollisionBox9.setOpacity(0); // set opacity to 0
   }
 }
