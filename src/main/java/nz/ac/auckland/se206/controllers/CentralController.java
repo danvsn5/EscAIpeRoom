@@ -15,7 +15,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.winGame;
+import nz.ac.auckland.se206.WinGame;
 
 public class CentralController {
 
@@ -189,7 +189,7 @@ public class CentralController {
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       // Set the end game button visible
       winGameCollisionBox.setVisible(true);
-      winGame.startFlashWin();
+      WinGame.startFlashWin();
       GameState.isSecondMissionCompleted = true;
       // Show the complete image
       completeImage.setVisible(true);
