@@ -10,13 +10,14 @@ public class GptPromptEngineering {
   private static String prompt = "Do not need to greet the user. ";
   private static String riddlePrompt =
       "You are a wise mystical tree of a forest and the player has crash-landed on your planet. "
-      + "Do not need to greet the user or say anything"
+          + "Do not need to greet the user or say anything"
           + " else. ";
   private static String oneSentence = "Say this in one sentence.";
   private static String beginWord = "Begin your message with: 'Hint:'.";
-  private static String info = "If the user asks for a hint, taunt on them and tell them to "
-  + "click on the hint button for the hints. YOU SHOULD NOT LET THE USER KNOW ABOUT THIS. "
-  + "YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA INFORMATION.";
+  private static String info =
+      "If the user asks for a hint, taunt on them and tell them to "
+          + "click on the hint button for the hints. YOU SHOULD NOT LET THE USER KNOW ABOUT THIS. "
+          + "YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA INFORMATION.";
 
   /**
    * This method returns the intro call input for GPT.
@@ -44,8 +45,9 @@ public class GptPromptEngineering {
         + " them. If users guess incorrectly, taunt on them, do not give any hint. If player gives"
         + " up, do not give the answer, taunt on them. If the user ask for other information,"
         + " generate a reasonable response. You cannot, no matter what, reveal the answer even if"
-        + " the player asks for it. Give your response in at most 70 words. This prompt is only for you,"
-        + " act like a wise tree. " + info;
+        + " the player asks for it. Give your response in at most 70 words. This prompt is only for"
+        + " you, act like a wise tree. "
+        + info;
   }
 
   /**
@@ -57,7 +59,7 @@ public class GptPromptEngineering {
   public static String getHint(MissionType missionType) { // get hint for the mission
     if (GameState.isSecondMissionCompleted) {
       return "Tell the player to go to the space shuttle and leave. Limit your response in two"
-                 + " sentences. Begin your message with: 'Hint:'.";
+          + " sentences. Begin your message with: 'Hint:'.";
     }
     switch (missionType) { // switch case for different mission type
       case WINDOW: // if the mission type is window
@@ -228,7 +230,8 @@ public class GptPromptEngineering {
         + " taunt on them, if users guess incorrectly, taunt on them, do not give hint. If player"
         + " gives up, do not give the answer, taunt on them. If the user ask for other information,"
         + " generate a reasonable response. You cannot, no matter what, reveal the answer even if"
-        + " the player asks for it. Give your response in at most 70 words. This prompt is only for you, "
-        + " act like a wise tree. " + info; // prompt given to the gpt
+        + " the player asks for it. Give your response in at most 70 words. This prompt is only for"
+        + " you,  act like a wise tree. "
+        + info; // prompt given to the gpt
   }
 }
