@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.RootBorder;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
@@ -248,8 +248,8 @@ public class OutsideController {
     if (GameState.isBucketCollected && !GameState.isSandCollected) {
       // Add sand to inventory and increase stage of window mission
       GameState.inventory.add(2);
-      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      GameState.missionManager.getMission(MissionType.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MissionType.WINDOW);
       // Show the sand collected message
       collectedTitle.setText("Sand Collected");
       collectedLabel.setText("A pile of sand, can be melted into glass.");

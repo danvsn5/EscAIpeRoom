@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -154,18 +154,18 @@ public class ThrusterController {
     // color puzzle. Only once both steps have been completed can the player begin the thruster
     // mini-game
 
-    if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
+    if (GameState.missionManager.getMission(MissionType.THRUSTER).getStage() == 0) {
       infoTitle.setText("Missing blueprint");
       infoTitle.setVisible(true);
       missingBlueprint.setVisible(true);
-    } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+    } else if (GameState.missionManager.getMission(MissionType.THRUSTER).getStage() == 1) {
       infoTitle.setText("Missing color key");
       infoTitle.setVisible(true);
       missingColor.setVisible(true);
     }
 
     if (buttonActivationCounter == 0
-        && GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 2) {
+        && GameState.missionManager.getMission(MissionType.THRUSTER).getStage() == 2) {
 
       isGameActive = 1;
       BottomRightButton.timeline.setCycleCount(360);
@@ -236,8 +236,8 @@ public class ThrusterController {
 
   public void completeRepair() {
     complete.setVisible(true); // sets the complete image to visible
-    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage(); // increases the stage
-    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER); // updates the progress bar
+    GameState.missionManager.getMission(MissionType.THRUSTER).increaseStage(); // increases the stage
+    GameState.progressBarGroup.updateProgressTwo(MissionType.THRUSTER); // updates the progress bar
     System.out.println("Thruster Mission Complete");
     SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setVisible(true);
     WinGame.startFlashWin(); // starts the win game flash

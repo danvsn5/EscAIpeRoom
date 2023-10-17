@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -146,9 +146,9 @@ public class StorageController {
     // Set the blueprint image in thruster room to visible
     SceneManager.getPanel(AppPanel.THRUSTER).lookup("#blueprintBackground").setVisible(true);
     // 1: purple    2: blue     3: red    4: green
-    GameState.missionManager.getMission(MISSION.THRUSTER).increaseStage();
-    System.out.println(GameState.missionManager.getMission(MISSION.THRUSTER).getStage());
-    GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
+    GameState.missionManager.getMission(MissionType.THRUSTER).increaseStage();
+    System.out.println(GameState.missionManager.getMission(MissionType.THRUSTER).getStage());
+    GameState.progressBarGroup.updateProgressTwo(MissionType.THRUSTER);
   }
 
   /**
@@ -161,8 +161,8 @@ public class StorageController {
     // If the sand bucket is in the inventory
     if (GameState.inventory.contains(2)) {
       // Increase the stage of window mission
-      GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
-      GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      GameState.missionManager.getMission(MissionType.WINDOW).increaseStage();
+      GameState.progressBarGroup.updateProgressOne(MissionType.WINDOW);
       // Deactivate the collision box for process machine
       processMachine.setVisible(false);
       processMachine.setDisable(true);

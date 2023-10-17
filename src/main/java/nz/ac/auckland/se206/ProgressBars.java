@@ -2,14 +2,14 @@ package nz.ac.auckland.se206;
 
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
 /** This class controls all progress bars. */
 public class ProgressBars {
 
-  private MISSION taskOne;
-  private MISSION taskTwo;
+  private MissionType taskOne;
+  private MissionType taskTwo;
 
   /**
    * Set up the first mission in the progress bar
@@ -19,11 +19,11 @@ public class ProgressBars {
   public void setMissionOne(int taskOne) {
     // If the first mission is window mission, set up the window mission progress bar
     if (taskOne == 1) {
-      this.taskOne = MISSION.WINDOW;
+      this.taskOne = MissionType.WINDOW;
       labelHelper("#topLabel", "Fix the window");
     } else if (taskOne == 2) {
       // If the first mission is fuel mission, set up the window mission progress bar
-      this.taskOne = MISSION.FUEL;
+      this.taskOne = MissionType.FUEL;
       labelHelper("#topLabel", "Collect fuel for ship");
     }
   }
@@ -36,11 +36,11 @@ public class ProgressBars {
   public void setMissionTwo(int taskTwo) {
     // If the second mission is controller mission, set up the window mission progress bar
     if (taskTwo == 3) {
-      this.taskTwo = MISSION.CONTROLLER;
+      this.taskTwo = MissionType.CONTROLLER;
       labelHelper("#bottomLabel", "Fix the controller of the ship");
       // If the second mission is thruster mission, set up the window mission progress bar
     } else if (taskTwo == 4) {
-      this.taskTwo = MISSION.THRUSTER;
+      this.taskTwo = MissionType.THRUSTER;
       labelHelper("#bottomLabel", "Fix the thrusters of the ship");
     }
   }
@@ -50,7 +50,7 @@ public class ProgressBars {
    *
    * @return The MISSION enum of the first mission.
    */
-  public MISSION getMissionOne() {
+  public MissionType getMissionOne() {
     return taskOne;
   }
 
@@ -59,7 +59,7 @@ public class ProgressBars {
    *
    * @return The MISSION enum of the second mission.
    */
-  public MISSION getMissionTwo() {
+  public MissionType getMissionTwo() {
     return taskTwo;
   }
 
@@ -68,7 +68,7 @@ public class ProgressBars {
    *
    * @param mission a MISSION enum.
    */
-  public void updateProgressOne(MISSION mission) {
+  public void updateProgressOne(MissionType mission) {
     // get the percentage of first mission
     int percentage = GameState.missionManager.getMission(mission).getPercentage();
     // Calculate the correct lentgh of the progress bar
@@ -88,7 +88,7 @@ public class ProgressBars {
    *
    * @param mission a MISSION enum.
    */
-  public void updateProgressTwo(MISSION mission) {
+  public void updateProgressTwo(MissionType mission) {
     // get the percentage of second mission
     int percentage = GameState.missionManager.getMission(mission).getPercentage();
     // Calculate the correct lentgh of the progress bar

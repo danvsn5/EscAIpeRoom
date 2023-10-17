@@ -9,7 +9,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
@@ -93,8 +93,8 @@ public class ChestController {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == GameState.passWord) {
       // If the player is correct, update the progress and disable the lock
-      GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
+      GameState.missionManager.getMission(MissionType.CONTROLLER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MissionType.CONTROLLER);
       // SceneManager.showDialog(
       //     "Info", "Control panel collected", "The spare part of the controller");
 
