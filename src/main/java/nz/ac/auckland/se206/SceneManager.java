@@ -37,7 +37,8 @@ public class SceneManager {
   }
 
   /**
-   * Record the previous panel.
+   * Record the previous panel. 
+   * This method is used when the player enters a new panel.
    *
    * @param previous the previous panel.
    */
