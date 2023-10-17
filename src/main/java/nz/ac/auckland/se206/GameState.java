@@ -70,36 +70,66 @@ public class GameState {
   public static Glow glowBright = new Glow(0.5);
   public static Glow glowDim = new Glow(0.0);
 
+  /**
+   * This method is used to set the timer.
+   *
+   * @param timer the timer to be set.
+   */
   public static void setTimer(int timer) {
     // Set the timer to the correct time
     GameState.timer = timer;
   }
 
+  /**
+   * This method is used to get the timer.
+   *
+   * @return the timer.
+   */
   public static int getTimer() {
     // Get the current time
     return GameState.timer;
   }
 
+  /**
+   * This method is used to set the difficulty.
+   *
+   * @param difficulty the difficulty to be set.
+   */
   public static void setDifficulty(int difficulty) {
     // Set the difficulty
     GameState.difficulty = difficulty;
   }
 
+  /**
+   * This method is used to get the difficulty.
+   *
+   * @return the difficulty.
+   */
   public static int getDifficulty() {
     // Get the difficulty
     return GameState.difficulty;
   }
 
+  /**
+   * Returns the number of the random color.
+   *
+   * @return the number of the random color.
+   */
   public static int getRandomColorNumber() {
     // Get the number of the random color
     return randomColorNumber;
   }
 
+  /**
+   * Sets the maximum hint number.
+   * @param max the maximum hint number to be set.
+   */
   public static void setHintNumber(int max) {
     // Set the maximum hint number
     hintNumer = max;
   }
 
+  /** This method is used to increase the hint count. */
   public static void useHint() {
     // Use a hint
     // Increase the hint count
@@ -112,20 +142,27 @@ public class GameState {
     }
   }
 
+  /**
+   * Checks if the hint has been used up.
+   * @return true if the hint has been used up, false otherwise.
+   */
   public static boolean hintUsedUp() {
     // Check if the hint used up
     return currentHint >= hintNumer;
   }
 
+  /**
+   * Resets the current hint to 0.
+   */
   public static void clearHint() {
     // Reset the used hint
     currentHint = 0;
   }
 
   /**
-   * This method is used to reset the game
+   * This method is used to reset the game.
    *
-   * <p>It will reset all the variables and clear the inventory
+   * <p>It will reset all the variables and clear the inventory.
    */
   public static void reset() {
     // Reset the game
@@ -171,24 +208,30 @@ public class GameState {
     TreeAvatar.treeState = 0;
   }
 
+  /** This method is used to generate the password for the second mission. */
   public static void generatePassWord() {
     Random rand = new Random();
-    firstDigit = rand.nextInt(500);
+    firstDigit = rand.nextInt(500); // first digit between 0 and 500.
     System.out.println(firstDigit);
-    secondDigit = rand.nextInt(500);
+    secondDigit = rand.nextInt(500); // second digit between 0 and 500.
     System.out.println(secondDigit);
-    passWord = firstDigit + secondDigit;
+    passWord = firstDigit + secondDigit; // add the two digits together.
     System.out.println(passWord);
   }
 
-  public static void speak(String message) {
-    if (textToSpeechSetting) {
+  /**
+   * Speaks the given message using text-to-speech if the setting is enabled.
+   * 
+   * @param message the message to be spoken.
+   */
+  public static void speak(String message) { // text to speech method.
+    if (textToSpeechSetting) { // if text to speech is enabled, speak the message.
       Thread speakThread =
           new Thread(
               () -> {
                 textToSpeech.speak(message);
               });
-      speakThread.start();
+      speakThread.start(); // start the thread.
     }
   }
 }
