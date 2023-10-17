@@ -125,6 +125,7 @@ public class StorageController {
             }
           };
 
+      // Start the thread
       Thread secondRiddleThread = new Thread(riddleSecondCall);
       secondRiddleThread.start();
       passwordGenerate = true;
@@ -136,6 +137,7 @@ public class StorageController {
     }
   }
 
+  /** This method execute features about collecting blueprint. */
   public void collectBlueprint() {
     activateCollectedInfoBluePrint();
     // Hide the blueprint image and collision box
@@ -155,14 +157,18 @@ public class StorageController {
    * shown. If the inventory does not contain sand, information about the process machine is
    * displayed.
    */
-  public void meltSand() { // furnace button when the mission is the window.
-    if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
+  public void meltSand() {
+    // If the sand bucket is in the inventory
+    if (GameState.inventory.contains(2)) {
+      // Increase the stage of window mission
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      // Deactivate the collision box for process machine
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
     } else {
+      // If the sand bucket is not in the inventory, show the information about process machine
       collectedTitle.setText("Process Machine");
       collectedLabel.setText("High tech process machine, can make ingredients into product");
       collectedTitle.setVisible(true);
@@ -185,6 +191,7 @@ public class StorageController {
     glass.setDisable(false);
   }
 
+  /** This method execute features about collecting glass. */
   public void collectGlass() {
     activateCollectedInfoWindow();
     GameState.inventory.add(3);
@@ -208,6 +215,7 @@ public class StorageController {
     progressButton.setEffect(GameState.glowDim);
   }
 
+  /** This method Activate the glow effect of the door. */
   public void activateDoorGlow() {
     storageDoor.setEffect(GameState.glowBright);
     storageDoor.setCursor(Cursor.HAND);
@@ -265,6 +273,7 @@ public class StorageController {
     blueprintCollisionBox.setOpacity(0);
   }
 
+  /** This method set the panel to Chatroom. */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
@@ -281,18 +290,21 @@ public class StorageController {
     miniTree.setEffect(GameState.glowDim);
   }
 
+  /** This method opens the info panel for blurprint. */
   private void activateCollectedInfoBluePrint() {
     collectedTitle.setText("BluePint Collected");
     collectedTitle.setVisible(true);
     blueprintInfo.setVisible(true);
   }
 
+  /** This method opens the info panel for window. */
   private void activateCollectedInfoWindow() {
     collectedTitle.setText("Window Collected");
     collectedTitle.setVisible(true);
     windowInfo.setVisible(true);
   }
 
+  /** This method closes all info panel. */
   public void exitInfo() {
     collectedTitle.setVisible(false);
     collectedLabel.setVisible(false);
@@ -317,6 +329,7 @@ public class StorageController {
     rootOneCollisionBox4.setCursor(Cursor.HAND);
   }
 
+  /** Deactivate glow effect of root one's collision box. */
   public void deactivateRootOneGlow() {
     rootOneCollisionBox1.setOpacity(0);
     rootOneCollisionBox2.setOpacity(0);
@@ -341,6 +354,7 @@ public class StorageController {
     rootTwoCollisionBox4.setCursor(Cursor.HAND);
   }
 
+  /** Deactivate glow effect of root two's collision box. */
   public void deactivateRootTwoGlow() {
     rootTwoCollisionBox1.setOpacity(0);
     rootTwoCollisionBox2.setOpacity(0);
@@ -351,9 +365,8 @@ public class StorageController {
   /** Activates the glow effect for the root three collision boxes and sets their cursor to hand. */
   public void activateRootThreeGlow() { // activate root three glow
     // box 1
-    rootThreeCollisionBox1.setOpacity(1); // sets the opacity of the root three collision box to 1
-    rootThreeCollisionBox1.setCursor(
-        Cursor.HAND); // sets the cursor of the root three collision box to hand
+    rootThreeCollisionBox1.setOpacity(1);
+    rootThreeCollisionBox1.setCursor(Cursor.HAND);
     // box 2
     rootThreeCollisionBox2.setOpacity(1);
     rootThreeCollisionBox2.setCursor(Cursor.HAND);
@@ -368,6 +381,7 @@ public class StorageController {
     rootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
+  /** Deactivate glow effect of root three's collision box. */
   public void deactivateRootThreeGlow() {
     rootThreeCollisionBox1.setOpacity(0);
     rootThreeCollisionBox2.setOpacity(0);
@@ -376,12 +390,12 @@ public class StorageController {
     rootThreeCollisionBox5.setOpacity(0);
   }
 
+  /** Activate the glow effect on the collision box of root four. */
   public void activateRootFourGlow() {
     // activate root four glow
     // box 1
-    rootFourCollisionBox1.setOpacity(1); // sets the opacity of the root four collision box to 1
-    rootFourCollisionBox1.setCursor(
-        Cursor.HAND); // sets the cursor of the root four collision box to hand
+    rootFourCollisionBox1.setOpacity(1);
+    rootFourCollisionBox1.setCursor(Cursor.HAND);
     // box 2
     rootFourCollisionBox2.setOpacity(1);
     rootFourCollisionBox2.setCursor(Cursor.HAND);
@@ -415,7 +429,7 @@ public class StorageController {
   public void deactivateRootFourGlow() {
     // deactivate root four glow
     // box 1, 2, and 3
-    rootFourCollisionBox1.setOpacity(0); // sets the opacity of the root four collision box to 0
+    rootFourCollisionBox1.setOpacity(0);
     rootFourCollisionBox2.setOpacity(0);
     rootFourCollisionBox3.setOpacity(0);
     // box 4, 5, and 6
