@@ -33,6 +33,12 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
+  public static ChatCompletionRequest chatCompletionRequest;
+  public static ChatCompletionRequest hintChatCompletionRequest;
+  public static ChatMessage firstMesage;
+  public static int seenFirstMessage = 0;
+  public static ChatMessage secondGuideMessage;
+
   @FXML private TextArea chatTextArea;
   @FXML private Label chatLabel;
 
@@ -69,15 +75,9 @@ public class ChatController {
   private int bubbleVariable = 0;
   private int bookVariable = 0;
   private boolean isGenerating = false;
-
-  public static ChatCompletionRequest chatCompletionRequest;
-  public static ChatCompletionRequest hintChatCompletionRequest;
-  public static ChatMessage firstMesage;
-  public static int seenFirstMessage = 0;
-  public static ChatMessage secondGuideMessage;
-  Timeline bubbleTimeline =
-      new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
   private int firstMission;
+  private Timeline bubbleTimeline =
+      new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
 
   /**
    * Initializes settings for images in chat room, greets the gpt.
@@ -447,21 +447,21 @@ public class ChatController {
     exitInfo();
   }
 
-  /** Show tree listening image. */
+  /** Show the tree listening image and hide other tree iomages. */
   private void startListen() {
     treeListening.setVisible(true);
     treeTalking.setVisible(false);
     treeThinking.setVisible(false);
   }
 
-  /** Show tree talking image. */
+  /** Show the tree talking image and hide other tree iomages. */
   private void startTalk() {
     treeListening.setVisible(false);
     treeTalking.setVisible(true);
     treeThinking.setVisible(false);
   }
 
-  /** Show tree thinking image. */
+  /** Show the tree thinking image and hide other tree iomages. */
   private void startThink() {
     treeListening.setVisible(false);
     treeTalking.setVisible(false);
@@ -476,7 +476,7 @@ public class ChatController {
    * @throws IOException if there is an I/O error.
    */
   @FXML
-  private void getHint(ActionEvent event) throws ApiProxyException, IOException {
+  private void onGetHint(ActionEvent event) throws ApiProxyException, IOException {
     // If the gpt is generating response or hint number used up, return
     if (GameState.hintUsedUp() || isGenerating) {
       return;
@@ -666,7 +666,7 @@ public class ChatController {
     collectedLabel.setVisible(true);
   }
 
-  /** Initialize the two completion requests */
+  /** Initialize the two completion requests. */
   private void initializeCompletionRequest() {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
