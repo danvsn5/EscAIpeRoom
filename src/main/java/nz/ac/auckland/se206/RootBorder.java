@@ -75,41 +75,47 @@ public class RootBorder {
    * @param panel the panel that the root needs to be changed.
    */
   public static void activateShipRootCollisionBox(AppPanel panel) {
+    String room;
+    if (panel == AppPanel.MAIN_ROOM) {
+      room = "main";
+    } else {
+      room = "storage";
+    }
     // Activate the collision box
     switch (rootState) {
       case 1:
         // If it is state 1, activate state 1 collision box
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox1").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox2").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox3").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox4").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox1").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox2").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox3").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox4").setVisible(true);
         break;
       case 2:
         // If it is state 2, activate state 2 collision box
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox1").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox2").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox3").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox4").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox1").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox2").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox3").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox4").setVisible(true);
         break;
       case 3:
         // If it is state 3, activate state 3 collision box
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox1").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox2").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox3").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox4").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox5").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootThreeCollisionBox1").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootThreeCollisionBox2").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootThreeCollisionBox3").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootThreeCollisionBox4").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootThreeCollisionBox5").setVisible(true);
         break;
       case 4:
         // If it is state 4, activate state 4 collision box
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox1").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox2").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox3").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox4").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox5").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox6").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox7").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox8").setVisible(true);
-        SceneManager.getPanel(panel).lookup("#rootFourCollisionBox9").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox1").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox2").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox3").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox4").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox5").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox6").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox7").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox8").setVisible(true);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootFourCollisionBox9").setVisible(true);
         break;
       default:
         break;
@@ -129,29 +135,45 @@ public class RootBorder {
    * @param panel the panel that the root needs to be changed.
    */
   public static void deactivateShipRootCollisionBox(AppPanel panel) {
+    String room;
+    if (panel == AppPanel.MAIN_ROOM) {
+      room = "main";
+    } else {
+      room = "storage";
+    }
     // Deactivate the collision box
     switch (rootState) {
       case 2:
         // If it is currently state 2, deactivate all the collision box in state 1
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox1").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox2").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox3").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootOneCollisionBox4").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox1").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox2").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox3").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootOneCollisionBox4").setVisible(false);
         break;
       case 3:
         // If it is currently state 3, deactivate all the collision box in state 2
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox1").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox2").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox3").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootTwoCollisionBox4").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox1").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox2").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox3").setVisible(false);
+        SceneManager.getPanel(panel).lookup("#" + room + "RootTwoCollisionBox4").setVisible(false);
         break;
       case 4:
         // If it is currently state 4, deactivate all the collision box in state 3
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox1").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox2").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox3").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox4").setVisible(false);
-        SceneManager.getPanel(panel).lookup("#rootThreeCollisionBox5").setVisible(false);
+        SceneManager.getPanel(panel)
+            .lookup("#" + room + "RootThreeCollisionBox1")
+            .setVisible(false);
+        SceneManager.getPanel(panel)
+            .lookup("#" + room + "RootThreeCollisionBox2")
+            .setVisible(false);
+        SceneManager.getPanel(panel)
+            .lookup("#" + room + "RootThreeCollisionBox3")
+            .setVisible(false);
+        SceneManager.getPanel(panel)
+            .lookup("#" + room + "RootThreeCollisionBox4")
+            .setVisible(false);
+        SceneManager.getPanel(panel)
+            .lookup("#" + room + "RootThreeCollisionBox5")
+            .setVisible(false);
         break;
       default:
         break;

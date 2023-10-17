@@ -28,28 +28,28 @@ public class StorageController {
   @FXML private ImageView root2;
   @FXML private ImageView root3;
   @FXML private ImageView root4;
-  @FXML private Polygon rootOneCollisionBox1;
-  @FXML private Polygon rootOneCollisionBox2;
-  @FXML private Polygon rootOneCollisionBox3;
-  @FXML private Polygon rootOneCollisionBox4;
-  @FXML private Polygon rootTwoCollisionBox1;
-  @FXML private Polygon rootTwoCollisionBox2;
-  @FXML private Polygon rootTwoCollisionBox3;
-  @FXML private Polygon rootTwoCollisionBox4;
-  @FXML private Polygon rootThreeCollisionBox1;
-  @FXML private Polygon rootThreeCollisionBox2;
-  @FXML private Polygon rootThreeCollisionBox3;
-  @FXML private Polygon rootThreeCollisionBox4;
-  @FXML private Polygon rootThreeCollisionBox5;
-  @FXML private Polygon rootFourCollisionBox1;
-  @FXML private Polygon rootFourCollisionBox2;
-  @FXML private Polygon rootFourCollisionBox3;
-  @FXML private Polygon rootFourCollisionBox4;
-  @FXML private Polygon rootFourCollisionBox5;
-  @FXML private Polygon rootFourCollisionBox6;
-  @FXML private Polygon rootFourCollisionBox7;
-  @FXML private Polygon rootFourCollisionBox8;
-  @FXML private Polygon rootFourCollisionBox9;
+  @FXML private Polygon storageRootOneCollisionBox1;
+  @FXML private Polygon storageRootOneCollisionBox2;
+  @FXML private Polygon storageRootOneCollisionBox3;
+  @FXML private Polygon storageRootOneCollisionBox4;
+  @FXML private Polygon storageRootTwoCollisionBox1;
+  @FXML private Polygon storageRootTwoCollisionBox2;
+  @FXML private Polygon storageRootTwoCollisionBox3;
+  @FXML private Polygon storageRootTwoCollisionBox4;
+  @FXML private Polygon storageRootThreeCollisionBox1;
+  @FXML private Polygon storageRootThreeCollisionBox2;
+  @FXML private Polygon storageRootThreeCollisionBox3;
+  @FXML private Polygon storageRootThreeCollisionBox4;
+  @FXML private Polygon storageRootThreeCollisionBox5;
+  @FXML private Polygon storageRootFourCollisionBox1;
+  @FXML private Polygon storageRootFourCollisionBox2;
+  @FXML private Polygon storageRootFourCollisionBox3;
+  @FXML private Polygon storageRootFourCollisionBox4;
+  @FXML private Polygon storageRootFourCollisionBox5;
+  @FXML private Polygon storageRootFourCollisionBox6;
+  @FXML private Polygon storageRootFourCollisionBox7;
+  @FXML private Polygon storageRootFourCollisionBox8;
+  @FXML private Polygon storageRootFourCollisionBox9;
   @FXML private Label counter;
 
   @FXML private ImageView controller;
@@ -315,111 +315,113 @@ public class StorageController {
 
   public void activateRootOneGlow() { // activate root one glow
     // box 1
-    rootOneCollisionBox1.setOpacity(1); // sets the opacity of the root one collision box to 1
-    rootOneCollisionBox1.setCursor(
+    storageRootOneCollisionBox1.setOpacity(
+        1); // sets the opacity of the root one collision box to 1
+    storageRootOneCollisionBox1.setCursor(
         Cursor.HAND); // sets the cursor of the root one collision box to hand
     // box 2
-    rootOneCollisionBox2.setOpacity(1);
-    rootOneCollisionBox2.setCursor(Cursor.HAND);
+    storageRootOneCollisionBox2.setOpacity(1);
+    storageRootOneCollisionBox2.setCursor(Cursor.HAND);
     // box 3
-    rootOneCollisionBox3.setOpacity(1);
-    rootOneCollisionBox3.setCursor(Cursor.HAND);
+    storageRootOneCollisionBox3.setOpacity(1);
+    storageRootOneCollisionBox3.setCursor(Cursor.HAND);
     // box 4
-    rootOneCollisionBox4.setOpacity(1);
-    rootOneCollisionBox4.setCursor(Cursor.HAND);
+    storageRootOneCollisionBox4.setOpacity(1);
+    storageRootOneCollisionBox4.setCursor(Cursor.HAND);
   }
 
   /** Deactivate glow effect of root one's collision box. */
   public void deactivateRootOneGlow() {
-    rootOneCollisionBox1.setOpacity(0);
-    rootOneCollisionBox2.setOpacity(0);
-    rootOneCollisionBox3.setOpacity(0);
-    rootOneCollisionBox4.setOpacity(0);
+    storageRootOneCollisionBox1.setOpacity(0);
+    storageRootOneCollisionBox2.setOpacity(0);
+    storageRootOneCollisionBox3.setOpacity(0);
+    storageRootOneCollisionBox4.setOpacity(0);
   }
 
   /** Activates the glow effect for the root two collision boxes and sets their cursor to hand. */
   public void activateRootTwoGlow() { // activate root two glow
     // box 1
-    rootTwoCollisionBox1.setOpacity(1); // sets the opacity of the root two collision box to 1
-    rootTwoCollisionBox1.setCursor(
+    storageRootTwoCollisionBox1.setOpacity(
+        1); // sets the opacity of the root two collision box to 1
+    storageRootTwoCollisionBox1.setCursor(
         Cursor.HAND); // sets the cursor of the root two collision box to hand
     // box 2
-    rootTwoCollisionBox2.setOpacity(1);
-    rootTwoCollisionBox2.setCursor(Cursor.HAND);
+    storageRootTwoCollisionBox2.setOpacity(1);
+    storageRootTwoCollisionBox2.setCursor(Cursor.HAND);
     // box 3
-    rootTwoCollisionBox3.setOpacity(1);
-    rootTwoCollisionBox3.setCursor(Cursor.HAND);
+    storageRootTwoCollisionBox3.setOpacity(1);
+    storageRootTwoCollisionBox3.setCursor(Cursor.HAND);
     // box 4
-    rootTwoCollisionBox4.setOpacity(1);
-    rootTwoCollisionBox4.setCursor(Cursor.HAND);
+    storageRootTwoCollisionBox4.setOpacity(1);
+    storageRootTwoCollisionBox4.setCursor(Cursor.HAND);
   }
 
   /** Deactivate glow effect of root two's collision box. */
   public void deactivateRootTwoGlow() {
-    rootTwoCollisionBox1.setOpacity(0);
-    rootTwoCollisionBox2.setOpacity(0);
-    rootTwoCollisionBox3.setOpacity(0);
-    rootTwoCollisionBox4.setOpacity(0);
+    storageRootTwoCollisionBox1.setOpacity(0);
+    storageRootTwoCollisionBox2.setOpacity(0);
+    storageRootTwoCollisionBox3.setOpacity(0);
+    storageRootTwoCollisionBox4.setOpacity(0);
   }
 
   /** Activates the glow effect for the root three collision boxes and sets their cursor to hand. */
   public void activateRootThreeGlow() { // activate root three glow
     // box 1
-    rootThreeCollisionBox1.setOpacity(1);
-    rootThreeCollisionBox1.setCursor(Cursor.HAND);
+    storageRootThreeCollisionBox1.setOpacity(1);
+    storageRootThreeCollisionBox1.setCursor(Cursor.HAND);
     // box 2
-    rootThreeCollisionBox2.setOpacity(1);
-    rootThreeCollisionBox2.setCursor(Cursor.HAND);
+    storageRootThreeCollisionBox2.setOpacity(1);
+    storageRootThreeCollisionBox2.setCursor(Cursor.HAND);
     // box 3
-    rootThreeCollisionBox3.setOpacity(1);
-    rootThreeCollisionBox3.setCursor(Cursor.HAND);
+    storageRootThreeCollisionBox3.setOpacity(1);
+    storageRootThreeCollisionBox3.setCursor(Cursor.HAND);
     // box 4
-    rootThreeCollisionBox4.setOpacity(1);
-    rootThreeCollisionBox4.setCursor(Cursor.HAND);
+    storageRootThreeCollisionBox4.setOpacity(1);
+    storageRootThreeCollisionBox4.setCursor(Cursor.HAND);
     // box 5
-    rootThreeCollisionBox5.setOpacity(1);
-    rootThreeCollisionBox5.setCursor(Cursor.HAND);
+    storageRootThreeCollisionBox5.setOpacity(1);
+    storageRootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
   /** Deactivate glow effect of root three's collision box. */
   public void deactivateRootThreeGlow() {
-    rootThreeCollisionBox1.setOpacity(0);
-    rootThreeCollisionBox2.setOpacity(0);
-    rootThreeCollisionBox3.setOpacity(0);
-    rootThreeCollisionBox4.setOpacity(0);
-    rootThreeCollisionBox5.setOpacity(0);
+    storageRootThreeCollisionBox1.setOpacity(0);
+    storageRootThreeCollisionBox2.setOpacity(0);
+    storageRootThreeCollisionBox3.setOpacity(0);
+    storageRootThreeCollisionBox4.setOpacity(0);
+    storageRootThreeCollisionBox5.setOpacity(0);
   }
 
   /** Activate the glow effect on the collision box of root four. */
   public void activateRootFourGlow() {
     // activate root four glow
     // box 1
-    rootFourCollisionBox1.setOpacity(1);
-    rootFourCollisionBox1.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox1.setOpacity(1);
+    storageRootFourCollisionBox1.setCursor(Cursor.HAND);
     // box 2
-    rootFourCollisionBox2.setOpacity(1);
-    rootFourCollisionBox2.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox2.setOpacity(1);
+    storageRootFourCollisionBox2.setCursor(Cursor.HAND);
     // box 3
-    rootFourCollisionBox3.setOpacity(1);
-    rootFourCollisionBox3.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox3.setOpacity(1);
+    storageRootFourCollisionBox3.setCursor(Cursor.HAND);
     // box 4
-    rootFourCollisionBox4.setOpacity(1);
-    rootFourCollisionBox4.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox4.setOpacity(1);
+    storageRootFourCollisionBox4.setCursor(Cursor.HAND);
     // box 5
-    rootFourCollisionBox5.setOpacity(1);
-    rootFourCollisionBox5.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox5.setOpacity(1);
+    storageRootFourCollisionBox5.setCursor(Cursor.HAND);
     // box 6
-    rootFourCollisionBox6.setOpacity(1);
-    rootFourCollisionBox6.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox6.setOpacity(1);
+    storageRootFourCollisionBox6.setCursor(Cursor.HAND);
     // box 7
-    rootFourCollisionBox7.setOpacity(1);
-    rootFourCollisionBox7.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox7.setOpacity(1);
+    storageRootFourCollisionBox7.setCursor(Cursor.HAND);
     // box 8
-    rootFourCollisionBox8.setOpacity(1);
-    rootFourCollisionBox8.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox8.setOpacity(1);
+    storageRootFourCollisionBox8.setCursor(Cursor.HAND);
     // box 9
-    rootFourCollisionBox9.setOpacity(1);
-    rootFourCollisionBox9.setCursor(Cursor.HAND);
+    storageRootFourCollisionBox9.setOpacity(1);
+    storageRootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
   /**
@@ -429,16 +431,16 @@ public class StorageController {
   public void deactivateRootFourGlow() {
     // deactivate root four glow
     // box 1, 2, and 3
-    rootFourCollisionBox1.setOpacity(0);
-    rootFourCollisionBox2.setOpacity(0);
-    rootFourCollisionBox3.setOpacity(0);
+    storageRootFourCollisionBox1.setOpacity(0);
+    storageRootFourCollisionBox2.setOpacity(0);
+    storageRootFourCollisionBox3.setOpacity(0);
     // box 4, 5, and 6
-    rootFourCollisionBox4.setOpacity(0);
-    rootFourCollisionBox5.setOpacity(0);
-    rootFourCollisionBox6.setOpacity(0);
+    storageRootFourCollisionBox4.setOpacity(0);
+    storageRootFourCollisionBox5.setOpacity(0);
+    storageRootFourCollisionBox6.setOpacity(0);
     // box 7, 8, and 9
-    rootFourCollisionBox7.setOpacity(0);
-    rootFourCollisionBox8.setOpacity(0);
-    rootFourCollisionBox9.setOpacity(0);
+    storageRootFourCollisionBox7.setOpacity(0);
+    storageRootFourCollisionBox8.setOpacity(0);
+    storageRootFourCollisionBox9.setOpacity(0);
   }
 }
