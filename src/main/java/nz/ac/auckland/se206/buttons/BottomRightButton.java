@@ -18,42 +18,49 @@ public class BottomRightButton {
 
   private static ColorAdjust blueColor = new ColorAdjust(-0.9, 0, 0, 0);
 
+  /** This methods cycles through colors. */
   public static void cycle() {
     // 1: purple    2: blue     3: red    4: green
     switch (cycleNumber) {
       case 1:
         // if current color is purple, move to red
-        visibleHelper("#bottomRightUnclicked", redColor);
-        visibleHelper("#bottomRightClicked", redColor);
+        changeColor("#bottomRightUnclicked", redColor);
+        changeColor("#bottomRightClicked", redColor);
 
         cycleNumber = 2;
         break;
       case 2:
         // if current color is red, move to blue
-        visibleHelper("#bottomRightUnclicked", blueColor);
-        visibleHelper("#bottomRightClicked", blueColor);
+        changeColor("#bottomRightUnclicked", blueColor);
+        changeColor("#bottomRightClicked", blueColor);
 
         cycleNumber = 3;
 
         break;
       case 3:
         // if current color is blue, move to green
-        visibleHelper("#bottomRightUnclicked", greenColor);
-        visibleHelper("#bottomRightClicked", greenColor);
+        changeColor("#bottomRightUnclicked", greenColor);
+        changeColor("#bottomRightClicked", greenColor);
 
         cycleNumber = 4;
         break;
       case 4:
         // if current color is green, move to purple
-        visibleHelper("#bottomRightUnclicked", purpleColor);
-        visibleHelper("#bottomRightClicked", purpleColor);
+        changeColor("#bottomRightUnclicked", purpleColor);
+        changeColor("#bottomRightClicked", purpleColor);
 
         cycleNumber = 1;
         break;
     }
   }
 
-  public static void visibleHelper(String id, Effect color) {
+  /**
+   * This method changes the color of the button.
+   *
+   * @param id the id of the button.
+   * @param color the color of the button.
+   */
+  public static void changeColor(String id, Effect color) {
     SceneManager.getPanel(AppPanel.THRUSTER).lookup(id).setEffect(color);
   }
 
