@@ -36,36 +36,29 @@ public class WinController {
     System.exit(0);
   }
 
+  /**
+   * Initializes the videos used in the win screen.
+   * @throws Exception if there is an error loading the video files
+   */
   public void iniVideos() throws Exception {
 
     mediaOne = new Media(App.class.getResource("/videos/launch/0000-0190.mp4").toURI().toString());
     mediaPlayerOne = new MediaPlayer(mediaOne);
-    launchingVideo.setMediaPlayer(mediaPlayerOne);
-    mediaPlayerOne.setCycleCount(1);
+    launchingVideo.setMediaPlayer(mediaPlayerOne); // sets the launching video to the media player one
+    mediaPlayerOne.setCycleCount(1); // sets the video to play once
 
     mediaTwo = new Media(App.class.getResource("/videos/launch/0000-0480.mp4").toURI().toString());
     mediaPlayerTwo = new MediaPlayer(mediaTwo);
-    flyingVideo.setMediaPlayer(mediaPlayerTwo);
-    mediaPlayerTwo.setCycleCount(MediaPlayer.INDEFINITE);
+    flyingVideo.setMediaPlayer(mediaPlayerTwo); // sets the flying video to the media player two
+    mediaPlayerTwo.setCycleCount(MediaPlayer.INDEFINITE); // sets the video to play indefinitely
     mediaPlayerOne.setOnEndOfMedia(
-        new Runnable() {
+        new Runnable() { // when the first video ends, the second video will play
           @Override
           public void run() {
             launchingVideo.setVisible(false);
             mediaPlayerTwo.play();
           }
         });
-
-    // mediaPlayerTwo.setOnEndOfMedia(
-    //     new Runnable() {
-    //       @Override
-    //       public void run() {
-    //         launchingVideo.setVisible(false);
-    //         mediaPlayerOne.play();
-    //       }
-    //     });
-    // mediaPlayerOne.play();
-
   }
 
   public static void playMedia() {
