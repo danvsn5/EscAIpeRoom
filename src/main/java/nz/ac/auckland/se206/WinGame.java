@@ -19,10 +19,10 @@ public class WinGame {
   public static void flashWin() {
     if (winFlashState == 1) { // if winFlashState is 1, set the winGameCollisionBox to visible
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setOpacity(1);
-      winFlashState = 0; // set winFlashState to 0
+      winFlashState = 0;
     } else { // if winFlashState is 0, set the winGameCollisionBox to invisible
       SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#winGameCollisionBox").setOpacity(0);
-      winFlashState = 1; // set winFlashState to 1
+      winFlashState = 1; 
     }
   }
 
