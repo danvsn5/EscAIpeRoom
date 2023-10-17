@@ -69,10 +69,6 @@ public class ChatController {
 
   private int bubbleVariable = 0;
   private int bookVariable = 0;
-  private ChatMessage thinkingMessage =
-      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
-  private ChatMessage activationMessage =
-      new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
 
   public static ChatCompletionRequest chatCompletionRequest;
   public static ChatCompletionRequest hintChatCompletionRequest;
