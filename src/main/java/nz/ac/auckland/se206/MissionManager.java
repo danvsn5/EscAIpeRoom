@@ -25,9 +25,9 @@ public class MissionManager {
   public static ArrayList<MISSION> keyList = new ArrayList<>();
 
   /**
-   * Add mission to list according to input integer
+   * Add mission to list according to input integer.
    *
-   * @param missionNumber an integer which decides which mission to be added to list
+   * @param missionNumber an integer which decides which mission to be added to list.
    */
   public void addMission(int missionNumber) {
     // If the mission numer is 1, add window mission
@@ -53,9 +53,9 @@ public class MissionManager {
   }
 
   /**
-   * Calculate the overall percentage of missions
+   * Calculate the overall percentage of missions.
    *
-   * @return the calculated percentage
+   * @return the calculated percentage.
    */
   public int getOverallPercentage() {
     int percentage = 0;
@@ -66,7 +66,7 @@ public class MissionManager {
     return percentage / keyList.size();
   }
 
-  /** Print the details of each mission in format: "Name: percentage%" */
+  /** Print the details of each mission in format: "Name: percentage%". */
   public void printDetails() {
     for (MISSION m : keyList) {
       System.out.println(
@@ -76,20 +76,20 @@ public class MissionManager {
   }
 
   /**
-   * Get the Mission instance according to input key
+   * Get the Mission instance according to input key.
    *
-   * @param mission a MISSION enum
-   * @return the class that extends Mission abstract class
+   * @param mission a MISSION enum.
+   * @return the class that extends Mission abstract class.
    */
   public Mission getMission(MISSION mission) {
     return missionList.get(mission);
   }
 
   /**
-   * Get the Mission key according to input index
+   * Get the Mission key according to input index.
    *
-   * @param index an int that represnents the id of mission
-   * @return the MISSION enum that is the key
+   * @param index an int that represnents the id of mission.
+   * @return the MISSION enum that is the key.
    */
   public MISSION getMissionKey(int index) {
     return keyList.get(index);
