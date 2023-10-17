@@ -90,7 +90,6 @@ public class OutsideController {
                         ChatController.getResponse(
                             GptPromptEngineering.getThrusterPuzzle("purple"),
                             ChatController.chatCompletionRequest);
-                    thrusterPuzzleGenerate = 1;
                     break;
                   case 2:
                     gptMessage =
@@ -103,16 +102,15 @@ public class OutsideController {
                         ChatController.getResponse(
                             GptPromptEngineering.getThrusterPuzzle("blue"),
                             ChatController.chatCompletionRequest);
-                    thrusterPuzzleGenerate = 1;
                     break;
                   case 4:
                     gptMessage =
                         ChatController.getResponse(
                             GptPromptEngineering.getThrusterPuzzle("green"),
                             ChatController.chatCompletionRequest);
-                    thrusterPuzzleGenerate = 1;
                     break;
                 }
+                thrusterPuzzleGenerate = 1;
                 // Append the message to the chat text area and notebook
                 Platform.runLater(
                     () ->
