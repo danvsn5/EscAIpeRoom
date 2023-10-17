@@ -2,7 +2,12 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import nz.ac.auckland.se206.missions.*;
+
+import nz.ac.auckland.se206.missions.ControllerMission;
+import nz.ac.auckland.se206.missions.FuelMission;
+import nz.ac.auckland.se206.missions.Mission;
+import nz.ac.auckland.se206.missions.ThrusterMission;
+import nz.ac.auckland.se206.missions.WindowMission;
 
 /** This class manages the mission, records the selected mission */
 public class MissionManager {
