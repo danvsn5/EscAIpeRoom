@@ -211,16 +211,19 @@ public class LaunchController {
 
     switch (difficulty) {
       case 0:
+        // Set the difficulty to medium and set the hint number to 5
         GameState.setDifficulty(1);
         GameState.setHintNumber(5);
         diffButton.setText("Difficulty: Medium");
         break;
       case 1:
+        // Set the difficulty to hard and set the hint number to 0
         GameState.setDifficulty(2);
         GameState.setHintNumber(0);
         diffButton.setText("Difficulty: Hard");
         break;
       case 2:
+        // Set the difficulty to easy and set the hint number to 1000
         GameState.setDifficulty(0);
         GameState.setHintNumber(1000);
         diffButton.setText("Difficulty: Easy");
@@ -249,11 +252,14 @@ public class LaunchController {
     }
   }
 
+  /** Change the text to speech setting. */
   public void changeSpeech() {
     if (GameState.textToSpeechSetting) {
+      // Set tts to on and change the text of the button
       GameState.textToSpeechSetting = false;
       speechButton.setText("Text to Speech: Off");
     } else {
+      // Set tts to off and change the text of the button
       GameState.textToSpeechSetting = true;
       speechButton.setText("Text to Speech: On");
     }
@@ -264,12 +270,13 @@ public class LaunchController {
     System.exit(0);
   }
 
+  /** Create a timer base on the setting and run it background. */
   public void createTimer() {
     Task<Void> timerTask =
         new Task<Void>() {
           @Override
           protected Void call() {
-
+            // Create a timer base on the setting
             if (GameState.timer == 0) {
               timer = new TimeCounter(2, 0);
             } else if (GameState.timer == 1) {
@@ -277,6 +284,7 @@ public class LaunchController {
             } else {
               timer = new TimeCounter(6, 0);
             }
+            // Run the timer in background
             while (true) {
               if (timer.isEnd()) {
                 return null;
@@ -323,10 +331,16 @@ public class LaunchController {
             }
           }
         };
+    // Start the timer thread
     Thread timerThread = new Thread(timerTask);
     timerThread.start();
   }
 
+  /**
+   * Update the clock in every room.
+   *
+   * @param time the time that needs to be updated.
+   */
   public void updateClock(String time) {
     // update the clock in every room.
     // main room, outside room, and chat room.
@@ -368,7 +382,7 @@ public class LaunchController {
             return null;
           }
         };
-
+    // Start the thread
     Thread videoInitialisationThread = new Thread(videoTask);
     videoInitialisationThread.start(); // starts the thread
   }
