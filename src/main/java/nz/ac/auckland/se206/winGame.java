@@ -5,7 +5,7 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
-public class winGame {
+public class WinGame {
 
   public static Timeline winFlash =
       new Timeline(new KeyFrame(Duration.millis(400), e -> flashWin()));

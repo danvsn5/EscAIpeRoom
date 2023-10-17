@@ -85,7 +85,8 @@ public class StorageController {
     App.setUi(AppPanel.PROGRESS);
   }
 
-  public void goToChest() { // javadoc
+  /** Go to the chest if the password is generated or the first mission is completed. */
+  public void goToChest() {
     if (passwordGenerate || !GameState.isFirstMissionCompleted) {
       App.setUi(AppPanel.CHEST);
       return;
@@ -143,7 +144,13 @@ public class StorageController {
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 
-  public void meltSand() { // furnace button when the mission is the window. javadoc
+  /**
+   * Melts sand in the furnace when the mission is the window.
+   * If the inventory contains sand, the mission stage is increased, progress bar is updated,
+   * process machine is hidden, and glass is shown.
+   * If the inventory does not contain sand, information about the process machine is displayed.
+   */
+  public void meltSand() { // furnace button when the mission is the window.
     if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
@@ -311,8 +318,10 @@ public class StorageController {
     rootOneCollisionBox4.setOpacity(0);
   }
 
+  /**
+   * Activates the glow effect for the root two collision boxes and sets their cursor to hand.
+   */
   public void activateRootTwoGlow() { // activate root two glow
-    // javadoc
     // box 1
     rootTwoCollisionBox1.setOpacity(1); // sets the opacity of the root two collision box to 1
     rootTwoCollisionBox1.setCursor(Cursor.HAND); // sets the cursor of the root two collision box to hand
@@ -334,8 +343,10 @@ public class StorageController {
     rootTwoCollisionBox4.setOpacity(0);
   }
 
+  /**
+   * Activates the glow effect for the root three collision boxes and sets their cursor to hand.
+   */
   public void activateRootThreeGlow() { // activate root three glow
-    // javadoc
     // box 1
     rootThreeCollisionBox1.setOpacity(1); // sets the opacity of the root three collision box to 1
     rootThreeCollisionBox1.setCursor(Cursor.HAND); // sets the cursor of the root three collision box to hand
@@ -392,7 +403,12 @@ public class StorageController {
     rootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
-  public void deactivateRootFourGlow() { // javadoc
+  /**
+   * Deactivates the glow effect on the root four collision boxes.
+   * This method sets the opacity of all nine collision boxes to 0, effectively
+   * removing the glow effect.
+   */
+  public void deactivateRootFourGlow() {
     // deactivate root four glow
     // box 1, 2, and 3
     rootFourCollisionBox1.setOpacity(0); // sets the opacity of the root four collision box to 0
