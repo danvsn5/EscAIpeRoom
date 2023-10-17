@@ -21,13 +21,17 @@ public class WinController {
   public static MediaPlayer mediaPlayerOne;
   public static MediaPlayer mediaPlayerTwo;
 
+  public static void playMedia() {
+    mediaPlayerOne.play();
+  }
+
+  private Media mediaOne;
+  private Media mediaTwo;
+
   @FXML private Button returnMenuButton;
   @FXML private Button quitButton;
   @FXML private MediaView flyingVideo;
   @FXML private MediaView launchingVideo;
-
-  private Media mediaOne;
-  private Media mediaTwo;
 
   public void initialize() throws Exception {
     iniVideos();
@@ -44,9 +48,13 @@ public class WinController {
   }
 
   /**
-   * Initializes the videos used in the win screen.
-   * 
-   * @throws Exception if there is an error loading the video files
+   * Initializes the two videos used in the game. The first video is played once 
+   * and the second video is played indefinitely.
+   * The first video is set to the launching video and the second video 
+   * is set to the flying video.
+   * When the first video ends, the second video will play.
+   *
+   * @throws Exception if there is an error initializing the videos
    */
   public void iniVideos() throws Exception {
 
@@ -68,9 +76,5 @@ public class WinController {
             mediaPlayerTwo.play();
           }
         });
-  }
-
-  public static void playMedia() {
-    mediaPlayerOne.play();
   }
 }
