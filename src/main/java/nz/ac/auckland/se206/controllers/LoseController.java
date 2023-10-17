@@ -11,6 +11,10 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
+/**
+ * The LoseController class controls the losing screen of the game. It initializes the video player for the losing screen, 
+ * resets the game state and returns to the launch menu when the return button is pressed, and quits the game when the quit button is pressed.
+ */
 public class LoseController {
 
   @FXML private Button returnMenuButton;
@@ -34,6 +38,10 @@ public class LoseController {
     System.exit(0);
   }
 
+  /**
+   * Initializes the video player for the losing screen.
+   * @throws Exception if the video file cannot be found or accessed.
+   */
   public void iniVideo() throws Exception {
 
     mediaOne = new Media(App.class.getResource("/videos/launch/loseVideo.mp4").toURI().toString());

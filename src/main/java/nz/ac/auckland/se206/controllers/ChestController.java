@@ -9,11 +9,16 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 
+/**
+ * The controller for the chest mini-game. Allows the player to input a three-digit password and
+ * unlock the chest to collect a spare part for the controller. Also provides navigation buttons to
+ * go back to the storage panel and progress panel, as well as a button to go to the chat room.
+ */
 public class ChestController {
   @FXML private Button backButton;
   @FXML private Button enterButton;
@@ -88,13 +93,13 @@ public class ChestController {
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == GameState.passWord) {
       // If the player is correct, update the progress and disable the lock
-      GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
-      GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
+      GameState.missionManager.getMission(MissionType.CONTROLLER).increaseStage();
+      GameState.progressBarGroup.updateProgressTwo(MissionType.CONTROLLER);
       // SceneManager.showDialog(
       //     "Info", "Control panel collected", "The spare part of the controller");
 
       collectedTitle.setText("Control panel");
-      collectedLabel.setText("The spare part of the controller");
+      collectedLabel.setText("Spare conroller parts");
       collectedTitle.setVisible(true);
       collectedLabel.setVisible(true);
       controlPanelInfo.setVisible(true);
@@ -105,7 +110,11 @@ public class ChestController {
     }
   }
 
-  /** Disable the lock, enter button and number input, activate the images of open chest */
+  /**
+   * Disables the lock of the chest by hiding the enter button and the highlight of the three digits,
+   * disabling the collision box of the chest, and activating the chest image in the storage panel.
+   * Also activates the chest open image.
+   */
   public void disableLock() {
     // Disable the enter button and highlight of three digits
     enterButton.setOpacity(0);
@@ -134,7 +143,7 @@ public class ChestController {
     firstDigitHighlight.setCursor(Cursor.HAND);
   }
 
-  public void firstDigitDark() {
+  public void DarkeningFirstDigit() {
     firstDigitHighlight.setOpacity(0);
   }
 
@@ -152,7 +161,7 @@ public class ChestController {
     thirdDigitHighlight.setCursor(Cursor.HAND);
   }
 
-  public void thirdDigitDark() {
+  public void DarkeningThirdDigit() {
     thirdDigitHighlight.setOpacity(0);
   }
 
@@ -165,13 +174,18 @@ public class ChestController {
     rootCollisionBox3.setCursor(Cursor.HAND);
   }
 
+  /**
+   * Deactivates the glow effect of the root collision boxes.
+   */
   public void deactivateRootGlow() {
     rootCollisionBox1.setOpacity(0);
     rootCollisionBox2.setOpacity(0);
     rootCollisionBox3.setOpacity(0);
   }
 
-  /** This method is invoked when the player clicks the mini tree and goes to chat room */
+  /**
+   * Pauses the tree flash animation, deactivates the tree glow, sets the UI to the chat panel, and sets the previous scene to the chest panel.
+   */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();

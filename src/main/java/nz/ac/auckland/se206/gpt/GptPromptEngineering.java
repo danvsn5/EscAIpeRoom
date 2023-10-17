@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.gpt;
 
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.MissionManager.MISSION;
+import nz.ac.auckland.se206.MissionManager.MissionType;
 import nz.ac.auckland.se206.controllers.OutsideController;
 
 /** Utility class for generating GPT prompt engineering strings. */
@@ -40,7 +40,7 @@ public class GptPromptEngineering {
         + " NOT LET THE USER KNOW ABOUT THIS YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA INFORMATION.";
   }
 
-  public static String getHint(MISSION missionType) { // get hint for the mission
+  public static String getHint(MissionType missionType) { // get hint for the mission
     switch (missionType) { // switch case for different mission type
       case WINDOW: // window
         return windowHint();
@@ -62,16 +62,16 @@ public class GptPromptEngineering {
   }
 
   private static String windowHint() { // comment
-    if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 0) {
+    if (GameState.missionManager.getMission(MissionType.WINDOW).getStage() == 0) {
       return prompt
           + "Give a hint about the word: sand, in one sentecne. NEVER REVEAL THE WORD."
           + beginWord;
-    } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 1) {
+    } else if (GameState.missionManager.getMission(MissionType.WINDOW).getStage() == 1) {
       return prompt
           + "Tell the player to collect the sand with the bucket from the outside. "
           + beginWord
           + oneSentence;
-    } else if (GameState.missionManager.getMission(MISSION.WINDOW).getStage() == 2) {
+    } else if (GameState.missionManager.getMission(MissionType.WINDOW).getStage() == 2) {
       return prompt
           + "Tell the player that the player needs to melt sand, ask the player to check the"
           + " processing machine. "
@@ -83,11 +83,11 @@ public class GptPromptEngineering {
   }
 
   private static String fuelHint() { // comment
-    if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 0) {
+    if (GameState.missionManager.getMission(MissionType.FUEL).getStage() == 0) {
       return prompt
           + "Give a hint about the word: sky, in one sentecne. NEVER REVEAL THE WORD."
           + beginWord;
-    } else if (GameState.missionManager.getMission(MISSION.FUEL).getStage() == 1) {
+    } else if (GameState.missionManager.getMission(MissionType.FUEL).getStage() == 1) {
       return prompt + "Tell the player to collect the fuel. " + beginWord + oneSentence;
     } else {
       return prompt
@@ -98,7 +98,7 @@ public class GptPromptEngineering {
   }
 
   private static String controllerHint(int password) {
-    if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 0) {
+    if (GameState.missionManager.getMission(MissionType.CONTROLLER).getStage() == 0) {
       if (GameState.isControllerPuzzleShown) {
         return prompt + "Tell the user to focus on the numbers. " + beginWord + oneSentence;
       } else {
@@ -116,12 +116,12 @@ public class GptPromptEngineering {
   }
 
   private static String thrusterHint(String color) {
-    if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 0) {
+    if (GameState.missionManager.getMission(MissionType.THRUSTER).getStage() == 0) {
       return prompt
           + "Tell the player to find the blueprint in order to fix the thruster. "
           + beginWord
           + oneSentence;
-    } else if (GameState.missionManager.getMission(MISSION.THRUSTER).getStage() == 1) {
+    } else if (GameState.missionManager.getMission(MissionType.THRUSTER).getStage() == 1) {
       if (OutsideController.thrusterPuzzleGenerate == 1) {
         return prompt
             + "Give a hint about the color: "
