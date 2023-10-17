@@ -48,7 +48,9 @@ public class ChestController {
   private int secondDigitNum = 0;
   private int thirdDigitNum = 0;
 
-  public void onGoBack() {
+  /** This method is involked when backButton is clicked, set the panel to storage room. */
+  @FXML
+  private void onGoBack() {
     App.setUi(AppPanel.STORAGE);
   }
 
@@ -88,10 +90,11 @@ public class ChestController {
   }
 
   /**
-   * This method checks if the player's input number is correct or not, it is invoked when confirm
-   * button is clicked.
+   * This method is invoked when confirm button is clicked, checks if the player's input number is
+   * correct or not.
    */
-  public void onCheck() {
+  @FXML
+  private void onCheck() {
     // Get the user's input password
     int password = firstDigitNum * 100 + secondDigitNum * 10 + thirdDigitNum;
     if (password == GameState.passWord) {
