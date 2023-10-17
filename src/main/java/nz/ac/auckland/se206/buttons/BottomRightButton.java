@@ -8,6 +8,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
+/** This class manages the bottom right buttons, change its color through out the time. */
 public class BottomRightButton {
 
   public static Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> cycle()));
