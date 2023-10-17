@@ -55,23 +55,23 @@ public class LaunchController {
 
           @Override
           protected Void call() throws Exception {
-            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200)));
-            videoBuffer.setCycleCount(1);
-            videoBuffer.setOnFinished(
+            Timeline videoBuffer = new Timeline(new KeyFrame(Duration.millis(200))); 
+            videoBuffer.setCycleCount(1); // sets the Timeline to run once
+            videoBuffer.setOnFinished( // once the Timeline is finished, it will run the following code
                 event -> {
                   initialiseVideo();
                 });
-            videoBuffer.play();
+            videoBuffer.play(); // plays the Timeline
             return null;
           }
         };
 
     Thread timelineThread = new Thread(timelineTask);
-    timelineThread.start();
+    timelineThread.start(); // starts the thread
   }
 
   // clears all instances of existing rooms, wipes out the inventory and resets the timeline
-  public void launchGame(MouseEvent ev) throws IOException {
+  public void launchGame(MouseEvent ev) throws IOException { // javadoc
     launchButton.setDisable(true);
     diffButton.setDisable(true);
     timerButton.setDisable(true);
@@ -186,7 +186,7 @@ public class LaunchController {
     // App.setUi(AppPanel.MAIN_ROOM);
   }
 
-  public void changeDiff() {
+  public void changeDiff() { // javadoc
     // switch case for difficulty in Gamestate class for numbers between 0-2
     int difficulty = GameState.getDifficulty();
 
@@ -209,20 +209,20 @@ public class LaunchController {
     }
   }
 
-  public void changeTimer() {
+  public void changeTimer() { // javadoc
 
-    int timer = GameState.getTimer();
+    int timer = GameState.getTimer(); // gets the current timer
 
     switch (timer) {
-      case 0:
+      case 0: // if it is 0, set the timer to 1 and change the text of the button
         GameState.setTimer(1);
         timerButton.setText("Timer: Four Minutes");
         break;
-      case 1:
+      case 1: // if it is 1, set the timer to 2 and change the text of the button
         GameState.setTimer(2);
         timerButton.setText("Timer: Six Minutes");
         break;
-      case 2:
+      case 2: // if it is 2, set the timer to 0 and change the text of the button
         GameState.setTimer(0);
         timerButton.setText("Timer: Two Minutes");
         break;
@@ -308,38 +308,44 @@ public class LaunchController {
   }
 
   public void updateClock(String time) {
+    // update the clock in every room.
+    // main room, outside room, and chat room.
     ((Label) SceneManager.getPanel(AppPanel.MAIN_ROOM).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.OUTSIDE).lookup("#counter")).setText(time);
+    // chest room, storage room, progress room, and thruster room.
     ((Label) SceneManager.getPanel(AppPanel.CHEST).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.STORAGE).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup("#counter")).setText(time);
     ((Label) SceneManager.getPanel(AppPanel.THRUSTER).lookup("#counter")).setText(time);
   }
 
-  public void initialiseVideo() {
+  public void initialiseVideo() { // javadoc
+    // initialise the video
     Task<Void> videoTask =
         new Task<Void>() {
 
           @Override
           protected Void call() throws Exception {
+            // create media one
             mediaOne =
                 new Media(App.class.getResource("/videos/launch/0001-0180.mp4").toURI().toString());
             mediaPlayerOne = new MediaPlayer(mediaOne);
-            loopingVideo.setMediaPlayer(mediaPlayerOne);
-            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE);
+            loopingVideo.setMediaPlayer(mediaPlayerOne); // sets the video to the media player one
+            mediaPlayerOne.setCycleCount(MediaPlayer.INDEFINITE); // sets the video to loop
             mediaPlayerOne.play();
 
+            // create media two
             mediaTwo =
                 new Media(App.class.getResource("/videos/launch/0180-0330.mp4").toURI().toString());
             mediaPlayerTwo = new MediaPlayer(mediaTwo);
-            launchVideo.setMediaPlayer(mediaPlayerTwo);
+            launchVideo.setMediaPlayer(mediaPlayerTwo); // sets the video to the media player two
 
             return null;
           }
         };
 
     Thread videoInitialisationThread = new Thread(videoTask);
-    videoInitialisationThread.start();
+    videoInitialisationThread.start(); // starts the thread
   }
 }
