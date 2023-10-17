@@ -25,11 +25,11 @@ public class LoseController {
     mediaPlayerOne.play();
   }
 
-  private Media mediaOne;
-
   @FXML private Button returnMenuButton;
   @FXML private Button quitButton;
   @FXML private MediaView loopingEnd;
+
+  private Media mediaOne;
 
   public void initialize() throws Exception {
     iniVideo();
