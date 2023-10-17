@@ -16,44 +16,40 @@ import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class StorageController {
 
   @FXML private ImageView progressButton;
   @FXML private ImageView storageDoor;
   @FXML private ImageView hiddenChestImage;
-  // @FXML private ImageView chest;
   @FXML private ImageView blueprint;
   @FXML private ImageView miniTree;
   @FXML private ImageView root1;
   @FXML private ImageView root2;
   @FXML private ImageView root3;
   @FXML private ImageView root4;
-  @FXML private Polygon rootOneCollisionBox1;
-  @FXML private Polygon rootOneCollisionBox2;
-  @FXML private Polygon rootOneCollisionBox3;
-  @FXML private Polygon rootOneCollisionBox4;
-  @FXML private Polygon rootTwoCollisionBox1;
-  @FXML private Polygon rootTwoCollisionBox2;
-  @FXML private Polygon rootTwoCollisionBox3;
-  @FXML private Polygon rootTwoCollisionBox4;
-  @FXML private Polygon rootThreeCollisionBox1;
-  @FXML private Polygon rootThreeCollisionBox2;
-  @FXML private Polygon rootThreeCollisionBox3;
-  @FXML private Polygon rootThreeCollisionBox4;
-  @FXML private Polygon rootThreeCollisionBox5;
-  @FXML private Polygon rootFourCollisionBox1;
-  @FXML private Polygon rootFourCollisionBox2;
-  @FXML private Polygon rootFourCollisionBox3;
-  @FXML private Polygon rootFourCollisionBox4;
-  @FXML private Polygon rootFourCollisionBox5;
-  @FXML private Polygon rootFourCollisionBox6;
-  @FXML private Polygon rootFourCollisionBox7;
-  @FXML private Polygon rootFourCollisionBox8;
-  @FXML private Polygon rootFourCollisionBox9;
+  @FXML private Polygon storageRootOneCollisionBox1;
+  @FXML private Polygon storageRootOneCollisionBox2;
+  @FXML private Polygon storageRootOneCollisionBox3;
+  @FXML private Polygon storageRootOneCollisionBox4;
+  @FXML private Polygon storageRootTwoCollisionBox1;
+  @FXML private Polygon storageRootTwoCollisionBox2;
+  @FXML private Polygon storageRootTwoCollisionBox3;
+  @FXML private Polygon storageRootTwoCollisionBox4;
+  @FXML private Polygon storageRootThreeCollisionBox1;
+  @FXML private Polygon storageRootThreeCollisionBox2;
+  @FXML private Polygon storageRootThreeCollisionBox3;
+  @FXML private Polygon storageRootThreeCollisionBox4;
+  @FXML private Polygon storageRootThreeCollisionBox5;
+  @FXML private Polygon storageRootFourCollisionBox1;
+  @FXML private Polygon storageRootFourCollisionBox2;
+  @FXML private Polygon storageRootFourCollisionBox3;
+  @FXML private Polygon storageRootFourCollisionBox4;
+  @FXML private Polygon storageRootFourCollisionBox5;
+  @FXML private Polygon storageRootFourCollisionBox6;
+  @FXML private Polygon storageRootFourCollisionBox7;
+  @FXML private Polygon storageRootFourCollisionBox8;
+  @FXML private Polygon storageRootFourCollisionBox9;
   @FXML private Label counter;
 
   @FXML private ImageView controller;
@@ -86,6 +82,7 @@ public class StorageController {
     App.setUi(AppPanel.PROGRESS);
   }
 
+  /** Go to the chest if the password is generated or the first mission is completed. */
   public void goToChest() {
     if (passwordGenerate || !GameState.isFirstMissionCompleted) {
       App.setUi(AppPanel.CHEST);
@@ -107,19 +104,28 @@ public class StorageController {
             @Override
             protected Void call() throws Exception {
 
-              System.out.println("this code is working");
+              System.out.println(
+                  "this code is working"); // print statement to check if the code is working
               gptMessage =
-                  runGpt(
-                      new ChatMessage(
-                          "user", GptPromptEngineering.getControllerPuzzle(GameState.passWord)));
-              Platform.runLater(() -> appendChatMessage(gptMessage));
-
-              System.out.println(gptMessage.getContent());
+                  ChatController.getResponse(
+                      GptPromptEngineering.getControllerPuzzle(GameState.passWord),
+                      ChatController.chatCompletionRequest);
+              // Append the message to the chat text area and notebook
+              Platform.runLater(
+                  () ->
+                      ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel"))
+                          .setText(gptMessage.getContent()));
+              Platform.runLater(
+                  () ->
+                      ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
+                          .appendText(
+                              "\n\n" + "Wise Ancient Tree: " + gptMessage.getContent() + "\n\n"));
 
               return null;
             }
           };
 
+      // Start the thread
       Thread secondRiddleThread = new Thread(riddleSecondCall);
       secondRiddleThread.start();
       passwordGenerate = true;
@@ -131,6 +137,7 @@ public class StorageController {
     }
   }
 
+  /** This method execute features about collecting blueprint. */
   public void collectBlueprint() {
     activateCollectedInfoBluePrint();
     // Hide the blueprint image and collision box
@@ -144,14 +151,24 @@ public class StorageController {
     GameState.progressBarGroup.updateProgressTwo(MISSION.THRUSTER);
   }
 
-  public void meltSand() { // furnace button when the mission is the window.
-    if (GameState.inventory.contains(2)) { // checks if the inventory contains sand
+  /**
+   * Melts sand in the furnace when the mission is the window. If the inventory contains sand, the
+   * mission stage is increased, progress bar is updated, process machine is hidden, and glass is
+   * shown. If the inventory does not contain sand, information about the process machine is
+   * displayed.
+   */
+  public void meltSand() {
+    // If the sand bucket is in the inventory
+    if (GameState.inventory.contains(2)) {
+      // Increase the stage of window mission
       GameState.missionManager.getMission(MISSION.WINDOW).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.WINDOW);
+      // Deactivate the collision box for process machine
       processMachine.setVisible(false);
       processMachine.setDisable(true);
       showGlass();
     } else {
+      // If the sand bucket is not in the inventory, show the information about process machine
       collectedTitle.setText("Process Machine");
       collectedLabel.setText("High temperature processing machine");
       collectedTitle.setVisible(true);
@@ -160,7 +177,7 @@ public class StorageController {
     }
   }
 
-  /** Show the glass image according to the mission selected */
+  /** Show the glass image according to the mission selected. */
   private void showGlass() {
     if (GameState.missionList.contains(3)) {
       // If the second mission is controller mission
@@ -174,6 +191,7 @@ public class StorageController {
     glass.setDisable(false);
   }
 
+  /** This method execute features about collecting glass. */
   public void collectGlass() {
     activateCollectedInfoWindow();
     GameState.inventory.add(3);
@@ -197,6 +215,7 @@ public class StorageController {
     progressButton.setEffect(GameState.glowDim);
   }
 
+  /** This method Activate the glow effect of the door. */
   public void activateDoorGlow() {
     storageDoor.setEffect(GameState.glowBright);
     storageDoor.setCursor(Cursor.HAND);
@@ -254,6 +273,7 @@ public class StorageController {
     blueprintCollisionBox.setOpacity(0);
   }
 
+  /** This method set the panel to Chatroom. */
   public void goChat() {
     TreeAvatar.treeFlash.pause();
     TreeAvatar.deactivateTreeGlow();
@@ -270,18 +290,21 @@ public class StorageController {
     miniTree.setEffect(GameState.glowDim);
   }
 
+  /** This method opens the info panel for blurprint. */
   private void activateCollectedInfoBluePrint() {
     collectedTitle.setText("Blueprint Collected");
     collectedTitle.setVisible(true);
     blueprintInfo.setVisible(true);
   }
 
+  /** This method opens the info panel for window. */
   private void activateCollectedInfoWindow() {
     collectedTitle.setText("Window Collected");
     collectedTitle.setVisible(true);
     windowInfo.setVisible(true);
   }
 
+  /** This method closes all info panel. */
   public void exitInfo() {
     collectedTitle.setVisible(false);
     collectedLabel.setVisible(false);
@@ -290,125 +313,134 @@ public class StorageController {
     processMachineInfo.setVisible(false);
   }
 
-  public void activateRootOneGlow() {
-
-    rootOneCollisionBox1.setOpacity(1);
-    rootOneCollisionBox1.setCursor(Cursor.HAND);
-    rootOneCollisionBox2.setOpacity(1);
-    rootOneCollisionBox2.setCursor(Cursor.HAND);
-    rootOneCollisionBox3.setOpacity(1);
-    rootOneCollisionBox3.setCursor(Cursor.HAND);
-    rootOneCollisionBox4.setOpacity(1);
-    rootOneCollisionBox4.setCursor(Cursor.HAND);
+  public void activateRootOneGlow() { // activate root one glow
+    // box 1
+    storageRootOneCollisionBox1.setOpacity(
+        1); // sets the opacity of the root one collision box to 1
+    storageRootOneCollisionBox1.setCursor(
+        Cursor.HAND); // sets the cursor of the root one collision box to hand
+    // box 2
+    storageRootOneCollisionBox2.setOpacity(1);
+    storageRootOneCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    storageRootOneCollisionBox3.setOpacity(1);
+    storageRootOneCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    storageRootOneCollisionBox4.setOpacity(1);
+    storageRootOneCollisionBox4.setCursor(Cursor.HAND);
   }
 
+  /** Deactivate glow effect of root one's collision box. */
   public void deactivateRootOneGlow() {
-    rootOneCollisionBox1.setOpacity(0);
-    rootOneCollisionBox2.setOpacity(0);
-    rootOneCollisionBox3.setOpacity(0);
-    rootOneCollisionBox4.setOpacity(0);
+    storageRootOneCollisionBox1.setOpacity(0);
+    storageRootOneCollisionBox2.setOpacity(0);
+    storageRootOneCollisionBox3.setOpacity(0);
+    storageRootOneCollisionBox4.setOpacity(0);
   }
 
-  public void activateRootTwoGlow() {
-    rootTwoCollisionBox1.setOpacity(1);
-    rootTwoCollisionBox1.setCursor(Cursor.HAND);
-    rootTwoCollisionBox2.setOpacity(1);
-    rootTwoCollisionBox2.setCursor(Cursor.HAND);
-    rootTwoCollisionBox3.setOpacity(1);
-    rootTwoCollisionBox3.setCursor(Cursor.HAND);
-    rootTwoCollisionBox4.setOpacity(1);
-    rootTwoCollisionBox4.setCursor(Cursor.HAND);
+  /** Activates the glow effect for the root two collision boxes and sets their cursor to hand. */
+  public void activateRootTwoGlow() { // activate root two glow
+    // box 1
+    storageRootTwoCollisionBox1.setOpacity(
+        1); // sets the opacity of the root two collision box to 1
+    storageRootTwoCollisionBox1.setCursor(
+        Cursor.HAND); // sets the cursor of the root two collision box to hand
+    // box 2
+    storageRootTwoCollisionBox2.setOpacity(1);
+    storageRootTwoCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    storageRootTwoCollisionBox3.setOpacity(1);
+    storageRootTwoCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    storageRootTwoCollisionBox4.setOpacity(1);
+    storageRootTwoCollisionBox4.setCursor(Cursor.HAND);
   }
 
+  /** Deactivate glow effect of root two's collision box. */
   public void deactivateRootTwoGlow() {
-    rootTwoCollisionBox1.setOpacity(0);
-    rootTwoCollisionBox2.setOpacity(0);
-    rootTwoCollisionBox3.setOpacity(0);
-    rootTwoCollisionBox4.setOpacity(0);
+    storageRootTwoCollisionBox1.setOpacity(0);
+    storageRootTwoCollisionBox2.setOpacity(0);
+    storageRootTwoCollisionBox3.setOpacity(0);
+    storageRootTwoCollisionBox4.setOpacity(0);
   }
 
-  public void activateRootThreeGlow() {
-    rootThreeCollisionBox1.setOpacity(1);
-    rootThreeCollisionBox1.setCursor(Cursor.HAND);
-    rootThreeCollisionBox2.setOpacity(1);
-    rootThreeCollisionBox2.setCursor(Cursor.HAND);
-    rootThreeCollisionBox3.setOpacity(1);
-    rootThreeCollisionBox3.setCursor(Cursor.HAND);
-    rootThreeCollisionBox4.setOpacity(1);
-    rootThreeCollisionBox4.setCursor(Cursor.HAND);
-    rootThreeCollisionBox5.setOpacity(1);
-    rootThreeCollisionBox5.setCursor(Cursor.HAND);
+  /** Activates the glow effect for the root three collision boxes and sets their cursor to hand. */
+  public void activateRootThreeGlow() { // activate root three glow
+    // box 1
+    storageRootThreeCollisionBox1.setOpacity(1);
+    storageRootThreeCollisionBox1.setCursor(Cursor.HAND);
+    // box 2
+    storageRootThreeCollisionBox2.setOpacity(1);
+    storageRootThreeCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    storageRootThreeCollisionBox3.setOpacity(1);
+    storageRootThreeCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    storageRootThreeCollisionBox4.setOpacity(1);
+    storageRootThreeCollisionBox4.setCursor(Cursor.HAND);
+    // box 5
+    storageRootThreeCollisionBox5.setOpacity(1);
+    storageRootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
+  /** Deactivate glow effect of root three's collision box. */
   public void deactivateRootThreeGlow() {
-    rootThreeCollisionBox1.setOpacity(0);
-    rootThreeCollisionBox2.setOpacity(0);
-    rootThreeCollisionBox3.setOpacity(0);
-    rootThreeCollisionBox4.setOpacity(0);
-    rootThreeCollisionBox5.setOpacity(0);
+    storageRootThreeCollisionBox1.setOpacity(0);
+    storageRootThreeCollisionBox2.setOpacity(0);
+    storageRootThreeCollisionBox3.setOpacity(0);
+    storageRootThreeCollisionBox4.setOpacity(0);
+    storageRootThreeCollisionBox5.setOpacity(0);
   }
 
+  /** Activate the glow effect on the collision box of root four. */
   public void activateRootFourGlow() {
-    rootFourCollisionBox1.setOpacity(1);
-    rootFourCollisionBox1.setCursor(Cursor.HAND);
-    rootFourCollisionBox2.setOpacity(1);
-    rootFourCollisionBox2.setCursor(Cursor.HAND);
-    rootFourCollisionBox3.setOpacity(1);
-    rootFourCollisionBox3.setCursor(Cursor.HAND);
-    rootFourCollisionBox4.setOpacity(1);
-    rootFourCollisionBox4.setCursor(Cursor.HAND);
-    rootFourCollisionBox5.setOpacity(1);
-    rootFourCollisionBox5.setCursor(Cursor.HAND);
-    rootFourCollisionBox6.setOpacity(1);
-    rootFourCollisionBox6.setCursor(Cursor.HAND);
-    rootFourCollisionBox7.setOpacity(1);
-    rootFourCollisionBox7.setCursor(Cursor.HAND);
-    rootFourCollisionBox8.setOpacity(1);
-    rootFourCollisionBox8.setCursor(Cursor.HAND);
-    rootFourCollisionBox9.setOpacity(1);
-    rootFourCollisionBox9.setCursor(Cursor.HAND);
+    // activate root four glow
+    // box 1
+    storageRootFourCollisionBox1.setOpacity(1);
+    storageRootFourCollisionBox1.setCursor(Cursor.HAND);
+    // box 2
+    storageRootFourCollisionBox2.setOpacity(1);
+    storageRootFourCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    storageRootFourCollisionBox3.setOpacity(1);
+    storageRootFourCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    storageRootFourCollisionBox4.setOpacity(1);
+    storageRootFourCollisionBox4.setCursor(Cursor.HAND);
+    // box 5
+    storageRootFourCollisionBox5.setOpacity(1);
+    storageRootFourCollisionBox5.setCursor(Cursor.HAND);
+    // box 6
+    storageRootFourCollisionBox6.setOpacity(1);
+    storageRootFourCollisionBox6.setCursor(Cursor.HAND);
+    // box 7
+    storageRootFourCollisionBox7.setOpacity(1);
+    storageRootFourCollisionBox7.setCursor(Cursor.HAND);
+    // box 8
+    storageRootFourCollisionBox8.setOpacity(1);
+    storageRootFourCollisionBox8.setCursor(Cursor.HAND);
+    // box 9
+    storageRootFourCollisionBox9.setOpacity(1);
+    storageRootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
+  /**
+   * Deactivates the glow effect on the root four collision boxes. This method sets the opacity of
+   * all nine collision boxes to 0, effectively removing the glow effect.
+   */
   public void deactivateRootFourGlow() {
-    rootFourCollisionBox1.setOpacity(0);
-    rootFourCollisionBox2.setOpacity(0);
-    rootFourCollisionBox3.setOpacity(0);
-    rootFourCollisionBox4.setOpacity(0);
-    rootFourCollisionBox5.setOpacity(0);
-    rootFourCollisionBox6.setOpacity(0);
-    rootFourCollisionBox7.setOpacity(0);
-    rootFourCollisionBox8.setOpacity(0);
-    rootFourCollisionBox9.setOpacity(0);
-  }
-
-  /* ======================================= GPT Helper Methods ======================================= */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    ChatController.chatCompletionRequest.addMessage(msg);
-    try {
-      ChatCompletionResult chatCompletionResult = ChatController.chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      ChatController.chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Mystical Tree");
-      result.getChatMessage().setRole("assistant");
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      ChatMessage error = new ChatMessage(null, null);
-
-      error.setRole("Wise Mystical Tree");
-
-      error.setContent(
-          "Sorry, there was a problem generating a response. Please try restarting the"
-              + " application.");
-      appendChatMessage(error);
-      e.printStackTrace();
-      return null;
-    }
-  }
-
-  private void appendChatMessage(ChatMessage msg) {
-    // chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
-    ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
-        .appendText("\n\n" + "Wise Ancient Tree: " + msg.getContent() + "\n\n");
-    ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(msg.getContent());
+    // deactivate root four glow
+    // box 1, 2, and 3
+    storageRootFourCollisionBox1.setOpacity(0);
+    storageRootFourCollisionBox2.setOpacity(0);
+    storageRootFourCollisionBox3.setOpacity(0);
+    // box 4, 5, and 6
+    storageRootFourCollisionBox4.setOpacity(0);
+    storageRootFourCollisionBox5.setOpacity(0);
+    storageRootFourCollisionBox6.setOpacity(0);
+    // box 7, 8, and 9
+    storageRootFourCollisionBox7.setOpacity(0);
+    storageRootFourCollisionBox8.setOpacity(0);
+    storageRootFourCollisionBox9.setOpacity(0);
   }
 }

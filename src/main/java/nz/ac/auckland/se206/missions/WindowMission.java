@@ -1,6 +1,6 @@
 package nz.ac.auckland.se206.missions;
 
-/** This is a mission class, contains of 5 total steps */
+/** This is a mission class, contains of 5 total steps. */
 public class WindowMission extends Mission {
 
   public WindowMission() {
@@ -9,7 +9,7 @@ public class WindowMission extends Mission {
   }
 
   /**
-   * Get the name of this mission
+   * Get the name of this mission.
    *
    * @return the name of this mission.
    */

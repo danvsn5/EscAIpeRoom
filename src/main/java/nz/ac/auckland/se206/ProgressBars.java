@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 
-/** This class controls all progress bars */
+/** This class controls all progress bars. */
 public class ProgressBars {
 
   private MISSION taskOne;
@@ -29,9 +29,9 @@ public class ProgressBars {
   }
 
   /**
-   * Set up the second mission in the progress bar
+   * Set up the second mission in the progress bar.
    *
-   * @param taskOne The id of the first task
+   * @param taskTwo The id of the first task.
    */
   public void setMissionTwo(int taskTwo) {
     // If the second mission is controller mission, set up the window mission progress bar
@@ -46,27 +46,27 @@ public class ProgressBars {
   }
 
   /**
-   * Gets the MISSION enum of the first mission
+   * Gets the MISSION enum of the first mission.
    *
-   * @return The MISSION enum of the first mission
+   * @return The MISSION enum of the first mission.
    */
   public MISSION getMissionOne() {
     return taskOne;
   }
 
   /**
-   * Gets the MISSION enum of the second mission
+   * Gets the MISSION enum of the second mission.
    *
-   * @return The MISSION enum of the second mission
+   * @return The MISSION enum of the second mission.
    */
   public MISSION getMissionTwo() {
     return taskTwo;
   }
 
   /**
-   * Update the first ProgressBar
+   * Update the progress bar for the first mission in PROGRESS panel.
    *
-   * @param mission a MISSION enum
+   * @param mission a MISSION enum.
    */
   public void updateProgressOne(MISSION mission) {
     // get the percentage of first mission
@@ -84,9 +84,9 @@ public class ProgressBars {
   }
 
   /**
-   * Update the second ProgressBar
+   * Update the progress bar for the second mission in PROGRESS panel.
    *
-   * @param mission a MISSION enum
+   * @param mission a MISSION enum.
    */
   public void updateProgressTwo(MISSION mission) {
     // get the percentage of second mission
@@ -104,12 +104,12 @@ public class ProgressBars {
   }
 
   /**
-   * Update the task label of progress bar in progress bar panel
+   * Update the task label of progress bar in progress bar panel.
    *
-   * @param Label a MISSION enum
-   * @param text a MISSION enum
+   * @param label a MISSION enum.
+   * @param text a MISSION enum.
    */
-  public void labelHelper(String Label, String text) {
-    ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup(Label)).setText(text);
+  public void labelHelper(String label, String text) {
+    ((Label) SceneManager.getPanel(AppPanel.PROGRESS).lookup(label)).setText(text);
   }
 }

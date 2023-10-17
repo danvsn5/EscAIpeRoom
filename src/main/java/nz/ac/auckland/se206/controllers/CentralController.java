@@ -14,8 +14,14 @@ import nz.ac.auckland.se206.MissionManager.MISSION;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppPanel;
 import nz.ac.auckland.se206.TreeAvatar;
+import nz.ac.auckland.se206.WinGame;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * The CentralController class is responsible for controlling the main room of the game, including
+ * the progress button, inventory, and various assets such as the window, fuel tank, and control
+ * panel. It also handles the repair of the window and the addition of fuel to the ship.
+ */
 public class CentralController {
 
   @FXML private Label counter;
@@ -38,28 +44,28 @@ public class CentralController {
   @FXML private Polygon fuelTank;
   @FXML private Polygon controllerBroken1;
   @FXML private Polygon controllerBroken2;
-  @FXML private Polygon rootOneCollisionBox1;
-  @FXML private Polygon rootOneCollisionBox2;
-  @FXML private Polygon rootOneCollisionBox3;
-  @FXML private Polygon rootOneCollisionBox4;
-  @FXML private Polygon rootTwoCollisionBox1;
-  @FXML private Polygon rootTwoCollisionBox2;
-  @FXML private Polygon rootTwoCollisionBox3;
-  @FXML private Polygon rootTwoCollisionBox4;
-  @FXML private Polygon rootThreeCollisionBox1;
-  @FXML private Polygon rootThreeCollisionBox2;
-  @FXML private Polygon rootThreeCollisionBox3;
-  @FXML private Polygon rootThreeCollisionBox4;
-  @FXML private Polygon rootThreeCollisionBox5;
-  @FXML private Polygon rootFourCollisionBox1;
-  @FXML private Polygon rootFourCollisionBox2;
-  @FXML private Polygon rootFourCollisionBox3;
-  @FXML private Polygon rootFourCollisionBox4;
-  @FXML private Polygon rootFourCollisionBox5;
-  @FXML private Polygon rootFourCollisionBox6;
-  @FXML private Polygon rootFourCollisionBox7;
-  @FXML private Polygon rootFourCollisionBox8;
-  @FXML private Polygon rootFourCollisionBox9;
+  @FXML private Polygon mainRootOneCollisionBox1;
+  @FXML private Polygon mainRootOneCollisionBox2;
+  @FXML private Polygon mainRootOneCollisionBox3;
+  @FXML private Polygon mainRootOneCollisionBox4;
+  @FXML private Polygon mainRootTwoCollisionBox1;
+  @FXML private Polygon mainRootTwoCollisionBox2;
+  @FXML private Polygon mainRootTwoCollisionBox3;
+  @FXML private Polygon mainRootTwoCollisionBox4;
+  @FXML private Polygon mainRootThreeCollisionBox1;
+  @FXML private Polygon mainRootThreeCollisionBox2;
+  @FXML private Polygon mainRootThreeCollisionBox3;
+  @FXML private Polygon mainRootThreeCollisionBox4;
+  @FXML private Polygon mainRootThreeCollisionBox5;
+  @FXML private Polygon mainRootFourCollisionBox1;
+  @FXML private Polygon mainRootFourCollisionBox2;
+  @FXML private Polygon mainRootFourCollisionBox3;
+  @FXML private Polygon mainRootFourCollisionBox4;
+  @FXML private Polygon mainRootFourCollisionBox5;
+  @FXML private Polygon mainRootFourCollisionBox6;
+  @FXML private Polygon mainRootFourCollisionBox7;
+  @FXML private Polygon mainRootFourCollisionBox8;
+  @FXML private Polygon mainRootFourCollisionBox9;
 
   @FXML private ImageView windowController1;
   @FXML private ImageView windowController2;
@@ -77,6 +83,8 @@ public class CentralController {
   @FXML private Label infoLabel;
   @FXML private Label infoTitle;
 
+  @FXML private Polygon winGameCollisionBox;
+
   public void goOutside() {
     SceneManager.setPrevious(AppPanel.MAIN_ROOM);
     App.setUi(AppPanel.OUTSIDE);
@@ -91,6 +99,10 @@ public class CentralController {
     App.setUi(AppPanel.STORAGE);
   }
 
+  /**
+   * This method is called when the player wins the game. It sets the timer to finish, plays the win
+   * sound effect, and sets the UI to the win panel.
+   */
   public void goWin() {
     LaunchController.timer.setFinish();
     WinController.playMedia();
@@ -98,9 +110,16 @@ public class CentralController {
     App.setUi(AppPanel.WIN);
   }
 
-  // if inventory contains the necessary items, fixes the window and control panel and changes
-  // visibility of assets
+  /**
+   * Repairs the window if it is in the inventory. Increases the stage of the window mission and
+   * updates the progress bar. Records that the first mission is completed. Starts flashing the
+   * tree. Removes the window collision box. Initializes the second mission. Disables the outside
+   * and storage doors. If the inventory does not contain a window, shows a broken message.
+   */
   public void repairWindow() {
+    // if inventory contains the necessary items, fixes the window and control panel
+    // and changes
+    // visibility of assets
     // If the inventory contains window
     if (GameState.inventory.contains(3)) {
       // Increase the stage of the window mission and update progress bar
@@ -118,12 +137,10 @@ public class CentralController {
       // activateChest();
       activateSecondMissionImage();
       // Show the fix window message
-      // SceneManager.showDialog("Info", "Window fixed", "Mission accomplished");
       outsideDoor.setDisable(true);
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain a window, show broken message
-      // SceneManager.showDialog("Info", "Broken Window", "A large crack is inside the window!");
       infoTitle.setText("Broken Window");
       infoLabel.setText("The window of your ship is cracked!");
       infoTitle.setVisible(true);
@@ -132,6 +149,12 @@ public class CentralController {
     }
   }
 
+  /**
+   * Adds fuel to the ship. If the inventory contains fuel, increase missing stage and fill up the
+   * ship. Record that the first mission is completed. Remove fuel from inventory. Tree start
+   * flashing. Hide the fuel warning. Initialise the second mission. Show success message. If the
+   * inventory does not contain fuel, show error message.
+   */
   public void addFuel() {
     // This method adds fuel to the ship
     if (GameState.inventory.contains(8)) {
@@ -157,7 +180,6 @@ public class CentralController {
       storageDoor.setDisable(true);
     } else {
       // If the inventory does not contain fuel, show error message
-      // SceneManager.showDialog("Info", "No Fuel", "Internal fuel tank is empty!");
       infoTitle.setText("No Fuel");
       infoLabel.setText("Internal fuel tank is empty");
       infoTitle.setVisible(true);
@@ -166,27 +188,35 @@ public class CentralController {
     }
   }
 
+  /**
+   * This method attempts to fix the controller. If the controller mission is less than stage 1 (not
+   * having spare part on hand), it shows a broken controller message. If the controller mission is
+   * at stage 1, indicating the panel can be fixed, it shows a message indicating the controller is
+   * fixed, increases the stage, updates the progress bar, sets the end game button visible, starts
+   * flashing the win game message, sets the second mission as completed, shows the complete image,
+   * and hides the controller.
+   */
   public void fixController() {
     // This method trys to fix the controller
-    // If the controller mission less than stage 0 (not having spare part on hand), show broken
+    // If the controller mission less than stage 0 (not having spare part on hand),
+    // show broken
     // controller message
     if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() != 1) {
-      // SceneManager.showDialog(
-      //     "Info", "Broken Control Panel", "The control panel for the ship is broken!");
       infoTitle.setText("Broken Control Panel");
       infoLabel.setText("The control panel for the ship is broken");
       infoTitle.setVisible(true);
       infoLabel.setVisible(true);
       controllerInfo.setVisible(true);
     } else if (GameState.missionManager.getMission(MISSION.CONTROLLER).getStage() == 1) {
-      // If the controller mission is at stage 2, indicating panel can be fixed, show message
-      // SceneManager.showDialog("Info", "Controller fixed", "Mission accomplished");
+      // If the controller mission is at stage 2, indicating panel can be fixed, show
+      // message
+
       // Increase the stage, update progress bar
       GameState.missionManager.getMission(MISSION.CONTROLLER).increaseStage();
       GameState.progressBarGroup.updateProgressTwo(MISSION.CONTROLLER);
       // Set the end game button visible
-      completeGame.setDisable(false);
-      completeGame.setVisible(true);
+      winGameCollisionBox.setVisible(true);
+      WinGame.startFlashWin();
       GameState.isSecondMissionCompleted = true;
       // Show the complete image
       completeImage.setVisible(true);
@@ -196,8 +226,10 @@ public class CentralController {
     }
   }
 
-  // if window and control panel are fixed, then game can be completed by pressing red button
+  /** Sets the UI to the win panel and plays the win media. */
   public void goHome() {
+    // if window and control panel are fixed, then game can be completed by pressing
+    // red button
     if (GameState.inventory.contains(6) && GameState.inventory.contains(7)) {
       App.setUi(AppPanel.WIN);
 
@@ -213,15 +245,7 @@ public class CentralController {
     SceneManager.getPanel(AppPanel.STORAGE).lookup("#blueprintCollisionBox").setVisible(true);
   }
 
-  // private void activateChest() {
-  //   if (!GameState.firstRiddleSolved || GameState.missionList.contains(4)) {
-  //     return;
-  //   }
-  //   SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-  //   SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
-  // }
-
-  /** Activate the background image for second mission */
+  /** Activate the background image for second mission. */
   private void activateSecondMissionImage() {
     if (GameState.missionList.contains(1) && GameState.missionList.contains(3)) {
       // Activate background image for window & controller mission
@@ -246,6 +270,10 @@ public class CentralController {
     progressButton.setEffect(GameState.glowDim);
   }
 
+  /**
+   * Activates the glowing effect on the outside of the door and sets the cursor to a hand icon.
+   * Also sets the opacity of the outside door to 1 and sets its cursor to a hand icon.
+   */
   public void activateDoorGlow() {
     outside.setEffect(GameState.glowBright);
     outside.setCursor(Cursor.HAND);
@@ -267,6 +295,9 @@ public class CentralController {
     fuelTank.setOpacity(0);
   }
 
+  /**
+   * Activates the storage glow effect and sets the cursor to hand for the storage and storage door.
+   */
   public void activateStorageGlow() {
     storage.setEffect(GameState.glowBright);
     storageDoor.setOpacity(1);
@@ -288,6 +319,7 @@ public class CentralController {
     window.setOpacity(0);
   }
 
+  /** Activates the glow effect for the broken controllers. */
   public void activateControllerGlow() {
     controllerBroken1.setOpacity(1);
     controllerBroken1.setCursor(Cursor.HAND);
@@ -301,6 +333,12 @@ public class CentralController {
     controllerBroken2.setOpacity(0);
   }
 
+  /**
+   * This method sets the panel to chat and displays a message from the Wise Ancient Tree depending
+   * on the player's progress in the game. If the first mission is completed, the second guide
+   * message is shown. The method also stops the tree flashing and deactivates the tree glow.
+   * Finally, it sets the previous panel to Main room then goes to chat room.
+   */
   public void goChat() {
     // This method set the panel to chat
     // Stop the tree flashing
@@ -329,8 +367,6 @@ public class CentralController {
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
             .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
-        // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-        //  SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       } else if (GameState.missionList.contains(2) && GameState.missionList.contains(4)) {
 
         String appendString =
@@ -352,8 +388,6 @@ public class CentralController {
         ((TextArea) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatTextArea"))
             .appendText("Wise Ancient Tree: " + appendString);
         ((Label) SceneManager.getPanel(AppPanel.CHAT).lookup("#chatLabel")).setText(appendString);
-        //  SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setVisible(true);
-        // SceneManager.getPanel(AppPanel.STORAGE).lookup("#chest").setDisable(false);
       }
       outsideDoor.setDisable(false);
       storageDoor.setDisable(false);
@@ -379,11 +413,12 @@ public class CentralController {
   }
 
   /**
-   * Handles the key pressed event.
+   * Handles the key pressed event for the "OK" button. If the ENTER or ESCAPE key is pressed, the
+   * guide is hidden.
    *
-   * @param event the key event
-   * @throws IOException
-   * @throws ApiProxyException
+   * @param event The KeyEvent that triggered the method call.
+   * @throws ApiProxyException If an error occurs while communicating with the API.
+   * @throws IOException If an I/O error occurs.
    */
   @FXML
   public void okKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
@@ -400,7 +435,7 @@ public class CentralController {
     completeGame.setEffect(GameState.glowDim);
   }
 
-  /* This method closes all info panel in this page */
+  /** Hides the information labels and windows when the user exits the information screen. */
   public void exitInfo() {
     infoLabel.setVisible(false);
     infoTitle.setVisible(false);
@@ -409,95 +444,131 @@ public class CentralController {
     controllerInfo.setVisible(false);
   }
 
+  /** Activates the glow effect for the collision boxes in root one. */
   public void activateRootOneGlow() {
-    // uses set effect method to change the cursor visual to an open hand when the mouse is over the
+    // uses set effect method to change the cursor visual to an open hand when the
+    // mouse is over the
 
-    rootOneCollisionBox1.setOpacity(1);
-    rootOneCollisionBox1.setCursor(Cursor.HAND);
-    rootOneCollisionBox2.setOpacity(1);
-    rootOneCollisionBox2.setCursor(Cursor.HAND);
-    rootOneCollisionBox3.setOpacity(1);
-    rootOneCollisionBox3.setCursor(Cursor.HAND);
-    rootOneCollisionBox4.setOpacity(1);
-    rootOneCollisionBox4.setCursor(Cursor.HAND);
+    mainRootOneCollisionBox1.setOpacity(1);
+    mainRootOneCollisionBox1.setCursor(Cursor.HAND);
+    mainRootOneCollisionBox2.setOpacity(1);
+    mainRootOneCollisionBox2.setCursor(Cursor.HAND);
+    mainRootOneCollisionBox3.setOpacity(1);
+    mainRootOneCollisionBox3.setCursor(Cursor.HAND);
+    mainRootOneCollisionBox4.setOpacity(1);
+    mainRootOneCollisionBox4.setCursor(Cursor.HAND);
   }
 
+  /**
+   * Sets the opacity of the collision boxes in root one to 0, effectively deactivating the glow
+   * effect.
+   */
   public void deactivateRootOneGlow() {
-    rootOneCollisionBox1.setOpacity(0);
-    rootOneCollisionBox2.setOpacity(0);
-    rootOneCollisionBox3.setOpacity(0);
-    rootOneCollisionBox4.setOpacity(0);
+    mainRootOneCollisionBox1.setOpacity(0);
+    mainRootOneCollisionBox2.setOpacity(0);
+    mainRootOneCollisionBox3.setOpacity(0);
+    mainRootOneCollisionBox4.setOpacity(0);
   }
 
+  /** Activates the glow effect for the collision boxes in root two. */
   public void activateRootTwoGlow() {
-    rootTwoCollisionBox1.setOpacity(1);
-    rootTwoCollisionBox1.setCursor(Cursor.HAND);
-    rootTwoCollisionBox2.setOpacity(1);
-    rootTwoCollisionBox2.setCursor(Cursor.HAND);
-    rootTwoCollisionBox3.setOpacity(1);
-    rootTwoCollisionBox3.setCursor(Cursor.HAND);
-    rootTwoCollisionBox4.setOpacity(1);
-    rootTwoCollisionBox4.setCursor(Cursor.HAND);
+    // box 1
+    mainRootTwoCollisionBox1.setOpacity(1); // set opacity to 1
+    mainRootTwoCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
+    // box 2
+    mainRootTwoCollisionBox2.setOpacity(1);
+    mainRootTwoCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    mainRootTwoCollisionBox3.setOpacity(1);
+    mainRootTwoCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    mainRootTwoCollisionBox4.setOpacity(1);
+    mainRootTwoCollisionBox4.setCursor(Cursor.HAND);
   }
 
+  /** Deactivates the glow effect on the collision boxes of the second root in the game. */
   public void deactivateRootTwoGlow() {
-    rootTwoCollisionBox1.setOpacity(0);
-    rootTwoCollisionBox2.setOpacity(0);
-    rootTwoCollisionBox3.setOpacity(0);
-    rootTwoCollisionBox4.setOpacity(0);
+    mainRootTwoCollisionBox1.setOpacity(0);
+    mainRootTwoCollisionBox2.setOpacity(0);
+    mainRootTwoCollisionBox3.setOpacity(0);
+    mainRootTwoCollisionBox4.setOpacity(0);
   }
 
+  /**
+   * Activates the glow effect for the collision boxes in root three and sets the cursor to hand.
+   */
   public void activateRootThreeGlow() {
-    rootThreeCollisionBox1.setOpacity(1);
-    rootThreeCollisionBox1.setCursor(Cursor.HAND);
-    rootThreeCollisionBox2.setOpacity(1);
-    rootThreeCollisionBox2.setCursor(Cursor.HAND);
-    rootThreeCollisionBox3.setOpacity(1);
-    rootThreeCollisionBox3.setCursor(Cursor.HAND);
-    rootThreeCollisionBox4.setOpacity(1);
-    rootThreeCollisionBox4.setCursor(Cursor.HAND);
-    rootThreeCollisionBox5.setOpacity(1);
-    rootThreeCollisionBox5.setCursor(Cursor.HAND);
+    // box 1
+    mainRootThreeCollisionBox1.setOpacity(1); // set opacity to 1
+    mainRootThreeCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
+    // box 2
+    mainRootThreeCollisionBox2.setOpacity(1);
+    mainRootThreeCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    mainRootThreeCollisionBox3.setOpacity(1);
+    mainRootThreeCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    mainRootThreeCollisionBox4.setOpacity(1);
+    mainRootThreeCollisionBox4.setCursor(Cursor.HAND);
+    // box 5
+    mainRootThreeCollisionBox5.setOpacity(1);
+    mainRootThreeCollisionBox5.setCursor(Cursor.HAND);
   }
 
+  /** Deactivates the glow effect on the collision boxes for root three. */
   public void deactivateRootThreeGlow() {
-    rootThreeCollisionBox1.setOpacity(0);
-    rootThreeCollisionBox2.setOpacity(0);
-    rootThreeCollisionBox3.setOpacity(0);
-    rootThreeCollisionBox4.setOpacity(0);
-    rootThreeCollisionBox5.setOpacity(0);
+    mainRootThreeCollisionBox1.setOpacity(0);
+    mainRootThreeCollisionBox2.setOpacity(0);
+    mainRootThreeCollisionBox3.setOpacity(0);
+    mainRootThreeCollisionBox4.setOpacity(0);
+    mainRootThreeCollisionBox5.setOpacity(0);
   }
 
+  /**
+   * Activates the glow effect for all nine collision boxes in the root four area, setting their
+   * opacity to 1 and cursor to hand.
+   */
   public void activateRootFourGlow() {
-    rootFourCollisionBox1.setOpacity(1);
-    rootFourCollisionBox1.setCursor(Cursor.HAND);
-    rootFourCollisionBox2.setOpacity(1);
-    rootFourCollisionBox2.setCursor(Cursor.HAND);
-    rootFourCollisionBox3.setOpacity(1);
-    rootFourCollisionBox3.setCursor(Cursor.HAND);
-    rootFourCollisionBox4.setOpacity(1);
-    rootFourCollisionBox4.setCursor(Cursor.HAND);
-    rootFourCollisionBox5.setOpacity(1);
-    rootFourCollisionBox5.setCursor(Cursor.HAND);
-    rootFourCollisionBox6.setOpacity(1);
-    rootFourCollisionBox6.setCursor(Cursor.HAND);
-    rootFourCollisionBox7.setOpacity(1);
-    rootFourCollisionBox7.setCursor(Cursor.HAND);
-    rootFourCollisionBox8.setOpacity(1);
-    rootFourCollisionBox8.setCursor(Cursor.HAND);
-    rootFourCollisionBox9.setOpacity(1);
-    rootFourCollisionBox9.setCursor(Cursor.HAND);
+    // box 1
+    mainRootFourCollisionBox1.setOpacity(1); // set opacity to 1
+    mainRootFourCollisionBox1.setCursor(Cursor.HAND); // set cursor to hand
+    // box 2
+    mainRootFourCollisionBox2.setOpacity(1);
+    mainRootFourCollisionBox2.setCursor(Cursor.HAND);
+    // box 3
+    mainRootFourCollisionBox3.setOpacity(1);
+    mainRootFourCollisionBox3.setCursor(Cursor.HAND);
+    // box 4
+    mainRootFourCollisionBox4.setOpacity(1);
+    mainRootFourCollisionBox4.setCursor(Cursor.HAND);
+    // box 5
+    mainRootFourCollisionBox5.setOpacity(1);
+    mainRootFourCollisionBox5.setCursor(Cursor.HAND);
+    // box 6
+    mainRootFourCollisionBox6.setOpacity(1);
+    mainRootFourCollisionBox6.setCursor(Cursor.HAND);
+    // box 7
+    mainRootFourCollisionBox7.setOpacity(1);
+    mainRootFourCollisionBox7.setCursor(Cursor.HAND);
+    // box 8
+    mainRootFourCollisionBox8.setOpacity(1);
+    mainRootFourCollisionBox8.setCursor(Cursor.HAND);
+    // box 9
+    mainRootFourCollisionBox9.setOpacity(1);
+    mainRootFourCollisionBox9.setCursor(Cursor.HAND);
   }
 
+  /** Deactivates the glow effect on all collision boxes in root four. */
   public void deactivateRootFourGlow() {
-    rootFourCollisionBox1.setOpacity(0);
-    rootFourCollisionBox2.setOpacity(0);
-    rootFourCollisionBox3.setOpacity(0);
-    rootFourCollisionBox4.setOpacity(0);
-    rootFourCollisionBox5.setOpacity(0);
-    rootFourCollisionBox6.setOpacity(0);
-    rootFourCollisionBox7.setOpacity(0);
-    rootFourCollisionBox8.setOpacity(0);
-    rootFourCollisionBox9.setOpacity(0);
+    // deactivate all the glow
+    mainRootFourCollisionBox1.setOpacity(0); // set opacity to 0
+    mainRootFourCollisionBox2.setOpacity(0);
+    mainRootFourCollisionBox3.setOpacity(0); // set opacity to 0
+    mainRootFourCollisionBox4.setOpacity(0);
+    mainRootFourCollisionBox5.setOpacity(0);
+    mainRootFourCollisionBox6.setOpacity(0); // set opacity to 0
+    mainRootFourCollisionBox7.setOpacity(0);
+    mainRootFourCollisionBox8.setOpacity(0);
+    mainRootFourCollisionBox9.setOpacity(0); // set opacity to 0
   }
 }

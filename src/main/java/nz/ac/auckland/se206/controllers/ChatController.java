@@ -33,9 +33,9 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   public static ChatMessage gptMessage;
-  private boolean isGenerating = false;
-
   @FXML private TextArea chatTextArea;
+  @FXML private Label chatLabel;
+
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Button hintButton;
@@ -53,7 +53,6 @@ public class ChatController {
   @FXML private ImageView rootThree;
   @FXML private Rectangle hintRectangle;
   @FXML private Label hintNumber;
-  @FXML private Label chatLabel;
   @FXML private ImageView smallBubble;
   @FXML private ImageView largeBubble;
   @FXML private ImageView medBubble;
@@ -69,10 +68,7 @@ public class ChatController {
 
   private int bubbleVariable = 0;
   private int bookVariable = 0;
-  private ChatMessage thinkingMessage =
-      new ChatMessage("Wise Mystical Tree", "Allow me to ponder...");
-  private ChatMessage activationMessage =
-      new ChatMessage("Wise Mystical Tree", "That is good to hear... Allow me to ponder...");
+  private boolean isGenerating = false;
 
   public static ChatCompletionRequest chatCompletionRequest;
   public static ChatCompletionRequest hintChatCompletionRequest;
@@ -82,10 +78,9 @@ public class ChatController {
   Timeline bubbleTimeline =
       new Timeline(new KeyFrame(javafx.util.Duration.millis(333), e -> thinkBubble()));
   private int firstMission;
-  private int secondMission;
 
   /**
-   * Initializes settings for images in chat room, greets the gpt
+   * Initializes settings for images in chat room, greets the gpt.
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
@@ -103,13 +98,12 @@ public class ChatController {
     loading.setVisible(false);
     loadingCircle.setVisible(false);
 
-    // Start thinking
     startThink();
     initializeCompletionRequest();
 
     // Get the intro message for mission 1
     String mission1;
-    if (GameState.missionListA.contains(1)) {
+    if (GameState.missionListA.contains(1)) { // if the first mission is the window
       mission1 =
           "So you have found me and wish to escape MY planet? I wish to make your attempts as"
               + " challenging as possible. To repair your window, I shall offer you a riddle. \n\n"
@@ -118,7 +112,7 @@ public class ChatController {
       chatLabel.setText(mission1);
       System.out.println("chatLineCode");
 
-    } else if (GameState.missionListA.contains(2)) {
+    } else if (GameState.missionListA.contains(2)) { // if it is the fuel
       mission1 =
           "So you have found me and wish to escape MY planet? I wish to make your attempts as"
               + " challenging as possible. To refuel you ship, I shall offer you a riddle. \n\n"
@@ -163,14 +157,6 @@ public class ChatController {
     mainRiddleThread.start();
   }
 
-  public ChatCompletionRequest getChatCompletionRequest() {
-    return chatCompletionRequest;
-  }
-
-  public void setChatCompletionRequest(ChatCompletionRequest chatCompletionRequest) {
-    this.chatCompletionRequest = chatCompletionRequest;
-  }
-
   public void goProgress() {
     SceneManager.setPrevious(AppPanel.CHAT);
     App.setUi(AppPanel.PROGRESS);
@@ -181,44 +167,13 @@ public class ChatController {
    *
    * @param msg the chat message to append
    */
-  private void appendChatMessage(ChatMessage msg) {
+  public void appendChatMessage(ChatMessage msg) {
     //   chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
     chatLabel.setText(msg.getContent());
   }
 
-  private void appendToNotebook(ChatMessage msg) {
+  public void appendToNotebook(ChatMessage msg) {
     chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
-  }
-
-  /**
-   * Runs the GPT model with a given chat message.
-   *
-   * @param msg the chat message to process
-   * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    getChatCompletionRequest().addMessage(msg);
-    try {
-      ChatCompletionResult chatCompletionResult = getChatCompletionRequest().execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      result.getChatMessage().setRole("Wise Ancient Tree");
-      // appendChatMessage(result.getChatMessage());
-      result.getChatMessage().setRole("assistant");
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      ChatMessage error = new ChatMessage(null, null);
-
-      error.setRole("Wise Mystical Tree");
-
-      error.setContent(
-          "Sorry, there was a problem generating a response. Please try restarting the"
-              + " application.");
-      appendChatMessage(error);
-      e.printStackTrace();
-      return null;
-    }
   }
 
   /**
@@ -305,7 +260,7 @@ public class ChatController {
     typeInThread.start();
   }
 
-  /* Activate hint button according to difficulty */
+  /** Activate hint button according to difficulty. */
   private void activateHintButton() {
     // Activate hint button if its not hard
     if (GameState.getDifficulty() != 2) {
@@ -320,7 +275,11 @@ public class ChatController {
     }
   }
 
-  /* Process with the gpt's response, if it starts with correct, update the game progress and show relavent message/image */
+  /**
+   * Process the response from gpt, detect if it starts with Correct and execute relavent code.
+   *
+   * @param response the response from gpt.
+   */
   private void processResponse(String response) {
     // If the gpt is not answering with correct, return
     if (!response.startsWith("Correct")) {
@@ -374,18 +333,19 @@ public class ChatController {
   /**
    * Handles the key pressed event.
    *
-   * @param event the key event
-   * @throws IOException
-   * @throws ApiProxyException
+   * @param event the key event.
+   * @throws IOException if there is an I/O error.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
    */
   @FXML
   public void onKeyPressed(KeyEvent event) throws ApiProxyException, IOException {
-    inputText.setStyle("-fx-background-color: transparent;");
+    inputText.setStyle(
+        "-fx-background-color: transparent;"); // set the input text field to be transparent
 
     startListen();
     treeThinking.setVisible(true);
-    if (event.getCode().toString().equals("ENTER")) {
-      onSendMessage(new ActionEvent());
+    if (event.getCode().toString().equals("ENTER")) { // if the key pressed is enter
+      onSendMessage(new ActionEvent()); // send the message
     }
     inputText.setStyle("-fx-background-color: transparent;");
   }
@@ -400,11 +360,12 @@ public class ChatController {
     inputText.setStyle("-fx-background-color: transparent;");
 
     System.out.println("key " + event.getCode() + " released");
-    if (inputText.getText().trim().isEmpty()) {
+    if (inputText.getText().trim().isEmpty()) { // if the input text field is empty
       startTalk();
-      listeningLabel.setVisible(false);
+      listeningLabel.setVisible(false); // hide the listening label
     }
-    inputText.setStyle("-fx-background-color: transparent;");
+    inputText.setStyle(
+        "-fx-background-color: transparent;"); // set the input text field to be transparent
   }
 
   public void activateProgressGlow() {
@@ -415,7 +376,7 @@ public class ChatController {
     progressButton.setEffect(GameState.glowDim);
   }
 
-  /** Generate the first riddle from gpt, append the response to chat field and notebook */
+  /** Generate the first riddle from gpt, append the response to chat field and notebook. */
   private void generateFirstRiddle() {
     Task<Void> firstRiddleTask =
         new Task<Void>() {
@@ -469,126 +430,52 @@ public class ChatController {
 
   private void getMissionId() {
     firstMission = GameState.missionList.get(0);
-    secondMission = GameState.missionList.get(1);
   }
 
+  /** Thie method handles feature of collecting fuel and bucket. */
   public void collect() {
+    // If the first mission is fuel mission
     if (GameState.missionList.contains(2)) {
-      GameState.inventory.add(8); // fuel collected
+      // Collect the fuel and increase the stage
+      GameState.inventory.add(8);
       GameState.missionManager.getMission(MISSION.FUEL).increaseStage();
       GameState.progressBarGroup.updateProgressOne(MISSION.FUEL);
       System.out.println("Fuel Mission 2 Complete");
     } else if (GameState.missionList.contains(1)) {
+      // If the first mission is bucket mission, collect bucket
       GameState.isBucketCollected = true;
     }
     exitInfo();
   }
 
+  /** Show tree listening image. */
   private void startListen() {
     treeListening.setVisible(true);
     treeTalking.setVisible(false);
     treeThinking.setVisible(false);
   }
 
+  /** Show tree talking image. */
   private void startTalk() {
     treeListening.setVisible(false);
     treeTalking.setVisible(true);
     treeThinking.setVisible(false);
   }
 
+  /** Show tree thinking image. */
   private void startThink() {
     treeListening.setVisible(false);
     treeTalking.setVisible(false);
     treeThinking.setVisible(true);
   }
 
-  private void generatePuzzle(String message) {
-    inputText.setDisable(true);
-
-    startThink();
-
-    // loading.setVisible(true);
-    // loadingCircle.setFill(Color.LIGHTGRAY);
-
-    System.out.println("generate puzzle");
-
-    //   Task<Void> secondPuzzleTask =
-    //       new Task<Void>() {
-
-    //         @Override
-    //         protected Void call() throws Exception {
-
-    //           ChatMessage msg = new ChatMessage("user", message);
-    //           appendChatMessage(msg);
-
-    //           setChatCompletionRequest(
-    //               new ChatCompletionRequest()
-    //                   .setN(1)
-    //                   .setTemperature(0.5)
-    //                   .setTopP(0.2)
-    //                   .setMaxTokens(100));
-
-    //           System.out.println("first mission riddle");
-    //           if (firstMission == 3) { // if the first mission is the controller
-    //             gptMessage =
-    //                 runGpt(new ChatMessage("user", GptPromptEngineering.getControllerPuzzle()));
-    //             gptMessage.setRole("Wise Ancient Tree");
-    //             appendChatMessage(gptMessage);
-    //             gptMessage.setRole("assistant");
-    //           } else if (firstMission == 4) { // if it is the thruster
-    //             if (GameState.randomColorNumber == 1) { // red
-    //               gptMessage =
-    //                   runGpt(new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("red")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             } else if (GameState.randomColorNumber == 2) { // blue
-    //               gptMessage =
-    //                   runGpt(new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("blue")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             } else if (GameState.randomColorNumber == 3) { // green
-    //               gptMessage =
-    //                   runGpt(
-    //                       new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("green")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             } else if (GameState.randomColorNumber == 4) { // purple
-    //               gptMessage =
-    //                   runGpt(
-    //                       new ChatMessage("user",
-    // GptPromptEngineering.getThrusterPuzzle("purple")));
-    //               gptMessage.setRole("Wise Ancient Tree");
-    //               appendChatMessage(gptMessage);
-    //               gptMessage.setRole("assistant");
-    //             }
-    //           }
-
-    //           updateProgress(1, 1);
-    //           return null;
-    //         }
-    //       };
-
-    //   // loading.progressProperty().bind(secondPuzzleTask.progressProperty());
-
-    //   secondPuzzleTask.setOnSucceeded(
-    //       e2 -> {
-    //         // loading.progressProperty().unbind();
-    //         // loading.setVisible(false);
-    //         // loadingCircle.setFill(Color.valueOf("264f31"));
-    //         inputText.setDisable(false);
-    //         startTalk();
-    //       });
-
-    //   Thread secondPuzzleThread = new Thread(secondPuzzleTask);
-    //   secondPuzzleThread.start();
-  }
-
+  /**
+   * Get hint response from gpt based on input message and completion request.
+   *
+   * @param event the action event triggered by the hint button.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
+   * @throws IOException if there is an I/O error.
+   */
   @FXML
   private void getHint(ActionEvent event) throws ApiProxyException, IOException {
     // If the gpt is generating response or hint number used up, return
@@ -622,7 +509,11 @@ public class ChatController {
     }
   }
 
-  /** Ask hint from gpt based on mission and stage of the game */
+  /**
+   * Ask hint from gpt based on mission and stage of the game.
+   *
+   * @param missionType the mission type.
+   */
   private void askHintByStage(MISSION missionType) {
     // Start thinking animation
     bubbleTimeline.play();
@@ -675,45 +566,47 @@ public class ChatController {
     hintThread.start();
   }
 
+  /**
+   * Changes the size of the chat bubble based on the current state of the bubbleVariable. There are
+   * 7 different states for the bubbleVariable: 0 = no bubble 1 = small bubble 2 = medium bubble 3 =
+   * large bubble 4 = medium bubble 5 = small bubble 6 = no bubble.
+   */
   public void thinkBubble() {
-
-    // create switch case for bubble variable given 7 different states
-    // 0 = no bubble
-    // 1 = small bubble
-    // 2 = medium bubble
-    // 3 = large bubble
-    // 4 = medium bubble
-    // 5 = small bubble
-    // 6 = no bubble
     switch (bubbleVariable) {
       case 0:
+        // When the bubble is in state 0, activate the small bubble and set state to 1
         smallBubble.setVisible(true);
         bubbleVariable = 1;
         break;
       case 1:
+        // When the bubble is in state 1, activate the medium bubble and set state to 2
         medBubble.setVisible(true);
         bubbleVariable = 2;
         break;
       case 2:
+        // When the bubble is in state 2, activate the large bubble and set state to 3
         largeBubble.setVisible(true);
         bubbleVariable = 3;
         break;
       case 3:
+        // When the bubble is in state 3, deactivate the large bubble and set state to 4
         largeBubble.setVisible(false);
         bubbleVariable = 4;
         break;
       case 4:
+        // When the bubble is in state 4, deactivate the medium bubble and set state to 5
         medBubble.setVisible(false);
         bubbleVariable = 5;
         break;
       case 5:
+        // When the bubble is in state 5, deactivate the small bubble and set state to 6
         smallBubble.setVisible(false);
         bubbleVariable = 0;
         break;
     }
   }
 
-  /* Open the notebook */
+  /** Open the notebook and its text area. */
   public void openBook() {
     zoomBook.setVisible(true);
     bookVariable = 1;
@@ -722,7 +615,7 @@ public class ChatController {
     closeBookButton.setVisible(true);
   }
 
-  /* Close the notebook */
+  /** Close the notebook and its text area. */
   public void closeBook() {
     zoomBook.setVisible(false);
     chatTextArea.setVisible(false);
@@ -730,21 +623,21 @@ public class ChatController {
     bookVariable = 0;
   }
 
-  /* Activate the yellow collision box of notebook */
+  /** Activates the glow effect for the notebook if the bookVariable is 0. */
   public void activateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(1);
     }
   }
 
-  /* Deactivate the yellow collision box of notebook */
+  /** Deactivates the glow effect of the notebook if the bookVariable is equal to 0. */
   public void deactivateNotebookGlow() {
     if (bookVariable == 0) {
       notebookCollisionBox.setOpacity(0);
     }
   }
 
-  /* This method closes all info panel in this page */
+  /** This method closes all info panel in this page. */
   public void exitInfo() {
     collectedLabel.setVisible(false);
     sandInfo.setVisible(false);
@@ -752,7 +645,7 @@ public class ChatController {
     collectedTitle.setVisible(false);
   }
 
-  /* This method shows the sand info panel */
+  /** This method shows the sand info panel. */
   public void showSand() {
     // Set the title and context of the info panel
     collectedTitle.setText("Bucket");
@@ -763,7 +656,7 @@ public class ChatController {
     collectedLabel.setVisible(true);
   }
 
-  /* This method shows the fuel info panel */
+  /** This method shows the fuel info panel. */
   public void showFuel() {
     // Set the title and context of the info panel
     collectedTitle.setText("Fuel");
@@ -774,6 +667,7 @@ public class ChatController {
     collectedLabel.setVisible(true);
   }
 
+  /** Initialize the two completion requests */
   private void initializeCompletionRequest() {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.7).setTopP(0.5).setMaxTokens(100);
@@ -781,8 +675,16 @@ public class ChatController {
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.3).setMaxTokens(100);
   }
 
-  private ChatMessage getResponse(String message, ChatCompletionRequest currentCompletionRequest)
-      throws ApiProxyException {
+  /**
+   * This method generates response from gpt based on the message and current completion request.
+   *
+   * @param message the message sent to gpt.
+   * @param currentCompletionRequest the current completion request.
+   * @return the response from gpt.
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
+   */
+  public static ChatMessage getResponse(
+      String message, ChatCompletionRequest currentCompletionRequest) throws ApiProxyException {
     // Turn string message into chatmessage form
     ChatMessage msg = new ChatMessage("user", message);
     currentCompletionRequest.addMessage(msg);
