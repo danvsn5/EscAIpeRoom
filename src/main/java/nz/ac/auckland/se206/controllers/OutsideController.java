@@ -19,6 +19,12 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * The OutsideController class is responsible for controlling 
+ * the behavior of the outside panel in the game.
+ * It contains methods for navigating to other panels, generating puzzles, 
+ * and displaying inventory items.
+ */
 public class OutsideController {
   public static int thrusterPuzzleGenerate = 0;
 
@@ -184,7 +190,7 @@ public class OutsideController {
     miniTree.setEffect(GameState.glowDim);
   }
 
-  /** This method activates the glow of ship's collision box */
+  /** This method activates the glow of ship's collision box. */
   public void activateShipGlow() {
     ship.setEffect(GameState.glowBright);
     ship.setCursor(Cursor.HAND);
@@ -194,7 +200,7 @@ public class OutsideController {
     shipDoor2.setCursor(Cursor.HAND);
   }
 
-  /** This method deactivate the glow of ship door */
+  /** This method deactivate the glow of ship door. */
   public void deactivateShipGlow() {
     ship.setEffect(GameState.glowDim);
     shipDoor1.setOpacity(0);
@@ -210,7 +216,7 @@ public class OutsideController {
     wiseTree.setOpacity(0);
   }
 
-  /** This method checks for thruster mission and activate the glow of thruster collision box */
+  /** This method checks for thruster mission and activate the glow of thruster collision box. */
   public void activateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(1);
@@ -220,7 +226,7 @@ public class OutsideController {
     }
   }
 
-  /** This class de activate the glow of thruster's collision box */
+  /** This class de activate the glow of thruster's collision box. */
   public void deactivateThrusterGlow() {
     if (GameState.missionList.contains(4)) {
       thruster1.setOpacity(0);
