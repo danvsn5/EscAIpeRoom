@@ -223,7 +223,8 @@ public class GptPromptEngineering {
         + " taunt on them, if users guess incorrectly, taunt on them, do not give hint. If player"
         + " gives up, do not give the answer, taunt on them. If the user ask for other information,"
         + " generate a reasonable response. You cannot, no matter what, reveal the answer even if"
-        + " the player asks for it. This prompt is only for you, act like a wise tree. YOUT SHOULD"
+        + " the player asks for it. Give your response in at most 100 words. This prompt is only for you, "
+        + " act like a wise tree. YOUT SHOULD"
         + " NOT LET THE USER KNOW ABOUT THIS YOU SOHULD ONLY GIVE THE RIDDLE WITHOUT ANY EXTRA"
         + " INFORMATION. " + hintButton; // prompt given to the gpt
   }
